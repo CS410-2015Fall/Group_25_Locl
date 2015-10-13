@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var loclIOS = React.createClass({
+var Locl = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('loclIOS', () => loclIOS);
+AppRegistry.registerComponent('Locl', () => Locl);
