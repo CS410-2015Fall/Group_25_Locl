@@ -63,11 +63,11 @@ var Locl = React.createClass({
     
 
 //Create User function. 
-//Inputs: fName= First Name    lName= Last Name    pass= Password    iTem1,iTem2,iTem3= Preference Items
+//Inputs: fName= First Name    lName= Last Name    pass= Password    
 //output:none
 //note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
         createUser: function(fName,lName,pass,iTem1,iTem2,iTem3) {
-        fetch(customerTableURl, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass, Item1: iTem1, Item2:iTem2, Item3: iTem3})})
+        fetch(customerTableURl, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
         .then((response) => response.json())
         .then((responseData) => {
         })
