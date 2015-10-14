@@ -17,35 +17,24 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   
   //Creates the Beacon and starts broadcasting
   @objc func initLocalBeacon() -> Void {
-    if localBeacon != nil {
-      stopLocalBeacon()
-//      let resultsDict = [
-//        "success": false,
-//        "errMsg": "Beacon already exists"
-//      ]
-//      // Execute the JS failure callback handler
-//      failureCallback([resultsDict])
-      return;
-    }
-    
-    let localBeaconUUID = "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"
-    let localBeaconMajor: CLBeaconMajorValue = 123
-    let localBeaconMinor: CLBeaconMinorValue = CLBeaconMinorValue(setMinor)
-    
-    let uuid = NSUUID(UUIDString: localBeaconUUID)!
-    localBeacon = CLBeaconRegion(proximityUUID: uuid, major: localBeaconMajor, minor: localBeaconMinor, identifier: "Locl")
-    
-    beaconPeripheralData = localBeacon.peripheralDataWithMeasuredPower(nil)
-    peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-//    let resultsDict = [
-//      "success" : true
-//    ];
-//    // Call the JS success handler
-//    successCallback([resultsDict]);
+  if localBeacon != nil {
+		stopLocalBeacon()
   }
   
+  let localBeaconUUID = "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"
+  let localBeaconMajor: CLBeaconMajorValue = 123
+  let localBeaconMinor: CLBeaconMinorValue = 456
+  
+  let uuid = NSUUID(UUIDString: localBeaconUUID)!
+  localBeacon = CLBeaconRegion(proximityUUID: uuid, major: localBeaconMajor, minor: localBeaconMinor, identifier: "Your private identifer here")
+  
+  beaconPeripheralData = localBeacon.peripheralDataWithMeasuredPower(nil)
+  peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+  }
+  
+  
   //Stop broadcasting the current beacon
-  @objc func stopLocalBeacon() -> Void {
+  @objc func stopLocalBeacon() {
     peripheralManager.stopAdvertising()
     peripheralManager = nil
     beaconPeripheralData = nil
@@ -53,13 +42,12 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   }
   
   //Acts as an intermediary between your app and the iOS Bluetooth stack
-  @objc func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) -> Void {
+  @objc func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
     if peripheral.state == .PoweredOn {
       peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
     } else if peripheral.state == .PoweredOff {
       peripheralManager.stopAdvertising()
     }
-    //TODO: Setup success/failure
   }
   
   //Set a new minor for the Beacon
