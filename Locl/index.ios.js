@@ -27,6 +27,8 @@ var itemTableURL=httpString+"item"+loclSQL;
 var customerTableURL=httpString+"customer"+loclSQL; 
 //Sting to connect to Store Table
 var storeTableURL=httpString+"store"+loclSQL;
+//String to connect to CustomerItem Table
+var customerItemURL=httpString+"customer-items"+loclSQL;
 //Search by name variable
 var searchByStart="&filter=";  
 var searchByMid="%20%3D%20%22";   
@@ -37,7 +39,7 @@ var Locl = React.createClass({
   render: function() {
     return (
    <View style={styles.container}>
-        <TouchableHighlight onPress={this.searchByOneFilter("nasrin","FirstName",customerTableURL)} style={styles.button}>
+        <TouchableHighlight onPress={this.createCustomerItem(23,"Moon")} style={styles.button}>
                     <Text>Get</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this.auth} style={styles.button}>
@@ -68,7 +70,7 @@ var Locl = React.createClass({
 //output:none
 //note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
         createUser: function(fName,lName,pass) {
-        fetch(customerTableURl, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
+        fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
         .then((response) => response.json())
         .then((responseData) => {
         })
@@ -79,13 +81,25 @@ var Locl = React.createClass({
 //Inputs: sName= Store Name    sAddress= Store Address    trans= True or False      StoreHTMLimg= URL link with Store image
 //output:none
 //note: sName must be unique and cannot be same as others. trans must be true or false cannot be null.
-        creatStore: function(sName,sAddress,trans,sImage) {
-        fetch(storeTableURl, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: trans, StoreHTMLimg: sImage})})
+        createStore: function(sName,sAddress,trans,sImage) {
+        fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: trans, StoreHTMLimg: sImage})})
         .then((response) => response.json())
         .then((responseData) => {
         })
         .done();
     },
+
+//Create CustomerItem fucntion. 
+//Inputs: itemName= Name of preference Item       customerID= Existing CustomerID
+//output:none
+//note: customerID is a foreign key and must reference existing Customer in Database
+          createCustomerItem: function(custID, itemName) {
+        fetch(customerItemURL, {method: "POST", body: JSON.stringify({CustID: custID, ItemName: itemName})})
+        .then((response) => response.json())
+        .then((responseData) => {
+        })
+        .done();
+    },       
         
 //Create Item function. 
 //Inputs: name= Store Name  desc= Store Description  sDate= Start Date   eDate= End Date  qty= Quantity   regPrice = Regular Price  
@@ -109,7 +123,7 @@ var Locl = React.createClass({
         fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {    
-            console.log("FirstName:--->"+responseData.record[0].FirstName)
+            //console.log("FirstName:--->"+responseData.record[0].CustID)
         
         })
         .done();
