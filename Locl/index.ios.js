@@ -14,14 +14,26 @@ var {
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
 
 var Locl = React.createClass({
+	// Generate the initial state of the view.
+	getInitialState : function() {
+	return {
+	// textInput seemed like it should have an initial state, so I moved it here. -- KD
+        textInputValue : null,
+        resultsText : 'Nothing has happened yet :('
+        }
+    },
 	render: function() {
 		return (
 			<View style={styles.container}>
+
 			<Text style={styles.instructionsText}>
 			Locl
 			</Text>
+
 			<View style={styles.separator}/>
+
 			<View style={styles.buttonContainer}>
+
 			<TouchableHighlight
 			style={styles.touchableHighlight}
 			underlayColor="#99AA99"
@@ -32,18 +44,24 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
-
-			<TouchableHighlight
-			underlayColor="#AA9999"
-			onPress={this.onStartPress}>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStartPress}>
 			<View style={[styles.buttonBox, styles.saveButtonBox]}>
 			<Text style={styles.buttonText}>
 			Start
 			</Text>
 			</View>
 			</TouchableHighlight>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.onSetPress}>
+			<View style={[styles.buttonBox, styles.setButtonBox]}>
+			<Text style={styles.buttonText}>
+			Set
+			</Text>
 			</View>
+			</TouchableHighlight>
 			</View>
+
+			</View>
+			// </View>
 			);
 	},
 
@@ -51,12 +69,15 @@ var Locl = React.createClass({
 		BluetoothBeacon.initLocalBeacon();
 		AlertIOS.alert('Warning','Beaconing Bluetooth will drain your battery. Make sure your phone is plugged in to a charger.',);
 	}, 
-	
+
 	onStopPress : function() {
 		BluetoothBeacon.stopLocalBeacon();
 		AlertIOS.alert('Alert','Bluetooth is no longer Beaconing',);
-	}
+	}, 
 
+	onSetPress : function() {
+		BluetoothBeacon.setMinor(6005);
+	}
 });
 
 
@@ -115,6 +136,9 @@ var styles = StyleSheet.create({
 		borderColor : '#AA0000'
 	},
 	loadButtonBox : {
+		borderColor : '#00AA00'
+	},
+	setButtonBox : {
 		borderColor : '#00AA00'
 	},
 	buttonText : {

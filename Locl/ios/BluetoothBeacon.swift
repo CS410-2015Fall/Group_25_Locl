@@ -45,31 +45,8 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   }
   
   //Set a new minor for the Beacon
-  @objc func setNewMinor(minor: Int, errorCallback failureCallback: RCTResponseSenderBlock, callback successCallback: RCTResponseSenderBlock) {
-    
-    // Check if minor is nil or empty
-    if (minor == 0) {
-      let resultsDict = [
-        "success": false,
-        "errorMsg": "Not an Int"
-      ]
-      // Execute the JavaScript failure callback handler
-      failureCallback([resultsDict])
-      // Halt execution of this function
-      return;
-    }
-    
-      // Success handling
-    else {
-      setMinor = minor
-      // Craft a success return message
-      let resultsDict = [
-        "success" : true,
-        "successMsg": "Minor set to \(setMinor)"
-      ];
-      // Call the JavaScript sucess handler
-      successCallback([resultsDict]);
-    }
+  @objc func setMinor(minor: Int) {
+    setMinor = minor
   }
       
   
