@@ -34,9 +34,6 @@ var searchByEnd="%22";
 
 
 var Locl = React.createClass({
-componentDidMount: function() {
-    this.auth();
-  },
   render: function() {
     return (
    <View style={styles.container}>
