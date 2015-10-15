@@ -8,8 +8,10 @@ var React = require('react-native');
 var {
   AppRegistry,
   StyleSheet,
+  TouchableHighlight,
   Text,
   View,
+  AlertIOS,
 } = React;
     
         
@@ -18,7 +20,7 @@ var {
 //app Name for DreamFactory
 var loclSQL="?app_name=loclSQL";
 //Basic Connection HTMLstrig for Database
-var httpString="http://ec2-52-88-97-209.us-west-2.compute.amazonaws.com/rest/db/";   
+var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";   
 //String to connect to Items Table
 var itemTableURL=httpString+"item"+loclSQL;   
 //String to connect to Customer Table
@@ -32,20 +34,19 @@ var searchByEnd="%22";
 
 
 var Locl = React.createClass({
+componentDidMount: function() {
+    this.auth();
+  },
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+   <View style={styles.container}>
+        <TouchableHighlight onPress={this.searchByOneFilter("nasrin","FirstName",customerTableURL)} style={styles.button}>
+                    <Text>Get</Text>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this.auth} style={styles.button}>
+                    <Text>Auth</Text>
+                </TouchableHighlight>
+            </View>
     );
   },
       
@@ -55,18 +56,21 @@ var Locl = React.createClass({
 //grants the client access to read and write to database
 //DO NOT CHANGE just call fucntion once and it will do the rest
         auth: function() {
-        fetch("http://ec2-52-88-97-209.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
         .then((response) => response.json())
         .then((responseData) => {
-        })        
+            console.log("Search Query -> " + responseData.session_id)
+        }) 
+        .done()
     },
     
+   
 
 //Create User function. 
 //Inputs: fName= First Name    lName= Last Name    pass= Password    
 //output:none
 //note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
-        createUser: function(fName,lName,pass,iTem1,iTem2,iTem3) {
+        createUser: function(fName,lName,pass) {
         fetch(customerTableURl, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
         .then((response) => response.json())
         .then((responseData) => {
@@ -104,12 +108,12 @@ var Locl = React.createClass({
 //output: Array of Results based on search. Null if array has no results.
 //note: so if you want to search from table customer table, by first name and lets say a user by the FirstName of nasrin
 //      you would simply enter searchByOneFilter("nasrin","FirstName",customerTableURL)
-        searcByOneFilter: function searchByOneFilter(fval,fname,ftable) {
+        searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
         fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {    
-
-               return responseData.record[0].FirstName     
+            console.log("FirstName:--->"+responseData.record[0].FirstName)
+        
         })
         .done();
     },
@@ -144,6 +148,12 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  button: {
+   backgroundColor: '#eeeeee',
+   padding: 10,
+   marginRight: 5,
+   marginLeft: 5,
+    }
 });
 
 AppRegistry.registerComponent('Locl', () => Locl);
