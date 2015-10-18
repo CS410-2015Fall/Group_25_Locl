@@ -33,21 +33,28 @@ var customerItemURL=httpString+"customer-items"+loclSQL;
 var searchByStart="&filter=";  
 var searchByMid="%20%3D%20%22";   
 var searchByEnd="%22";   
+    
+    
 
-
+//CAUTION!!!!
+//README!!!!
+//Just using sample buttons for testing the methods. Not USEFULL otherwise.
 var Locl = React.createClass({
   render: function() {
     return (
    <View style={styles.container}>
-        <TouchableHighlight onPress={this.createCustomerItem(23,"Moon")} style={styles.button}>
+        <TouchableHighlight onPress={this.customScript(22,1)} style={styles.button}>
                     <Text>Get</Text>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={this.auth} style={styles.button}>
+                <TouchableHighlight onPress={this.auth()} style={styles.button}>
                     <Text>Auth</Text>
                 </TouchableHighlight>
             </View>
     );
   },
+//CAUTION!!!! END
+//README!!!!  END    
+      
       
 
 //Authorization function. 
@@ -62,6 +69,7 @@ var Locl = React.createClass({
         }) 
         .done()
     },
+        
     
    
 
@@ -77,6 +85,8 @@ var Locl = React.createClass({
         .done();
     },
         
+        
+        
 //Create Store fucntion. 
 //Inputs: sName= Store Name    sAddress= Store Address    trans= True or False      StoreHTMLimg= URL link with Store image
 //output:none
@@ -89,6 +99,7 @@ var Locl = React.createClass({
         .done();
     },
 
+        
 //Create CustomerItem fucntion. 
 //Inputs: itemName= Name of preference Item       customerID= Existing CustomerID
 //output:none
@@ -99,7 +110,8 @@ var Locl = React.createClass({
         .then((responseData) => {
         })
         .done();
-    },       
+    }, 
+                
         
 //Create Item function. 
 //Inputs: name= Store Name  desc= Store Description  sDate= Start Date   eDate= End Date  qty= Quantity   regPrice = Regular Price  
@@ -114,6 +126,17 @@ var Locl = React.createClass({
         .done();
     },
         
+        
+        
+        customScript: function(custID,storeID) {
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+custID+"&StoreID="+storeID, {method: "POST"})
+        .then((response) => response.json())
+        .then((responseData) => {
+             console.log("Search Query server -> " + responseData.script_result)
+        })
+        .done();
+    },
+        
 //Search from any table with 1 filter function. 
 //Inputs: fval= Filter Value   ftype= Filter Name  ftable= is one of customerTableURL/itemTableURL/storeTableURL
 //output: Array of Results based on search. Null if array has no results.
@@ -123,23 +146,24 @@ var Locl = React.createClass({
         fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {    
-            //console.log("FirstName:--->"+responseData.record[0].CustID)
-        
+            console.log("CustName:--->"+responseData.record[0].ItemName)
         })
         .done();
     },
-//Update customer items Given CustomerID
-//Inputs: cID= CustomerID      iTem= PreferenceItem
-//output: none
-//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
-//      you would simply call updateCustomerItem(4,"shorts")
-        updateCustomer: function(cID,iTem) {
-        fetch(customerTableURl, {method: "Put", body: JSON.stringify({CustomerID:cID,Item1:iTem})})
-        .then((response) => response.json())
-        .then((responseData) => {
-        })
-        .done();
-    }      
+//-----------------------------------------------------------------------------------------------------------------------------------------
+////Update CustomerPreferenceItem Given CustomerID
+////Inputs: cID= CustomerID      iTem= PreferenceItem
+////output: none
+////note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
+////      you would simply call updateCustomerItem(4,"shorts")
+//        updateCustomer: function(cID,iTem) {
+//        fetch(customerItemURL, {method: "Put", body: JSON.stringify({CustomerID:cID,ItemName:iTem})})
+//        .then((response) => response.json())
+//        .then((responseData) => {
+//        })
+//        .done();
+//    }      
+//-----------------------------------------------------------------------------------------------------------------------------------------    
 });
 
 var styles = StyleSheet.create({
