@@ -14,8 +14,6 @@ RCT_EXTERN_METHOD(initLocalBeacon)
 
 RCT_EXTERN_METHOD(stopLocalBeacon)
 
-RCT_EXTERN_METHOD(setMinor: (int)minor)
-
-RCT_EXTERN_METHOD(getMinor: errorCallback:(RCTResponseSenderBlock *)failureCallback callback:(RCTResponseSenderBlock *)successCallback)
+RCT_EXTERN_METHOD(setMinor: (int)minor callback:(RCTResponseSenderBlock *)successCallback)
 
 @end

@@ -12,6 +12,7 @@ var {
 // var { BluetoothBeacon } = require('NativeModules');
 
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
+var storeID = 0;
 
 var Locl = React.createClass({
 	// Generate the initial state of the view.
@@ -76,7 +77,15 @@ var Locl = React.createClass({
 	}, 
 
 	onSetPress : function() {
-		BluetoothBeacon.setMinor(6005);
+		if (storeID <= 0 || storeID >= 9999) {
+			console.error("Invalid Store ID");
+		}
+		BluetoothBeacon.setMinor(
+			storeID,
+            (results) => {
+                console.log('Success', results.successMsg);
+                }
+            );
 	}
 });
 

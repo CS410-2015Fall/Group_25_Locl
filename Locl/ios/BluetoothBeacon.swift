@@ -21,7 +21,7 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
 		stopLocalBeacon()
   }
   
-  let localBeaconUUID = "EF8C2C6F-6B73-4467-BCE2-32DFDDCCD5B9"
+  let localBeaconUUID = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
   let localBeaconMajor: CLBeaconMajorValue = 0
   let localBeaconMinor: CLBeaconMinorValue = CLBeaconMinorValue(setMinor)
   
@@ -45,16 +45,15 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   }
   
   //Set a new minor for the Beacon
-  @objc func setMinor(minor: Int) {
+  @objc func setMinor(minor: Int, callback successCallback: RCTResponseSenderBlock) {
     setMinor = minor
-  }
-      
-  
-  
-  
-  //Get current minor for the Beacon
-  @objc func getMinor(errorCallback failureCallback: RCTResponseSenderBlock, callback successCallback: RCTResponseSenderBlock) -> Int {
-    return setMinor;
+    
+    let resultsDict = [
+      "success" : true,
+      "successMsg" : "Minor set to \(setMinor)"
+    ];
+    
+    successCallback([resultsDict]);
   }
   
   //Acts as an intermediary between your app and the iOS Bluetooth stack
