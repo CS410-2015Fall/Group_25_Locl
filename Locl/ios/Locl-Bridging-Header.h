@@ -1,5 +1,12 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  Locl-Bridging-Header.h
+//  Locl
+//
+//  Created by Kieran Collery on 2015-10-14.
+//  Copyright (c) 2015 Facebook. All rights reserved.
 //
 
+
 #import "RCTBridgeModule.h"
+
+
