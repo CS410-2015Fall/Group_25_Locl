@@ -12,6 +12,11 @@ var {
   View,
 } = React;
 
+var FBSDKLogin = require('react-native-fbsdklogin');
+var {
+  FBSDKLoginButton
+} = FBSDKLogin;
+
 var loclIOS = React.createClass({
   render: function() {
     return (
@@ -26,6 +31,21 @@ var loclIOS = React.createClass({
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <FBSDKLoginButton
+        onLoginFinished={(error, result) => {
+          if (error) {
+            alert('Error logging in.');
+          } else {
+            if (result.isCanceled) {
+              alert('Login cancelled.');
+            } else {
+              alert('Logged in.');
+            }
+          }
+        }}
+        onLogoutFinished={() => alert('Logged out.')}
+        readPermissions={[]}
+        publishPermissions={['publish_actions']}/>
       </View>
     );
   }
