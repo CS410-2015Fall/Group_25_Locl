@@ -18,6 +18,29 @@
 		019B14D11BD45A4C001F3916 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B14CD1BD45A4C001F3916 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
 		019B14D21BD45A4C001F3916 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B14CE1BD45A4C001F3916 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
 		019B14D31BD45A4C001F3916 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B14CF1BD45A4C001F3916 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		019B14EC1BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14E21BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
+		019B14ED1BD45C6E001F3916 /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14E41BD45C6E001F3916 /* RCTFBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
+		019B14EE1BD45C6E001F3916 /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14E61BD45C6E001F3916 /* RCTFBSDKAppEvents.m */; settings = {ASSET_TAGS = (); }; };
+		019B14EF1BD45C6E001F3916 /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14E71BD45C6E001F3916 /* RCTFBSDKCoreInitializer.m */; settings = {ASSET_TAGS = (); }; };
+		019B14F01BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14E91BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.m */; settings = {ASSET_TAGS = (); }; };
+		019B14F11BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14EB1BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B14F91BD45C86001F3916 /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14F31BD45C86001F3916 /* RCTConvert+FBSDKLogin.m */; settings = {ASSET_TAGS = (); }; };
+		019B14FA1BD45C86001F3916 /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14F51BD45C86001F3916 /* RCTFBSDKLoginButtonManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B14FB1BD45C86001F3916 /* RCTFBSDKLoginInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14F61BD45C86001F3916 /* RCTFBSDKLoginInitializer.m */; settings = {ASSET_TAGS = (); }; };
+		019B14FC1BD45C86001F3916 /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14F81BD45C86001F3916 /* RCTFBSDKLoginManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B15161BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B14FE1BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.m */; settings = {ASSET_TAGS = (); }; };
+		019B15171BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15001BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B15181BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15021BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B15191BD45C96001F3916 /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15041BD45C96001F3916 /* RCTFBSDKAppInviteDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B151A1BD45C96001F3916 /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15061BD45C96001F3916 /* RCTFBSDKGameRequestDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B151B1BD45C96001F3916 /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15081BD45C96001F3916 /* RCTFBSDKLikeControlManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B151C1BD45C96001F3916 /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B150A1BD45C96001F3916 /* RCTFBSDKMessageDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B151D1BD45C96001F3916 /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B150C1BD45C96001F3916 /* RCTFBSDKSendButtonManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B151E1BD45C96001F3916 /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B150E1BD45C96001F3916 /* RCTFBSDKShareAPI.m */; settings = {ASSET_TAGS = (); }; };
+		019B151F1BD45C96001F3916 /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15101BD45C96001F3916 /* RCTFBSDKShareButtonManager.m */; settings = {ASSET_TAGS = (); }; };
+		019B15201BD45C96001F3916 /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15121BD45C96001F3916 /* RCTFBSDKShareDialog.m */; settings = {ASSET_TAGS = (); }; };
+		019B15211BD45C96001F3916 /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15141BD45C96001F3916 /* RCTFBSDKShareHelper.m */; settings = {ASSET_TAGS = (); }; };
+		019B15221BD45C96001F3916 /* RCTFBSDKShareInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B15151BD45C96001F3916 /* RCTFBSDKShareInitializer.m */; settings = {ASSET_TAGS = (); }; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -123,6 +146,49 @@
 		019B14CD1BD45A4C001F3916 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		019B14CE1BD45A4C001F3916 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		019B14CF1BD45A4C001F3916 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		019B14E11BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+FBSDKAccessToken.h"; path = "../node_modules/react-native-fbsdkcore/iOS/RCTConvert+FBSDKAccessToken.h"; sourceTree = "<group>"; };
+		019B14E21BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+FBSDKAccessToken.m"; path = "../node_modules/react-native-fbsdkcore/iOS/RCTConvert+FBSDKAccessToken.m"; sourceTree = "<group>"; };
+		019B14E31BD45C6E001F3916 /* RCTFBSDKAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAccessToken.h; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKAccessToken.h"; sourceTree = "<group>"; };
+		019B14E41BD45C6E001F3916 /* RCTFBSDKAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAccessToken.m; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKAccessToken.m"; sourceTree = "<group>"; };
+		019B14E51BD45C6E001F3916 /* RCTFBSDKAppEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppEvents.h; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKAppEvents.h"; sourceTree = "<group>"; };
+		019B14E61BD45C6E001F3916 /* RCTFBSDKAppEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppEvents.m; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKAppEvents.m"; sourceTree = "<group>"; };
+		019B14E71BD45C6E001F3916 /* RCTFBSDKCoreInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKCoreInitializer.m; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKCoreInitializer.m"; sourceTree = "<group>"; };
+		019B14E81BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGraphRequestConnectionContainer.h; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKGraphRequestConnectionContainer.h"; sourceTree = "<group>"; };
+		019B14E91BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGraphRequestConnectionContainer.m; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKGraphRequestConnectionContainer.m"; sourceTree = "<group>"; };
+		019B14EA1BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGraphRequestManager.h; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKGraphRequestManager.h"; sourceTree = "<group>"; };
+		019B14EB1BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGraphRequestManager.m; path = "../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKGraphRequestManager.m"; sourceTree = "<group>"; };
+		019B14F21BD45C86001F3916 /* RCTConvert+FBSDKLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+FBSDKLogin.h"; path = "../node_modules/react-native-fbsdklogin/iOS/RCTConvert+FBSDKLogin.h"; sourceTree = "<group>"; };
+		019B14F31BD45C86001F3916 /* RCTConvert+FBSDKLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+FBSDKLogin.m"; path = "../node_modules/react-native-fbsdklogin/iOS/RCTConvert+FBSDKLogin.m"; sourceTree = "<group>"; };
+		019B14F41BD45C86001F3916 /* RCTFBSDKLoginButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKLoginButtonManager.h; path = "../node_modules/react-native-fbsdklogin/iOS/RCTFBSDKLoginButtonManager.h"; sourceTree = "<group>"; };
+		019B14F51BD45C86001F3916 /* RCTFBSDKLoginButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKLoginButtonManager.m; path = "../node_modules/react-native-fbsdklogin/iOS/RCTFBSDKLoginButtonManager.m"; sourceTree = "<group>"; };
+		019B14F61BD45C86001F3916 /* RCTFBSDKLoginInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKLoginInitializer.m; path = "../node_modules/react-native-fbsdklogin/iOS/RCTFBSDKLoginInitializer.m"; sourceTree = "<group>"; };
+		019B14F71BD45C86001F3916 /* RCTFBSDKLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKLoginManager.h; path = "../node_modules/react-native-fbsdklogin/iOS/RCTFBSDKLoginManager.h"; sourceTree = "<group>"; };
+		019B14F81BD45C86001F3916 /* RCTFBSDKLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKLoginManager.m; path = "../node_modules/react-native-fbsdklogin/iOS/RCTFBSDKLoginManager.m"; sourceTree = "<group>"; };
+		019B14FD1BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+FBSDKSharingContent.h"; path = "../node_modules/react-native-fbsdkshare/iOS/RCTConvert+FBSDKSharingContent.h"; sourceTree = "<group>"; };
+		019B14FE1BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+FBSDKSharingContent.m"; path = "../node_modules/react-native-fbsdkshare/iOS/RCTConvert+FBSDKSharingContent.m"; sourceTree = "<group>"; };
+		019B14FF1BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppGroupAddDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppGroupAddDialog.h"; sourceTree = "<group>"; };
+		019B15001BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppGroupAddDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppGroupAddDialog.m"; sourceTree = "<group>"; };
+		019B15011BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppGroupJoinDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppGroupJoinDialog.h"; sourceTree = "<group>"; };
+		019B15021BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppGroupJoinDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppGroupJoinDialog.m"; sourceTree = "<group>"; };
+		019B15031BD45C96001F3916 /* RCTFBSDKAppInviteDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppInviteDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppInviteDialog.h"; sourceTree = "<group>"; };
+		019B15041BD45C96001F3916 /* RCTFBSDKAppInviteDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppInviteDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKAppInviteDialog.m"; sourceTree = "<group>"; };
+		019B15051BD45C96001F3916 /* RCTFBSDKGameRequestDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGameRequestDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKGameRequestDialog.h"; sourceTree = "<group>"; };
+		019B15061BD45C96001F3916 /* RCTFBSDKGameRequestDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGameRequestDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKGameRequestDialog.m"; sourceTree = "<group>"; };
+		019B15071BD45C96001F3916 /* RCTFBSDKLikeControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKLikeControlManager.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKLikeControlManager.h"; sourceTree = "<group>"; };
+		019B15081BD45C96001F3916 /* RCTFBSDKLikeControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKLikeControlManager.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKLikeControlManager.m"; sourceTree = "<group>"; };
+		019B15091BD45C96001F3916 /* RCTFBSDKMessageDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKMessageDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKMessageDialog.h"; sourceTree = "<group>"; };
+		019B150A1BD45C96001F3916 /* RCTFBSDKMessageDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKMessageDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKMessageDialog.m"; sourceTree = "<group>"; };
+		019B150B1BD45C96001F3916 /* RCTFBSDKSendButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKSendButtonManager.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKSendButtonManager.h"; sourceTree = "<group>"; };
+		019B150C1BD45C96001F3916 /* RCTFBSDKSendButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKSendButtonManager.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKSendButtonManager.m"; sourceTree = "<group>"; };
+		019B150D1BD45C96001F3916 /* RCTFBSDKShareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKShareAPI.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareAPI.h"; sourceTree = "<group>"; };
+		019B150E1BD45C96001F3916 /* RCTFBSDKShareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKShareAPI.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareAPI.m"; sourceTree = "<group>"; };
+		019B150F1BD45C96001F3916 /* RCTFBSDKShareButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKShareButtonManager.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareButtonManager.h"; sourceTree = "<group>"; };
+		019B15101BD45C96001F3916 /* RCTFBSDKShareButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKShareButtonManager.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareButtonManager.m"; sourceTree = "<group>"; };
+		019B15111BD45C96001F3916 /* RCTFBSDKShareDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKShareDialog.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareDialog.h"; sourceTree = "<group>"; };
+		019B15121BD45C96001F3916 /* RCTFBSDKShareDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKShareDialog.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareDialog.m"; sourceTree = "<group>"; };
+		019B15131BD45C96001F3916 /* RCTFBSDKShareHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKShareHelper.h; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareHelper.h"; sourceTree = "<group>"; };
+		019B15141BD45C96001F3916 /* RCTFBSDKShareHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKShareHelper.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareHelper.m"; sourceTree = "<group>"; };
+		019B15151BD45C96001F3916 /* RCTFBSDKShareInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKShareInitializer.m; path = "../node_modules/react-native-fbsdkshare/iOS/RCTFBSDKShareInitializer.m"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* loclIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loclIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +306,17 @@
 		019B14DE1BD45B67001F3916 /* react-native-fbsdkcore */ = {
 			isa = PBXGroup;
 			children = (
+				019B14E11BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.h */,
+				019B14E21BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.m */,
+				019B14E31BD45C6E001F3916 /* RCTFBSDKAccessToken.h */,
+				019B14E41BD45C6E001F3916 /* RCTFBSDKAccessToken.m */,
+				019B14E51BD45C6E001F3916 /* RCTFBSDKAppEvents.h */,
+				019B14E61BD45C6E001F3916 /* RCTFBSDKAppEvents.m */,
+				019B14E71BD45C6E001F3916 /* RCTFBSDKCoreInitializer.m */,
+				019B14E81BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.h */,
+				019B14E91BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.m */,
+				019B14EA1BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.h */,
+				019B14EB1BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.m */,
 			);
 			name = "react-native-fbsdkcore";
 			sourceTree = "<group>";
@@ -247,6 +324,13 @@
 		019B14DF1BD45B73001F3916 /* react-native-fbsdklogin */ = {
 			isa = PBXGroup;
 			children = (
+				019B14F21BD45C86001F3916 /* RCTConvert+FBSDKLogin.h */,
+				019B14F31BD45C86001F3916 /* RCTConvert+FBSDKLogin.m */,
+				019B14F41BD45C86001F3916 /* RCTFBSDKLoginButtonManager.h */,
+				019B14F51BD45C86001F3916 /* RCTFBSDKLoginButtonManager.m */,
+				019B14F61BD45C86001F3916 /* RCTFBSDKLoginInitializer.m */,
+				019B14F71BD45C86001F3916 /* RCTFBSDKLoginManager.h */,
+				019B14F81BD45C86001F3916 /* RCTFBSDKLoginManager.m */,
 			);
 			name = "react-native-fbsdklogin";
 			sourceTree = "<group>";
@@ -254,6 +338,31 @@
 		019B14E01BD45B7E001F3916 /* react-native-fbsdkshare */ = {
 			isa = PBXGroup;
 			children = (
+				019B14FD1BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.h */,
+				019B14FE1BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.m */,
+				019B14FF1BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.h */,
+				019B15001BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.m */,
+				019B15011BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.h */,
+				019B15021BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.m */,
+				019B15031BD45C96001F3916 /* RCTFBSDKAppInviteDialog.h */,
+				019B15041BD45C96001F3916 /* RCTFBSDKAppInviteDialog.m */,
+				019B15051BD45C96001F3916 /* RCTFBSDKGameRequestDialog.h */,
+				019B15061BD45C96001F3916 /* RCTFBSDKGameRequestDialog.m */,
+				019B15071BD45C96001F3916 /* RCTFBSDKLikeControlManager.h */,
+				019B15081BD45C96001F3916 /* RCTFBSDKLikeControlManager.m */,
+				019B15091BD45C96001F3916 /* RCTFBSDKMessageDialog.h */,
+				019B150A1BD45C96001F3916 /* RCTFBSDKMessageDialog.m */,
+				019B150B1BD45C96001F3916 /* RCTFBSDKSendButtonManager.h */,
+				019B150C1BD45C96001F3916 /* RCTFBSDKSendButtonManager.m */,
+				019B150D1BD45C96001F3916 /* RCTFBSDKShareAPI.h */,
+				019B150E1BD45C96001F3916 /* RCTFBSDKShareAPI.m */,
+				019B150F1BD45C96001F3916 /* RCTFBSDKShareButtonManager.h */,
+				019B15101BD45C96001F3916 /* RCTFBSDKShareButtonManager.m */,
+				019B15111BD45C96001F3916 /* RCTFBSDKShareDialog.h */,
+				019B15121BD45C96001F3916 /* RCTFBSDKShareDialog.m */,
+				019B15131BD45C96001F3916 /* RCTFBSDKShareHelper.h */,
+				019B15141BD45C96001F3916 /* RCTFBSDKShareHelper.m */,
+				019B15151BD45C96001F3916 /* RCTFBSDKShareInitializer.m */,
 			);
 			name = "react-native-fbsdkshare";
 			sourceTree = "<group>";
@@ -574,8 +683,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				019B14EC1BD45C6E001F3916 /* RCTConvert+FBSDKAccessToken.m in Sources */,
+				019B15221BD45C96001F3916 /* RCTFBSDKShareInitializer.m in Sources */,
+				019B151C1BD45C96001F3916 /* RCTFBSDKMessageDialog.m in Sources */,
+				019B151E1BD45C96001F3916 /* RCTFBSDKShareAPI.m in Sources */,
+				019B14F11BD45C6E001F3916 /* RCTFBSDKGraphRequestManager.m in Sources */,
+				019B151A1BD45C96001F3916 /* RCTFBSDKGameRequestDialog.m in Sources */,
+				019B14FA1BD45C86001F3916 /* RCTFBSDKLoginButtonManager.m in Sources */,
+				019B15211BD45C96001F3916 /* RCTFBSDKShareHelper.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				019B151B1BD45C96001F3916 /* RCTFBSDKLikeControlManager.m in Sources */,
+				019B15201BD45C96001F3916 /* RCTFBSDKShareDialog.m in Sources */,
+				019B15181BD45C96001F3916 /* RCTFBSDKAppGroupJoinDialog.m in Sources */,
+				019B14FB1BD45C86001F3916 /* RCTFBSDKLoginInitializer.m in Sources */,
+				019B14EE1BD45C6E001F3916 /* RCTFBSDKAppEvents.m in Sources */,
+				019B15191BD45C96001F3916 /* RCTFBSDKAppInviteDialog.m in Sources */,
+				019B15171BD45C96001F3916 /* RCTFBSDKAppGroupAddDialog.m in Sources */,
+				019B14ED1BD45C6E001F3916 /* RCTFBSDKAccessToken.m in Sources */,
+				019B14EF1BD45C6E001F3916 /* RCTFBSDKCoreInitializer.m in Sources */,
+				019B151D1BD45C96001F3916 /* RCTFBSDKSendButtonManager.m in Sources */,
+				019B151F1BD45C96001F3916 /* RCTFBSDKShareButtonManager.m in Sources */,
+				019B14FC1BD45C86001F3916 /* RCTFBSDKLoginManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				019B14F91BD45C86001F3916 /* RCTConvert+FBSDKLogin.m in Sources */,
+				019B14F01BD45C6E001F3916 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */,
+				019B15161BD45C96001F3916 /* RCTConvert+FBSDKSharingContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
