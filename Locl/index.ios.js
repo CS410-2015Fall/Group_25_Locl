@@ -17,6 +17,13 @@ var {
   FBSDKLoginButton
 } = FBSDKLogin;
 
+var FBSDKCore = require('react-native-fbsdkcore');
+var {
+    FBSDKAccessToken,
+} = FBSDKCore;
+
+FBSDKAccessToken.getCurrentAccessToken(token => console.log(token));
+
 var loclIOS = React.createClass({
   render: function() {
     return (
