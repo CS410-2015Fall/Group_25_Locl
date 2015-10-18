@@ -13,8 +13,9 @@
 
 RCT_EXTERN_METHOD(initLocationManager)
 
-RCT_EXTERN_METHOD(updateAuthorizationStatus: (CLLocationManager *) manager didChangeAuthorizationStatus: (CLAuthorizationStatus *) status)
-RCT_EXTERN_METHOD(findCurrentLocation: (CLLocationManager *) manager didDetermineState:(CLRegionState *) state forregion: (CLRegion *) region)
+RCT_EXTERN_METHOD(locationManager: (CLLocationManager *) manager didChangeAuthorizationStatus: (CLAuthorizationStatus *) status)
+RCT_EXTERN_METHOD(locationManager: (CLLocationManager *) manager didDetermineState:(CLRegionState *) state forregion: (CLRegion *) region)
+RCT_EXTERN_METHOD(stopLocationManager)
 RCT_EXTERN_METHOD(enteredLocation: (CLLocationManager) manager didEnterRegion: (CLRegion *) region)
 RCT_EXTERN_METHOD(exitedLocation: (CLLocationManager) manager didExitRegion: (CLRegion *) region)
 

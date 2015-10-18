@@ -12,6 +12,7 @@ var {
 // var { BluetoothBeacon } = require('NativeModules');
 
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
+var BluetoothRanger = require('react-native').NativeModules.BluetoothRanger;
 
 var Locl = React.createClass({
                              render: function() {
@@ -42,16 +43,47 @@ var Locl = React.createClass({
                                      </Text>
                                      </View>
                                      </TouchableHighlight>
+
+                                     <TouchableHighlight
+                                     underlayColor="#000000"
+                                     onPress={this.onStartSearch}>
+                                     <View style={[styles.buttonBox, styles.saveButtonBox]}>
+                                     <Text style={styles.buttonText}>
+                                     Search 
+                                     </Text>
+                                     </View>
+                                     </TouchableHighlight>
+
+                                     <TouchableHighlight
+                                     underlayColor="#ffffff"
+                                     onPress={this.onStopSearch}>
+                                     <View style={[styles.buttonBox, styles.saveButtonBox]}>
+                                     <Text style={styles.buttonText}>
+                                     Stop 
+                                     </Text>
+                                     </View>
+                                     </TouchableHighlight>
+
                                      </View>
                                      </View>
+
                                      );
                              },
                              
                              onStartPress : function() {
                              BluetoothBeacon.initLocalBeacon();
                              AlertIOS.alert('Foo Title','My Alert Msg',);
-                             }
-                             
+                             },
+
+                             onStopSearch : function() {
+                             BluetoothRanger.stopLocationManager();
+                             AlertIOS.alert('Ending session','done',);
+                             },
+
+                             onStartSearch : function() {
+                             BluetoothRanger.initLocationManager();
+                             AlertIOS.alert('Starting search','running',);
+                                             }
                              });
 
 

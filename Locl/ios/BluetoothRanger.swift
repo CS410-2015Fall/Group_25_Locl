@@ -22,27 +22,29 @@ class BluetoothRanger: NSObject, CLLocationManagerDelegate {
     let minor: CLBeaconMinorValue = 456
     let id = "loclTest"
     self.locationManager = CLLocationManager()
+    self.locationManager.delegate = self
+    if (!CLLocationManager.locationServicesEnabled()) {
+      println("Location services are not enabled");
+    }
+    self.locationManager.requestAlwaysAuthorization()
     self.loclTestRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: uuid), major: major, minor: minor, identifier: id)
-    locationManager.requestAlwaysAuthorization()
-    locationManager.delegate = self
+    self.locationManager.startMonitoringForRegion(loclTestRegion)
+    self.locationManager.startRangingBeaconsInRegion(loclTestRegion)
+    self.locationManager.requestStateForRegion(loclTestRegion)
   }
   
-  // authorizae the bluetooth ranger
-  @objc func updateAuthorizationStatus(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+  // authorize the bluetooth ranger
+  @objc func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
     
     switch status{
       
     case .AuthorizedAlways:
       
-      locationManager.startMonitoringForRegion(loclTestRegion)
-      locationManager.startRangingBeaconsInRegion(loclTestRegion)
-      locationManager.requestStateForRegion(loclTestRegion)
+      println("running")
       
     case .Denied:
       
-      let alert = UIAlertController(title: "Warning", message: "You've disabled location update which is required for this app to work. Go to your phone settings and change the permissions.", preferredStyle: UIAlertControllerStyle.Alert)
-      let alertAction = UIAlertAction(title: "OK!", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in }
-      alert.addAction(alertAction)
+      println("denied")
       
     default:
       println("default case")
@@ -51,8 +53,8 @@ class BluetoothRanger: NSObject, CLLocationManagerDelegate {
     
   }
   
-  // get current location of beacone
-  @objc func findCurrentLocation(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
+  // get current location of beacon
+  @objc func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
   
     switch state {
   
@@ -65,6 +67,14 @@ class BluetoothRanger: NSObject, CLLocationManagerDelegate {
     case .Outside:
       println("outside")
   
+    }
+  }
+  
+  @objc func stopLocationManager(){
+    if (locationManager != nil){
+      locationManager.stopMonitoringForRegion(loclTestRegion)
+      locationManager.stopRangingBeaconsInRegion(loclTestRegion)
+      locationManager = nil
     }
   }
   
