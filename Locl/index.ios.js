@@ -7,12 +7,25 @@ var {
 	TextInput,
 	View,
 	TouchableHighlight,
-	AlertIOS
+	AlertIOS, 
+	ListView,
+  	DeviceEventEmitter
 } = React;
-// var { BluetoothBeacon } = require('NativeModules');
 
+//Stuff for Bluetooth listening
+var {DeviceEventEmitter} = React;
+var Beacons = require('react-native-ibeacon');
+Beacons.requestWhenInUseAuthorization();
+var region = {
+	identifier: 'Locl',
+    uuid: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'    
+};
+Beacons.startRangingBeaconsInRegion(region);
+var subscription;
+
+//Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
-var storeID = 0;
+var storeID = 6666;
 
 var Locl = React.createClass({
 	// Generate the initial state of the view.
@@ -59,10 +72,22 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStartScanningPress}>
+			<View style={[styles.buttonBox, styles.setButtonBox]}>
+			<Text style={styles.buttonText}>
+			Start
+			</Text>
 			</View>
-
+			</TouchableHighlight>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStopScanningPress}>
+			<View style={[styles.buttonBox, styles.setButtonBox]}>
+			<Text style={styles.buttonText}>
+			Stop
+			</Text>
 			</View>
-			// </View>
+			</TouchableHighlight>
+			</View>
+	      	</View>
 			);
 	},
 
@@ -86,6 +111,21 @@ var Locl = React.createClass({
                 console.log('Success', results.successMsg);
                 }
             );
+	},
+
+	onStartScanningPress : function() {
+		subscription = DeviceEventEmitter.addListener(
+      	'beaconsDidRange',
+        
+        (data) => {
+        console.log(data.beacons);
+        });
+        console.log("Scanning");
+	}, 
+
+	onStopScanningPress : function() {
+		subscription = null;
+		console.log("No longer scanning");
 	}
 });
 
@@ -161,7 +201,14 @@ var styles = StyleSheet.create({
 		borderWidth    : .5,
 		borderColor    : "#999999",
 		marginTop      : 20
-	}
+	}, 
+	row: {
+    padding: 8,
+    paddingBottom: 16
+  	}, 
+  	smallText: {
+    fontSize: 11
+ 	 }
 });
 
 AppRegistry.registerComponent('Locl', () => Locl);
