@@ -7,6 +7,7 @@
 var React = require('react-native');
 var {
   AppRegistry,
+  TouchableHighlight,
   StyleSheet,
   Text,
   View,
@@ -14,29 +15,30 @@ var {
 
 var FBSDKLogin = require('react-native-fbsdklogin');
 var {
+  FBSDKGraphRequest,
   FBSDKLoginButton
 } = FBSDKLogin;
 
 var FBSDKCore = require('react-native-fbsdkcore');
 var {
-    FBSDKAccessToken,
+  FBSDKAccessToken,
 } = FBSDKCore;
 
-FBSDKAccessToken.getCurrentAccessToken(token => console.log(token));
+//FBSDKAccessToken.getCurrentAccessToken(token => console.log(token));
 
 var loclIOS = React.createClass({
   render: function() {
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+        Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+        To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        Press Cmd+R to reload,{'\n'}
+        Cmd+D or shake for dev menu
         </Text>
         <FBSDKLoginButton
         onLoginFinished={(error, result) => {
@@ -50,11 +52,16 @@ var loclIOS = React.createClass({
             }
           }
         }}
-        onLogoutFinished={() => alert('Logged out.')}
-        readPermissions={[]}
-        publishPermissions={['publish_actions']}/>
+    onLogoutFinished={() => alert('Logged out.')}
+    readPermissions={[]}
+    publishPermissions={['publish_actions']}/>
+      <TouchableHighlight onPress={this._onPressButton}>
+      <Text>
+      Get credentials 
+      </Text>
+      </TouchableHighlight>
       </View>
-    );
+      );
   }
 });
 
