@@ -9,19 +9,18 @@ var {
 	TouchableHighlight,
 	AlertIOS, 
 	ListView,
-  	DeviceEventEmitter
+  	DeviceEventEmitter, 
+  	NativeAppEventEmitter
 } = React;
 
 //Stuff for Bluetooth listening
-var {DeviceEventEmitter} = React;
 var Beacons = require('react-native-ibeacon');
-Beacons.requestWhenInUseAuthorization();
-var region = {
-	identifier: 'Locl',
-    uuid: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'    
-};
-Beacons.startRangingBeaconsInRegion(region);
+Beacons.requestAlwaysAuthorization();
+Beacons.startMonitoringForRegion();
+Beacons.startUpdatingLocation();
 var subscription;
+var stopSubscription;
+var rangingSubscription;
 
 //Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
@@ -114,19 +113,43 @@ var Locl = React.createClass({
 	},
 
 	onStartScanningPress : function() {
+		console.log("Scanning");
+
 		subscription = DeviceEventEmitter.addListener(
-      	'beaconsDidRange',
-        
+      	'regionDidEnter',
         (data) => {
-        console.log(data.beacons);
+        if (data !=null) {
+        	console.log("Region enterred: " + data.region)}
+        	Beacons.startRangingBeaconsInRegion();
+        	console.log('Start range-ing');
+			rangingSubscription = DeviceEventEmitter.addListener(
+				'beaconsDidRange',
+				(data) => {
+					console.log (data.beacons);
+				});
         });
-        console.log("Scanning");
+
+        console.log("regionDidEnter subscription set");
+
+        stopSubscription = DeviceEventEmitter.addListener(
+        	'regionDidExit',
+        	(data) => {
+        		if (data !=null) {
+        			console.log("Region exitted: " + data.region)
+        			console.log('Stop Range-ing');
+        			Beacons.stopRangingBeaconsInRegion();
+        			rangingSubscription = null;
+        		}
+        	});
+
+        console.log("regionDidExit subscription set");
 	}, 
 
 	onStopScanningPress : function() {
 		subscription = null;
 		console.log("No longer scanning");
-	}
+	},
+
 });
 
 
