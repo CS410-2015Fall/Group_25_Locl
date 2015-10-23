@@ -1,6 +1,5 @@
 'use strict';
 var React = require('react-native');
-var reactNativeStore = require('react-native-store');
 
 var {
 	AppRegistry,
@@ -12,10 +11,11 @@ var {
 	AlertIOS, 
 	ListView,
   	DeviceEventEmitter, 
-  	NativeAppEventEmitter, 
   	AsyncStorage,
 } = React;
 
+//Stuff for SQLite
+var SQLite = require('react-native-sqlite');
 
 //Stuff for Bluetooth listening
 var Beacons = require('react-native-ibeacon');
@@ -25,18 +25,17 @@ Beacons.startUpdatingLocation();
 var subscription;
 var stopSubscription;
 var rangingSubscription;
+var custID = 0;
 
 //Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
 var storeID = 6666;
 
+
+
 var Locl = React.createClass({
-	// Generate the initial state of the view.
 	getInitialState : function() {
 	return {
-	// textInput seemed like it should have an initial state, so I moved it here. -- KD
-        textInputValue : null,
-        resultsText : 'Nothing has happened yet :('
         }
     },
 
@@ -98,8 +97,6 @@ var Locl = React.createClass({
 			</View>
 			</TouchableHighlight>
 			</View>
-			<Text onPress={this.get_users}> Get </Text>
-			<Text onPress={this.add_users}> Add </Text>
 	      	</View>
 			);
 	},
@@ -139,8 +136,17 @@ var Locl = React.createClass({
 			rangingSubscription = DeviceEventEmitter.addListener(
 				'beaconsDidRange',
 				(data) => {
-					console.log (data.beacons);
-				});
+					for (var i = 0; i < data.beacons.length; i++) { 
+    					console.log(data.beacons[i].minor);
+    					if (this.checkStoreCache(data.beacons[i].minor)) {
+    						var storeID = data.beacons[i].minor
+    						console.log(storeID);
+    						var saleID = this.checkAPI(custID, storeID);
+    						if (saleID > 0) {
+    							this.showSale(saleID);
+    						}
+					}
+				}});
         });
 
         console.log("regionDidEnter subscription set");
@@ -160,69 +166,60 @@ var Locl = React.createClass({
 	}, 
 
 	onStopScanningPress : function() {
+		rangingSubscription = null;
 		subscription = null;
+		Beacons.stopRangingBeaconsInRegion();
 		console.log("No longer scanning");
 	},
 
-	async get_users() {
-		// Add Model
-		var userModel = await reactNativeStore.model("user");
+	DBDemo : function() {
+		var results = [];
+		SQLite.open("./Cache.sqlite", function (error, database) {
+		if (error) {
+			console.log("Failed to open database:", error);
+		return;
+		}
 
-		// Add Data
-		var add_data = await userModel.add({
-		username: "tom",
-		age: 12,
-		sex: "man"
+		var sql = "SELECT * FROM Store;";
+		var params = ["somestring", 99];
+		database.executeSQL(sql, params, callback, completeCallback);
+		
+		function callback(data) {
+			results.push(data);
+			console.log("Got row data:", data);
+		}
+
+		function completeCallback(error) {
+		if (error) {
+			console.log("Failed to execute query:", error);
+			return
+		}
+
+		console.log("Current results:");
+		console.log(results);
+		console.log("Query complete!");
+
+		database.close(function (error) {
+		if (error) {
+			console.log("Failed to close database:", error);
+		return
+		}
 		});
-		// return object or null
-		console.log(add_data);
-
-		// Add Data
-		var add_data = await userModel.add({
-		username: "Brady",
-		age: 9,
-		sex: "woman"
+		}
 		});
-		// return object or null
-		console.log(add_data);
+	},
 
-		// Update Data
-		var update_data = await userModel.update({
-		username: "mary",
-		age: 12
-		},{
-		_id: 1
-		});
+	checkStoreCache : function(storeID) {
+		return true;
+	},
 
-		console.log(update_data);
+	checkAPI : function(custID, storeID) {
+		return 1;
+	},
 
-		//Remove Data
-		var remove_data = await userModel.remove({
-		_id: 1
-		});
-		console.log(remove_data);
-
-		// search
-		var find_data = await userModel.find();
-		console.log("find",find_data);
-
-
-    // try {
-    //   var value = await AsyncStorage.getItem("10223");
-    //   if (value !== null){
-    //     console.log(value);
-    //   } else {
-    //     console.log('Initialized with no selection on disk.');
-    //   }
-    // } catch (error) {
-    //     console.log('AsyncStorage error: ' + error.message);
-    // }
- 	},
-
-    add_users: function(){
-    	AsyncStorage.setItem("10223", "true");
-    },
-
+	showSale : function(saleID) {
+		console.log("A sale!");
+	}
 
 
 });
