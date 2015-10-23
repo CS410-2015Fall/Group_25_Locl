@@ -1,5 +1,7 @@
 'use strict';
 var React = require('react-native');
+var reactNativeStore = require('react-native-store');
+
 var {
 	AppRegistry,
 	StyleSheet,
@@ -10,8 +12,10 @@ var {
 	AlertIOS, 
 	ListView,
   	DeviceEventEmitter, 
-  	NativeAppEventEmitter
+  	NativeAppEventEmitter, 
+  	AsyncStorage,
 } = React;
+
 
 //Stuff for Bluetooth listening
 var Beacons = require('react-native-ibeacon');
@@ -35,6 +39,7 @@ var Locl = React.createClass({
         resultsText : 'Nothing has happened yet :('
         }
     },
+
 	render: function() {
 		return (
 			<View style={styles.container}>
@@ -85,7 +90,16 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.DBDemo}>
+			<View style={[styles.buttonBox, styles.setButtonBox]}>
+			<Text style={styles.buttonText}>
+			DB
+			</Text>
 			</View>
+			</TouchableHighlight>
+			</View>
+			<Text onPress={this.get_users}> Get </Text>
+			<Text onPress={this.add_users}> Add </Text>
 	      	</View>
 			);
 	},
@@ -149,6 +163,67 @@ var Locl = React.createClass({
 		subscription = null;
 		console.log("No longer scanning");
 	},
+
+	async get_users() {
+		// Add Model
+		var userModel = await reactNativeStore.model("user");
+
+		// Add Data
+		var add_data = await userModel.add({
+		username: "tom",
+		age: 12,
+		sex: "man"
+		});
+		// return object or null
+		console.log(add_data);
+
+		// Add Data
+		var add_data = await userModel.add({
+		username: "Brady",
+		age: 9,
+		sex: "woman"
+		});
+		// return object or null
+		console.log(add_data);
+
+		// Update Data
+		var update_data = await userModel.update({
+		username: "mary",
+		age: 12
+		},{
+		_id: 1
+		});
+
+		console.log(update_data);
+
+		//Remove Data
+		var remove_data = await userModel.remove({
+		_id: 1
+		});
+		console.log(remove_data);
+
+		// search
+		var find_data = await userModel.find();
+		console.log("find",find_data);
+
+
+    // try {
+    //   var value = await AsyncStorage.getItem("10223");
+    //   if (value !== null){
+    //     console.log(value);
+    //   } else {
+    //     console.log('Initialized with no selection on disk.');
+    //   }
+    // } catch (error) {
+    //     console.log('AsyncStorage error: ' + error.message);
+    // }
+ 	},
+
+    add_users: function(){
+    	AsyncStorage.setItem("10223", "true");
+    },
+
+
 
 });
 
@@ -231,7 +306,19 @@ var styles = StyleSheet.create({
   	}, 
   	smallText: {
     fontSize: 11
- 	 }
+ 	},
+ 	     formInput: {
+        flex: 1,
+        height: 26,
+        fontSize: 13,
+        borderWidth: 1,
+        borderColor: "#555555",
+    },
+    saved: {
+        fontSize: 20,
+        textAlign: "center",
+        margin: 10,
+    },
 });
 
 AppRegistry.registerComponent('Locl', () => Locl);
