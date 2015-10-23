@@ -39,7 +39,7 @@ var Locl = React.createClass({
   render: function() {
     return (
    <View style={styles.container}>
-        <TouchableHighlight onPress={this.createItem("PS4","come buy cheap","11-23-11","11-24-13",3,340,400,8,1234123,"www.google.com")} style={styles.button}>
+        <TouchableHighlight onPress={this.createStore("Tom Games and Electronics","2205 Lower Mall",true,"www.google.com")} style={styles.button}>
                     <Text>Get</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this.auth()} style={styles.button}>
@@ -77,7 +77,7 @@ var Locl = React.createClass({
         fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
         .then((response) => response.json())
         .then((responseData) => {
-            console.log("DONE");
+            console.log("Search user Query -> " + responseData.CustomerID)
         })
         .done();
     },
@@ -93,7 +93,7 @@ var Locl = React.createClass({
         fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: transmitting, StoreHTMLimg: sImage})})
         .then((response) => response.json())
         .then((responseData) => {
-            console.log("DONE");
+            console.log("Search user Query -> " + responseData.StoreID)
         })
         .done();
     },
