@@ -89,7 +89,7 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.DBDemo}>
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.testDBSetup}>
 			<View style={[styles.buttonBox, styles.setButtonBox]}>
 			<Text style={styles.buttonText}>
 			DB
@@ -172,32 +172,49 @@ var Locl = React.createClass({
 		console.log("No longer scanning");
 	},
 
-	DBDemo : function() {
-		var results = [];
+	testDBSetup : function() {
 		SQLite.open("./Cache.sqlite", function (error, database) {
 		if (error) {
 			console.log("Failed to open database:", error);
 		return;
 		}
 
-		var sql = "SELECT * FROM Store;";
-		var params = ["somestring", 99];
+		//Setup the table
+		var sql = "CREATE TABLE `STORE` (`StoreID`	INTEGER, `Visited?`	INTEGER, `Significant?`	INTEGER, `LastVisited`	INTEGER, PRIMARY KEY(StoreID)d)"; var params = ["somestring", 99];
 		database.executeSQL(sql, params, callback, completeCallback);
 		
 		function callback(data) {
-			results.push(data);
-			console.log("Got row data:", data);
+			console.log("Callback data: ", data);
 		}
 
 		function completeCallback(error) {
 		if (error) {
-			console.log("Failed to execute query:", error);
+			console.log("Failed to setup table: ", error);
 			return
 		}
 
-		console.log("Current results:");
-		console.log(results);
-		console.log("Query complete!");
+		console.log("Table setup!");
+
+		//Some dummy entries for the table
+		var sql = "CREATE TABLE `STORE` (`StoreID`	INTEGER, `Visited?`	INTEGER, `Significant?`	INTEGER, `LastVisited`	INTEGER, PRIMARY KEY(StoreID)d)"; var params = ["somestring", 99];
+		database.executeSQL(sql, params, callback, completeCallback);
+		
+		function callback(data) {
+			console.log("Callback data: ", data);
+		}
+
+		function completeCallback(error) {
+		if (error) {
+			console.log("Failed to add entry: ", error);
+			return
+		}
+
+		console.log("Entry 1 Added!");
+
+
+
+
+
 
 		database.close(function (error) {
 		if (error) {
@@ -209,18 +226,62 @@ var Locl = React.createClass({
 		});
 	},
 
+	//PURPOSE: to check the cache to see if the store is new. If it is old, check the cache to see if the user visited the sale or not, 
+	// if they didn't visit the sale, return false, otherwise true. 
+	//REQUIRES: storeID is Integer
+	//MODIFIES: new cache entry if store is new, mark as insignificant if store sale is not visited
+	//EFFECTS: true if store is new, false if store has been checked AND not signficant
 	checkStoreCache : function(storeID) {
+		var results = [];
+		SQLite.open("./Cache.sqlite", function (error, database) {
+		if (error) {
+			console.log("Failed to open database:", error);
+		return;
+		}
+
+		var sql = "SELECT * FROM Store WHERE StoreID = '" + storeID + 	"'";
+		var params = ["somestring", 99];
+		database.executeSQL(sql, params, callback, errorCallback);
+		
+		function callback(data) {
+			results.push(data);
+			console.log("Got row data:", data);
+		}
+
+		function errorCallback(error) {
+		if (error) {
+			console.log("Failed to execute query:", error);
+			return
+		}
+
+		console.log("Query complete!");
+
+		database.close(function (error) {
+		if (error) {
+			console.log("Failed to close database:", error);
+		return
+		}
+		});
+		}
+		});
 		return true;
 	},
 
+	//PURPOSE: to check the API to see if a new/signficant store has any sales that correllated with the custID
+	//REQUIRES: valid custID (!= 0) AND is INTEGER
+	//MODIFIES: nothing
+	//EFFECTS: returns a 0 if the store doesn't have any matching sales, otherwise it returns the saleID
 	checkAPI : function(custID, storeID) {
 		return 1;
 	},
 
+	//PURPOSE: to display an alert for the sale if there is a match
+	//REQUIRES: valid saleID (!= 0), AND is INTEGER
+	//MODIFIES: nothing
+	//EFFECTS: displays an alert with the sale information 
 	showSale : function(saleID) {
 		console.log("A sale!");
 	}
-
 
 });
 
