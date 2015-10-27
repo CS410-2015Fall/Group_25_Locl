@@ -39,7 +39,7 @@ var Locl = React.createClass({
   render: function() {
     return (
    <View style={styles.container}>
-        <TouchableHighlight onPress={this.createStore("Tom Games and Electronics","2205 Lower Mall",true,"www.google.com")} style={styles.button}>
+        <TouchableHighlight onPress={this.checkItemLists(44,101)} style={styles.button}>
                     <Text>Get</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this.auth()} style={styles.button}>
@@ -132,7 +132,7 @@ var Locl = React.createClass({
         
 //Compare Store Items to User Items and check for any matches. 
 //Inputs: custID= CustomerID(Integer)     storeID=StoreID(Integer)
-//output: Boolean(true or false)
+//output: O(No Matching Item Found) or Store-ItemID
 //note: if a storeID or custID does not exist and it is passed as a parameter the program will return farlse
 //      you would simply enter searchByOneFilter("nasrin","FirstName",customerTableURL)      
         
