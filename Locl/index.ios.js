@@ -21,10 +21,28 @@ var {
 
 var FBSDKCore = require('react-native-fbsdkcore');
 var {
+  FBSDKGraphRequest,
+  FBSDKGraphRequestManager,
   FBSDKAccessToken,
 } = FBSDKCore;
 
-//FBSDKAccessToken.getCurrentAccessToken(token => console.log(token));
+var fetchFriends = new FBSDKGraphRequest((error, result) => {
+  if (error)
+  {
+    console.log("failed");
+    console.log("Error: ", error);
+  }
+  else
+  {
+    console.log("passed");
+    //debugger; //breaks execution
+    console.log(result);
+  }
+}, '/me');
+
+FBSDKGraphRequestManager.batchRequests([fetchFriends], function() {}, 60);
+
+FBSDKAccessToken.getCurrentAccessToken(token => console.log(token));
 
 var loclIOS = React.createClass({
   render: function() {
