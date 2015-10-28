@@ -39,12 +39,13 @@ var Locl = React.createClass({
   render: function() {
     return (
    <View style={styles.container}>
-        <TouchableHighlight onPress={this.checkItemLists(44,101)} style={styles.button}>
+        <TouchableHighlight onPress={this.createStorebutton} style={styles.button}>
                     <Text>Get</Text>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={this.auth()} style={styles.button}>
+        <TouchableHighlight onPress={this.createAuthButton} style={styles.button}>
                     <Text>Auth</Text>
                 </TouchableHighlight>
+              
             </View>
     );
   },
@@ -97,6 +98,16 @@ var Locl = React.createClass({
         })
         .done();
     },
+        
+           createStorebutton: function() {
+     
+      
+      this.checkItemLists(44,101);
+      
+    },
+           createAuthButton: function(){
+                this.auth();
+           },
 
        
         
@@ -141,7 +152,7 @@ var Locl = React.createClass({
         .then((response) => response.json())
         .then((responseData) => {
              console.log("Search Query server -> " + responseData.script_result)
-             return responseData.script_result
+             //return responseData.script_result
         })
         .done();
     },
