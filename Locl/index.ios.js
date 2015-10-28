@@ -141,6 +141,7 @@ var Locl = React.createClass({
         .then((response) => response.json())
         .then((responseData) => {
              console.log("Search Query server -> " + responseData.script_result)
+             return responseData.script_result
         })
         .done();
     },
