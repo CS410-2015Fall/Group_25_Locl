@@ -14,9 +14,6 @@ var {
   	AsyncStorage,
 } = React;
 
-//Stuff for SQLite
-var SQLite = require('react-native-sqlite');
-
 //Stuff for Bluetooth listening
 var Beacons = require('react-native-ibeacon');
 Beacons.requestAlwaysAuthorization();
@@ -25,19 +22,46 @@ Beacons.startUpdatingLocation();
 var subscription;
 var stopSubscription;
 var rangingSubscription;
-var custID = 0;
+let custID = '101';
 
 //Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
-var storeID = 6666;
+let storeID = '44';
 
-
+//Stuff for API
+//Mostly for formatting URL that will be used to query database
+//app Name for DreamFactory
+var loclSQL="?app_name=loclSQL";
+//Basic Connection HTMLstrig for Database
+var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";   
+//String to connect to Items Table
+var itemTableURL=httpString+"item"+loclSQL;   
+//String to connect to Customer Table
+var customerTableURL=httpString+"customer"+loclSQL; 
+//Sting to connect to Store Table
+var storeTableURL=httpString+"store"+loclSQL;
+//String to connect to CustomerItem Table
+var customerItemURL=httpString+"customer-items"+loclSQL;
+//Search by name variable
+var searchByStart="&filter=";  
+var searchByMid="%20%3D%20%22";   
+var searchByEnd="%22"; 
+var authKey;
 
 var Locl = React.createClass({
+
+	test : function() {
+		this.processMinor(878).done();
+	}, 
+
 	getInitialState : function() {
 	return {
         }
     },
+
+    componentDidMount: function() {
+    	this.auth();
+	},
 
 	render: function() {
 		return (
@@ -68,6 +92,7 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
+
 			<TouchableHighlight underlayColor="#AA9999" onPress={this.onSetPress}>
 			<View style={[styles.buttonBox, styles.setButtonBox]}>
 			<Text style={styles.buttonText}>
@@ -75,6 +100,7 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
+
 			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStartScanningPress}>
 			<View style={[styles.buttonBox, styles.setButtonBox]}>
 			<Text style={styles.buttonText}>
@@ -82,6 +108,7 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
+
 			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStopScanningPress}>
 			<View style={[styles.buttonBox, styles.setButtonBox]}>
 			<Text style={styles.buttonText}>
@@ -89,13 +116,15 @@ var Locl = React.createClass({
 			</Text>
 			</View>
 			</TouchableHighlight>
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.testDBSetup}>
+
+			<TouchableHighlight underlayColor="#AA9999" onPress={this.test}>
 			<View style={[styles.buttonBox, styles.setButtonBox]}>
 			<Text style={styles.buttonText}>
-			DB
+			Test
 			</Text>
 			</View>
 			</TouchableHighlight>
+
 			</View>
 	      	</View>
 			);
@@ -123,6 +152,12 @@ var Locl = React.createClass({
             );
 	},
 
+	//PURPOSE: start scanning for Beacons 
+	//REQUIRES: need permission to use Bluetooth, must not be currently scanning
+	//MODIFIES: subscription for ranging, stop subscription
+	//EFFECTS: starts bluetooth scanning
+	//TODO:
+	//	- Need to verify this works with processing minors
 	onStartScanningPress : function() {
 		console.log("Scanning");
 
@@ -135,18 +170,12 @@ var Locl = React.createClass({
         	console.log('Start range-ing');
 			rangingSubscription = DeviceEventEmitter.addListener(
 				'beaconsDidRange',
-				(data) => {
+				(data) => { 
 					for (var i = 0; i < data.beacons.length; i++) { 
     					console.log(data.beacons[i].minor);
-    					if (this.checkStoreCache(data.beacons[i].minor)) {
-    						var storeID = data.beacons[i].minor
-    						console.log(storeID);
-    						var saleID = this.checkAPI(custID, storeID);
-    						if (saleID > 0) {
-    							this.showSale(saleID);
-    						}
-					}
-				}});
+    					this.processMinor(data.beacons[i].minor).done();
+				}
+			});
         });
 
         console.log("regionDidEnter subscription set");
@@ -165,123 +194,163 @@ var Locl = React.createClass({
         console.log("regionDidExit subscription set");
 	}, 
 
+	//PURPOSE: stop scanning for Beacons 
+	//REQUIRES: nothing
+	//MODIFIES: nothing
+	//EFFECTS: must currently be scanning
+	//TODO:
+	//	- Need to verify this is actually stopping the scanning
 	onStopScanningPress : function() {
+		console.log("Stopping scanning");
 		rangingSubscription = null;
 		subscription = null;
 		Beacons.stopRangingBeaconsInRegion();
 		console.log("No longer scanning");
 	},
 
-	testDBSetup : function() {
-		SQLite.open("./Cache.sqlite", function (error, database) {
-		if (error) {
-			console.log("Failed to open database:", error);
-		return;
-		}
-
-		//Setup the table
-		var sql = "CREATE TABLE `STORE` (`StoreID`	INTEGER, `Visited?`	INTEGER, `Significant?`	INTEGER, `LastVisited`	INTEGER, PRIMARY KEY(StoreID)d)"; var params = ["somestring", 99];
-		database.executeSQL(sql, params, callback, completeCallback);
+	//PURPOSE: to create a new entry for a storeID. 
+	//REQUIRES: valid storeID (!= 0) AND is INTEGER
+	//MODIFIES: nothing
+	//EFFECTS: return otherwise error
+	//TODO:
+	//	- Need to have a larger JSON for Stores, so we can differentiate incase other caching is needed 
+	TODO: this;
+	async addItem(storeID, visited, favourited, meaningful, lastVisited) {
+		console.log("Adding Store: " + storeID);
 		
-		function callback(data) {
-			console.log("Callback data: ", data);
-		}
+		//Convert arguments to Strings
+		var currentStoreID = storeID.toString();
+		var currentVisited = visited.toString();
+		var currentFavourited = favourited.toString();
+		var currentMeaningful = meaningful.toString();
+		var currentLastVisited = lastVisited.toString();
 
-		function completeCallback(error) {
-		if (error) {
-			console.log("Failed to setup table: ", error);
-			return
-		}
+		//Get Store time
+		var currentStoreTime = String(Math.floor(Date.now() / 1000));
+		console.log("Current Store Time: " + currentStoreTime);
 
-		console.log("Table setup!");
+		//Add to Cache
+	    try {
+	    	let defaultSet = '{"visited": ' + currentVisited + ', "favourited": ' + currentFavourited +', "meaningful": ' + currentMeaningful + ', "lastVisited": ' + currentStoreTime + ', "lastSale": 0 }';
+	     	await AsyncStorage.setItem(currentStoreID, defaultSet);
+	      	console.log('Saved selection to disk. Meaningful: ' + currentMeaningful + ' Visited: ' + currentVisited + ' Favourited: ' + currentFavourited + ' Last Visited: ' + currentStoreTime);
+	    } catch (error) {
+	      	console.log('AsyncStorage error when adding item: ' + error.message);
+	    	}
+  	},
 
-		//Some dummy entries for the table
-		var sql = "CREATE TABLE `STORE` (`StoreID`	INTEGER, `Visited?`	INTEGER, `Significant?`	INTEGER, `LastVisited`	INTEGER, PRIMARY KEY(StoreID)d)"; var params = ["somestring", 99];
-		database.executeSQL(sql, params, callback, completeCallback);
-		
-		function callback(data) {
-			console.log("Callback data: ", data);
-		}
-
-		function completeCallback(error) {
-		if (error) {
-			console.log("Failed to add entry: ", error);
-			return
-		}
-
-		console.log("Entry 1 Added!");
-
-
-
-
-
-
-		database.close(function (error) {
-		if (error) {
-			console.log("Failed to close database:", error);
-		return
-		}
-		});
-		}
-		});
-	},
-
-	//PURPOSE: to check the cache to see if the store is new. If it is old, check the cache to see if the user visited the sale or not, 
-	// if they didn't visit the sale, return false, otherwise true. 
+	//PURPOSE: Show notification if store exists and is meaningful, Check API if store exists AND is favourited OR visited, Check API if lastVisited is old. 
 	//REQUIRES: storeID is Integer
 	//MODIFIES: new cache entry if store is new, mark as insignificant if store sale is not visited
-	//EFFECTS: true if store is new, false if store has been checked AND not signficant
-	checkStoreCache : function(storeID) {
-		var results = [];
-		SQLite.open("./Cache.sqlite", function (error, database) {
-		if (error) {
-			console.log("Failed to open database:", error);
-		return;
-		}
+	//EFFECTS: none
+	async processMinor(minor) {
+		console.log("Processing minor: " + currentMinor);
 
-		var sql = "SELECT * FROM Store WHERE StoreID = '" + storeID + 	"'";
-		var params = ["somestring", 99];
-		database.executeSQL(sql, params, callback, errorCallback);
+		//Convert minior incase Int
+		var currentMinor = String(minor);
+
+		//Get time
+		var currentCheckTime = Math.floor(Date.now() / 1000);
+		console.log("Current Check Time: " + currentCheckTime);
 		
-		function callback(data) {
-			results.push(data);
-			console.log("Got row data:", data);
-		}
+		try {
+	      var value = await AsyncStorage.getItem(currentMinor);
+	      if (value !== null) {
+	      	var contents = JSON.parse(value);
+	      	console.log('Recovered selection from disk -> Meaningful: ' + contents.meaningful + ' Visited: ' + contents.visited + ' Favourited: ' + contents.favourited + ' Last Visited: ' + contents.lastVisited);
 
-		function errorCallback(error) {
-		if (error) {
-			console.log("Failed to execute query:", error);
-			return
-		}
+	      	var storeTime = parseInt(contents.lastVisited, 10);	        
+	        	        
+	        if (contents.meaningful == true) {
+	        	console.log('Meaningful so check API!');
+	        	this.checkAPI(currentMinor);
+	        } else if (contents.visited == true) {
+	        	console.log('Visited so check API!');
+	        	this.checkAPI(currentMinor);
+	        } else if (contents.favourited == true) {
+	        	console.log('Favourited so check API!');
+	        	this.checkAPI(currentMinor);
+	        } else if ((storeTime + 86400) < currentCheckTime) {
+	        	var boundTime = storeTime + 86400;
+	        	console.log(boundTime + " < " + currentCheckTime + "?");
+	        	console.log('Old so update time then check API!');
+	        	this.checkAPI(currentMinor);
+	        }  else 
+	        	console.log('Known but no API check needed.');
+        	} else {
 
-		console.log("Query complete!");
+	        console.log('No selection on disk. Adding and then check API');
+	        this.addItem(currentMinor, false, false, false, 0).done()
+	        this.checkAPI(currentMinor);
 
-		database.close(function (error) {
-		if (error) {
-			console.log("Failed to close database:", error);
-		return
-		}
-		});
-		}
-		});
-		return true;
+	      }
+	    } catch (error) {
+	      console.log('AsyncStorage error when getting item: ' + error.message);
+	    }
 	},
+
+	//PURPOSE: to get auth from the api when the application runs so we can make queries
+	//REQUIRES: has to run on inititial render
+	//MODIFIES: nothing
+	//EFFECTS: returns a console print of the authorization code
+	auth: function() {
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log("Authorization key -> " + responseData.session_id)
+            authKey = responseData.session_id;
+        }) 
+        .done()
+    },
 
 	//PURPOSE: to check the API to see if a new/signficant store has any sales that correllated with the custID
 	//REQUIRES: valid custID (!= 0) AND is INTEGER
 	//MODIFIES: nothing
 	//EFFECTS: returns a 0 if the store doesn't have any matching sales, otherwise it returns the saleID
-	checkAPI : function(custID, storeID) {
-		return 1;
+	//TODO: 
+	//	- Need to update database with the saleID
+	//	- Need to update this so the check doesn't occur unless there is a session key
+	checkAPI : function(storeID) {
+		console.log('Checking API w/ CustID: ' + custID + ' and StoreID: ' + storeID);
+
+		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+ custID +"&StoreID="+ storeID, {method: "POST"})
+        .then((response) => response.json())
+        .then((responseData) => {
+        	console.log("ResponseDate -> " + responseData.script_result);
+            if (responseData.script_result > 0) {
+             	console.log("Showing sale with saleID: " + responseData.script_result);
+             	this.showSale(responseData.script_result); 
+            }
+            console.log("No match");
+        })
+        .done();
 	},
 
 	//PURPOSE: to display an alert for the sale if there is a match
 	//REQUIRES: valid saleID (!= 0), AND is INTEGER
 	//MODIFIES: nothing
 	//EFFECTS: displays an alert with the sale information 
+	//TODO: 
+	//	- Need an API call to display sale data
 	showSale : function(saleID) {
-		console.log("A sale!");
-	}
+		console.log("A match sale with sale ID: " + saleID);
+	},
+
+	//PURPOSE: associate a saleID to a store to that way a saleID can be checked instead of a store incase a user re-enters a fence
+	//REQUIRES: valid storeID AND saleID
+	//MODIFIES: store
+	//EFFECTS: associate a saleID to a store
+	async updateSale(saleID, storeID) {
+
+	}, 
+
+	//PURPOSE: set a store to favourited
+	//REQUIRES: valid storeID
+	//MODIFIES: store
+	//EFFECTS: sets store favourite to true or false depending on boolean
+	async setFavourite(boolean, storeID) {
+
+	},
 
 });
 
