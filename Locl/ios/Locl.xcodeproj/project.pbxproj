@@ -14,33 +14,29 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* LoclTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LoclTests.m */; };
-		018B02411BE05C3000D0EABC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018B023D1BE05C3000D0EABC /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
-		018B02421BE05C3000D0EABC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018B023E1BE05C3000D0EABC /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		018B02431BE05C3000D0EABC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018B023F1BE05C3000D0EABC /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		018B02441BE05C3000D0EABC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018B02401BE05C3000D0EABC /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		018B02511BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02471BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
-		018B02521BE05E0E00D0EABC /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02491BE05E0E00D0EABC /* RCTFBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
-		018B02531BE05E0E00D0EABC /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024B1BE05E0E00D0EABC /* RCTFBSDKAppEvents.m */; settings = {ASSET_TAGS = (); }; };
-		018B02541BE05E0E00D0EABC /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024C1BE05E0E00D0EABC /* RCTFBSDKCoreInitializer.m */; settings = {ASSET_TAGS = (); }; };
-		018B02551BE05E0E00D0EABC /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024E1BE05E0E00D0EABC /* RCTFBSDKGraphRequestConnectionContainer.m */; settings = {ASSET_TAGS = (); }; };
-		018B02561BE05E0E00D0EABC /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02501BE05E0E00D0EABC /* RCTFBSDKGraphRequestManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B025F1BE05E3000D0EABC /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02591BE05E3000D0EABC /* RCTConvert+FBSDKLogin.m */; settings = {ASSET_TAGS = (); }; };
-		018B02601BE05E3000D0EABC /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025B1BE05E3000D0EABC /* RCTFBSDKLoginButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B02611BE05E3000D0EABC /* RCTFBSDKLoginInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025C1BE05E3000D0EABC /* RCTFBSDKLoginInitializer.m */; settings = {ASSET_TAGS = (); }; };
-		018B02621BE05E3000D0EABC /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025E1BE05E3000D0EABC /* RCTFBSDKLoginManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B027D1BE05E4800D0EABC /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02651BE05E4800D0EABC /* RCTConvert+FBSDKSharingContent.m */; settings = {ASSET_TAGS = (); }; };
-		018B027E1BE05E4800D0EABC /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02671BE05E4800D0EABC /* RCTFBSDKAppGroupAddDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B027F1BE05E4800D0EABC /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02691BE05E4800D0EABC /* RCTFBSDKAppGroupJoinDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B02801BE05E4800D0EABC /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026B1BE05E4800D0EABC /* RCTFBSDKAppInviteDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B02811BE05E4800D0EABC /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026D1BE05E4800D0EABC /* RCTFBSDKGameRequestDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B02821BE05E4800D0EABC /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026F1BE05E4800D0EABC /* RCTFBSDKLikeControlManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B02831BE05E4800D0EABC /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02711BE05E4800D0EABC /* RCTFBSDKMessageDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B02841BE05E4800D0EABC /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02731BE05E4800D0EABC /* RCTFBSDKSendButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B02851BE05E4800D0EABC /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02751BE05E4800D0EABC /* RCTFBSDKShareAPI.m */; settings = {ASSET_TAGS = (); }; };
-		018B02861BE05E4800D0EABC /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02771BE05E4800D0EABC /* RCTFBSDKShareButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		018B02871BE05E4800D0EABC /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02791BE05E4800D0EABC /* RCTFBSDKShareDialog.m */; settings = {ASSET_TAGS = (); }; };
-		018B02881BE05E4800D0EABC /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B027B1BE05E4800D0EABC /* RCTFBSDKShareHelper.m */; settings = {ASSET_TAGS = (); }; };
-		018B02891BE05E4800D0EABC /* RCTFBSDKShareInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B027C1BE05E4800D0EABC /* RCTFBSDKShareInitializer.m */; settings = {ASSET_TAGS = (); }; };
+		018B02511BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02471BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.m */; };
+		018B02521BE05E0E00D0EABC /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02491BE05E0E00D0EABC /* RCTFBSDKAccessToken.m */; };
+		018B02531BE05E0E00D0EABC /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024B1BE05E0E00D0EABC /* RCTFBSDKAppEvents.m */; };
+		018B02541BE05E0E00D0EABC /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024C1BE05E0E00D0EABC /* RCTFBSDKCoreInitializer.m */; };
+		018B02551BE05E0E00D0EABC /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B024E1BE05E0E00D0EABC /* RCTFBSDKGraphRequestConnectionContainer.m */; };
+		018B02561BE05E0E00D0EABC /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02501BE05E0E00D0EABC /* RCTFBSDKGraphRequestManager.m */; };
+		018B025F1BE05E3000D0EABC /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02591BE05E3000D0EABC /* RCTConvert+FBSDKLogin.m */; };
+		018B02601BE05E3000D0EABC /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025B1BE05E3000D0EABC /* RCTFBSDKLoginButtonManager.m */; };
+		018B02611BE05E3000D0EABC /* RCTFBSDKLoginInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025C1BE05E3000D0EABC /* RCTFBSDKLoginInitializer.m */; };
+		018B02621BE05E3000D0EABC /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B025E1BE05E3000D0EABC /* RCTFBSDKLoginManager.m */; };
+		018B027D1BE05E4800D0EABC /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02651BE05E4800D0EABC /* RCTConvert+FBSDKSharingContent.m */; };
+		018B027E1BE05E4800D0EABC /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02671BE05E4800D0EABC /* RCTFBSDKAppGroupAddDialog.m */; };
+		018B027F1BE05E4800D0EABC /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02691BE05E4800D0EABC /* RCTFBSDKAppGroupJoinDialog.m */; };
+		018B02801BE05E4800D0EABC /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026B1BE05E4800D0EABC /* RCTFBSDKAppInviteDialog.m */; };
+		018B02811BE05E4800D0EABC /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026D1BE05E4800D0EABC /* RCTFBSDKGameRequestDialog.m */; };
+		018B02821BE05E4800D0EABC /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B026F1BE05E4800D0EABC /* RCTFBSDKLikeControlManager.m */; };
+		018B02831BE05E4800D0EABC /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02711BE05E4800D0EABC /* RCTFBSDKMessageDialog.m */; };
+		018B02841BE05E4800D0EABC /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02731BE05E4800D0EABC /* RCTFBSDKSendButtonManager.m */; };
+		018B02851BE05E4800D0EABC /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02751BE05E4800D0EABC /* RCTFBSDKShareAPI.m */; };
+		018B02861BE05E4800D0EABC /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02771BE05E4800D0EABC /* RCTFBSDKShareButtonManager.m */; };
+		018B02871BE05E4800D0EABC /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B02791BE05E4800D0EABC /* RCTFBSDKShareDialog.m */; };
+		018B02881BE05E4800D0EABC /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B027B1BE05E4800D0EABC /* RCTFBSDKShareHelper.m */; };
+		018B02891BE05E4800D0EABC /* RCTFBSDKShareInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 018B027C1BE05E4800D0EABC /* RCTFBSDKShareInitializer.m */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -52,6 +48,10 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
+		F21F20181BE6D6A8007F6AE4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21F20141BE6D6A8007F6AE4 /* Bolts.framework */; };
+		F21F20191BE6D6A8007F6AE4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21F20151BE6D6A8007F6AE4 /* FBSDKCoreKit.framework */; };
+		F21F201A1BE6D6A8007F6AE4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21F20161BE6D6A8007F6AE4 /* FBSDKLoginKit.framework */; };
+		F21F201B1BE6D6A8007F6AE4 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21F20171BE6D6A8007F6AE4 /* FBSDKShareKit.framework */; };
 		F2E71AD41BE04FB800A39DA8 /* index.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E71AD31BE04FB800A39DA8 /* index.ios.js */; };
 /* End PBXBuildFile section */
 
@@ -145,10 +145,6 @@
 		00E356EE1AD99517003FC87E /* LoclTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoclTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* LoclTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoclTests.m; sourceTree = "<group>"; };
-		018B023D1BE05C3000D0EABC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/Bolts.framework"; sourceTree = "<group>"; };
-		018B023E1BE05C3000D0EABC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		018B023F1BE05C3000D0EABC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		018B02401BE05C3000D0EABC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../../Documents/FacebookSDKs-iOS/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		018B02461BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+FBSDKAccessToken.h"; path = "../../node_modules/react-native-fbsdkcore/iOS/RCTConvert+FBSDKAccessToken.h"; sourceTree = "<group>"; };
 		018B02471BE05E0E00D0EABC /* RCTConvert+FBSDKAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+FBSDKAccessToken.m"; path = "../../node_modules/react-native-fbsdkcore/iOS/RCTConvert+FBSDKAccessToken.m"; sourceTree = "<group>"; };
 		018B02481BE05E0E00D0EABC /* RCTFBSDKAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAccessToken.h; path = "../../node_modules/react-native-fbsdkcore/iOS/RCTFBSDKAccessToken.h"; sourceTree = "<group>"; };
@@ -207,6 +203,10 @@
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
+		F21F20141BE6D6A8007F6AE4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../../FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		F21F20151BE6D6A8007F6AE4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		F21F20161BE6D6A8007F6AE4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		F21F20171BE6D6A8007F6AE4 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		F2E71AC81BE04D9A00A39DA8 /* RCTBridgingModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTBridgingModule.h; sourceTree = "<group>"; };
 		F2E71AD31BE04FB800A39DA8 /* index.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.ios.js; path = ../index.ios.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,17 +224,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				018B02421BE05C3000D0EABC /* FBSDKCoreKit.framework in Frameworks */,
+				F21F20191BE6D6A8007F6AE4 /* FBSDKCoreKit.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				018B02431BE05C3000D0EABC /* FBSDKLoginKit.framework in Frameworks */,
+				F21F201A1BE6D6A8007F6AE4 /* FBSDKLoginKit.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
-				018B02441BE05C3000D0EABC /* FBSDKShareKit.framework in Frameworks */,
-				018B02411BE05C3000D0EABC /* Bolts.framework in Frameworks */,
+				F21F201B1BE6D6A8007F6AE4 /* FBSDKShareKit.framework in Frameworks */,
+				F21F20181BE6D6A8007F6AE4 /* Bolts.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 			);
@@ -303,10 +303,10 @@
 		018B02321BE05C2100D0EABC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				018B023D1BE05C3000D0EABC /* Bolts.framework */,
-				018B023E1BE05C3000D0EABC /* FBSDKCoreKit.framework */,
-				018B023F1BE05C3000D0EABC /* FBSDKLoginKit.framework */,
-				018B02401BE05C3000D0EABC /* FBSDKShareKit.framework */,
+				F21F20141BE6D6A8007F6AE4 /* Bolts.framework */,
+				F21F20151BE6D6A8007F6AE4 /* FBSDKCoreKit.framework */,
+				F21F20161BE6D6A8007F6AE4 /* FBSDKLoginKit.framework */,
+				F21F20171BE6D6A8007F6AE4 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
