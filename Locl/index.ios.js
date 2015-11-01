@@ -214,7 +214,7 @@ var Locl = React.createClass({
 	//EFFECTS: return otherwise error
 	//TODO:
 	//	- Need to have a larger JSON for Stores, so we can differentiate incase other caching is needed 
-	TODO: this;
+	//TODO: this;
 	async addItem(storeID, visited, favourited, meaningful, lastVisited) {
 		console.log("Adding Store: " + storeID);
 		

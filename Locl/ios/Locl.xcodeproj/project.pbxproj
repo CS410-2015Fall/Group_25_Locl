@@ -27,7 +27,6 @@
 		950F480F1BD4416C005A262F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950F480E1BD4416C005A262F /* CoreLocation.framework */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
-		952F4BB81BDAC57800FEB617 /* libAIBSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 952F4B901BDABFDA00FEB617 /* libAIBSQLite.a */; };
 		952F4BC81BDAC91A00FEB617 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 952F4BC71BDAC91A00FEB617 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
@@ -116,13 +115,6 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNBeacon;
 		};
-		952F4B8F1BDABFDA00FEB617 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 952F4B8B1BDABFDA00FEB617 /* AIBSQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E23D7B471ACEFE2A00C59171;
-			remoteInfo = AIBSQLite;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -152,7 +144,6 @@
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
-		952F4B8B1BDABFDA00FEB617 /* AIBSQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIBSQLite.xcodeproj; path = "../node_modules/react-native-sqlite/AIBSQLite.xcodeproj"; sourceTree = "<group>"; };
 		952F4BC71BDAC91A00FEB617 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,7 +160,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				952F4BC81BDAC91A00FEB617 /* libsqlite3.dylib in Frameworks */,
-				952F4BB81BDAC57800FEB617 /* libAIBSQLite.a in Frameworks */,
 				950F480F1BD4416C005A262F /* CoreLocation.framework in Frameworks */,
 				950F48031BD44165005A262F /* libRNBeacon.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -297,7 +287,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				952F4B8B1BDABFDA00FEB617 /* AIBSQLite.xcodeproj */,
 				950F47E71BD44123005A262F /* RNBeacon.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -348,14 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				950F47F61BD44123005A262F /* libRNBeacon.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		952F4B8C1BDABFDA00FEB617 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				952F4B901BDABFDA00FEB617 /* libAIBSQLite.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,10 +410,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 952F4B8C1BDABFDA00FEB617 /* Products */;
-					ProjectRef = 952F4B8B1BDABFDA00FEB617 /* AIBSQLite.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -562,13 +539,6 @@
 			fileType = archive.ar;
 			path = libRNBeacon.a;
 			remoteRef = 950F47F51BD44123005A262F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		952F4B901BDABFDA00FEB617 /* libAIBSQLite.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAIBSQLite.a;
-			remoteRef = 952F4B8F1BDABFDA00FEB617 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
