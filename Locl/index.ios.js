@@ -20,6 +20,18 @@ var subscription;
 var stopSubscription;
 var rangingSubscription;
 
+//Stuff to get Bluetooth state
+require('react-native-bluetooth-state');
+// Listen for bluetooth change
+var subscription = DeviceEventEmitter.addListener('centralManagerDidUpdateState', bluetoothState => {
+  AlertIOS.alert("Bluetooth status: " + bluetoothState);
+  console.log("Bluetooth status: " + bluetoothState);
+});
+Beacons.getAuthorizationStatus(function(authorization) {
+	AlertIOS.alert("Bluetooth authorization: " + authorization);
+	console.log("Bluetooth authorization: " + authorization);
+});
+
 //Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
 let storeID = 44;
@@ -59,7 +71,7 @@ var Locl = React.createClass({
 	componentDidMount: function() {
 		this.auth();
 		this.removeItem('101');
-		Beacons.requestAlwaysAuthorization();
+		Beacons.requestWhenInUseAuthorization();
 		Beacons.startMonitoringForRegion();
 		Beacons.startUpdatingLocation();
 	},
@@ -148,6 +160,7 @@ var Locl = React.createClass({
 	//TODO:
 	//	- Need to verify this works with processing minors
 	onStartScanningPress : function() {
+
 		AlertIOS.alert('Scanning');
 		console.log("Scanning");
 
@@ -156,8 +169,8 @@ var Locl = React.createClass({
 			(data) => {
 				if (data !=null) {
 					console.log("Region enterred: " + data.region)}
+					AlertIOS.alert("Region enterred: " + data.region);
 					Beacons.startRangingBeaconsInRegion();
-					console.log('Start range-ing');
 					rangingSubscription = DeviceEventEmitter.addListener(
 						'beaconsDidRange',
 						(data) => { 
@@ -175,7 +188,7 @@ var Locl = React.createClass({
 			(data) => {
 				if (data !=null) {
 					console.log("Region exitted: " + data.region)
-					console.log('Stop Range-ing');
+					AlertIOS.alert("Region exitted: " + data.region);
 					Beacons.stopRangingBeaconsInRegion();
 					rangingSubscription = null;
 				}
@@ -191,10 +204,8 @@ var Locl = React.createClass({
 	//TODO:
 	//	- Need to verify this is actually stopping the scanning
 	onStopScanningPress : function() {
-		console.log("Stopping scanning");
-		rangingSubscription = null;
-		subscription = null;
 		Beacons.stopRangingBeaconsInRegion();
+		rangingSubscription = null;
 		console.log("No longer scanning");
 		AlertIOS.alert('No longer scanning');
 	},
@@ -287,7 +298,8 @@ var Locl = React.createClass({
 		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
 		.then((response) => response.json())
 		.then((responseData) => {
-			console.log("Authorization key -> " + responseData.session_id)
+			console.log("Authorization key -> " + responseData.session_id);
+			AlertIOS.alert("Authorization key: " + responseData.session_id);
 			authKey = responseData.session_id;
 		}) 
 		.done()
