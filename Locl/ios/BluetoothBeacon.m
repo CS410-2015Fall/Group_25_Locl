@@ -8,7 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "RCTBridgeModule.h"
 
-@interface RCT_EXTERN_MODULE(BluetoothBeacon, NSObject)
+@interface
+
+RCT_EXTERN_MODULE(BluetoothBeacon, NSObject)
 
 RCT_EXTERN_METHOD(initLocalBeacon)
 

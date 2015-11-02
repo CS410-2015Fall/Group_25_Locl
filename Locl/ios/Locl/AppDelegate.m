@@ -33,9 +33,9 @@
 
 //  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
   
-    jsCodeLocation = [NSURL URLWithString:@"http://206.87.130.54:8081/index.ios.bundle?platform=ios&dev=true"];
+//    jsCodeLocation = [NSURL URLWithString:@"http://206.87.129.180:8081/index.ios.bundle?platform=ios&dev=true"];
 //    jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.16:8081/index.ios.bundle?platform=ios&dev=true"];
-
+  
   /**
    * OPTION 2
    * Load from pre-bundled file on disk. To re-generate the static bundle
@@ -46,7 +46,7 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"Locl"

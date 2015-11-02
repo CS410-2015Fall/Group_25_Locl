@@ -10,23 +10,19 @@ var {
 	TouchableHighlight,
 	AlertIOS, 
 	ListView,
-  	DeviceEventEmitter, 
-  	AsyncStorage,
+	DeviceEventEmitter, 
+	AsyncStorage,
 } = React;
 
 //Stuff for Bluetooth listening
 var Beacons = require('react-native-ibeacon');
-Beacons.requestAlwaysAuthorization();
-Beacons.startMonitoringForRegion();
-Beacons.startUpdatingLocation();
 var subscription;
 var stopSubscription;
 var rangingSubscription;
-let custID = '101';
 
 //Stuff for Bluetooth broadcasting
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
-let storeID = '44';
+let storeID = 44;
 
 //Stuff for API
 //Mostly for formatting URL that will be used to query database
@@ -49,107 +45,100 @@ var searchByEnd="%22";
 var authKey;
 
 var Locl = React.createClass({
-
 	test : function() {
 		this.processMinor(878).done();
 	}, 
 
 	getInitialState : function() {
-	return {
-        }
-    },
+		return {
+				custID: '0',
+				storeID: '0'
+		}
+	},
 
-    componentDidMount: function() {
-    	this.auth();
+	componentDidMount: function() {
+		this.auth();
+		this.removeItem('101');
+		Beacons.requestAlwaysAuthorization();
+		Beacons.startMonitoringForRegion();
+		Beacons.startUpdatingLocation();
 	},
 
 	render: function() {
 		return (
 			<View style={styles.container}>
-
-			<Text style={styles.instructionsText}>
-			Locl
+			<Text style={styles.description}>
+			Locl Demo App
 			</Text>
-
-			<View style={styles.separator}/>
-
-			<View style={styles.buttonContainer}>
-
-			<TouchableHighlight
-			style={styles.touchableHighlight}
-			underlayColor="#99AA99"
-			onPress={this.onStopPress}>
-			<View style={[styles.buttonBox, styles.loadButtonBox]}>
-			<Text style={styles.buttonText}>
-			Stop
-			</Text>
+			<View style={styles.flowRight}>
+			<TextInput style={styles.searchInput} value={this.state.custID} placeholder='Customer ID' onChange={this.onCustomerIDTextChanged}/> 
 			</View>
-			</TouchableHighlight>
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStartPress}>
-			<View style={[styles.buttonBox, styles.saveButtonBox]}>
-			<Text style={styles.buttonText}>
-			Start
-			</Text>
-			</View>
+
+			<View style={styles.flowRight}>
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onStartScanningPress}> 
+				<Text style={styles.buttonText}>Start Scanning</Text>
 			</TouchableHighlight>
 
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.onSetPress}>
-			<View style={[styles.buttonBox, styles.setButtonBox]}>
-			<Text style={styles.buttonText}>
-			Set
-			</Text>
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onStopScanningPress}> 
+				<Text style={styles.buttonText}>Stop Scanning</Text>
+			</TouchableHighlight>
 			</View>
+
+			<View style={styles.flowRight}>
+			<TextInput style={styles.searchInput} value={this.state.storeID} placeholder='Store ID' onChange={this.onStoreIDTextChanged}/> 
+			
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingSetPress}> 
+				<Text style={styles.buttonText}>Set</Text>
+			</TouchableHighlight>
+			</View>
+
+			<View style={styles.flowRight}>
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingStartPress}> 
+				<Text style={styles.buttonText}>Start Broadcasting</Text>
 			</TouchableHighlight>
 
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStartScanningPress}>
-			<View style={[styles.buttonBox, styles.setButtonBox]}>
-			<Text style={styles.buttonText}>
-			Start
-			</Text>
-			</View>
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingStopPress}> 
+				<Text style={styles.buttonText}>Stop Broadcasting</Text>
 			</TouchableHighlight>
-
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.onStopScanningPress}>
-			<View style={[styles.buttonBox, styles.setButtonBox]}>
-			<Text style={styles.buttonText}>
-			Stop
-			</Text>
 			</View>
-			</TouchableHighlight>
-
-			<TouchableHighlight underlayColor="#AA9999" onPress={this.test}>
-			<View style={[styles.buttonBox, styles.setButtonBox]}>
-			<Text style={styles.buttonText}>
-			Test
-			</Text>
-			</View>
-			</TouchableHighlight>
 
 			</View>
-	      	</View>
-			);
+			)},
+
+	onCustomerIDTextChanged(event) {
+  		console.log('onCustomerIDTextChanged');
+  		this.setState({ custID: event.nativeEvent.text });
+  		console.log(this.state.custID);
 	},
 
-	onStartPress : function() {
+	onStoreIDTextChanged(event) {
+  		console.log('onStoreIDTextChanged');
+  		this.setState({ storeID: event.nativeEvent.text });
+  		console.log(this.state.storeID);
+	},
+
+	onBeaconingStartPress : function() {
 		BluetoothBeacon.initLocalBeacon();
 		AlertIOS.alert('Warning','Beaconing Bluetooth will drain your battery. Make sure your phone is plugged in to a charger.',);
 	}, 
 
-	onStopPress : function() {
+	onBeaconingStopPress : function() {
 		BluetoothBeacon.stopLocalBeacon();
 		AlertIOS.alert('Alert','Bluetooth is no longer Beaconing',);
 	}, 
 
-	onSetPress : function() {
-		if (storeID <= 0 || storeID >= 9999) {
+	onBeaconingSetPress : function() {
+		var currentStoreID = Number(this.state.storeID);
+		if (currentStoreID <= 0 || currentStoreID >= 9999) {
 			console.error("Invalid Store ID");
 		}
 		BluetoothBeacon.setMinor(
-			storeID,
-            (results) => {
-                console.log('Success', results.successMsg);
-                }
-            );
+			currentStoreID,
+			(results) => {
+				AlertIOS.alert('Minor set to: ' + this.state.storeID);
+				console.log('Success', results.successMsg);
+			}
+		);
 	},
 
 	//PURPOSE: start scanning for Beacons 
@@ -159,39 +148,40 @@ var Locl = React.createClass({
 	//TODO:
 	//	- Need to verify this works with processing minors
 	onStartScanningPress : function() {
+		AlertIOS.alert('Scanning');
 		console.log("Scanning");
 
 		subscription = DeviceEventEmitter.addListener(
-      	'regionDidEnter',
-        (data) => {
-        if (data !=null) {
-        	console.log("Region enterred: " + data.region)}
-        	Beacons.startRangingBeaconsInRegion();
-        	console.log('Start range-ing');
-			rangingSubscription = DeviceEventEmitter.addListener(
-				'beaconsDidRange',
-				(data) => { 
-					for (var i = 0; i < data.beacons.length; i++) { 
-    					console.log(data.beacons[i].minor);
-    					this.processMinor(data.beacons[i].minor).done();
+			'regionDidEnter',
+			(data) => {
+				if (data !=null) {
+					console.log("Region enterred: " + data.region)}
+					Beacons.startRangingBeaconsInRegion();
+					console.log('Start range-ing');
+					rangingSubscription = DeviceEventEmitter.addListener(
+						'beaconsDidRange',
+						(data) => { 
+							for (var i = 0; i < data.beacons.length; i++) { 
+								console.log("Found minor: " + data.beacons[i].minor);
+								this.processMinor(data.beacons[i].minor).done();
+							}
+						});
+				});
+
+		console.log("regionDidEnter subscription set");
+
+		stopSubscription = DeviceEventEmitter.addListener(
+			'regionDidExit',
+			(data) => {
+				if (data !=null) {
+					console.log("Region exitted: " + data.region)
+					console.log('Stop Range-ing');
+					Beacons.stopRangingBeaconsInRegion();
+					rangingSubscription = null;
 				}
 			});
-        });
 
-        console.log("regionDidEnter subscription set");
-
-        stopSubscription = DeviceEventEmitter.addListener(
-        	'regionDidExit',
-        	(data) => {
-        		if (data !=null) {
-        			console.log("Region exitted: " + data.region)
-        			console.log('Stop Range-ing');
-        			Beacons.stopRangingBeaconsInRegion();
-        			rangingSubscription = null;
-        		}
-        	});
-
-        console.log("regionDidExit subscription set");
+		console.log("regionDidExit subscription set");
 	}, 
 
 	//PURPOSE: stop scanning for Beacons 
@@ -206,6 +196,7 @@ var Locl = React.createClass({
 		subscription = null;
 		Beacons.stopRangingBeaconsInRegion();
 		console.log("No longer scanning");
+		AlertIOS.alert('No longer scanning');
 	},
 
 	//PURPOSE: to create a new entry for a storeID. 
@@ -214,7 +205,6 @@ var Locl = React.createClass({
 	//EFFECTS: return otherwise error
 	//TODO:
 	//	- Need to have a larger JSON for Stores, so we can differentiate incase other caching is needed 
-	TODO: this;
 	async addItem(storeID, visited, favourited, meaningful, lastVisited) {
 		console.log("Adding Store: " + storeID);
 		
@@ -230,63 +220,63 @@ var Locl = React.createClass({
 		console.log("Current Store Time: " + currentStoreTime);
 
 		//Add to Cache
-	    try {
-	    	let defaultSet = '{"visited": ' + currentVisited + ', "favourited": ' + currentFavourited +', "meaningful": ' + currentMeaningful + ', "lastVisited": ' + currentStoreTime + ', "lastSale": 0 }';
-	     	await AsyncStorage.setItem(currentStoreID, defaultSet);
-	      	console.log('Saved selection to disk. Meaningful: ' + currentMeaningful + ' Visited: ' + currentVisited + ' Favourited: ' + currentFavourited + ' Last Visited: ' + currentStoreTime);
-	    } catch (error) {
-	      	console.log('AsyncStorage error when adding item: ' + error.message);
-	    	}
-  	},
+		try {
+			let defaultSet = '{"visited": ' + currentVisited + ', "favourited": ' + currentFavourited +', "meaningful": ' + currentMeaningful + ', "lastVisited": ' + currentStoreTime + ', "lastSale": 0 }';
+			await AsyncStorage.setItem(currentStoreID, defaultSet);
+			console.log('Saved selection to disk. Meaningful: ' + currentMeaningful + ' Visited: ' + currentVisited + ' Favourited: ' + currentFavourited + ' Last Visited: ' + currentStoreTime);
+		} catch (error) {
+			console.log('AsyncStorage error when adding item: ' + error.message);
+		}
+	},
 
 	//PURPOSE: Show notification if store exists and is meaningful, Check API if store exists AND is favourited OR visited, Check API if lastVisited is old. 
 	//REQUIRES: storeID is Integer
 	//MODIFIES: new cache entry if store is new, mark as insignificant if store sale is not visited
 	//EFFECTS: none
 	async processMinor(minor) {
-		console.log("Processing minor: " + currentMinor);
-
 		//Convert minior incase Int
 		var currentMinor = String(minor);
+
+		console.log("Processing minor: " + currentMinor);
 
 		//Get time
 		var currentCheckTime = Math.floor(Date.now() / 1000);
 		console.log("Current Check Time: " + currentCheckTime);
 		
 		try {
-	      var value = await AsyncStorage.getItem(currentMinor);
-	      if (value !== null) {
-	      	var contents = JSON.parse(value);
-	      	console.log('Recovered selection from disk -> Meaningful: ' + contents.meaningful + ' Visited: ' + contents.visited + ' Favourited: ' + contents.favourited + ' Last Visited: ' + contents.lastVisited);
+			var value = await AsyncStorage.getItem(currentMinor);
+			if (value !== null) {
+				var contents = JSON.parse(value);
+				console.log('Recovered selection from disk -> Meaningful: ' + contents.meaningful + ' Visited: ' + contents.visited + ' Favourited: ' + contents.favourited + ' Last Visited: ' + contents.lastVisited);
 
-	      	var storeTime = parseInt(contents.lastVisited, 10);	        
-	        	        
-	        if (contents.meaningful == true) {
-	        	console.log('Meaningful so check API!');
-	        	this.checkAPI(currentMinor);
-	        } else if (contents.visited == true) {
-	        	console.log('Visited so check API!');
-	        	this.checkAPI(currentMinor);
-	        } else if (contents.favourited == true) {
-	        	console.log('Favourited so check API!');
-	        	this.checkAPI(currentMinor);
-	        } else if ((storeTime + 86400) < currentCheckTime) {
-	        	var boundTime = storeTime + 86400;
-	        	console.log(boundTime + " < " + currentCheckTime + "?");
-	        	console.log('Old so update time then check API!');
-	        	this.checkAPI(currentMinor);
-	        }  else 
-	        	console.log('Known but no API check needed.');
-        	} else {
+				var storeTime = parseInt(contents.lastVisited, 10);	
+				var storeTime = storeTime + 86400;        
 
-	        console.log('No selection on disk. Adding and then check API');
-	        this.addItem(currentMinor, false, false, false, 0).done()
-	        this.checkAPI(currentMinor);
+				if (contents.meaningful == true) {
+					console.log('Meaningful so check API!');
+					this.checkAPI(currentMinor);
+				} else if (contents.visited == true) {
+					console.log('Visited so check API!');
+					this.checkAPI(currentMinor);
+				} else if (contents.favourited == true) {
+					console.log('Favourited so check API!');
+					this.checkAPI(currentMinor);
+				} else if (storeTime < currentCheckTime) {
+					console.log(storeTime + " < " + currentCheckTime + "?");
+					console.log('Old so update time then check API!');
+					this.checkAPI(currentMinor);
+				}  else 
+				console.log('Known but no API check needed.');
+			} else {
 
-	      }
-	    } catch (error) {
-	      console.log('AsyncStorage error when getting item: ' + error.message);
-	    }
+				console.log('No selection on disk. Adding and then check API');
+				this.addItem(currentMinor, false, false, false, currentCheckTime).done()
+				this.checkAPI(currentMinor);
+
+			}
+		} catch (error) {
+			console.log('AsyncStorage error when getting item: ' + error.message);
+		}
 	},
 
 	//PURPOSE: to get auth from the api when the application runs so we can make queries
@@ -294,14 +284,14 @@ var Locl = React.createClass({
 	//MODIFIES: nothing
 	//EFFECTS: returns a console print of the authorization code
 	auth: function() {
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log("Authorization key -> " + responseData.session_id)
-            authKey = responseData.session_id;
-        }) 
-        .done()
-    },
+		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
+		.then((response) => response.json())
+		.then((responseData) => {
+			console.log("Authorization key -> " + responseData.session_id)
+			authKey = responseData.session_id;
+		}) 
+		.done()
+	},
 
 	//PURPOSE: to check the API to see if a new/signficant store has any sales that correllated with the custID
 	//REQUIRES: valid custID (!= 0) AND is INTEGER
@@ -311,19 +301,20 @@ var Locl = React.createClass({
 	//	- Need to update database with the saleID
 	//	- Need to update this so the check doesn't occur unless there is a session key
 	checkAPI : function(storeID) {
-		console.log('Checking API w/ CustID: ' + custID + ' and StoreID: ' + storeID);
+		var currentCustomerID = this.state.custID.toString();
+		console.log('Checking API w/ CustID: ' + currentCustomerID + ' and StoreID: ' + storeID);
 
-		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+ custID +"&StoreID="+ storeID, {method: "POST"})
-        .then((response) => response.json())
-        .then((responseData) => {
-        	console.log("ResponseDate -> " + responseData.script_result);
-            if (responseData.script_result > 0) {
-             	console.log("Showing sale with saleID: " + responseData.script_result);
-             	this.showSale(responseData.script_result); 
-            }
-            console.log("No match");
-        })
-        .done();
+		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+ currentCustomerID +"&StoreID="+ storeID, {method: "POST"})
+		.then((response) => response.json())
+		.then((responseData) => {
+			console.log("ResponseDate -> " + responseData.script_result);
+			if (responseData.script_result > 0) {
+				console.log("Showing sale with saleID: " + responseData.script_result);
+				this.showSale(responseData.script_result); 
+			}
+			console.log("No match");
+		})
+		.done();
 	},
 
 	//PURPOSE: to display an alert for the sale if there is a match
@@ -333,6 +324,7 @@ var Locl = React.createClass({
 	//TODO: 
 	//	- Need an API call to display sale data
 	showSale : function(saleID) {
+		AlertIOS.alert("A match sale with sale ID: " + saleID);
 		console.log("A match sale with sale ID: " + saleID);
 	},
 
@@ -352,100 +344,71 @@ var Locl = React.createClass({
 
 	},
 
+	async removeItem(key) {
+    try {
+      await AsyncStorage.removeItem(key);
+      this._appendMessage('Selection removed from disk.');
+    } catch (error) {
+      this._appendMessage('AsyncStorage error when removing from cache: ' + error.message);
+    }
+  	},
+
 });
 
-
 var styles = StyleSheet.create({
+	//Stuff I just added for the demo app
+	description: {
+		marginBottom: 20,
+		fontSize: 18,
+		textAlign: 'center',
+		color: '#656565'
+	},
 	container: {
-		flex            : 1,
-		alignItems      : 'center',
-		backgroundColor : '#F5FCFF',
-		paddingTop      : 30
+		flex: 1,
+		padding: 30,
+		alignItems: 'center'
 	},
-	instructionsText : {
-		fontSize : 20
+	text: {
+		color: 'black',
+		backgroundColor: 'white',
+		fontSize: 30,
+		margin: 80
 	},
-	separator : {
-		borderWidth  : .5,
-		borderColor  : '#AEAEAE',
-		height       : 1,
-		width        : 300,
-		marginBottom : 25
+	flowRight: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'stretch',
 	},
-	labelContainer : {
-		flexDirection  : 'row',
-		width          : 300
+	buttonText: {
+		fontSize: 18,
+		color: 'white',
+		alignSelf: 'center'
 	},
-	labelText : {
-		paddingRight : 10,
-		fontSize     : 18
+	button: {
+		height: 36,
+		flex: 1,
+		flexDirection: 'row',
+		backgroundColor: '#48BBEC',
+		borderColor: '#48BBEC',
+		borderWidth: 1,
+		borderRadius: 8,
+		marginBottom: 10,
+		alignSelf: 'stretch',
+		justifyContent: 'center',
+		marginRight: 5
 	},
-	textInput : {
-		height      : 26,
-		borderWidth : 0.5,
-		borderColor : '#0f0f0f',
-		padding     : 4,
-		flex        : 1,
-		fontSize    : 13,
-	},
-	buttonContainer : {
-		flexDirection  : 'row',
-		justifyContent : 'center',
-		alignItems     : 'center',
-		marginTop      : 20
-	},
-	touchableHighlight : {
-		marginLeft  : 10,
-		marginRight : 10,
-	},
-	buttonBox : {
-		flexDirection  : 'row',
-		justifyContent : 'center',
-		alignItems     : 'center',
-		padding        : 10,
-		borderWidth    : 2,
-		borderRadius   : 5
-	},
-	saveButtonBox : {
-		borderColor : '#AA0000'
-	},
-	loadButtonBox : {
-		borderColor : '#00AA00'
-	},
-	setButtonBox : {
-		borderColor : '#00AA00'
-	},
-	buttonText : {
-		fontSize : 16,
-	},
-	outputContainer : {
-		width          : 300,
-		height         : 200,
-		justifyContent : 'center',
-		alignItems     : 'center',
-		borderWidth    : .5,
-		borderColor    : "#999999",
-		marginTop      : 20
-	}, 
-	row: {
-    padding: 8,
-    paddingBottom: 16
-  	}, 
-  	smallText: {
-    fontSize: 11
- 	},
- 	     formInput: {
-        flex: 1,
-        height: 26,
-        fontSize: 13,
-        borderWidth: 1,
-        borderColor: "#555555",
-    },
-    saved: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
+	searchInput: {
+		height: 36,
+		padding: 4,
+		marginRight: 5,
+		flex: 4,
+		fontSize: 18,
+		borderWidth: 1,
+		borderColor: '#48BBEC',
+		borderRadius: 8,
+		marginBottom: 10,
+		color: '#48BBEC'
+	}
 });
 
 AppRegistry.registerComponent('Locl', () => Locl);
