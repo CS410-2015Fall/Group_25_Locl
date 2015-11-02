@@ -4,8 +4,6 @@ var React = require('react-native');
 var CustomerAdd = require('./CustomerAdd');
 var bt = false;
 
-var HEY = 0;
-
 var {
   StyleSheet,
   Text,
