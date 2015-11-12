@@ -19,26 +19,6 @@ var bluetoothScanningManager = require('./bluetoothScanningManager.js');
 var cacheManager = require('./cacheManager.js');
 var serverManager = require('./serverManager.js');
 
-//Stuff for API
-//Mostly for formatting URL that will be used to query database
-//app Name for DreamFactory
-var loclSQL="?app_name=loclSQL";
-//Basic Connection HTMLstrig for Database
-var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";   
-//String to connect to Items Table
-var itemTableURL=httpString+"item"+loclSQL;   
-//String to connect to Customer Table
-var customerTableURL=httpString+"customer"+loclSQL; 
-//Sting to connect to Store Table
-var storeTableURL=httpString+"store"+loclSQL;
-//String to connect to CustomerItem Table
-var customerItemURL=httpString+"customer-items"+loclSQL;
-//Search by name variable
-var searchByStart="&filter=";  
-var searchByMid="%20%3D%20%22";   
-var searchByEnd="%22"; 
-var authKey;
-
 var Locl = React.createClass({
 	test : function() {
 		this.processMinor(878).done();

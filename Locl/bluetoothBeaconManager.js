@@ -23,12 +23,6 @@ var bluetoothBeaconManager = React.createClass({
 		return;
 	},
 
-	componentDidMount: function() {
-		Beacons.requestWhenInUseAuthorization();
-		Beacons.startMonitoringForRegion();
-		Beacons.startUpdatingLocation();
-	},
-
 	onBeaconingStartPress : function() {
 		BluetoothBeacon.initLocalBeacon();
 		AlertIOS.alert('Warning','Beaconing Bluetooth will drain your battery. Make sure your phone is plugged in to a charger.',);
