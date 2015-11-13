@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+rootProject.name = 'loclIOS'
+=======
+rootProject.name = 'Locl'
+>>>>>>> storyboard
+
+include ':app'
