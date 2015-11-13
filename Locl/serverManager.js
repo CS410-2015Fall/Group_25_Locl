@@ -155,6 +155,31 @@ var serverManager = React.createClass({
         .done();
     },        
 
+      
+        //Delete a customer item given the name of the item and the customerID 
+//Inputs: CustID=customerID   itemName= name of the item 
+//output: None
+        deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+            console.log("Deleted Customer Item");
+        })
+        .done();
+    },  
+        
+        
+//Delete a store item given the name of the item and the storeID 
+//Inputs: storeId =storeID and itemName= name of the item
+//output: none
+    deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+            console.log("Deleted Store Item");
+        })
+        .done();
+    }
 
 });
 
