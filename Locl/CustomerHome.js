@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var CustomerAdd = require('./CustomerAdd');
+var StorePage = require('./StorePage');
 var bt = false;
 
 var {
@@ -52,17 +53,17 @@ var styles = StyleSheet.create({
                                }
                                });
 
-var CustomerList = React.createClass({
+var CustomerHome = React.createClass({
                                    render(){
                                    return (<View style={styles.container}>
                                            <Text style={styles.description}>
                                            Your list:
                                            </Text>
                                            <TouchableHighlight style={styles.button} onPress={this.toCustomerAdd}>
-                                           <Text style={styles.buttonText}>Customer</Text>
+                                           <Text style={styles.buttonText}>Items</Text>
                                            </TouchableHighlight>
-                                            <TouchableHighlight style={styles.button} onPress={this.range}>
-                                            <Text style={styles.buttonText}>Bluetooth</Text>
+                                            <TouchableHighlight style={styles.button} onPress={this.toStorePage}>
+                                            <Text style={styles.buttonText}>Store Page</Text>
                                             </TouchableHighlight>
                                            </View>);
                                    },
@@ -74,16 +75,13 @@ var CustomerList = React.createClass({
                                      });
                                    },
                                     
-                                   range(){
-                                     if (!bt){
-                                      console.log('bluetooth on');
-                                      bt = true;
-                                     } else {
-                                      console.log('bluetooth off');
-                                      bt = false;
+                                     toStorePage(){
+                                     this.props.navigator.push({
+                                                               title: 'StorePage',
+                                                               component: StorePage
+                                                               });
                                      }
-                                   }
                                    
                                    });
 
-module.exports = CustomerList;
+module.exports = CustomerHome;

@@ -25,7 +25,21 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
+		F23917081BF5786600B5CDAD /* Beacon.js in Resources */ = {isa = PBXBuildFile; fileRef = F23917071BF5786600B5CDAD /* Beacon.js */; };
+		F2E44F8B1BF56A21002DF802 /* CustomerAdd.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F831BF56A21002DF802 /* CustomerAdd.js */; };
+		F2E44F8C1BF56A21002DF802 /* CustomerInfo.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F841BF56A21002DF802 /* CustomerInfo.js */; };
+		F2E44F8D1BF56A21002DF802 /* CustomerHome.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F851BF56A21002DF802 /* CustomerHome.js */; };
+		F2E44F8F1BF56A21002DF802 /* StoreAdd.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F871BF56A21002DF802 /* StoreAdd.js */; };
+		F2E44F901BF56A21002DF802 /* StorePage.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F881BF56A21002DF802 /* StorePage.js */; };
+		F2E44F911BF56A21002DF802 /* StoreHome.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F891BF56A21002DF802 /* StoreHome.js */; };
+		F2E44F921BF56A21002DF802 /* Preference.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F8A1BF56A21002DF802 /* Preference.js */; };
+		F2E44FA01BF56AC0002DF802 /* CustomerProfile.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F9D1BF56AC0002DF802 /* CustomerProfile.js */; };
+		F2E44FA21BF56AC0002DF802 /* StoreProfile.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44F9F1BF56AC0002DF802 /* StoreProfile.js */; };
+		F2E44FA51BF56B74002DF802 /* CustomerFBLogin.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44FA31BF56B74002DF802 /* CustomerFBLogin.js */; };
+		F2E44FA61BF56B74002DF802 /* StoreFBLogin.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E44FA41BF56B74002DF802 /* StoreFBLogin.js */; };
 		F2E71AD41BE04FB800A39DA8 /* index.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E71AD31BE04FB800A39DA8 /* index.ios.js */; };
+		F2F001831BF572630009941A /* CustomerPreferences.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F001811BF572630009941A /* CustomerPreferences.js */; };
+		F2F001841BF572630009941A /* StorePreferences.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F001821BF572630009941A /* StorePreferences.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,8 +147,22 @@
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
+		F23917071BF5786600B5CDAD /* Beacon.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Beacon.js; path = ../Beacon.js; sourceTree = "<group>"; };
+		F2E44F831BF56A21002DF802 /* CustomerAdd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerAdd.js; path = ../CustomerAdd.js; sourceTree = "<group>"; };
+		F2E44F841BF56A21002DF802 /* CustomerInfo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerInfo.js; path = ../CustomerInfo.js; sourceTree = "<group>"; };
+		F2E44F851BF56A21002DF802 /* CustomerHome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerHome.js; path = ../CustomerHome.js; sourceTree = "<group>"; };
+		F2E44F871BF56A21002DF802 /* StoreAdd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreAdd.js; path = ../StoreAdd.js; sourceTree = "<group>"; };
+		F2E44F881BF56A21002DF802 /* StorePage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StorePage.js; path = ../StorePage.js; sourceTree = "<group>"; };
+		F2E44F891BF56A21002DF802 /* StoreHome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreHome.js; path = ../StoreHome.js; sourceTree = "<group>"; };
+		F2E44F8A1BF56A21002DF802 /* Preference.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Preference.js; path = ../Preference.js; sourceTree = "<group>"; };
+		F2E44F9D1BF56AC0002DF802 /* CustomerProfile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerProfile.js; path = ../CustomerProfile.js; sourceTree = "<group>"; };
+		F2E44F9F1BF56AC0002DF802 /* StoreProfile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreProfile.js; path = ../StoreProfile.js; sourceTree = "<group>"; };
+		F2E44FA31BF56B74002DF802 /* CustomerFBLogin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerFBLogin.js; path = ../CustomerFBLogin.js; sourceTree = "<group>"; };
+		F2E44FA41BF56B74002DF802 /* StoreFBLogin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreFBLogin.js; path = ../StoreFBLogin.js; sourceTree = "<group>"; };
 		F2E71AC81BE04D9A00A39DA8 /* RCTBridgingModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTBridgingModule.h; sourceTree = "<group>"; };
 		F2E71AD31BE04FB800A39DA8 /* index.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.ios.js; path = ../index.ios.js; sourceTree = "<group>"; };
+		F2F001811BF572630009941A /* CustomerPreferences.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerPreferences.js; path = ../CustomerPreferences.js; sourceTree = "<group>"; };
+		F2F001821BF572630009941A /* StorePreferences.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StorePreferences.js; path = ../StorePreferences.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,11 +269,25 @@
 		13B07FAE1A68108700A75B9A /* Locl */ = {
 			isa = PBXGroup;
 			children = (
+				F2E44FA31BF56B74002DF802 /* CustomerFBLogin.js */,
+				F2E44FA41BF56B74002DF802 /* StoreFBLogin.js */,
+				F2E44F9D1BF56AC0002DF802 /* CustomerProfile.js */,
+				F2E44F9F1BF56AC0002DF802 /* StoreProfile.js */,
 				952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */,
 				952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				F2E44F831BF56A21002DF802 /* CustomerAdd.js */,
+				F2E44F841BF56A21002DF802 /* CustomerInfo.js */,
+				F2E44F851BF56A21002DF802 /* CustomerHome.js */,
+				F2E44F871BF56A21002DF802 /* StoreAdd.js */,
+				F2F001811BF572630009941A /* CustomerPreferences.js */,
+				F2F001821BF572630009941A /* StorePreferences.js */,
+				F2E44F881BF56A21002DF802 /* StorePage.js */,
+				F23917071BF5786600B5CDAD /* Beacon.js */,
+				F2E44F891BF56A21002DF802 /* StoreHome.js */,
+				F2E44F8A1BF56A21002DF802 /* Preference.js */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -522,10 +564,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E44FA01BF56AC0002DF802 /* CustomerProfile.js in Resources */,
 				F2E71AD41BE04FB800A39DA8 /* index.ios.js in Resources */,
+				F2E44F8B1BF56A21002DF802 /* CustomerAdd.js in Resources */,
+				F2E44F921BF56A21002DF802 /* Preference.js in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
+				F2F001841BF572630009941A /* StorePreferences.js in Resources */,
+				F2F001831BF572630009941A /* CustomerPreferences.js in Resources */,
+				F2E44FA21BF56AC0002DF802 /* StoreProfile.js in Resources */,
+				F2E44FA51BF56B74002DF802 /* CustomerFBLogin.js in Resources */,
+				F2E44FA61BF56B74002DF802 /* StoreFBLogin.js in Resources */,
+				F2E44F901BF56A21002DF802 /* StorePage.js in Resources */,
+				F2E44F911BF56A21002DF802 /* StoreHome.js in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F2E44F8C1BF56A21002DF802 /* CustomerInfo.js in Resources */,
+				F2E44F8F1BF56A21002DF802 /* StoreAdd.js in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F23917081BF5786600B5CDAD /* Beacon.js in Resources */,
+				F2E44F8D1BF56A21002DF802 /* CustomerHome.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

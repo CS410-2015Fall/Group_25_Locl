@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var StoreList = require('./StoreList');
+var CustomerProfile = require('./CustomerProfile');
 
 var {
   StyleSheet,
@@ -25,7 +25,6 @@ var styles = StyleSheet.create({
                                },
                                container: {
                                flex: 1,
-                               margin: 80
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -51,25 +50,29 @@ var styles = StyleSheet.create({
                                }
                                });
 
-var StoreSetup = React.createClass({
-                                    render(){
-                                    return (<View style={styles.container}>
-                                            <Text style={styles.description}>
-                                            Setup your store page:
-                                            </Text>
-                                            <TouchableHighlight style={styles.button} onPress={this.toStoreList}>
-                                            <Text style={styles.buttonText}>Proceed</Text>
-                                            </TouchableHighlight>
-                                            </View>);
-                                    },
-                                    
-                                    toStoreList(){
-                                      this.props.navigator.push({
-                                                                title: 'StoreList',
-                                                                component: StoreList
-                                      });
-                                    }
-                                    
-                                    });
 
-module.exports = StoreSetup;
+var CustomerFBLogin = React.createClass({
+                           render(){
+                           return (<View style={styles.container}>
+                                   <Text style={styles.description}>
+                                   FaceBook Login
+                                   </Text>
+                                   <TouchableHighlight style={styles.button} onPress={this.loadCustomerProfile}>
+                                   <Text style={styles.buttonText}>Login w/ FB</Text>
+                                   </TouchableHighlight>
+                                   </View>
+                                   );
+                           },
+                           
+                           loadCustomerProfile(){
+                           this.props.navigator.push({
+                                                     title: 'CustomerProfile',
+                                                     component: CustomerProfile,
+                                                     });
+                           
+                           }
+                           
+                           
+                           });
+
+module.exports = CustomerFBLogin;
