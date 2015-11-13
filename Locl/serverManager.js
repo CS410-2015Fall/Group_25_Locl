@@ -179,6 +179,16 @@ var serverManager = React.createClass({
             console.log("Deleted Store Item");
         })
         .done();
+    },
+        
+        //Adds and Array of prefence item into the customer preference list
+//Inputs: custID= Customer ID   Array = String of preference items
+//output: none
+    bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
+        var i;
+        for(i=0;i<array.length;i++){
+            this.createCustomerItem(custID, array[i]);
+        }
     }
 
 });
