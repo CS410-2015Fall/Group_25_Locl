@@ -189,7 +189,33 @@ var serverManager = React.createClass({
         for(i=0;i<array.length;i++){
             this.createCustomerItem(custID, array[i]);
         }
-    }
+    },
+    
+//Search from customerTable with async callback to obtain itemID 
+//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
+//output: ItemID 
+        searchFilter: function searchFilter(cid,itemName,callback) {
+           fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+             callback(responseData.record[0].ItemID);
+        })
+        .done();
+    },
+        //Update CustomerPreferenceItem Given CustomerID
+//Inputs: cID= CustomerID      iTem= PreferenceItem
+//output: none
+//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
+//      you would simply call updateCustomerItem(4,"shorts")
+        updateCustomer: function updateCustomer(cID,currentname,newName) {
+        this.searchFilter(cID, currentname, function(returnedValue){
+        fetch(customerItemURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue,ItemName:newName})})
+        .then((response) => response.json())
+        .then((responseData) => {
+        })
+        .done();
+           });
+    }  
 
 });
 
