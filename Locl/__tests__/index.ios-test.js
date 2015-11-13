@@ -1,4 +1,5 @@
-jest.dontMock('../bluetoothBeaconManager.js');
+// __tests__/sum-test.js
+jest.dontMock('../index.ios.js');
 
 describe('sum', function() {
  it('adds 1 + 2 to equal 3', function() {
