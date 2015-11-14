@@ -20,84 +20,81 @@ var cacheManager = require('./cacheManager.js');
 var serverManager = require('./serverManager.js');
 
 var Locl = React.createClass({
-	test : function() {
-		this.processMinor(878).done();
-	}, 
 
-	getInitialState : function() {
-		return {
-				custID: '0',
-				storeID: '0'
-		}
-	},
+getInitialState : function() {
+	return {
+		custID: '0',
+		storeID: '0'
+	}
+},
 
-	componentDidMount: function() {
-		serverManager.auth();
-	},
+componentDidMount: function() {
+	serverManager.auth();
+},
 
-	render: function() {
-		return (
-			<View style={styles.container}>
-			<Text style={styles.description}>
-			Locl Demo App
-			</Text>
-			<View style={styles.flowRight}>
-			<TextInput style={styles.searchInput} value={this.state.custID} placeholder='Customer ID' onChange={this.onCustomerIDTextChanged}/> 
-			</View>
+render: function() {
+	return (
+		<View style={styles.container}>
+		<Text style={styles.description}>
+		Locl Demo App
+		</Text>
+		<View style={styles.flowRight}>
+		<TextInput style={styles.searchInput} value={this.state.custID} placeholder='Customer ID' onChange={this.onCustomerIDTextChanged}/> 
+		</View>
 
-			<View style={styles.flowRight}>
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStartScanningPress}> 
-				<Text style={styles.buttonText}>Start Scanning</Text>
-			</TouchableHighlight>
+		<View style={styles.flowRight}>
+		<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStartScanningPress}> 
+		<Text style={styles.buttonText}>Start Scanning</Text>
+		</TouchableHighlight>
 
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStopScanningPress}> 
-				<Text style={styles.buttonText}>Stop Scanning</Text>
-			</TouchableHighlight>
-			</View>
+		<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStopScanningPress}> 
+		<Text style={styles.buttonText}>Stop Scanning</Text>
+		</TouchableHighlight>
+		</View>
 
-			<View style={styles.flowRight}>
-			<TextInput style={styles.searchInput} value={this.state.storeID} placeholder='Store ID' onChange={this.onStoreIDTextChanged}/> 
-			
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingSetPress}> 
-				<Text style={styles.buttonText}>Set</Text>
-			</TouchableHighlight>
-			</View>
+		<View style={styles.flowRight}>
+		<TextInput style={styles.searchInput} value={this.state.storeID} placeholder='Store ID' onChange={this.onStoreIDTextChanged}/> 
+		
+		<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingSetPress}> 
+		<Text style={styles.buttonText}>Set</Text>
+		</TouchableHighlight>
+		</View>
 
-			<View style={styles.flowRight}>
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStartPress}> 
-				<Text style={styles.buttonText}>Start Broadcasting</Text>
-			</TouchableHighlight>
+		<View style={styles.flowRight}>
+		<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStartPress}> 
+		<Text style={styles.buttonText}>Start Broadcasting</Text>
+		</TouchableHighlight>
 
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStopPress}> 
-				<Text style={styles.buttonText}>Stop Broadcasting</Text>
-			</TouchableHighlight>
-			</View>
+		<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStopPress}> 
+		<Text style={styles.buttonText}>Stop Broadcasting</Text>
+		</TouchableHighlight>
+		</View>
 
-			</View>
-			)},
+		</View>
+		)},
 
-	onCustomerIDTextChanged(event) {
-  		console.log('onCustomerIDTextChanged');
-  		this.setState({ custID: event.nativeEvent.text });
-  		console.log(this.state.custID);
-	},
+onCustomerIDTextChanged(event) {
+console.log('onCustomerIDTextChanged');
+this.setState({ custID: event.nativeEvent.text });
+console.log(this.state.custID);
+},
 
-	onStoreIDTextChanged(event) {
-  		console.log('onStoreIDTextChanged');
-  		this.setState({ storeID: event.nativeEvent.text });
-  		console.log(this.state.storeID);
-	},
+onStoreIDTextChanged(event) {
+console.log('onStoreIDTextChanged');
+this.setState({ storeID: event.nativeEvent.text });
+console.log(this.state.storeID);
+},
 
-	//PURPOSE: to display an alert for the sale if there is a match
-	//REQUIRES: valid saleID (!= 0), AND is INTEGER
-	//MODIFIES: nothing
-	//EFFECTS: displays an alert with the sale information 
-	//TODO: 
-	//	- Need an API call to display sale data
-	showSale : function(saleID) {
-		AlertIOS.alert("A match sale with sale ID: " + saleID);
-		console.log("A match sale with sale ID: " + saleID);
-	},
+//PURPOSE: to display an alert for the sale if there is a match
+//REQUIRES: valid saleID (!= 0), AND is INTEGER
+//MODIFIES: nothing
+//EFFECTS: displays an alert with the sale information 
+//TODO: 
+//	- Need an API call to display sale data
+showSale : function(saleID) {
+	AlertIOS.alert("A match sale with sale ID: " + saleID);
+	console.log("A match sale with sale ID: " + saleID);
+},
 
 });
 

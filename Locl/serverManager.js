@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react-native');
+
 var {
 	AppRegistry,
 	StyleSheet,
@@ -39,149 +40,177 @@ var authKey;
 
 var serverManager = {
 
-	//PURPOSE: to get auth from the api when the application runs so we can make queries
-	//REQUIRES: has to run on inititial render
-	//MODIFIES: nothing
-	//EFFECTS: returns a console print of the authorization code
-	auth: function() {
-		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
-		.then((response) => response.json())
-		.then((responseData) => {
-			console.log("Authorization key -> " + responseData.session_id);
-			AlertIOS.alert("Authorization key: " + responseData.session_id);
-			authKey = responseData.session_id;
-		}) 
-		.done()
-	},
+//PURPOSE: to get auth from the api when the application runs so we can make queries
+//REQUIRES: has to run on inititial render
+//MODIFIES: nothing
+//EFFECTS: returns a console print of the authorization code
+auth: function() {
+	fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
+	.then((response) => response.json())
+	.then((responseData) => {
+		console.log("Authorization key -> " + responseData.session_id);
+		AlertIOS.alert("Authorization key: " + responseData.session_id);
+		authKey = responseData.session_id;
+	}) 
+	.done()
+},
 
-	//PURPOSE: to check the API to see if a new/signficant store has any sales that correllated with the custID
-	//REQUIRES: valid custID (!= 0) AND is INTEGER
-	//MODIFIES: nothing
-	//EFFECTS: returns a 0 if the store doesn't have any matching sales, otherwise it returns the saleID
-	//TODO: 
-	//	- Need to update database with the saleID
-	//	- Need to update this so the check doesn't occur unless there is a session key
-	checkAPI : function(storeID) {
-		var currentCustomerID = this.state.custID.toString();
-		console.log('Checking API w/ CustID: ' + currentCustomerID + ' and StoreID: ' + storeID);
+//PURPOSE: to check the API to see if a new/signficant store has any sales that correllated with the custID
+//REQUIRES: valid custID (!= 0) AND is INTEGER
+//MODIFIES: nothing
+//EFFECTS: returns a 0 if the store doesn't have any matching sales, otherwise it returns the saleID
+//TODO: 
+//	- Need to update database with the saleID
+//	- Need to update this so the check doesn't occur unless there is a session key
+checkAPI : function(storeID) {
+	var currentCustomerID = this.state.custID.toString();
+	console.log('Checking API w/ CustID: ' + currentCustomerID + ' and StoreID: ' + storeID);
 
-		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+ currentCustomerID +"&StoreID="+ storeID, {method: "POST"})
-		.then((response) => response.json())
-		.then((responseData) => {
-			console.log("ResponseDate -> " + responseData.script_result);
-			if (responseData.script_result > 0) {
-				console.log("Showing sale with saleID: " + responseData.script_result);
-				this.showSale(responseData.script_result); 
-			}
-			console.log("No match");
-		})
-		.done();
-	},
-        
+	fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&CustID="+ currentCustomerID +"&StoreID="+ storeID, {method: "POST"})
+	.then((response) => response.json())
+	.then((responseData) => {
+		console.log("ResponseDate -> " + responseData.script_result);
+		if (responseData.script_result > 0) {
+			console.log("Showing sale with saleID: " + responseData.script_result);
+			this.showSale(responseData.script_result); 
+		}
+		console.log("No match");
+	})
+	.done();
+},
+
 //Create User function. 
 //Inputs: fName= First Name(String)    lName= Last Name(String)    pass= Password(String)    
 //output:none
 //note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
-        createCustomer: function(fName,lName,pass) {
-        fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log("Search user Query -> " + responseData.CustomerID)
-        })
-        .done();
-    },
-        
+createCustomer: function(fName,lName,pass) {
+    fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
+    .then((response) => response.json())
+    .then((responseData) => {
+        console.log("Search user Query -> " + responseData.CustomerID)
+    })
+    .done();
+},
+
 //Create Store fucntion. 
 //Inputs: sName= Store Name(String)    sAddress= Store Address(String)    transmitting= True or False(Boolean)
 //        StoreHTMLimg= URL link with Store image(string)
 //output:none
 //note: sName must be unique and cannot be same as others. trans must be true or false cannot be null.
-        createStore: function(sName,sAddress,transmitting,sImage) {
-        fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: transmitting, StoreHTMLimg: sImage})})
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log("Search user Query -> " + responseData.StoreID)
-        })
-        .done();
-    },
-        
+createStore: function(sName,sAddress,transmitting,sImage) {
+    fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: transmitting, StoreHTMLimg: sImage})})
+    .then((response) => response.json())
+    .then((responseData) => {
+        console.log("Search user Query -> " + responseData.StoreID)
+    })
+    .done();
+},
+
 //Create CustomerItem fucntion. 
 //Inputs: itemName= Name of preference Item(Integer)       customerID= Existing CustomerID(Integer)
 //output:none
 //note: customerID is a foreign key and must reference existing Customer in Database
-          createCustomerItem: function(custID, itemName) {
-        fetch(customerItemURL, {method: "POST", body: JSON.stringify({CustID: custID, ItemName: itemName})})
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log("DONE");
-        })
-        .done();
-    }, 
-        
+createCustomerItem: function(custID, itemName) {
+    fetch(customerItemURL, {method: "POST", body: JSON.stringify({CustID: custID, ItemName: itemName})})
+    .then((response) => response.json())
+    .then((responseData) => {
+        console.log("DONE");
+    })
+    .done();
+}, 
+
 //Create StoreItem function. 
 //Inputs: name= Store Name(String)  desc= Store Description(String)  sDate= Start Date(String)   eDate= End Date(String)  
 //        qty= Quantity(Integer)   regPrice = Regular Price(Integer)   sPrice= Sale Price(Integer)    sID= StoreID(Integer) 
 //        upc= UPC(Integer)   imgLink= HTTP Image Link(String)
 //output:none
 //note: sID must be and existing value in store table. HTMLimg can be null or set to a specific link.       
-        createStoreItem: function(name,desc,sDate,eDate,qty,regPrice,salePrice,sID,upc,imgLink) {
-        fetch(itemTableURL, {method: "POST", body: JSON.stringify({Name: name, Description:desc,StartDate:sDate,EndDate:eDate,Quantity:qty, RegPrice:regPrice,SalePrice: salePrice, UPC: upc, StoreID:sID,HTMLimg:imgLink})})
-        .then((response) => response.json())
-        .then((responseData) => {
-             console.log("DONE");
-        })
-        .done();
-    },
-        
+createStoreItem: function(name,desc,sDate,eDate,qty,regPrice,salePrice,sID,upc,imgLink) {
+    fetch(itemTableURL, {method: "POST", body: JSON.stringify({Name: name, Description:desc,StartDate:sDate,EndDate:eDate,Quantity:qty, RegPrice:regPrice,SalePrice: salePrice, UPC: upc, StoreID:sID,HTMLimg:imgLink})})
+    .then((response) => response.json())
+    .then((responseData) => {
+       console.log("DONE");
+   })
+    .done();
+},
+
 //Search from any table with 1 filter function. 
 //Inputs: fval= Filter Value(String)   ftype= Filter Name(String)  ftable= is one of (customerTableURL/itemTableURL/storeTableURL)
 //output: Array of Results based on search. Null if array has no results.
 //note: so if you want to search from table customer table, by first name and lets say a user by the FirstName of nasrin
 //      you would simply enter searchByOneFilter("nasrin","FirstName",customerTableURL)
-        searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
-        fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
-        .then((response) => response.json())
-        .then((responseData) => {    
-            console.log("CustName:--->"+responseData.record[0].ItemName)
-        })
-        .done();
-    },        
+searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
+    fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+        console.log("CustName:--->"+responseData.record[0].ItemName)
+    })
+    .done();
+},        
 
-      
-        //Delete a customer item given the name of the item and the customerID 
+
+//Delete a customer item given the name of the item and the customerID 
 //Inputs: CustID=customerID   itemName= name of the item 
 //output: None
-        deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
-        .then((response) => response.json())
-        .then((responseData) => {    
-            console.log("Deleted Customer Item");
-        })
-        .done();
-    },  
-        
-        
+deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+        console.log("Deleted Customer Item");
+    })
+    .done();
+},  
+
+
 //Delete a store item given the name of the item and the storeID 
 //Inputs: storeId =storeID and itemName= name of the item
 //output: none
-    deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
-        .then((response) => response.json())
-        .then((responseData) => {    
-            console.log("Deleted Store Item");
-        })
-        .done();
-    },
-        
-        //Adds and Array of prefence item into the customer preference list
+deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+        console.log("Deleted Store Item");
+    })
+    .done();
+},
+
+//Adds and Array of prefence item into the customer preference list
 //Inputs: custID= Customer ID   Array = String of preference items
 //output: none
-    bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
-        var i;
-        for(i=0;i<array.length;i++){
-            this.createCustomerItem(custID, array[i]);
-        }
+bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
+    var i;
+    for(i=0;i<array.length;i++){
+        this.createCustomerItem(custID, array[i]);
     }
+}, 
+
+//Search from customerTable with async callback to obtain itemID 
+//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
+//output: ItemID 
+searchFilter: function searchFilter(cid,itemName,callback) {
+ fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
+ .then((response) => response.json())
+ .then((responseData) => {    
+   callback(responseData.record[0].ItemID);
+})
+ .done();
+},
+
+//Update CustomerPreferenceItem Given CustomerID
+//Inputs: cID= CustomerID      iTem= PreferenceItem
+//output: none
+//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
+//      you would simply call updateCustomerItem(4,"shorts")
+updateCustomer: function updateCustomer(cID,currentname,newName) {
+    this.searchFilter(cID, currentname, function(returnedValue){
+        fetch(customerItemURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue,ItemName:newName})})
+        .then((response) => response.json())
+        .then((responseData) => {
+        })
+        .done();
+    });
+}  
+
 };
 
 module.exports = serverManager;
