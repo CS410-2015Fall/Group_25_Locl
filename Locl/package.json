@@ -1,0 +1,14 @@
+{
+  "name": "Locl",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "react-native": "^0.12.0",
+    "react-native-bluetooth-state": "^1.0.1",
+    "react-native-ibeacon": "^0.5.0",
+    "react-native-store": "0.0.9"
+  }
+}
