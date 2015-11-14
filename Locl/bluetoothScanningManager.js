@@ -28,11 +28,7 @@ require('react-native-bluetooth-state');
 Beacons.requestWhenInUseAuthorization();
 
 //Start monitoring
-var region = {
-    identifier: 'Locl',
-    uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
-};
-Beacons.startMonitoringForRegion(region);
+Beacons.startMonitoringForRegion();
 Beacons.startUpdatingLocation();
 
 //Setup listener for change in Bluetooth state
@@ -93,7 +89,7 @@ var bluetoothScanningManager = {
 					};
 					console.log("Region exitted: " + data.region)
 					AlertIOS.alert("Region exitted: " + data.region);
-					Beacons.stopRangingBeaconsInRegion(region);
+					Beacons.stopRangingBeaconsInRegion();
 					rangingSubscription = null;
 				}
 			});

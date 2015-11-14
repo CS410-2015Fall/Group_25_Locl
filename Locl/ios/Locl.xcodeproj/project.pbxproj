@@ -123,6 +123,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNBluetoothState;
 		};
+		95DA55491BF70A0F005CCC6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNBeacon;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +161,7 @@
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "/Users/coreywilson/Desktop/CPSC 410/Final Project/Locl/Locl/node_modules/react-native-bluetooth-state/../react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +305,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */,
 				9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */,
 				950F47E71BD44123005A262F /* RNBeacon.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -356,6 +365,14 @@
 			isa = PBXGroup;
 			children = (
 				9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95DA553B1BF70A0E005CCC6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95DA554A1BF70A0F005CCC6B /* libRNBeacon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +491,10 @@
 					ProjectRef = 950F47E71BD44123005A262F /* RNBeacon.xcodeproj */;
 				},
 				{
+					ProductGroup = 95DA553B1BF70A0E005CCC6B /* Products */;
+					ProjectRef = 95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */;
+				},
+				{
 					ProductGroup = 9550C5F51BE7E86D00C65659 /* Products */;
 					ProjectRef = 9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */;
 				},
@@ -569,6 +590,13 @@
 			fileType = archive.ar;
 			path = libRNBluetoothState.a;
 			remoteRef = 9550C6031BE7E86D00C65659 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		95DA554A1BF70A0F005CCC6B /* libRNBeacon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBeacon.a;
+			remoteRef = 95DA55491BF70A0F005CCC6B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
