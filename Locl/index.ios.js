@@ -32,6 +32,7 @@ var Locl = React.createClass({
 	},
 
 	componentDidMount: function() {
+		serverManager.auth();
 	},
 
 	render: function() {

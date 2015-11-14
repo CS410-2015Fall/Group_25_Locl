@@ -13,16 +13,7 @@ var {
 	AsyncStorage,
 } = React;
 
-var cacheManager = React.createClass({
-
-	render: function() {
-		return;
-	},
-
-	componentDidMount: function() {
-		this.removeItem('101');
-	},
-
+var cacheManager = {
 	//PURPOSE: to create a new entry for a storeID. 
 	//REQUIRES: valid storeID (!= 0) AND is INTEGER
 	//MODIFIES: nothing
@@ -127,11 +118,6 @@ var cacheManager = React.createClass({
 	async setFavourite(boolean, storeID) {
 
 	},
-
-
-
-
-
-});
+};
 
 module.exports = cacheManager;

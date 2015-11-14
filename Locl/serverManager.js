@@ -37,15 +37,7 @@ var searchByMid="%20%3D%20%22";
 var searchByEnd="%22"; 
 var authKey;
 
-var serverManager = React.createClass({
-
-	render: function() {
-		return;
-	},
-
-	componentDidMount: function() {
-		this.auth();
-	},
+var serverManager = {
 
 	//PURPOSE: to get auth from the api when the application runs so we can make queries
 	//REQUIRES: has to run on inititial render
@@ -190,7 +182,6 @@ var serverManager = React.createClass({
             this.createCustomerItem(custID, array[i]);
         }
     }
-
-});
+};
 
 module.exports = serverManager;

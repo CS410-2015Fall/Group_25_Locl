@@ -17,7 +17,7 @@ var {
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
 let storeID = 44;
 
-var bluetoothBeaconManager = React.createClass({
+var bluetoothBeaconManager = {
 
 	render: function() {
 		return;
@@ -47,6 +47,6 @@ var bluetoothBeaconManager = React.createClass({
 		);
 	},
 
-});
+};
 
 module.exports = bluetoothBeaconManager;

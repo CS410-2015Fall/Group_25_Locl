@@ -24,6 +24,17 @@ var rangingSubscription;
 //Import Bluetooth state
 require('react-native-bluetooth-state');
 
+//Get auth
+Beacons.requestWhenInUseAuthorization();
+
+//Start monitoring
+var region = {
+    identifier: 'Locl',
+    uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
+};
+Beacons.startMonitoringForRegion(region);
+Beacons.startUpdatingLocation();
+
 //Setup listener for change in Bluetooth state
 var subscription = DeviceEventEmitter.addListener('centralManagerDidUpdateState', bluetoothState => {
   AlertIOS.alert("Bluetooth status: " + bluetoothState);
@@ -36,17 +47,7 @@ Beacons.getAuthorizationStatus(function(authorization) {
 	console.log("Bluetooth authorization: " + authorization);
 });
 
-var bluetoothScanningManager = React.createClass({
-
-	render: function() {
-		return
-	},
-
-	componentDidMount: function() {
-		Beacons.requestWhenInUseAuthorization();
-		Beacons.startMonitoringForRegion();
-		Beacons.startUpdatingLocation();
-	},
+var bluetoothScanningManager = {
 
 	//PURPOSE: start scanning for Beacons 
 	//REQUIRES: need permission to use Bluetooth, must not be currently scanning
@@ -63,6 +64,10 @@ var bluetoothScanningManager = React.createClass({
 			'regionDidEnter',
 			(data) => {
 				if (data !=null) {
+					var region = {
+					    identifier: 'Locl',
+					    uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
+					};
 					console.log("Region enterred: " + data.region)}
 					AlertIOS.alert("Region enterred: " + data.region);
 					Beacons.startRangingBeaconsInRegion();
@@ -82,9 +87,13 @@ var bluetoothScanningManager = React.createClass({
 			'regionDidExit',
 			(data) => {
 				if (data !=null) {
+					var region = {
+					    identifier: 'Locl',
+					    uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
+					};
 					console.log("Region exitted: " + data.region)
 					AlertIOS.alert("Region exitted: " + data.region);
-					Beacons.stopRangingBeaconsInRegion();
+					Beacons.stopRangingBeaconsInRegion(region);
 					rangingSubscription = null;
 				}
 			});
@@ -105,9 +114,5 @@ var bluetoothScanningManager = React.createClass({
 		AlertIOS.alert('No longer scanning');
 	},
 
-
-
-
-
-});
+};
 module.exports = bluetoothScanningManager;
