@@ -45,11 +45,11 @@ var Locl = React.createClass({
 			</View>
 
 			<View style={styles.flowRight}>
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onStartScanningPress}> 
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStartScanningPress}> 
 				<Text style={styles.buttonText}>Start Scanning</Text>
 			</TouchableHighlight>
 
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onStopScanningPress}> 
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothScanningManager.onStopScanningPress}> 
 				<Text style={styles.buttonText}>Stop Scanning</Text>
 			</TouchableHighlight>
 			</View>
@@ -57,17 +57,17 @@ var Locl = React.createClass({
 			<View style={styles.flowRight}>
 			<TextInput style={styles.searchInput} value={this.state.storeID} placeholder='Store ID' onChange={this.onStoreIDTextChanged}/> 
 			
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingSetPress}> 
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingSetPress}> 
 				<Text style={styles.buttonText}>Set</Text>
 			</TouchableHighlight>
 			</View>
 
 			<View style={styles.flowRight}>
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingStartPress}> 
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStartPress}> 
 				<Text style={styles.buttonText}>Start Broadcasting</Text>
 			</TouchableHighlight>
 
-			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this.onBeaconingStopPress}> 
+			<TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={bluetoothBeaconManager.onBeaconingStopPress}> 
 				<Text style={styles.buttonText}>Stop Broadcasting</Text>
 			</TouchableHighlight>
 			</View>
