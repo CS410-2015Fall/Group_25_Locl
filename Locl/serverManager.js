@@ -36,6 +36,15 @@ var searchByStart="&filter=";
 var searchByMid="%20%3D%20%22";   
 var searchByEnd="%22"; 
 var authKey;
+    
+//Sample Bulk customer Item Array------------------    
+//var items = ["nike","Rolex","goglessie"]; 
+//Sample Bulk customer Item Array------------------   
+
+    
+//Sample Bulk storeItem Array---------------------- 
+//var store = [{Name: "chips", Description: "come one come all",StartDate:"11-11-11",EndDate:"11-12-12",Quantity:2, RegPrice:140,SalePrice: 100, UPC: 112233, StoreID:102,HTMLimg:"www.google.com"},{Name: "fries", Description:"hello hello all",StartDate:"11-11-11",EndDate:"11-13-13",Quantity:1, RegPrice:111,SalePrice: 120, UPC: 123123, StoreID:102,HTMLimg:"www.gagagogole.com"}];
+//Sample Bulk storeItem Array----------------------         
 
 var serverManager = React.createClass({
 
@@ -212,10 +221,23 @@ var serverManager = React.createClass({
         fetch(customerItemURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue,ItemName:newName})})
         .then((response) => response.json())
         .then((responseData) => {
+            console.log("Done!!");
         })
         .done();
            });
-    }  
+    },
+
+//Adds and Array of store item into the store items list
+//Inputs: array of json formatted stores
+//output: conformation message
+    bulkAddStoreItem: function bulkAddStoreItem(array) {
+        var i;
+        var end = array.length;
+        console.log(array[0].Name);
+        for(i=0;i<end;i++){
+ console.log("Adding item");           this.createStoreItem(array[i].Name,array[i].Description,array[i].StartDate,array[i].EndDate,array[i].Quantity,array[i].RegPrice,array[i].SalePrice,array[i].StoreID,array[i].upc,array[i].HTMLimg);
+        }
+    }   
 
 });
 
