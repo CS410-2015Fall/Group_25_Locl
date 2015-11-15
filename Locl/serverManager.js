@@ -38,13 +38,17 @@ var searchByEnd="%22";
 var authKey;
     
 //Sample Bulk customer Item Array------------------    
-//var items = ["nike","Rolex","goglessie"]; 
+var items = ["nike","Rolex","goglessie"]; 
 //Sample Bulk customer Item Array------------------   
 
     
 //Sample Bulk storeItem Array---------------------- 
-//var store = [{Name: "chips", Description: "come one come all",StartDate:"11-11-11",EndDate:"11-12-12",Quantity:2, RegPrice:140,SalePrice: 100, UPC: 112233, StoreID:102,HTMLimg:"www.google.com"},{Name: "fries", Description:"hello hello all",StartDate:"11-11-11",EndDate:"11-13-13",Quantity:1, RegPrice:111,SalePrice: 120, UPC: 123123, StoreID:102,HTMLimg:"www.gagagogole.com"}];
+var store = [{Name: "chips", Description: "come one come all",StartDate:"11-11-11",EndDate:"11-12-12",Quantity:2, RegPrice:140,SalePrice: 100, UPC: 112233, StoreID:102,HTMLimg:"www.google.com"},{Name: "fries", Description:"hello hello all",StartDate:"11-11-11",EndDate:"11-13-13",Quantity:1, RegPrice:111,SalePrice: 120, UPC: 123123, StoreID:102,HTMLimg:"www.gagagogole.com"}];
 //Sample Bulk storeItem Array----------------------         
+    
+//Sample Store ID Array----------------------------
+var idarray = [101,102,103,104];
+//Sample Store ID Array----------------------------    
 
 var serverManager = React.createClass({
 
@@ -237,7 +241,63 @@ var serverManager = React.createClass({
         for(i=0;i<end;i++){
  console.log("Adding item");           this.createStoreItem(array[i].Name,array[i].Description,array[i].StartDate,array[i].EndDate,array[i].Quantity,array[i].RegPrice,array[i].SalePrice,array[i].StoreID,array[i].upc,array[i].HTMLimg);
         }
-    }   
+    },
+        //Update CustomerPreferenceItem Given CustomerID
+//Inputs: cID= CustomerID      iTem= PreferenceItem
+//output: none
+//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
+//      you would simply call updateCustomerItem(4,"shorts")
+        updateStore: function updateStore(sid,itemname,qty) {
+           
+           this.searchStoreFilter(sid, itemname, function(returnedValue){
+               //console.log(returnedValue);
+        fetch(itemTableURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue, Quantity:qty})})
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log("Done!!");
+        })
+        .done();
+           });
+    }, 
+        
+//Search from customerTable with async callback to obtain itemID 
+//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
+//output: ItemID 
+        searchStoreFilter: function searchStoreFilter(sid,itemName,callback) {
+           fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D%20"+sid+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+             callback(responseData.record[0].ItemID);
+        })
+        .done();
+    },
+
+//Adds and Array of store item into the store items list
+//Inputs: array of json formatted stores
+//output: conformation message
+    fetchMaker: function fetchMaker(array,callback) {
+       var storeItemID= "http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID="+array[0];
+       var i; 
+       for(i=1;i<array.length;i++){
+         storeItemID += "||StoreID="+array[i];
+        
+       }
+        callback(storeItemID);
+    },    
+
+//Adds and Array of store item into the store items list
+//Inputs: array of json formatted stores
+//output: conformation message    
+    multipleStoreItemRetrieval: function multipleStoreItemRetrieval(array,callback){
+        this.fetchMaker(array, function(returnValue){
+            fetch(returnValue, {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+              callback(responseData);
+        })
+        .done();
+        }); 
+    },
 
 });
 
