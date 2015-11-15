@@ -31,10 +31,6 @@ var storeTableURL=httpString+"store"+loclSQL;
 //String to connect to CustomerItem Table
 var customerItemURL=httpString+"customer-items"+loclSQL;
 
-//Search by name variable
-var searchByStart="&filter=";  
-var searchByMid="%20%3D%20%22";   
-var searchByEnd="%22"; 
 var authKey;
     
 //Sample Bulk customer Item Array------------------    
@@ -46,9 +42,10 @@ var items = ["nike","Rolex","goglessie"];
 var store = [{Name: "chips", Description: "come one come all",StartDate:"11-11-11",EndDate:"11-12-12",Quantity:2, RegPrice:140,SalePrice: 100, UPC: 112233, StoreID:102,HTMLimg:"www.google.com"},{Name: "fries", Description:"hello hello all",StartDate:"11-11-11",EndDate:"11-13-13",Quantity:1, RegPrice:111,SalePrice: 120, UPC: 123123, StoreID:102,HTMLimg:"www.gagagogole.com"}];
 //Sample Bulk storeItem Array----------------------         
     
+
 //Sample Store ID Array----------------------------
 var idarray = [101,102,103,104];
-//Sample Store ID Array----------------------------    
+//Sample Store ID Array----------------------------     
 
 var serverManager = React.createClass({
 
@@ -64,7 +61,7 @@ var serverManager = React.createClass({
 	//REQUIRES: has to run on inititial render
 	//MODIFIES: nothing
 	//EFFECTS: returns a console print of the authorization code
-	auth: function() {
+	auth: function auth() {
 		fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
 		.then((response) => response.json())
 		.then((responseData) => {
@@ -82,7 +79,7 @@ var serverManager = React.createClass({
 	//TODO: 
 	//	- Need to update database with the saleID
 	//	- Need to update this so the check doesn't occur unless there is a session key
-	checkAPI : function(storeID) {
+	checkAPI : function checkAPI(storeID) {
 		var currentCustomerID = this.state.custID.toString();
 		console.log('Checking API w/ CustID: ' + currentCustomerID + ' and StoreID: ' + storeID);
 
@@ -99,11 +96,11 @@ var serverManager = React.createClass({
 		.done();
 	},
         
-//Create User function. 
-//Inputs: fName= First Name(String)    lName= Last Name(String)    pass= Password(String)    
-//output:none
-//note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
-        createCustomer: function(fName,lName,pass) {
+//PURPOSE:Create Customer function. 
+//REQUIRES: fName= First Name(String)    lName= Last Name(String)    pass= Password(String)    
+//MODIFIES:none
+//EFFECTS: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
+        createCustomer: function createCustomer(fName,lName,pass) {
         fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
         .then((response) => response.json())
         .then((responseData) => {
@@ -112,13 +109,13 @@ var serverManager = React.createClass({
         .done();
     },
         
-//Create Store fucntion. 
-//Inputs: sName= Store Name(String)    sAddress= Store Address(String)    transmitting= True or False(Boolean)
+//PURPOSE: Create Store fucntion. 
+//REQUIRES: sName= Store Name(String)    sAddress= Store Address(String)    transmitting= True or False(Boolean)
 //        StoreHTMLimg= URL link with Store image(string)
-//output:none
-//note: sName must be unique and cannot be same as others. trans must be true or false cannot be null.
-        createStore: function(sName,sAddress,transmitting,sImage) {
-        fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: transmitting, StoreHTMLimg: sImage})})
+//MODIFIES:none
+//EFFECTS: sName must be unique and cannot be same as others. trans must be true or false cannot be null.
+        createStore: function createStore(sName,sAddress,transmitting,sImage) {
+        fetch(storeTableURL, {method: "POST", body: JSON.stringify({StoreName: sName, Address: sAddress, Transmitting: transmitting,                StoreHTMLimg: sImage})})
         .then((response) => response.json())
         .then((responseData) => {
             console.log("Search user Query -> " + responseData.StoreID)
@@ -126,11 +123,11 @@ var serverManager = React.createClass({
         .done();
     },
         
-//Create CustomerItem fucntion. 
-//Inputs: itemName= Name of preference Item(Integer)       customerID= Existing CustomerID(Integer)
-//output:none
-//note: customerID is a foreign key and must reference existing Customer in Database
-          createCustomerItem: function(custID, itemName) {
+//PURPOSE: Create CustomerItem function. 
+//REQUIRES: itemName= Name of preference Item(Integer)       customerID= Existing CustomerID(Integer)
+//MODIFIES:none
+//EFFECTS: customerID is a foreign key and must reference existing Customer in Database
+          createCustomerItem: function createCustomerItem(custID, itemName) {
         fetch(customerItemURL, {method: "POST", body: JSON.stringify({CustID: custID, ItemName: itemName})})
         .then((response) => response.json())
         .then((responseData) => {
@@ -139,13 +136,13 @@ var serverManager = React.createClass({
         .done();
     }, 
         
-//Create StoreItem function. 
-//Inputs: name= Store Name(String)  desc= Store Description(String)  sDate= Start Date(String)   eDate= End Date(String)  
+//PURPOSE:Create StoreItem function. 
+//REQUIRES: name= Store Name(String)  desc= Store Description(String)  sDate= Start Date(String)   eDate= End Date(String)  
 //        qty= Quantity(Integer)   regPrice = Regular Price(Integer)   sPrice= Sale Price(Integer)    sID= StoreID(Integer) 
 //        upc= UPC(Integer)   imgLink= HTTP Image Link(String)
-//output:none
-//note: sID must be and existing value in store table. HTMLimg can be null or set to a specific link.       
-        createStoreItem: function(name,desc,sDate,eDate,qty,regPrice,salePrice,sID,upc,imgLink) {
+//MODIFIES:none
+//EFFECTS: sID must be and existing value in store table. HTMLimg can be null or set to a specific link.       
+        createStoreItem: function createStoreItem(name,desc,sDate,eDate,qty,regPrice,salePrice,sID,upc,imgLink) {
         fetch(itemTableURL, {method: "POST", body: JSON.stringify({Name: name, Description:desc,StartDate:sDate,EndDate:eDate,Quantity:qty, RegPrice:regPrice,SalePrice: salePrice, UPC: upc, StoreID:sID,HTMLimg:imgLink})})
         .then((response) => response.json())
         .then((responseData) => {
@@ -154,39 +151,40 @@ var serverManager = React.createClass({
         .done();
     },
         
-//Search from any table with 1 filter function. 
-//Inputs: fval= Filter Value(String)   ftype= Filter Name(String)  ftable= is one of (customerTableURL/itemTableURL/storeTableURL)
-//output: Array of Results based on search. Null if array has no results.
-//note: so if you want to search from table customer table, by first name and lets say a user by the FirstName of nasrin
-//      you would simply enter searchByOneFilter("nasrin","FirstName",customerTableURL)
-        searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
-        fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
+//PURPOSE: Search from StoreItems Table given a storeID to get all items by that store 
+//REQUIRES: 
+//MODIFIES: Array of Results based on search. Null if array has no results.
+        searchStoreItems: function searchStoreItems(sid,callback) {
+        fetch(itemTableURL+"&filter=StoreID="+sid, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {    
-            console.log("CustName:--->"+responseData.record[0].ItemName)
+            callback(responseData);
         })
         .done();
     },        
 
       
-        //Delete a customer item given the name of the item and the customerID 
-//Inputs: CustID=customerID   itemName= name of the item 
-//output: None
-        deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+//PURPOSE: Delete a customer item given the name of the item and the customerID 
+//REQUIRES: CustID=customerID   itemName= name of the item 
+//MODIFIES: None
+        deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {  
+            var test =itemName.replace(/ /g, "%20");
+            fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%3D"+custID+"%20and%20itemname%3D%20%22"+test+"%22", {method: "DELETE"})
         .then((response) => response.json())
         .then((responseData) => {    
             console.log("Deleted Customer Item");
         })
         .done();
+        
     },  
-        
-        
-//Delete a store item given the name of the item and the storeID 
-//Inputs: storeId =storeID and itemName= name of the item
-//output: none
+
+//PURPOSE: Delete a store item given the name of the item and the storeID 
+//REQUIRES: storeId =storeID and itemName= name of the item
+//MODIFIES: None
     deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+         var test =itemName.replace(/ /g, "%20");
+         console.log(test);
+        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%3D"+storeID+"%20and%20Name%3D%20%22"+test+"%22", {method: "DELETE"})
         .then((response) => response.json())
         .then((responseData) => {    
             console.log("Deleted Store Item");
@@ -194,9 +192,9 @@ var serverManager = React.createClass({
         .done();
     },
         
-        //Adds and Array of prefence item into the customer preference list
-//Inputs: custID= Customer ID   Array = String of preference items
-//output: none
+//PURPOSE: Adds and Array of prefence item into the customer preference list
+//REQUIRES: custID= Customer ID   Array = String of preference items
+//MODIFIES: none
     bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
         var i;
         for(i=0;i<array.length;i++){
@@ -204,10 +202,10 @@ var serverManager = React.createClass({
         }
     },
     
-//Search from customerTable with async callback to obtain itemID 
-//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
-//output: ItemID 
-        searchFilter: function searchFilter(cid,itemName,callback) {
+//PURPOSE: Search from customerTable with async callback to obtain itemID 
+//REQUIRES: cid= customer ID    itemName= name of the item   callback=asynch callback
+//MODIFIES: ItemID 
+        searchCustomerFilter: function searchFilter(cid,itemName,callback) {
            fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
         .then((response) => response.json())
         .then((responseData) => {    
@@ -215,13 +213,13 @@ var serverManager = React.createClass({
         })
         .done();
     },
-        //Update CustomerPreferenceItem Given CustomerID
-//Inputs: cID= CustomerID      iTem= PreferenceItem
-//output: none
-//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
+//PURPOSE: Update CustomerPreferenceItem Given CustomerID
+//REQUIRES: cID= CustomerID      iTem= PreferenceItem
+//MODIFIES: none
+//EFFECTS: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
 //      you would simply call updateCustomerItem(4,"shorts")
-        updateCustomer: function updateCustomer(cID,currentname,newName) {
-        this.searchFilter(cID, currentname, function(returnedValue){
+        updateCustomerItem: function updateCustomerItem(cID,currentname,newName) {
+        this.searchCustomerFilter(cID, currentname, function(returnedValue){
         fetch(customerItemURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue,ItemName:newName})})
         .then((response) => response.json())
         .then((responseData) => {
@@ -231,9 +229,9 @@ var serverManager = React.createClass({
            });
     },
 
-//Adds and Array of store item into the store items list
-//Inputs: array of json formatted stores
-//output: conformation message
+//PURPOSRE: Adds and Array of store item into the store items list
+//REQUIRES: array of json formatted stores
+//MODIFIES: conformation message
     bulkAddStoreItem: function bulkAddStoreItem(array) {
         var i;
         var end = array.length;
@@ -242,12 +240,10 @@ var serverManager = React.createClass({
  console.log("Adding item");           this.createStoreItem(array[i].Name,array[i].Description,array[i].StartDate,array[i].EndDate,array[i].Quantity,array[i].RegPrice,array[i].SalePrice,array[i].StoreID,array[i].upc,array[i].HTMLimg);
         }
     },
-        //Update CustomerPreferenceItem Given CustomerID
-//Inputs: cID= CustomerID      iTem= PreferenceItem
-//output: none
-//note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
-//      you would simply call updateCustomerItem(4,"shorts")
-        updateStore: function updateStore(sid,itemname,qty) {
+//PURPOSE: Update StoreItem Given StoreID
+//REQUIRES: sid= StoreID      iTem= Item  qty= quanity that you would like to update
+//MODIFIES: none
+        updateStoreItem: function updateStoreItem(sid,itemname,qty) {
            
            this.searchStoreFilter(sid, itemname, function(returnedValue){
                //console.log(returnedValue);
@@ -260,9 +256,9 @@ var serverManager = React.createClass({
            });
     }, 
         
-//Search from customerTable with async callback to obtain itemID 
-//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
-//output: ItemID 
+//PURPOSE: Search from storeTable with async callback to obtain itemID 
+//REQUIRES: sid= StoreID    itemName= name of the item   
+//MODIFIES: ItemID 
         searchStoreFilter: function searchStoreFilter(sid,itemName,callback) {
            fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D%20"+sid+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "GET"})
         .then((response) => response.json())
@@ -272,9 +268,9 @@ var serverManager = React.createClass({
         .done();
     },
 
-//Adds and Array of store item into the store items list
-//Inputs: array of json formatted stores
-//output: conformation message
+//PURPOSE: Format query to seach multiple stores
+//REQUIRES: array of storeID
+//MODIFIES: formatted query
     fetchMaker: function fetchMaker(array,callback) {
        var storeItemID= "http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID="+array[0];
        var i; 
@@ -285,9 +281,9 @@ var serverManager = React.createClass({
         callback(storeItemID);
     },    
 
-//Adds and Array of store item into the store items list
-//Inputs: array of json formatted stores
-//output: conformation message    
+//PURPOSE: given array of storeID retrieve all items on sale
+//Inputs: array  storeID
+//output: array of items on sale   
     multipleStoreItemRetrieval: function multipleStoreItemRetrieval(array,callback){
         this.fetchMaker(array, function(returnValue){
             fetch(returnValue, {method: "GET"})
@@ -297,7 +293,7 @@ var serverManager = React.createClass({
         })
         .done();
         }); 
-    },
+    },      
 
 });
 
