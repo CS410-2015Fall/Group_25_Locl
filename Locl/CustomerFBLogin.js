@@ -4,9 +4,6 @@ var React = require('react-native');
 var CustomerProfile = require('./CustomerProfile');
 var FBSDKLogin = require('react-native-fbsdklogin');
 
-//Related code to FBSDKCore is only needed for graph requests
-var FBSDKCore = require('react-native-fbsdkcore');
-
 var {
   StyleSheet,
   Text,
@@ -25,12 +22,6 @@ var {
   FBSDKLoginButton,
   FBSDKLoginManager,
 } = FBSDKLogin;
-
-var {
-  FBSDKGraphRequest,
-  FBSDKGraphRequestManager,
-  FBSDKAccessToken,
-} = FBSDKCore;
 
 var styles = StyleSheet.create({
   description: {
@@ -69,21 +60,8 @@ var styles = StyleSheet.create({
   }
 });
 
-var fetchFriends = new FBSDKGraphRequest((error, result) => {
-  if (error)
-  {
-    console.log("Error: ", error);
-  }
-  else
-  {
-    console.log(result);
-  }
-}, '/me', {fields: { string: 'name,gender,email'} });
-
-FBSDKGraphRequestManager.batchRequests([fetchFriends],
-    function() {}, 60);
-
 var CustomerFBLogin = React.createClass({
+
   render(){
     return (<View style={styles.container}>
         <Text style={styles.description}>
@@ -106,8 +84,8 @@ var CustomerFBLogin = React.createClass({
           }}
           onLogoutFinished={() => alert('Logged out.')}
           />
-        </View>
-        );
+            </View>
+            );
   },
 
   loadCustomerProfile(){
