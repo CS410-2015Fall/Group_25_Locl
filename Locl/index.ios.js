@@ -99,11 +99,9 @@ var Customer = React.createClass({
       title: 'CustomerHome',
       component: CustomerHome,
     });
-
   }
-
-
 });
+
 var Store = React.createClass({
   render(){
     return (<View style={styles.container}>
@@ -131,7 +129,6 @@ var Store = React.createClass({
 var Locl = React.createClass({
   render() {
     if(intro){
-
       return (
           <NavigatorIOS ref='nav'
           style={styles.container}
