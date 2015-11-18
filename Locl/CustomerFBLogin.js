@@ -2,7 +2,10 @@
 
 var React = require('react-native');
 var CustomerProfile = require('./CustomerProfile');
-var FBLogin = require('./facebooklogin');
+var FBSDKLogin = require('react-native-fbsdklogin');
+
+//Related code to FBSDKCore is only needed for graph requests
+var FBSDKCore = require('react-native-fbsdkcore');
 
 var {
   StyleSheet,
@@ -17,6 +20,18 @@ var {
   AppRegistry
 } = React;
 
+var {
+  FBSDKGraphRequest,
+  FBSDKLoginButton,
+  FBSDKLoginManager,
+} = FBSDKLogin;
+
+var {
+  FBSDKGraphRequest,
+  FBSDKGraphRequestManager,
+  FBSDKAccessToken,
+} = FBSDKCore;
+
 var styles = StyleSheet.create({
   description: {
     color: 'black',
@@ -26,6 +41,9 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    alignItems      : 'center',
+    backgroundColor : '#F5FCFF',
+    paddingTop      : 30
   },
   flowRight: {
     flexDirection: 'column',
@@ -51,6 +69,19 @@ var styles = StyleSheet.create({
   }
 });
 
+var fetchFriends = new FBSDKGraphRequest((error, result) => {
+  if (error)
+  {
+    console.log("Error: ", error);
+  }
+  else
+  {
+    console.log(result);
+  }
+}, '/me', {fields: { string: 'name,gender,email'} });
+
+FBSDKGraphRequestManager.batchRequests([fetchFriends],
+    function() {}, 60);
 
 var CustomerFBLogin = React.createClass({
   render(){
@@ -58,9 +89,34 @@ var CustomerFBLogin = React.createClass({
         <Text style={styles.description}>
         FaceBook Login
         </Text>
-        FBlogin
+        <FBSDKLoginButton 
+        onPress= {() => { 
+          FBSDKLoginManager.logInWithReadPermissions(['email'],
+              (error, result) => {
+                //call back not called. uses onloginfinished instead
+              })}}
+          onLoginFinished={(error, result) => {
+            if (result.isCancelled) {
+              alert('Login cancelled.');
+            } else {
+              alert('Logged in.');
+              this.loadCustomerProfile();
+            }
+
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          />
+        </View>
         );
   },
+
+  loadCustomerProfile(){
+    this.props.navigator.push({
+      title: 'CustomerProfile',
+      component: CustomerProfile,
+    });
+
+  }
 });
 
 module.exports = CustomerFBLogin;

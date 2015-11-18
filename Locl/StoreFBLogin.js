@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var StoreProfile = require('./StoreProfile');
+var FBSDKLogin = require('react-native-fbsdklogin');
 
 var {
   StyleSheet,
@@ -16,6 +17,12 @@ var {
   AppRegistry
 } = React;
 
+var {
+  FBSDKGraphRequest,
+  FBSDKLoginButton,
+  FBSDKLoginManager,
+} = FBSDKLogin;
+
 var styles = StyleSheet.create({
   description: {
     color: 'black',
@@ -25,6 +32,9 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    alignItems      : 'center',
+    backgroundColor : '#F5FCFF',
+    paddingTop      : 30
   },
   flowRight: {
     flexDirection: 'column',
@@ -50,16 +60,29 @@ var styles = StyleSheet.create({
   }
 });
 
-
 var StoreFBLogin = React.createClass({
   render(){
     return (<View style={styles.container}>
         <Text style={styles.description}>
         FaceBook Login
         </Text>
-        <TouchableHighlight style={styles.button} onPress={this.loadStoreProfile}>
-        <Text style={styles.buttonText}>Login w/ FB</Text>
-        </TouchableHighlight>
+        <FBSDKLoginButton 
+        onPress= {() => { 
+          FBSDKLoginManager.logInWithReadPermissions(['email'],
+              (error, result) => {
+                //call back not called. uses onloginfinished instead
+              })}}
+          onLoginFinished={(error, result) => {
+            if (result.isCancelled) {
+              alert('Login cancelled.');
+            } else {
+              alert('Logged in.');
+              this.loadStoreProfile();
+            }
+
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          />
         </View>
         );
   },
