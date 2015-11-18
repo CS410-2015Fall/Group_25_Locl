@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Preferences = require('./Preferences');
+var CustomerProfile = require('.CustomerProfile');
 
 var {
   StyleSheet,
@@ -75,6 +75,7 @@ class FB extends React.Component {
               alert('Login cancelled.');
             } else {
               alert('Logged in.');
+              loadCustomerProfile;
             }
 
           }}
@@ -84,10 +85,10 @@ class FB extends React.Component {
           );
   }
 
-  loadPreferences(){
+  loadCustomerProfile(){
     this.props.navigator.push({
-      title: 'Preferences',
-      component: Preferences,
+      title: 'CustomerProfile',
+      component: CustomerProfile,
     });
   }
 
