@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var StoreAdd = require('./StoreAdd');
-var Beacon = require('./Beacon');
+//var Beacon = require('./Beacon');
 var bt = false;
 
 var {
