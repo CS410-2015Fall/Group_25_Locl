@@ -32,6 +32,10 @@ componentDidMount: function() {
 	serverManager.auth();
 },
 
+sum: function(value1, value2) {
+  return value1 + value2;
+},
+
 render: function() {
 	return (
 		<View style={styles.container}>
