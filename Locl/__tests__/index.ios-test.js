@@ -1,9 +1,34 @@
 // __tests__/sum-test.js
+
+'use strict';
 jest.dontMock('../index.ios.js');
 
-describe('sum', function() {
- it('adds 1 + 2 to equal 3', function() {
-   var sum = require('../sum');
-   expect(sum(1, 2)).toBe(3);
- });
+var getImageSource = require('../getImageSource');
+
+describe('getImageSource', () => {
+  it('returns null for invalid input', () => {
+    expect(getImageSource().uri).toBe(null);
+  });
+
+  it('returns a movie thumbnail', () => {
+    var uri = 'https://facebook.com';
+    var source = {
+      posters: {
+        thumbnail: uri,
+      },
+    };
+    expect(getImageSource(source).uri).toBe(uri);
+  });
+
+  it('returns a movie thumbnail with kind', () => {
+    var uri = 'https://facebook.com?tmb';
+    var source = {
+      posters: {
+        thumbnail: uri,
+      },
+    };
+    expect(getImageSource(source, 'kind').uri).toBe(
+      'https://facebook.com?kind'
+    );
+  });
 });
