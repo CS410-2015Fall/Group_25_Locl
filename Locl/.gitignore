@@ -30,6 +30,11 @@ build/Release
 node_modules/
 
 !node_module/react-native-ibeacon
+!node_module/react-native-bluetooth-state
+!node_module/react-native-fbsdkcore
+!node_module/react-native-fbsdklogin
+!node_module/react-native-fbsdkshare
+
 
 ### OSX ###
 .DS_Store
