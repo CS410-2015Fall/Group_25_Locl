@@ -1,4 +1,4 @@
-'use strict';
+npm inst'use strict';
 
 var React = require('react-native');
 var StoreSetup = require('./StoreSetup');
