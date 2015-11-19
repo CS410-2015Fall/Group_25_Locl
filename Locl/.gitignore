@@ -4,6 +4,7 @@
 # Logs
 logs
 *.log
+npm-debug.log
 
 # Runtime data
 pids
@@ -28,22 +29,19 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-gits
 node_modules/
-
 !node_module/react-native-ibeacon
 !node_module/react-native-bluetooth-state
 !node_module/react-native-fbsdkcore
 !node_module/react-native-fbsdklogin
 !node_module/react-native-fbsdkshare
 
-
 ### OSX ###
-.DS_Store
+*.DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -79,3 +77,5 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
+*.hmap
+*.ipa
