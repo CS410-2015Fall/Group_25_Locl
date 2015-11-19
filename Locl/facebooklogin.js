@@ -41,7 +41,7 @@ var fetchFriends = new FBSDKGraphRequest((error, result) => {
 }, '/me', {fields: { string: 'name,gender,email'} });
 
 FBSDKGraphRequestManager.batchRequests([fetchFriends],
-    function() {}, 60);
+  function() {}, 60);
 
 var styles = StyleSheet.create({
   description: {
@@ -61,28 +61,28 @@ var styles = StyleSheet.create({
 class FB extends React.Component {
   render(){
     return (<View style={styles.container}>
-        <Text style={styles.description}>
-        FaceBook Login
-        </Text>
-        <FBSDKLoginButton 
-        onPress= {() => { 
-          FBSDKLoginManager.logInWithReadPermissions(['email'],
-              (error, result) => {
+      <Text style={styles.description}>
+      FaceBook Login
+      </Text>
+      <FBSDKLoginButton 
+      onPress= {() => { 
+        FBSDKLoginManager.logInWithReadPermissions(['email'],
+          (error, result) => {
                 //call back not called. uses onloginfinished instead
               })}}
-          onLoginFinished={(error, result) => {
-            if (result.isCancelled) {
-              alert('Login cancelled.');
-            } else {
-              alert('Logged in.');
-              loadCustomerProfile;
-            }
+        onLoginFinished={(error, result) => {
+          if (result.isCancelled) {
+            alert('Login cancelled.');
+          } else {
+            alert('Logged in.');
+            loadCustomerProfile;
+          }
 
-          }}
-          onLogoutFinished={() => alert('Logged out.')}
-          />
-          </View>
-          );
+        }}
+        onLogoutFinished={() => alert('Logged out.')}
+        />
+        </View>
+        );
   }
 
   loadCustomerProfile(){
@@ -94,12 +94,12 @@ class FB extends React.Component {
 
   static isLoggedIn(callback: (result: boolean) => void) {
     FBSDKAccessToken.getCurrentAccessToken(token =>
-        {
-          if (token == null) {
-            callback(false);
-          } else {
-            callback(true);
-          }});
+    {
+      if (token == null) {
+        callback(false);
+      } else {
+        callback(true);
+      }});
   }
 }
 

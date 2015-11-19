@@ -62,50 +62,50 @@ var styles = StyleSheet.create({
 var Preference = React.createClass({
   render(){
     return (<View style={styles.container}>
-        <Text style={styles.description}>
-        You are a:
-        </Text>
-        <TouchableHighlight style={styles.button} onPress={this.toStoreSetup}>
-        <Text style={styles.buttonText}>Store</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={this.toCustomerList}>
-        <Text style={styles.buttonText}>Customer</Text>
-        </TouchableHighlight>
-        </View>);
+      <Text style={styles.description}>
+      You are a:
+      </Text>
+      <TouchableHighlight style={styles.button} onPress={this.toStoreSetup}>
+      <Text style={styles.buttonText}>Store</Text>
+      </TouchableHighlight>
+      <TouchableHighlight style={styles.button} onPress={this.toCustomerList}>
+      <Text style={styles.buttonText}>Customer</Text>
+      </TouchableHighlight>
+      </View>);
   },
 
   toStoreSetup(){
     FBSDKAccessToken.getCurrentAccessToken(token =>
-        {
-          if (token == null) {
-            this.props.navigator.push({
-              title: 'StoreFBLogin',
-              component: StoreFBLogin
-            });
-          } else {
-            this.props.navigator.push({
-              title: 'StoreHome',
-              component: StoreHome,
-            });
-          };
+    {
+      if (token == null) {
+        this.props.navigator.push({
+          title: 'StoreFBLogin',
+          component: StoreFBLogin
         });
+      } else {
+        this.props.navigator.push({
+          title: 'StoreHome',
+          component: StoreHome,
+        });
+      };
+    });
   },
 
   toCustomerList(){
     FBSDKAccessToken.getCurrentAccessToken(token =>
-        {
-          if (token == null) {
-            this.props.navigator.push({
-              title: 'CustomerFBLogin',
-              component: CustomerFBLogin,
-            });
-          } else {
-            this.props.navigator.push({
-              title: 'CustomerHome',
-              component: CustomerHome,
-            });
-          };
+    {
+      if (token == null) {
+        this.props.navigator.push({
+          title: 'CustomerFBLogin',
+          component: CustomerFBLogin,
         });
+      } else {
+        this.props.navigator.push({
+          title: 'CustomerHome',
+          component: CustomerHome,
+        });
+      };
+    });
   }
 
 });
