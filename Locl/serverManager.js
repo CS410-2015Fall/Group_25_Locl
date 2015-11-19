@@ -49,7 +49,6 @@ auth: function() {
 	.then((response) => response.json())
 	.then((responseData) => {
 		console.log("Authorization key -> " + responseData.session_id);
-		AlertIOS.alert("Authorization key: " + responseData.session_id);
 		authKey = responseData.session_id;
 	}) 
 	.done()
@@ -211,9 +210,22 @@ updateCustomer: function updateCustomer(cID,currentname,newName) {
     });
 }, 
 
+
+//This was for testing purposes
 sum: function(value1, value2) {
   return value1 + value2;
 },
+
+getStoreName: function(storeID) {
+    return "name";
+},
+
+getStorePicture: function(storeID) {
+    return "Picture";
+},
+
+
+
 
 };
 

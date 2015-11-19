@@ -14,33 +14,33 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* LoclTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LoclTests.m */; };
-		011DBE2B1BE6EA6B00B0C3E0 /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE131BE6EA6B00B0C3E0 /* RCTConvert+FBSDKSharingContent.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE2C1BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE151BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupAddDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE2D1BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE171BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupJoinDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE2E1BE6EA6B00B0C3E0 /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE191BE6EA6B00B0C3E0 /* RCTFBSDKAppInviteDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE2F1BE6EA6B00B0C3E0 /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1B1BE6EA6B00B0C3E0 /* RCTFBSDKGameRequestDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE301BE6EA6B00B0C3E0 /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1D1BE6EA6B00B0C3E0 /* RCTFBSDKLikeControlManager.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE311BE6EA6B00B0C3E0 /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1F1BE6EA6B00B0C3E0 /* RCTFBSDKMessageDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE321BE6EA6B00B0C3E0 /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE211BE6EA6B00B0C3E0 /* RCTFBSDKSendButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE331BE6EA6B00B0C3E0 /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE231BE6EA6B00B0C3E0 /* RCTFBSDKShareAPI.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE341BE6EA6B00B0C3E0 /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE251BE6EA6B00B0C3E0 /* RCTFBSDKShareButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE351BE6EA6B00B0C3E0 /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE271BE6EA6B00B0C3E0 /* RCTFBSDKShareDialog.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE361BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE291BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE371BE6EA6B00B0C3E0 /* RCTFBSDKShareInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE2A1BE6EA6B00B0C3E0 /* RCTFBSDKShareInitializer.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE3F1BE6EA8000B0C3E0 /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE391BE6EA8000B0C3E0 /* RCTConvert+FBSDKLogin.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE401BE6EA8000B0C3E0 /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3B1BE6EA8000B0C3E0 /* RCTFBSDKLoginButtonManager.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE411BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3C1BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE421BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3E1BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE4E1BE6EA9600B0C3E0 /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE441BE6EA9600B0C3E0 /* RCTConvert+FBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE4F1BE6EA9600B0C3E0 /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE461BE6EA9600B0C3E0 /* RCTFBSDKAccessToken.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE501BE6EA9600B0C3E0 /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE481BE6EA9600B0C3E0 /* RCTFBSDKAppEvents.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE511BE6EA9600B0C3E0 /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE491BE6EA9600B0C3E0 /* RCTFBSDKCoreInitializer.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE521BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE4B1BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestConnectionContainer.m */; settings = {ASSET_TAGS = (); }; };
-		011DBE531BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE4D1BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestManager.m */; settings = {ASSET_TAGS = (); }; };
-		01D1450A1BFD6AE200BBA2B6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145061BFD6AE200BBA2B6 /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
-		01D1450B1BFD6AE200BBA2B6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145071BFD6AE200BBA2B6 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		01D1450C1BFD6AE200BBA2B6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145081BFD6AE200BBA2B6 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		01D1450D1BFD6AE200BBA2B6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145091BFD6AE200BBA2B6 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		011DBE2B1BE6EA6B00B0C3E0 /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE131BE6EA6B00B0C3E0 /* RCTConvert+FBSDKSharingContent.m */; };
+		011DBE2C1BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE151BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupAddDialog.m */; };
+		011DBE2D1BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE171BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupJoinDialog.m */; };
+		011DBE2E1BE6EA6B00B0C3E0 /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE191BE6EA6B00B0C3E0 /* RCTFBSDKAppInviteDialog.m */; };
+		011DBE2F1BE6EA6B00B0C3E0 /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1B1BE6EA6B00B0C3E0 /* RCTFBSDKGameRequestDialog.m */; };
+		011DBE301BE6EA6B00B0C3E0 /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1D1BE6EA6B00B0C3E0 /* RCTFBSDKLikeControlManager.m */; };
+		011DBE311BE6EA6B00B0C3E0 /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE1F1BE6EA6B00B0C3E0 /* RCTFBSDKMessageDialog.m */; };
+		011DBE321BE6EA6B00B0C3E0 /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE211BE6EA6B00B0C3E0 /* RCTFBSDKSendButtonManager.m */; };
+		011DBE331BE6EA6B00B0C3E0 /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE231BE6EA6B00B0C3E0 /* RCTFBSDKShareAPI.m */; };
+		011DBE341BE6EA6B00B0C3E0 /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE251BE6EA6B00B0C3E0 /* RCTFBSDKShareButtonManager.m */; };
+		011DBE351BE6EA6B00B0C3E0 /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE271BE6EA6B00B0C3E0 /* RCTFBSDKShareDialog.m */; };
+		011DBE361BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE291BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m */; };
+		011DBE371BE6EA6B00B0C3E0 /* RCTFBSDKShareInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE2A1BE6EA6B00B0C3E0 /* RCTFBSDKShareInitializer.m */; };
+		011DBE3F1BE6EA8000B0C3E0 /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE391BE6EA8000B0C3E0 /* RCTConvert+FBSDKLogin.m */; };
+		011DBE401BE6EA8000B0C3E0 /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3B1BE6EA8000B0C3E0 /* RCTFBSDKLoginButtonManager.m */; };
+		011DBE411BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3C1BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m */; };
+		011DBE421BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE3E1BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m */; };
+		011DBE4E1BE6EA9600B0C3E0 /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE441BE6EA9600B0C3E0 /* RCTConvert+FBSDKAccessToken.m */; };
+		011DBE4F1BE6EA9600B0C3E0 /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE461BE6EA9600B0C3E0 /* RCTFBSDKAccessToken.m */; };
+		011DBE501BE6EA9600B0C3E0 /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE481BE6EA9600B0C3E0 /* RCTFBSDKAppEvents.m */; };
+		011DBE511BE6EA9600B0C3E0 /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE491BE6EA9600B0C3E0 /* RCTFBSDKCoreInitializer.m */; };
+		011DBE521BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE4B1BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestConnectionContainer.m */; };
+		011DBE531BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 011DBE4D1BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestManager.m */; };
+		01D1450A1BFD6AE200BBA2B6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145061BFD6AE200BBA2B6 /* Bolts.framework */; };
+		01D1450B1BFD6AE200BBA2B6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145071BFD6AE200BBA2B6 /* FBSDKCoreKit.framework */; };
+		01D1450C1BFD6AE200BBA2B6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145081BFD6AE200BBA2B6 /* FBSDKLoginKit.framework */; };
+		01D1450D1BFD6AE200BBA2B6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D145091BFD6AE200BBA2B6 /* FBSDKShareKit.framework */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -56,6 +56,7 @@
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
+		95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +236,7 @@
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Locl/Images-2.xcassets"; sourceTree = "<group>"; };
 		95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "/Users/coreywilson/Desktop/CPSC 410/Final Project/Locl/Locl/node_modules/react-native-bluetooth-state/../react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +429,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */,
+				95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */,
 			);
 			name = Locl;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 			files = (
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -840,16 +844,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = LoclTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -862,12 +863,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LoclTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -879,11 +877,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../FacebookSDKs-iOS\"";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../FacebookSDKs-iOS";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -909,10 +908,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../FacebookSDKs-iOS\"";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../FacebookSDKs-iOS";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

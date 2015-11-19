@@ -105,6 +105,6 @@
  @abstract Sent to the delegate when the sharer is cancelled.
  @param sharer The FBSDKSharing that completed.
  */
-- (void)sharerDidCancel:(id<FBSDKSharing>)sharer;
+//- (void)sharerDidCancel:(id<FBSDKSharing>)sharer;
 
 @end

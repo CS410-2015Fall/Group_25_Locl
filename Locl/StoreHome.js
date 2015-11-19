@@ -2,7 +2,8 @@
 
 var React = require('react-native');
 var StoreAdd = require('./StoreAdd');
-//var Beacon = require('./Beacon');
+var bluetoothBeaconManager = require('./bluetoothBeaconManager.js');
+
 var bt = false;
 
 var {
@@ -21,40 +22,6 @@ var {
   DeviceEventEmitter,
   AsyncStorage
 } = React;
-
-//Stuff for Bluetooth listening
-var Beacons = require('react-native-ibeacon');
-Beacons.requestAlwaysAuthorization();
-Beacons.startMonitoringForRegion();
-Beacons.startUpdatingLocation();
-var subscription;
-var stopSubscription;
-var rangingSubscription;
-let custID = '101';
-
-//Stuff for Bluetooth broadcasting
-var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
-let storeID = '44';
-
-//Stuff for API
-//Mostly for formatting URL that will be used to query database
-//app Name for DreamFactory
-var loclSQL="?app_name=loclSQL";
-//Basic Connection HTMLstrig for Database
-var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";
-//String to connect to Items Table
-var itemTableURL=httpString+"item"+loclSQL;
-//String to connect to Customer Table
-var customerTableURL=httpString+"customer"+loclSQL;
-//Sting to connect to Store Table
-var storeTableURL=httpString+"store"+loclSQL;
-//String to connect to CustomerItem Table
-var customerItemURL=httpString+"customer-items"+loclSQL;
-//Search by name variable
-var searchByStart="&filter=";
-var searchByMid="%20%3D%20%22";
-var searchByEnd="%22";
-var authKey;
 
 var styles = StyleSheet.create({
   description: {
@@ -184,42 +151,39 @@ var styles = StyleSheet.create({
 
 var StoreHome = React.createClass({
   render(){
-    return (<View style={styles.container}>
+    return (
+        <View style={styles.container}>
+
         <Text style={styles.description}>
         Your store's items:
         </Text>
-        <TouchableHighlight style={styles.button} onPress={this.toStoreAdd}>
-        <Text style={styles.buttonText}>Add Items</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={this.toBeacon}>
-        <Text style={styles.buttonText}>Bluetooth</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        style={styles.touchableHighlight}
-        underlayColor="#99AA99"
-        onPress={this.onStopPress}>
+
+        <TouchableHighlight style={styles.touchableHighlight} underlayColor="#99AA99"onPress={bluetoothBeaconManager.onBeaconingStopPress}> 
         <View style={[styles.buttonBox, styles.loadButtonBox]}>
-        <Text style={styles.buttonText}>
-        Stop
-        </Text>
-        </View>
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor="#AA9999" onPress={this.onStartPress}>
-        <View style={[styles.buttonBox, styles.saveButtonBox]}>
-        <Text style={styles.buttonText}>
-        Start
-        </Text>
-        </View>
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor="#AA9999" onPress={this.onSetPress}>
-        <View style={[styles.buttonBox, styles.setButtonBox]}>
-        <Text style={styles.buttonText}>
-        Set
-        </Text>
+        <Text style={styles.buttonText}> Stop Beaconing </Text> 
         </View>
         </TouchableHighlight>
 
-        </View>);
+        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingStartPress}>
+        <View style={[styles.buttonBox, styles.saveButtonBox]}>
+        <Text style={styles.buttonText}> Start Beaconing </Text> 
+        </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingSetPress}>
+        <View style={[styles.buttonBox, styles.setButtonBox]}>
+        <Text style={styles.buttonText}> Set Store ID </Text> 
+        </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight underlayColor="#AA9999" onPress={this.toStoreAdd}>
+        <View style={[styles.buttonBox, styles.setButtonBox]}>
+        <Text style={styles.buttonText}> Add items</Text> 
+        </View>
+        </TouchableHighlight>
+
+        </View>
+        );
   },
 
   toStoreAdd(){
