@@ -215,6 +215,45 @@ sum: function(value1, value2) {
   return value1 + value2;
 },
 
+//PURPOSE: Search from StoreItems Table given a storeID to get all items by that store 
+//REQUIRES: 
+//MODIFIES: Array of Results based on search. Null if array has no results.
+        searchStoreItems: function searchStoreItems(sid,callback) {
+        fetch(itemTableURL+"&filter=StoreID="+sid, {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+            callback(responseData);
+        })
+        .done();
+    },  
+
+//PURPOSE: Format query to seach multiple stores
+//REQUIRES: array of storeID
+//MODIFIES: formatted query
+    fetchMaker1: function fetchMaker(array,callback) {
+       var storeItemID= "http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL&filter=StoreID="+array[0];
+       var i; 
+       for(i=1;i<array.length;i++){
+         storeItemID += "||StoreID="+array[i];
+        
+       }
+        callback(storeItemID);
+    },    
+
+//PURPOSE: given array of storeID retrieve all items on sale
+//Inputs: array  storeID
+//output: array of items on sale   
+    multipleStoreRetrieval: function multipleStoreRetrieval(array,callback){
+        this.fetchMaker1(array, function(returnValue){
+            fetch(returnValue, {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) => {    
+              callback(responseData);
+        })
+        .done();
+        }); 
+    },        
+
 };
 
 module.exports = serverManager;
