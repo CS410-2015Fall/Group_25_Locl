@@ -75,7 +75,7 @@ var Locl = React.createClass({
 					<NavigatorIOS ref='nav'
 					style={styles.container}
 					initialRoute={{
-						title: 'Customer',
+						title: 'Locl',
 						component: CustomerHome,
 					}}/>
 					);

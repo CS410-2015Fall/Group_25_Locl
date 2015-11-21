@@ -194,13 +194,6 @@ var StoreHome = React.createClass({
 
   },
 
-
-
-  _handleBackButtonPress: function() {
-    console.log("Going back!");
-    this.props.navigator.pop();
-  },
-
   toBeacon(){
     this.props.navigator.push({
       title: 'Beacon',

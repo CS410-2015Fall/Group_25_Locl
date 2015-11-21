@@ -7,8 +7,6 @@ var bluetoothScanningManager = require('./bluetoothScanningManager.js');
 var cacheManager = require('./cacheManager.js');
 var serverManager = require('./serverManager.js');
 
-var bt = false;
-
 var {
   AppStateIOS,
   StyleSheet,
@@ -32,13 +30,102 @@ var styles = StyleSheet.create({
    fontSize: 30,
    margin: 80
  },
- container: {
-  flex: 1,
-  margin: 80,
-  paddingTop      : 5,
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#F5FCFF',
+ flowRight: {
+   flexDirection: 'column',
+   alignItems: 'center',
+   alignSelf: 'stretch'
+ },
+ buttonText: {
+   fontSize: 18,
+   color: 'white',
+   alignSelf: 'center'
+ },
+ button: {
+   height: 20,
+   flex: 1,
+   flexDirection: 'row',
+   backgroundColor: '#48BBEC',
+   borderColor: '#48BBEC',
+   borderWidth: 1,
+   borderRadius: 8,
+   marginBottom: 10,
+   alignSelf: 'stretch',
+   justifyContent: 'center'
+ },
+ instructionsText : {
+   fontSize : 20
+ },
+ labelContainer : {
+   flexDirection  : 'row',
+   width          : 300
+ },
+ labelText : {
+   paddingRight : 10,
+   fontSize     : 18
+ },
+ buttonContainer : {
+   flexDirection  : 'row',
+   justifyContent : 'center',
+   alignItems     : 'center',
+   marginTop      : 20
+ },
+ touchableHighlight : {
+   marginLeft  : 10,
+   marginRight : 10,
+ },
+ buttonBox : {
+   flexDirection  : 'row',
+   justifyContent : 'center',
+   alignItems     : 'center',
+   padding        : 10,
+   borderWidth    : 2,
+   borderRadius   : 5
+ },
+ saveButtonBox : {
+   borderColor : '#AA0000'
+ },
+ loadButtonBox : {
+   borderColor : '#00AA00'
+ },
+ setButtonBox : {
+   borderColor : '#00AA00'
+ },
+ buttonText : {
+   fontSize : 16,
+ },
+ outputContainer : {
+   width          : 300,
+   height         : 200,
+   justifyContent : 'center',
+   alignItems     : 'center',
+   borderWidth    : .5,
+   borderColor    : "#999999",
+   marginTop      : 20
+ }, 
+ row: {
+   padding: 8,
+   paddingBottom: 16
+ }, 
+ smallText: {
+   fontSize: 11
+ },
+ saved: {
+   fontSize: 20,
+   textAlign: "center",
+   margin: 10,
+ },
+ headline: {
+  fontSize: 20,
+  paddingTop: 20
+},
+description: {
+ color: 'black',
+ backgroundColor: 'white',
+ fontSize: 30,
+ margin: 80
+},
+container: {
+ flex: 1,
 },
 flowRight: {
  flexDirection: 'column',
@@ -50,106 +137,31 @@ buttonText: {
  color: 'white',
  alignSelf: 'center'
 },
-button: {
- height: 20,
- flex: 1,
- flexDirection: 'row',
- backgroundColor: '#48BBEC',
- borderColor: '#48BBEC',
- borderWidth: 1,
- borderRadius: 8,
- marginBottom: 10,
- alignSelf: 'stretch',
- justifyContent: 'center'
+thumb: {
+  width: 80,
+  height: 80,
+  marginRight: 10
 },
-instructionsText : {
- fontSize : 20
+textContainer: {
+  flex: 1
 },
-separator : {
- borderWidth  : .5,
- borderColor  : '#AEAEAE',
- height       : 1,
- width        : 300,
- marginBottom : 25
+separator: {
+  height: 1,
+  backgroundColor: '#dddddd'
 },
-labelContainer : {
- flexDirection  : 'row',
- width          : 300
+price: {
+  fontSize: 25,
+  fontWeight: 'bold',
+  color: '#48BBEC'
 },
-labelText : {
- paddingRight : 10,
- fontSize     : 18
-},
-textInput : {
- height      : 26,
- borderWidth : 0.5,
- borderColor : '#0f0f0f',
- padding     : 4,
- flex        : 1,
- fontSize    : 13,
-},
-buttonContainer : {
- flexDirection  : 'row',
- justifyContent : 'center',
- alignItems     : 'center',
- marginTop      : 20
-},
-touchableHighlight : {
- marginLeft  : 10,
- marginRight : 10,
-},
-buttonBox : {
- flexDirection  : 'row',
- justifyContent : 'center',
- alignItems     : 'center',
- padding        : 10,
- borderWidth    : 2,
- borderRadius   : 5
-},
-saveButtonBox : {
- borderColor : '#AA0000'
-},
-loadButtonBox : {
- borderColor : '#00AA00'
-},
-setButtonBox : {
- borderColor : '#00AA00'
-},
-buttonText : {
- fontSize : 16,
-},
-outputContainer : {
- width          : 300,
- height         : 200,
- justifyContent : 'center',
- alignItems     : 'center',
- borderWidth    : .5,
- borderColor    : "#999999",
- marginTop      : 20
-}, 
-row: {
- padding: 8,
- paddingBottom: 16
-}, 
-smallText: {
- fontSize: 11
-},
-formInput: {
- flex: 1,
- height: 26,
- fontSize: 13,
- borderWidth: 1,
- borderColor: "#555555",
-},
-saved: {
- fontSize: 20,
- textAlign: "center",
- margin: 10,
-},
-headline: {
+title: {
   fontSize: 20,
-  paddingTop: 20
+  color: '#656565'
 },
+rowContainer: {
+  flexDirection: 'row',
+  padding: 10
+}
 });
 
 var CustomerHome = React.createClass({
@@ -176,32 +188,23 @@ var CustomerHome = React.createClass({
 
     //Stop listening if there isn't any stores around
     bluetoothScanningManager.setupStopSubscription();
-  
+
     //Restart listening if there are stores around
     bluetoothScanningManager.setupRestartSubscription();
 
     //Start scanning
     bluetoothScanningManager.startRangingBeaconsInRegion();
 
-
-  
-
   //Subscribe to listening (cannot refactor into bluetoothScanningManager as of yet - Corey)
   var startSubscription = DeviceEventEmitter.addListener(
     'beaconsDidRange',
     (data) => {
 
-      console.log("Number of beacons: " + data.beacons.length);
-
       //Only send a request if there are beacons in the area
       if (data.beacons.length > 0) {
 
-        var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
-        console.log("Current minors: " + minors);
-        console.log("Last minors: " + this.state.minors);
-
         //Only send a request if the current list of beacons is different from the last list of beacons
-        console.log("Do the minors equal? " + (JSON.stringify(minors) == JSON.stringify(this.state.minors)));
+        var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
         if (JSON.stringify(minors) !== JSON.stringify(this.state.minors)) {
 
           //Build the request string
@@ -213,8 +216,6 @@ var CustomerHome = React.createClass({
             }
           };
 
-          console.log("Request String: " + storeRequestString);
-
           fetch(storeRequestString, {method: "GET"})
           .then((response) => response.json())
           .then((responseData) => {
@@ -222,7 +223,6 @@ var CustomerHome = React.createClass({
               console.log("Error: " + responseData.error);
             }
             else {
-              console.log("Response Data:" + responseData.record);
               this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(responseData.record),
                 minors: minors,
@@ -231,48 +231,50 @@ var CustomerHome = React.createClass({
         }
       }
     });
-
 }, 
 
 render : function(){
   return (
     <View style={styles.container}>
-
-    <Text style={styles.headline}>All stores in the area:</Text>
-
     <ListView
     dataSource={this.state.dataSource}
     renderRow={this.renderStore}
     />
-
     </View>
     )
 },
 
 renderStore: function(store) {
   return (
-    <TouchableHighlight underlayColor="#AA9999" onPress={() => this.rowPressed(store)}>
-    <Text style={styles.title}>{store.StoreName}</Text>
+    <TouchableHighlight underlayColor="#AA9999" onPress={() => this.rowPressed(store)}> 
+    <View>
+    <View style={styles.rowContainer}>
+    <Image style={styles.thumb} source={{ uri: store.StoreHTMLimg }} />
+    <View  style={styles.textContainer}>
+    <Text style={styles.title} 
+    numberOfLines={1}>{store.StoreName}</Text>
+    </View>
+    </View>
+    <View style={styles.separator}/>
+    </View>
     </TouchableHighlight>
     );
 },
 
 componentWillUnmount: function() {
-  AppStateIOS.removeEventListener('change', this._handleAppStateChange);
+  AppStateIOS.removeEventListener('change', this.handleAppStateChange);
 },
 
-_handleAppStateChange: function(currentAppState) {
-  console.log("Current App State: "+ currentAppState);
+handleAppStateChange: function(currentAppState) {
   if (currentAppState == "background") {
     bluetoothScanningManager.stopRangingBeaconsInRegion();
   }
   if (currentAppState == "active") {
     bluetoothScanningManager.startRangingBeaconsInRegion();
   }
-  this.setState({ currentAppState, });
+  this.setState({currentAppState,});
 },
 
-//Navigation Functions 
 toCustomerAdd(){
  this.props.navigator.push({
    title: 'CustomerAdd',
@@ -281,18 +283,14 @@ toCustomerAdd(){
 },
 
 rowPressed(store) {
-  console.log("Passed Store ID: " + store.StoreID);
-
   //Still need to stop ranging while they look at items...
   
   this.props.navigator.push({
    title: store.StoreName,
    component: StorePage,
-   passProps: {storeID: store.storeID},
+   passProps: {StoreID: store.StoreID},
  });
 }
-
-
 
 });
 

@@ -48,7 +48,6 @@ auth: function() {
 	fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
 	.then((response) => response.json())
 	.then((responseData) => {
-		console.log("Authorization key -> " + responseData.session_id);
 		authKey = responseData.session_id;
 	}) 
 	.done()
@@ -78,9 +77,8 @@ checkAPI : function(storeID) {
 	.done();
 },
 
-//Create User function. 
 //Inputs: fName= First Name(String)    lName= Last Name(String)    pass= Password(String)    
-//output:none
+//Output:none
 //note: Null items are allowed. if user doesnot enter just leave fields blank and the database will store as iTem=null.
 createCustomer: function(fName,lName,pass) {
     fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
@@ -91,8 +89,7 @@ createCustomer: function(fName,lName,pass) {
     .done();
 },
 
-//Create Store fucntion. 
-//Inputs: sName= Store Name(String)    sAddress= Store Address(String)    transmitting= True or False(Boolean)
+//Input: sName= Store Name(String)    sAddress= Store Address(String)    transmitting= True or False(Boolean)
 //        StoreHTMLimg= URL link with Store image(string)
 //output:none
 //note: sName must be unique and cannot be same as others. trans must be true or false cannot be null.
@@ -105,8 +102,7 @@ createStore: function(sName,sAddress,transmitting,sImage) {
     .done();
 },
 
-//Create CustomerItem fucntion. 
-//Inputs: itemName= Name of preference Item(Integer)       customerID= Existing CustomerID(Integer)
+//Input: itemName= Name of preference Item(Integer)       customerID= Existing CustomerID(Integer)
 //output:none
 //note: customerID is a foreign key and must reference existing Customer in Database
 createCustomerItem: function(custID, itemName) {
@@ -118,27 +114,26 @@ createCustomerItem: function(custID, itemName) {
     .done();
 }, 
 
-//Create StoreItem function. 
-//Inputs: name= Store Name(String)  desc= Store Description(String)  sDate= Start Date(String)   eDate= End Date(String)  
+//Input: name= Store Name(String)  desc= Store Description(String)  sDate= Start Date(String)   eDate= End Date(String)  
 //        qty= Quantity(Integer)   regPrice = Regular Price(Integer)   sPrice= Sale Price(Integer)    sID= StoreID(Integer) 
 //        upc= UPC(Integer)   imgLink= HTTP Image Link(String)
-//output:none
+//Output: none
 //note: sID must be and existing value in store table. HTMLimg can be null or set to a specific link.       
 createStoreItem: function(name,desc,sDate,eDate,qty,regPrice,salePrice,sID,upc,imgLink) {
     fetch(itemTableURL, {method: "POST", body: JSON.stringify({Name: name, Description:desc,StartDate:sDate,EndDate:eDate,Quantity:qty, RegPrice:regPrice,SalePrice: salePrice, UPC: upc, StoreID:sID,HTMLimg:imgLink})})
     .then((response) => response.json())
     .then((responseData) => {
-       console.log("DONE");
-   })
+     console.log("DONE");
+ })
     .done();
 },
 
 //Search from any table with 1 filter function. 
-//Inputs: fval= Filter Value(String)   ftype= Filter Name(String)  ftable= is one of (customerTableURL/itemTableURL/storeTableURL)
-//output: Array of Results based on search. Null if array has no results.
-//note: so if you want to search from table customer table, by first name and lets say a user by the FirstName of nasrin
+//Input: fval= Filter Value(String)   ftype= Filter Name(String)  ftable= is one of (customerTableURL/itemTableURL/storeTableURL)
+//Output: Array of Results based on search. Null if array has no results.
+//Note: so if you want to search from table customer table, by first name and lets say a user by the FirstName of nasrin
 //      you would simply enter searchByOneFilter("nasrin","FirstName",customerTableURL)
-searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
+searchByOneFilter: function searchByOneFilter(fval, fname, ftable) {
     fetch(ftable+searchByStart+fname+searchByMid+fval+searchByEnd, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {    
@@ -147,10 +142,8 @@ searchByOneFilter: function searchByOneFilter(fval,fname,ftable) {
     .done();
 },        
 
-
-//Delete a customer item given the name of the item and the customerID 
-//Inputs: CustID=customerID   itemName= name of the item 
-//output: None
+//Input: CustID=customerID   itemName= name of the item 
+//Output: None
 deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
     .then((response) => response.json())
@@ -160,10 +153,8 @@ deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
     .done();
 },  
 
-
-//Delete a store item given the name of the item and the storeID 
-//Inputs: storeId =storeID and itemName= name of the item
-//output: none
+//Input: storeId =storeID and itemName= name of the item
+//Output: none
 deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
     .then((response) => response.json())
@@ -174,8 +165,8 @@ deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
 },
 
 //Adds and Array of prefence item into the customer preference list
-//Inputs: custID= Customer ID   Array = String of preference items
-//output: none
+//Input: custID= Customer ID   Array = String of preference items
+//Output: none
 bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
     var i;
     for(i=0;i<array.length;i++){
@@ -183,24 +174,22 @@ bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
     }
 }, 
 
-//Search from customerTable with async callback to obtain itemID 
-//Inputs: cid= customer ID    itemName= name of the item   callback=asynch callback
-//output: ItemID 
+//Input: cid= customer ID    itemName= name of the item   callback=asynch callback
+//Output: ItemID 
 searchFilter: function searchFilter(cid,itemName,callback) {
- fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
- .then((response) => response.json())
- .then((responseData) => {    
-   callback(responseData.record[0].ItemID);
-})
- .done();
+   fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
+   .then((response) => response.json())
+   .then((responseData) => {    
+     callback(responseData.record[0].ItemID);
+ })
+   .done();
 },
 
-//Update CustomerPreferenceItem Given CustomerID
-//Inputs: cID= CustomerID      iTem= PreferenceItem
-//output: none
+//Input: cID= CustomerID      iTem= PreferenceItem
+//Output: none
 //note: so if you want to add a new item for customer with id 4 on position item2 with a new value of "shorts". 
 //      you would simply call updateCustomerItem(4,"shorts")
-updateCustomer: function updateCustomer(cID,currentname,newName) {
+updateCustomerPreferenceItem: function updateCustomer(cID,currentname,newName) {
     this.searchFilter(cID, currentname, function(returnedValue){
         fetch(customerItemURL, {method: "Put", body: JSON.stringify({ItemID:returnedValue,ItemName:newName})})
         .then((response) => response.json())
@@ -210,14 +199,7 @@ updateCustomer: function updateCustomer(cID,currentname,newName) {
     });
 }, 
 
-
-//This was for testing purposes
-sum: function(value1, value2) {
-  return value1 + value2;
-},
-
-//PURPOSE: Search from Store Table given a storeID to get all items by that store 
-//REQUIRES: 
+//PURPOSE: Search from StoreTable given a storeID to get all items by that store 
 //MODIFIES: Array of Results based on search. Null if array has no results.
 searchStoreTable: function searchStoreTable(sid, callback) {
     fetch(storeTableURL+"&filter=StoreID="+ sid, {method: "GET"})
@@ -228,6 +210,22 @@ searchStoreTable: function searchStoreTable(sid, callback) {
     })
     .done();
 },  
+
+//PURPOSE: Search from StoreItems Table given a storeID to get all items by that store 
+//Output: Array of Results based on search. Null if array has no results.
+searchStoreItems: function searchStoreItems(sid, callback) {
+    fetch(itemTableURL + "&filter=StoreID=" + sid, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+        callback(responseData);
+    })
+    .done();
+},
+
+//This was for testing purposes
+sum: function(value1, value2) {
+  return value1 + value2;
+},
 
 };
 

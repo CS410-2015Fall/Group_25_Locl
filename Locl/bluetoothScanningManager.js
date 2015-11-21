@@ -43,8 +43,13 @@ Beacons.getAuthorizationStatus(function(authorization) {
 var bluetoothScanningManager = {
 
 startRangingBeaconsInRegion: function() {
-	console.log("Ranging");
 	Beacons.startRangingBeaconsInRegion();
+	console.log("Ranging Started");
+},
+
+stopRangingBeaconsInRegion: function() {
+	Beacons.stopRangingBeaconsInRegion();
+	console.log("Ranging Stopped");
 },
 
 setupRestartSubscription: function() {
@@ -73,10 +78,7 @@ setupStopSubscription: function(){
 		);
 },
 
-stopRangingBeaconsInRegion: function() {
-	Beacons.stopRangingBeaconsInRegion();
-	console.log("Ranging Stopped");
-},
+
 
 
 };
