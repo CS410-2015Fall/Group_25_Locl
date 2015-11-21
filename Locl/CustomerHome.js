@@ -199,14 +199,12 @@ var CustomerHome = React.createClass({
   var startSubscription = DeviceEventEmitter.addListener(
     'beaconsDidRange',
     (data) => {
-
-      //Only send a request if there are beacons in the area
+      console.log("Beacons: " + data.beacons.length);
       if (data.beacons.length > 0) {
-
         //Only send a request if the current list of beacons is different from the last list of beacons
         var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
         if (JSON.stringify(minors) !== JSON.stringify(this.state.minors)) {
-
+          console.log("Minors do not equal");
           //Build the request string
           for (var i = 0; i < data.beacons.length; i++) {
             if (i == 0) {
@@ -229,7 +227,12 @@ var CustomerHome = React.createClass({
               })
             }}).done(); 
         }
-      }
+      } else {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows([]),
+          minors: [],
+        })
+      } 
     });
 }, 
 
