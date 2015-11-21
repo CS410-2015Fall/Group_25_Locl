@@ -216,16 +216,18 @@ sum: function(value1, value2) {
   return value1 + value2;
 },
 
-getStoreName: function(storeID) {
-    return "name";
-},
-
-getStorePicture: function(storeID) {
-    return "Picture";
-},
-
-
-
+//PURPOSE: Search from Store Table given a storeID to get all items by that store 
+//REQUIRES: 
+//MODIFIES: Array of Results based on search. Null if array has no results.
+searchStoreTable: function searchStoreTable(sid, callback) {
+    fetch(storeTableURL+"&filter=StoreID="+ sid, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+        console.log("Response data: " + responseData.record[0]);
+        callback(responseData.record[0]);
+    })
+    .done();
+},  
 
 };
 

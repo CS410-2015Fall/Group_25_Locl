@@ -26,7 +26,7 @@ var rangingSubscription;
 require('react-native-bluetooth-state');
 
 //Get auth
-Beacons.requestWhenInUseAuthorization();
+Beacons.requestAlwaysAuthorization();
 
 //Start monitoring
 Beacons.startMonitoringForRegion();
@@ -52,8 +52,10 @@ setupRestartSubscription: function() {
 		'regionDidEnter',
 		(data) => {
 			if (data !=null) {
-				console.log("Region re-entered");
-				bluetoothScanningManager.startRangingBeaconsInRegion();
+					console.log("Region re-entered");
+					if (this.currentAppState == "active") {
+    					bluetoothScanningManager.startRangingBeaconsInRegion();
+  					}
 			}
 		}
 		);
@@ -69,6 +71,11 @@ setupStopSubscription: function(){
 			}
 		}
 		);
+},
+
+stopRangingBeaconsInRegion: function() {
+	Beacons.stopRangingBeaconsInRegion();
+	console.log("Ranging Stopped");
 },
 
 

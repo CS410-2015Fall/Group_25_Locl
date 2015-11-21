@@ -15,7 +15,6 @@ var {
 } = React;
 
 var BluetoothBeacon = require('react-native').NativeModules.BluetoothBeacon;
-let storeID = 44;
 
 var bluetoothBeaconManager = {
 
@@ -29,15 +28,15 @@ var bluetoothBeaconManager = {
 		console.log('Bluetooth is no longer Beaconing');
 	}, 
 
-	onBeaconingSetPress : function() {
-		var currentStoreID = Number(this.state.storeID);
-		if (currentStoreID <= 0 || currentStoreID >= 9999) {
+	onBeaconingSetPress : function(storeID) {
+		var setStoreID = Number(storeID);
+		if (setStoreID <= 0 || setStoreID >= 9999) {
 			console.error("Invalid Store ID");
 		}
 		BluetoothBeacon.setMinor(
-			currentStoreID,
+			setStoreID,
 			(results) => {
-				console.log('Success', results.successMsg);
+				console.log('Minor Setting Success: ', results.successMsg);
 			}
 			);
 	},

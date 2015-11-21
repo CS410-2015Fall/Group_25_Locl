@@ -170,7 +170,7 @@ var StoreHome = React.createClass({
         </View>
         </TouchableHighlight>
 
-        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingSetPress}>
+        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingSetPress(101)}>
         <View style={[styles.buttonBox, styles.setButtonBox]}>
         <Text style={styles.buttonText}> Set Store ID </Text> 
         </View>
@@ -193,6 +193,14 @@ var StoreHome = React.createClass({
     });
 
   },
+
+
+
+  _handleBackButtonPress: function() {
+    console.log("Going back!");
+    this.props.navigator.pop();
+  },
+
   toBeacon(){
     this.props.navigator.push({
       title: 'Beacon',
