@@ -26,90 +26,60 @@ var rangingSubscription;
 require('react-native-bluetooth-state');
 
 //Get auth
-Beacons.requestWhenInUseAuthorization();
+Beacons.requestAlwaysAuthorization();
 
 //Start monitoring
 Beacons.startMonitoringForRegion();
 Beacons.startUpdatingLocation();
 
-//Setup listener for change in Bluetooth state
+//For debugging the current bluetooth state
 var subscription = DeviceEventEmitter.addListener('centralManagerDidUpdateState', bluetoothState => {
-	AlertIOS.alert("Bluetooth status: " + bluetoothState);
 	console.log("Bluetooth status: " + bluetoothState);
 });
-
-//Setup listener for change in Bluetooth authorization
 Beacons.getAuthorizationStatus(function(authorization) {
-	AlertIOS.alert("Bluetooth authorization: " + authorization);
 	console.log("Bluetooth authorization: " + authorization);
 });
 
 var bluetoothScanningManager = {
 
-//PURPOSE: start scanning for Beacons 
-//REQUIRES: need permission to use Bluetooth, must not be currently scanning
-//MODIFIES: subscription for ranging, stop subscription
-//EFFECTS: starts bluetooth scanning
-//TODO:
-//	- Need to verify this works with processing minors
-onStartScanningPress : function() {
+startRangingBeaconsInRegion: function() {
+	Beacons.startRangingBeaconsInRegion();
+	console.log("Ranging Started");
+},
 
-	AlertIOS.alert('Scanning');
-	console.log("Scanning");
+stopRangingBeaconsInRegion: function() {
+	Beacons.stopRangingBeaconsInRegion();
+	console.log("Ranging Stopped");
+},
 
-	subscription = DeviceEventEmitter.addListener(
+setupRestartSubscription: function() {
+	var restartSubscription = DeviceEventEmitter.addListener(
 		'regionDidEnter',
 		(data) => {
 			if (data !=null) {
-				var region = {
-					identifier: 'Locl',
-					uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
-				};
-				console.log("Region enterred: " + data.region)}
-				AlertIOS.alert("Region enterred: " + data.region);
-				Beacons.startRangingBeaconsInRegion();
-				rangingSubscription = DeviceEventEmitter.addListener(
-					'beaconsDidRange',
-					(data) => { 
-						for (var i = 0; i < data.beacons.length; i++) { 
-							console.log("Found minor: " + data.beacons[i].minor);
-							this.processMinor(data.beacons[i].minor).done();
-						}
-					});
-			});
+					console.log("Region re-entered");
+					if (this.currentAppState == "active") {
+    					bluetoothScanningManager.startRangingBeaconsInRegion();
+  					}
+			}
+		}
+		);
+},
 
-	console.log("regionDidEnter subscription set");
-
-	stopSubscription = DeviceEventEmitter.addListener(
+setupStopSubscription: function(){
+	var stopSubscription = DeviceEventEmitter.addListener(
 		'regionDidExit',
 		(data) => {
 			if (data !=null) {
-				var region = {
-					identifier: 'Locl',
-					uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D'    
-				};
-				console.log("Region exitted: " + data.region)
-				AlertIOS.alert("Region exitted: " + data.region);
+				console.log("Region exitted");
 				Beacons.stopRangingBeaconsInRegion();
-				rangingSubscription = null;
 			}
-		});
-
-	console.log("regionDidExit subscription set");
-}, 
-
-//PURPOSE: stop scanning for Beacons 
-//REQUIRES: nothing
-//MODIFIES: nothing
-//EFFECTS: must currently be scanning
-//TODO:
-//	- Need to verify this is actually stopping the scanning
-onStopScanningPress : function() {
-	Beacons.stopRangingBeaconsInRegion();
-	rangingSubscription = null;
-	console.log("No longer scanning");
-	AlertIOS.alert('No longer scanning');
+		}
+		);
 },
+
+
+
 
 };
 module.exports = bluetoothScanningManager;

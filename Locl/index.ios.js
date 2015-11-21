@@ -4,8 +4,9 @@ var React = require('react-native');
 var Preference = require('./Preference');
 var StoreHome = require('./StoreHome');
 var CustomerHome = require('./CustomerHome');
+var Tutorial = require('./Tutorial');
 // If true, goes into the setup screen, not a home screen
-var intro = true;
+var introductionCompleted = true;
 // If true, goes to store screen, otherwise customer screen
 var customer = true;
 
@@ -56,85 +57,15 @@ var styles = StyleSheet.create({
 	}
 });
 
-
-var Welcome = React.createClass({
-	render(){
-		return (<View style={styles.container}>
-			<Text style={styles.description}>
-			Welcome to Locl
-			</Text>
-			<TouchableHighlight style={styles.button} onPress={this.loadPreference}>
-			<Text style={styles.buttonText}>Choose my status</Text>
-			</TouchableHighlight>
-			</View>
-			);
-	},
-
-	loadPreference(){
-		this.props.navigator.push({
-			title: 'Preference',
-			component: Preference,
-		});
-
-	}
-
-
-});
-
-var Customer = React.createClass({
-	render(){
-		return (<View style={styles.container}>
-			<Text style={styles.description}>
-			Welcome to Locl
-			</Text>
-			<TouchableHighlight style={styles.button} onPress={this.loadCustomerHome}>
-			<Text style={styles.buttonText}>Choose my status</Text>
-			</TouchableHighlight>
-			</View>
-			);
-	},
-
-	loadCustomerHome(){
-		this.props.navigator.push({
-			title: 'CustomerHome',
-			component: CustomerHome,
-		});
-	}
-});
-
-var Store = React.createClass({
-	render(){
-		return (<View style={styles.container}>
-			<Text style={styles.description}>
-			Welcome to Locl
-			</Text>
-			<TouchableHighlight style={styles.button} onPress={this.loadStoreHome}>
-			<Text style={styles.buttonText}>Choose my status</Text>
-			</TouchableHighlight>
-			</View>
-			);
-	},
-
-	loadStoreHome(){
-		this.props.navigator.push({
-			title: 'StoreHome',
-			component: StoreHome,
-		});
-
-	}
-
-
-});
-
 var Locl = React.createClass({
 	render() {
-		if(intro){
+		if(introductionCompleted == false){
 			return (
 				<NavigatorIOS ref='nav'
 				style={styles.container}
 				initialRoute={{
 					title: 'Welcome',
-					component: Welcome,
+					component: Tutorial,
 				}}/>
 				);
 
@@ -144,8 +75,8 @@ var Locl = React.createClass({
 					<NavigatorIOS ref='nav'
 					style={styles.container}
 					initialRoute={{
-						title: 'Customer',
-						component: Customer,
+						title: 'Locl',
+						component: CustomerHome,
 					}}/>
 					);
 
@@ -156,10 +87,9 @@ var Locl = React.createClass({
 					style={styles.container}
 					initialRoute={{
 						title: 'Store',
-						component: Store,
+						component: StoreHome,
 					}}/>
 					);
-
 			}
 		}
 	}
