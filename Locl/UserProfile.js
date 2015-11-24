@@ -142,7 +142,10 @@ var UserProfile = React.createClass({
     return (
         <View style={styles.container}>
         <Text style={styles.description}>
-        hello 
+        {this.props.name}
+        </Text>
+        <Text style={styles.description}>
+        {this.props.email}
         </Text>
         </View>);
   },
