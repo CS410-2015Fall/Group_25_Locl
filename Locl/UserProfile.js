@@ -1,8 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var StorePage = require('./StorePage');
-var FacebookLogin = require('./FacebookLogin');
 
 var {
   StyleSheet,
@@ -14,11 +12,7 @@ var {
   Image,
   Component,
   NavigatorIOS,
-  AppRegistry,
-  AlertIOS,
-  ListView,
-  DeviceEventEmitter,
-  AsyncStorage
+  AppRegistry
 } = React;
 
 var styles = StyleSheet.create({
@@ -143,31 +137,15 @@ var styles = StyleSheet.create({
  },
 });
 
-var Tutorial = React.createClass({
- render(){
-   return (
-    <View style={styles.container}>
-    <Text style={styles.description}>
-    "Welcome to Locl, this is how Locl works..(There should be swipeable images here)"
-    </Text>
-    <TouchableHighlight underlayColor="#AA9999" onPress={this.toFacebookLogin}>
-     <View style={[styles.buttonBox, styles.setButtonBox]}>
-     <Text style={styles.buttonText}>
-     Finish
-     </Text>
-     </View>
-     </TouchableHighlight>
-    </View>);
- },
-
- toFacebookLogin(){
-   this.props.navigator.push({
-     title: 'Facebook',
-     component: FacebookLogin
-   });
- }
-
- 
+var UserProfile = React.createClass({
+  render(){
+    return (
+        <View style={styles.container}>
+        <Text style={styles.description}>
+        "Welcome to Locl"
+        </Text>
+        </View>);
+  },
 });
 
-  module.exports = Tutorial;
+module.exports = UserProfile;

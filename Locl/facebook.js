@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var UserProfile = require('./UserProfile');
+var CustomerProfile = require('.CustomerProfile');
 
 var {
   StyleSheet,
@@ -21,6 +21,27 @@ var {
   FBSDKLoginButton,
   FBSDKLoginManager,
 } = FBSDKLogin;
+
+var FBSDKCore = require('react-native-fbsdkcore');
+var {
+  FBSDKGraphRequest,
+  FBSDKGraphRequestManager,
+  FBSDKAccessToken,
+} = FBSDKCore;
+
+var fetchFriends = new FBSDKGraphRequest((error, result) => {
+  if (error)
+  {
+    console.log("Error: ", error);
+  }
+  else
+  {
+    console.log(result);
+  }
+}, '/me', {fields: { string: 'name,gender,email'} });
+
+FBSDKGraphRequestManager.batchRequests([fetchFriends],
+  function() {}, 60);
 
 var styles = StyleSheet.create({
   description: {
@@ -53,7 +74,8 @@ class FB extends React.Component {
           if (result.isCancelled) {
             alert('Login cancelled.');
           } else {
-            this.loadUserProfile();
+            alert('Logged in.');
+            loadCustomerProfile;
           }
 
         }}
@@ -63,11 +85,21 @@ class FB extends React.Component {
         );
   }
 
-  loadUserProfile(){
+  loadCustomerProfile(){
     this.props.navigator.push({
-      title: 'User',
-      component: UserProfile,
+      title: 'CustomerProfile',
+      component: CustomerProfile,
     });
+  }
+
+  static isLoggedIn(callback: (result: boolean) => void) {
+    FBSDKAccessToken.getCurrentAccessToken(token =>
+    {
+      if (token == null) {
+        callback(false);
+      } else {
+        callback(true);
+      }});
   }
 }
 
