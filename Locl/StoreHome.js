@@ -2,11 +2,11 @@
 
 var React = require('react-native');
 var StoreAdd = require('./StoreAdd');
+var ItemPage = require('./ItemPage');
 var bluetoothBeaconManager = require('./bluetoothBeaconManager.js');
 
-var bt = false;
-
 var {
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -20,170 +20,191 @@ var {
   AlertIOS,
   ListView,
   DeviceEventEmitter,
-  AsyncStorage
+  AsyncStorage,
+  SwitchIOS
 } = React;
 
 var styles = StyleSheet.create({
-  description: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-    margin: 80
-  },
-  container: {
-    flex: 1,
-    margin: 80
-  },
-  flowRight: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 20,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-
-  container: {
-    flex            : 1,
-    alignItems      : 'center',
-    backgroundColor : '#F5FCFF',
-    paddingTop      : 30
-  },
-  instructionsText : {
-    fontSize : 20
-  },
-  separator : {
-    borderWidth  : .5,
-    borderColor  : '#AEAEAE',
-    height       : 1,
-    width        : 300,
-    marginBottom : 25
-  },
-  labelContainer : {
-    flexDirection  : 'row',
-    width          : 300
-  },
-  labelText : {
-    paddingRight : 10,
-    fontSize     : 18
-  },
-  textInput : {
-    height      : 26,
-    borderWidth : 0.5,
-    borderColor : '#0f0f0f',
-    padding     : 4,
-    flex        : 1,
-    fontSize    : 13,
-  },
-  buttonContainer : {
-    flexDirection  : 'row',
-    justifyContent : 'center',
-    alignItems     : 'center',
-    marginTop      : 20
-  },
-  touchableHighlight : {
-    marginLeft  : 10,
-    marginRight : 10,
-  },
-  buttonBox : {
-    flexDirection  : 'row',
-    justifyContent : 'center',
-    alignItems     : 'center',
-    padding        : 10,
-    borderWidth    : 2,
-    borderRadius   : 5
-  },
-  saveButtonBox : {
-    borderColor : '#AA0000'
-  },
-  loadButtonBox : {
-    borderColor : '#00AA00'
-  },
-  setButtonBox : {
-    borderColor : '#00AA00'
-  },
-  buttonText : {
-    fontSize : 16,
-  },
-  outputContainer : {
-    width          : 300,
-    height         : 200,
-    justifyContent : 'center',
-    alignItems     : 'center',
-    borderWidth    : .5,
-    borderColor    : "#999999",
-    marginTop      : 20
-  }, 
-  row: {
-    padding: 8,
-    paddingBottom: 16
-  }, 
-  smallText: {
-    fontSize: 11
-  },
-  formInput: {
-    flex: 1,
-    height: 26,
-    fontSize: 13,
-    borderWidth: 1,
-    borderColor: "#555555",
-  },
-  saved: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-  },
+ description: {
+   color: 'black',
+   backgroundColor: 'white',
+   fontSize: 30,
+   margin: 80
+ },
+ container: {
+  marginTop: 30,
+  flex: 1,
+ },
+ resultsContainer: {
+   flex: 2,
+ },
+ flowRight: {
+   flexDirection: 'column',
+   alignItems: 'center',
+   alignSelf: 'stretch'
+ },
+ buttonText: {
+   fontSize: 18,
+   color: 'white',
+   alignSelf: 'center'
+ }, 
+thumb: {
+  width: 50,
+  height: 50,
+  marginRight: 10
+},
+textContainer: {
+  flex: 1
+},
+separator: {
+  height: 1,
+  backgroundColor: '#dddddd'
+},
+price: {
+  fontSize: 25,
+  fontWeight: 'bold',
+  color: '#48BBEC'
+},
+title: {
+  fontSize: 20,
+  color: '#656565'
+},
+rowContainer: {
+  borderColor: 'white',
+  borderWidth: 1, 
+  backgroundColor: 'F5F5F5',
+  flexDirection: 'row',
+  padding: 10
+}, 
+button: {
+   height: 20,
+   backgroundColor: 'grey',
+   borderColor: 'grey',
+   borderWidth: 1,
+   borderRadius: 8,
+   margin: 5,
+   color: 'white',
+   alignSelf: 'stretch',
+   justifyContent: 'center',
+   fontSize: 15,
+   textAlign: 'center'
+ }, 
 });
 
 var StoreHome = React.createClass({
   render(){
+    this.getStoreItems();
     return (
-        <View style={styles.container}>
-
-        <Text style={styles.description}>
-        Your store's items:
-        </Text>
-
-        <TouchableHighlight style={styles.touchableHighlight} underlayColor="#99AA99"onPress={bluetoothBeaconManager.onBeaconingStopPress}> 
-        <View style={[styles.buttonBox, styles.loadButtonBox]}>
-        <Text style={styles.buttonText}> Stop Beaconing </Text> 
-        </View>
+        <View style ={styles.container}>
+        <SwitchIOS
+          onValueChange={(value) => this.handlePress(value)}
+          onTintColor="#00ff00"
+          style={{marginBottom: 10}}
+          thumbTintColor="#0000ff"
+          tintColor="#ff0000"
+          value={this.state.colorFalseSwitchIsOn} />
+          <SwitchIOS
+          onValueChange={(value) => this.handlePress(value)}
+          onTintColor="#00ff00"
+          thumbTintColor="#0000ff"
+          tintColor="#ff0000"
+          value={this.state.colorTrueSwitchIsOn} />
+        <TouchableHighlight onPress={this.onAddPress}>
+            <Text style={styles.button}>Add Item</Text>
         </TouchableHighlight>
-
-        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingStartPress}>
-        <View style={[styles.buttonBox, styles.saveButtonBox]}>
-        <Text style={styles.buttonText}> Start Beaconing </Text> 
+        <ScrollView
+        automaticallyAdjustContentInsets={false}
+        onScroll={() => { console.log('Scrolling! Weeeee'); }}
+        scrollEventThrottle={200}
+        style={styles.scrollView}>
+        <View style={styles.resultsContainer}>
+          <ListView
+           dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+          />
         </View>
-        </TouchableHighlight>
-
-        <TouchableHighlight underlayColor="#AA9999" onPress={bluetoothBeaconManager.onBeaconingSetPress(101)}>
-        <View style={[styles.buttonBox, styles.setButtonBox]}>
-        <Text style={styles.buttonText}> Set Store ID </Text> 
-        </View>
-        </TouchableHighlight>
-
-        <TouchableHighlight underlayColor="#AA9999" onPress={this.toStoreAdd}>
-        <View style={[styles.buttonBox, styles.setButtonBox]}>
-        <Text style={styles.buttonText}> Add items</Text> 
-        </View>
-        </TouchableHighlight>
-
+        </ScrollView>  
         </View>
         );
+  },
+
+  handlePress: function(value) {
+    console.log("handling Press");
+    if (this.state.colorTrueSwitchIsOn) {
+      this.setState({colorFalseSwitchIsOn: true, colorTrueSwitchIsOn: false});
+      bluetoothBeaconManager.onBeaconingStopPress();
+      console.log("colorFalseSwitch set to value, bluetooth set to off");
+    } else {
+      this.setState({colorTrueSwitchIsOn: true, colorFalseSwitchIsOn: false});
+      bluetoothBeaconManager.onBeaconingStartPress();
+      console.log("colorTrueSwitch set to value, bluetooth set to on");
+    }
+  },
+
+  getInitialState: function() {
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    return {
+            colorTrueSwitchIsOn: false,
+            colorFalseSwitchIsOn: true,
+
+            //The storeID props need to come from the index.ios.js push (index.ios.js will get Async the stored StoreID, then pass it via props), for now it is being set to 101 temporarily
+            // storeID: this.props.StoreID,
+
+            StoreID: 101,
+            dataSource: ds.cloneWithRows([]),
+          };
+  },
+
+  componentWillMount: function() {
+    this.getStoreItems();
+  },
+
+  getStoreItems: function() {
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + this.state.StoreID, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {    
+      if (responseData.error) {
+        console.log("Error!");
+        console.log(responseData.error);
+      }
+      else {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(responseData.record),
+        })
+      }
+    })
+    .done();
+  },
+
+  renderRow: function(itemData) {
+    return (
+      <TouchableHighlight underlayColor="#AA9999" onPress={() => this.onUpdatePress(itemData)}> 
+      <View style={styles.rowContainer}>
+      <Image style={styles.thumb} source={{ uri: itemData.HTMLimg }} />
+      <View  style={styles.textContainer}>
+      <Text style={styles.price}>${itemData.SalePrice}</Text>
+      <Text style={styles.title} numberOfLines={1}>{itemData.Name}</Text>
+      </View>
+      </View>
+      </TouchableHighlight>
+      );
+  },
+
+
+  onUpdatePress: function(itemData) {
+    this.props.navigator.push({
+      title: itemData.Name,
+      component: ItemPage,
+      passProps: {ItemData: itemData},
+    });
+  },
+
+  onAddPress: function() {
+    this.props.navigator.push({
+      title: 'New Item',
+      component: ItemPage,
+      passProps: {ItemData: null, StoreID: this.state.StoreID.toString()},
+    });
   },
 
   toStoreAdd(){
@@ -191,7 +212,6 @@ var StoreHome = React.createClass({
       title: 'StoreAdd',
       component: StoreAdd
     });
-
   },
 
   toBeacon(){
@@ -199,7 +219,6 @@ var StoreHome = React.createClass({
       title: 'Beacon',
       component: Beacon
     });
-
   },
 
 });

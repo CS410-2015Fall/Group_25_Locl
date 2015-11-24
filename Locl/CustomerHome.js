@@ -184,7 +184,7 @@ var CustomerHome = React.createClass({
   //Once it has rendered
   componentDidMount: function() {
     //Get current app state
-    AppStateIOS.addEventListener('change', this._handleAppStateChange);
+    AppStateIOS.addEventListener('change', this.handleAppStateChange);
 
     //Stop listening if there isn't any stores around
     bluetoothScanningManager.setupStopSubscription();
@@ -275,7 +275,7 @@ handleAppStateChange: function(currentAppState) {
   if (currentAppState == "active") {
     bluetoothScanningManager.startRangingBeaconsInRegion();
   }
-  this.setState({currentAppState,});
+  this.setState({currentAppState});
 },
 
 toCustomerAdd(){
