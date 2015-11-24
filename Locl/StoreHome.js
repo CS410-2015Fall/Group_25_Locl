@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react-native');
-var StoreAdd = require('./StoreAdd');
 var ItemPage = require('./ItemPage');
 var bluetoothBeaconManager = require('./bluetoothBeaconManager.js');
+var bluetoothScanningManager = require('./bluetoothScanningManager.js');
 
 var {
   ScrollView,
@@ -156,6 +156,8 @@ var StoreHome = React.createClass({
   },
 
   componentWillMount: function() {
+    bluetoothScanningManager.requestAlwaysAuthorization();
+    bluetoothScanningManager.getAuthorizationStatus();
     this.getStoreItems();
   },
 
@@ -204,13 +206,6 @@ var StoreHome = React.createClass({
       title: 'New Item',
       component: ItemPage,
       passProps: {ItemData: null, StoreID: this.state.StoreID.toString()},
-    });
-  },
-
-  toStoreAdd(){
-    this.props.navigator.push({
-      title: 'StoreAdd',
-      component: StoreAdd
     });
   },
 

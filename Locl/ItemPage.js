@@ -197,16 +197,22 @@ var ItemPage = React.createClass({
   
   //Waiting on Sheyrar for a proper Update Function
   onUpdatePress: function()  {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com:80/rest/db/item?ids="+this.props.ItemData.ItemID)
-    .then((response) => response.json())
-    .then((responseData) => {    
-        console.log("Deleted Store Item");})
-    .then(fetch(itemTableURL, {method: "POST", body: JSON.stringify({Name: this.state.name, Description: this.state.description, StartDate: this.state.startDate, EndDate: this.state.endDate, Quantity: this.state.quantity,  RegPrice: this.state.regPrice, SalePrice: this.state.salePrice, UPC: this.state.upc, StoreID:this.props.ItemData.StoreID, HTMLimg: this.state.htmlImg})})
-    .then((response) => response.json())
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID=" + this.props.ItemData.ItemID, 
+      {method: "Put", body: JSON.stringify({
+        Quantity: this.state.quantity, 
+        Name: this.state.name, 
+        UPC: this.state.upc, 
+        RegPrice: this.state.regularPrice, 
+        SalePrice: this.state.salePrice, 
+        StartDate: this.state.startDate, 
+        EndDate: this.state.endDate, 
+        HTMLimg: this.state.htmlIMG, 
+        Description: this.state.description
+      })})
     .then((responseData) => {
      console.log("Item Updated");
      AlertIOS.alert("Item Updated");
-    }))
+    })
     .done()
     this.props.navigator.pop();
   },
@@ -223,7 +229,7 @@ var ItemPage = React.createClass({
   },
 
   onDeletePress: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com:80/rest/db/item?ids="+this.props.ItemData.ItemID)
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID="+this.props.ItemData.ItemID, {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
         console.log("Item Deleted");

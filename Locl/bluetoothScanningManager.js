@@ -14,8 +14,6 @@ var {
 	AsyncStorage,
 } = React;
 
-var cacheManager = require('./cacheManager.js');
-
 //Import Bluetooth listening
 var Beacons = require('react-native-ibeacon');
 var subscription;
@@ -25,22 +23,27 @@ var rangingSubscription;
 //Import Bluetooth state
 require('react-native-bluetooth-state');
 
-//Get auth
-Beacons.requestAlwaysAuthorization();
+var bluetoothScanningManager = {
 
-//Start monitoring
-Beacons.startMonitoringForRegion();
-Beacons.startUpdatingLocation();
+requestAlwaysAuthorization: function() {
+	Beacons.requestAlwaysAuthorization();
+},
 
-//For debugging the current bluetooth state
-var subscription = DeviceEventEmitter.addListener('centralManagerDidUpdateState', bluetoothState => {
-	console.log("Bluetooth status: " + bluetoothState);
-});
-Beacons.getAuthorizationStatus(function(authorization) {
+getAuthorizationStatus: function() {
+	Beacons.getAuthorizationStatus(function(authorization) {
 	console.log("Bluetooth authorization: " + authorization);
 });
+},
 
-var bluetoothScanningManager = {
+startMonitoringForRegion: function() {
+	Beacons.startMonitoringForRegion();
+	console.log("Started monitoring");
+},
+
+startUpdatingLocation: function() {
+	Beacons.startUpdatingLocation();
+	console.log("Started updating location");
+},
 
 startRangingBeaconsInRegion: function() {
 	Beacons.startRangingBeaconsInRegion();
@@ -50,6 +53,13 @@ startRangingBeaconsInRegion: function() {
 stopRangingBeaconsInRegion: function() {
 	Beacons.stopRangingBeaconsInRegion();
 	console.log("Ranging Stopped");
+},
+
+//Subscriptions
+setupStatusSubscription: function() {
+	var subscription = DeviceEventEmitter.addListener('centralManagerDidUpdateState', bluetoothState => {
+	console.log("Bluetooth status: " + bluetoothState);
+})
 },
 
 setupRestartSubscription: function() {

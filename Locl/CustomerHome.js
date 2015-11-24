@@ -179,6 +179,10 @@ var CustomerHome = React.createClass({
   componentWillMount: function() {
     //get auth from the server
     serverManager.auth();
+    bluetoothScanningManager.getAuthorizationStatus();
+    bluetoothScanningManager.setupStatusSubscription();
+    bluetoothScanningManager.startMonitoringForRegion();
+    bluetoothScanningManager.startUpdatingLocation();
   },
 
   //Once it has rendered
