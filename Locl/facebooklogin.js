@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var FBSDKLogin = require('react-native-fbsdklogin');
+var FBSDKCore = require('react-native-fbsdkcore');
 var UserProfile = require('./UserProfile');
 
 var {
@@ -15,12 +17,18 @@ var {
   NavigatorIOS,
   AppRegistry
 } = React;
-var FBSDKLogin = require('react-native-fbsdklogin');
+
 var {
   FBSDKGraphRequest,
   FBSDKLoginButton,
   FBSDKLoginManager,
 } = FBSDKLogin;
+
+var {
+  FBSDKGraphRequest,
+  FBSDKGraphRequestManager,
+  FBSDKAccessToken,
+} = FBSDKCore;
 
 var styles = StyleSheet.create({
   description: {
@@ -37,30 +45,31 @@ var styles = StyleSheet.create({
   }
 });
 
+
 class FB extends React.Component {
   render(){
     return (<View style={styles.container}>
-      <Text style={styles.description}>
-      FaceBook Login
-      </Text>
-      <FBSDKLoginButton 
-      onPress= {() => { 
-        FBSDKLoginManager.logInWithReadPermissions(['email'],
-          (error, result) => {
+        <Text style={styles.description}>
+        FaceBook Login
+        </Text>
+        <FBSDKLoginButton 
+        onPress= {() => { 
+          FBSDKLoginManager.logInWithReadPermissions(['email'],
+              (error, result) => {
                 //call back not called. uses onloginfinished instead
               })}}
-        onLoginFinished={(error, result) => {
-          if (result.isCancelled) {
-            alert('Login cancelled.');
-          } else {
-            this.loadUserProfile();
-          }
+          onLoginFinished={(error, result) => {
+            if (result.isCancelled) {
+              alert('Login cancelled.');
+            } else {
+              this.loadUserInfo();
+            }
 
-        }}
-        onLogoutFinished={() => alert('Logged out.')}
-        />
-        </View>
-        );
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          />
+          </View>
+          );
   }
 
   loadUserProfile(){
@@ -68,6 +77,22 @@ class FB extends React.Component {
       title: 'User',
       component: UserProfile,
     });
+  }
+
+  loadUserInfo() {
+    var GraphReq = new FBSDKGraphRequest((error, result) => {
+      if (error)
+      {
+        console.log("Error: ", error);
+      }
+      else
+      {
+        console.log(result);
+        this.loadUserProfile();
+      }
+    }, '/me', {fields: { string: 'name,email'} });
+    FBSDKGraphRequestManager.batchRequests([GraphReq],
+        function() {}, 60);
   }
 }
 
