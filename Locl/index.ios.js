@@ -6,7 +6,7 @@ var StoreHome = require('./StoreHome');
 var CustomerHome = require('./CustomerHome');
 var Tutorial = require('./Tutorial');
 // If true, goes into the setup screen, not a home screen
-var introductionCompleted = true;
+var introductionCompleted = false;
 // If true, goes to store screen, otherwise customer screen
 var customer = true;
 
