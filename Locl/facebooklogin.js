@@ -73,11 +73,11 @@ class FB extends React.Component {
   }
 
   loadUserProfile(informationDict){
+    console.log(informationDict['picture']['data']['url']);
     this.props.navigator.push({
       title: 'User',
       component: UserProfile,
-      passProps: {name: informationDict['name'], email: informationDict['email']},
-    });
+      passProps: {name: informationDict['name'], email: informationDict['email'],picture: informationDict['picture']['data']['url']},});
   }
 
   loadUserInfo() {
@@ -90,7 +90,7 @@ class FB extends React.Component {
       {
         this.loadUserProfile(result);
       }
-    }, '/me', {fields: { string: 'name,email'} });
+    }, '/me', {fields: { string: 'name,email,picture'} });
     FBSDKGraphRequestManager.batchRequests([GraphReq],
         function() {}, 60);
   }

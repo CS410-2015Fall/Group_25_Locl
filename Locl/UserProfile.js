@@ -20,7 +20,6 @@ var styles = StyleSheet.create({
     color: 'black',
     backgroundColor: 'white',
     fontSize: 30,
-    margin: 80,
   },
   container: {
     flex: 1,
@@ -135,9 +134,14 @@ var styles = StyleSheet.create({
     textAlign: "center",
     margin: 10,
   },
+  profilePicture: {
+    height: 70,
+    width: 70,
+  },
 });
 
 var UserProfile = React.createClass({
+
   render(){
     return (
         <View style={styles.container}>
@@ -147,7 +151,11 @@ var UserProfile = React.createClass({
         <Text style={styles.description}>
         {this.props.email}
         </Text>
-        </View>);
+        <Image style={styles.profilePicture}
+        source={{uri: this.props.picture}}
+        />
+        </View>
+        );
   },
 });
 
