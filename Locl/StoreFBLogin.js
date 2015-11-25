@@ -16,15 +16,29 @@ var {
   AppRegistry
 } = React;
 
+
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
                                description: {
-                               color: 'black',
-                               backgroundColor: 'white',
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
                                fontSize: 30,
-                               margin: 80
+                               marginLeft: 55,
+                               marginTop: 200,
+                               marginBottom: 50,
+                               },
+                               icon:{
+                               marginTop: 25,
+                               marginLeft: 20
                                },
                                container: {
                                flex: 1,
+                               backgroundColor: BACKGROUND,
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -32,21 +46,24 @@ var styles = StyleSheet.create({
                                alignSelf: 'stretch'
                                },
                                buttonText: {
-                               fontSize: 18,
-                               color: 'white',
+                               marginTop: 40,
+                               fontSize: 24,
+                               color: TEXT,
                                alignSelf: 'center'
                                },
                                button: {
-                               height: 20,
-                               flex: 1,
-                               flexDirection: 'row',
-                               backgroundColor: '#48BBEC',
-                               borderColor: '#48BBEC',
-                               borderWidth: 1,
-                               borderRadius: 8,
-                               marginBottom: 10,
-                               alignSelf: 'stretch',
-                               justifyContent: 'center'
+                               width: 150,
+                               height: 150,
+                               backgroundColor: '#3b5998',
+                               borderColor: 'white',
+                               borderWidth: 16,
+                               borderRadius: 100,
+                               marginTop: 0,
+                               marginBottom: 50,
+                               marginLeft: 84
+                               },
+                               text:{
+                               
                                }
                                });
 
@@ -55,10 +72,13 @@ var StoreFBLogin = React.createClass({
                            render(){
                            return (<View style={styles.container}>
                                    <Text style={styles.description}>
-                                   FaceBook Login
+                                   Facebook Login
                                    </Text>
                                    <TouchableHighlight style={styles.button} onPress={this.loadStoreProfile}>
-                                   <Text style={styles.buttonText}>Login w/ FB</Text>
+                                   <Image
+                                   style={styles.icon}
+                                   source={require('image!fb_logo')}
+                                   />
                                    </TouchableHighlight>
                                    </View>
                                    );
@@ -66,7 +86,7 @@ var StoreFBLogin = React.createClass({
                            
                            loadStoreProfile(){
                            this.props.navigator.push({
-                                                     title: 'StoreProfile',
+                                                     title: 'Profile',
                                                      component: StoreProfile,
                                                      });
                            

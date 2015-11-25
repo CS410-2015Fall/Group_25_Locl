@@ -17,16 +17,29 @@ var {
   AppRegistry
 } = React;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
                                description: {
-                               color: 'black',
-                               backgroundColor: 'white',
-                               fontSize: 30,
-                               margin: 80
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 24,
+                               marginLeft: 40,
+                               marginTop: 15,
+                               },
+                               icon:{
+                               marginTop: 90,
+                               marginLeft: 40,
+                               borderWidth: 4,
+                               borderColor: OUTLINE,
                                },
                                container: {
                                flex: 1,
-                               margin: 80
+                               backgroundColor: BACKGROUND,
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -34,39 +47,50 @@ var styles = StyleSheet.create({
                                alignSelf: 'stretch'
                                },
                                buttonText: {
-                               fontSize: 18,
-                               color: 'white',
+                               marginTop: 40,
+                               fontSize: 24,
+                               color: TEXT,
                                alignSelf: 'center'
                                },
                                button: {
-                               height: 20,
-                               flex: 1,
-                               flexDirection: 'row',
-                               backgroundColor: '#48BBEC',
-                               borderColor: '#48BBEC',
-                               borderWidth: 1,
-                               borderRadius: 8,
-                               marginBottom: 10,
-                               alignSelf: 'stretch',
-                               justifyContent: 'center'
+                               width: 150,
+                               height: 150,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 16,
+                               borderRadius: 100,
+                               marginTop: 30,
+                               marginBottom: 50,
+                               marginLeft: 84
+                               },
+                               text:{
+                               
                                }
                                });
 
+
 var CustomerProfile = React.createClass({
                                    render(){
-                                   return (<View style={styles.container}>
-                                           <Text style={styles.description}>
-                                           Setup your store page:
-                                           </Text>
-                                           <TouchableHighlight style={styles.button} onPress={this.toCustomerPreferences}>
-                                           <Text style={styles.buttonText}>Proceed</Text>
-                                           </TouchableHighlight>
-                                           </View>);
+                                        return (<View style={styles.container}>
+                                                <Image
+                                                style={styles.icon}
+                                                source={require('image!matthew')}
+                                                />
+                                                <Text style={styles.description}>
+                                                Matthew
+                                                </Text>
+                                                <Text style={styles.description}>
+                                                Dallas
+                                                </Text>
+                                                <TouchableHighlight style={styles.button} onPress={this.toCustomerPreferences}>
+                                                <Text style={styles.buttonText}>Proceed</Text>
+                                                </TouchableHighlight>
+                                                </View>);
                                    },
                                    
                                    toCustomerPreferences(){
                                    this.props.navigator.push({
-                                                             title: 'CustomerPreferences',
+                                                             title: 'Add Shopping List',
                                                              component: CustomerPreferences
                                                              });
                                    }

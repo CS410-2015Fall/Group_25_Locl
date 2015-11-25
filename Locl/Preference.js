@@ -4,6 +4,8 @@ var React = require('react-native');
 var StoreFBLogin = require('./StoreFBLogin');
 var CustomerFBLogin = require('./CustomerFBLogin');
 
+var customer = 'false';
+
 var {
   StyleSheet,
   Text,
@@ -14,19 +16,34 @@ var {
   Image,
   Component,
   NavigatorIOS,
-  AppRegistry
+  AppRegistry,
+  AsyncStorage
 } = React;
+
+
+
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
 
 var styles = StyleSheet.create({
                                description: {
-                               color: 'black',
-                               backgroundColor: 'white',
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
                                fontSize: 30,
-                               margin: 80
+                               marginLeft: 85,
+                               marginTop: 100,
+                               marginBottom: 50,
+                               },
+                               icon:{
+                               marginTop: 70,
+                               marginLeft: 25
                                },
                                container: {
                                flex: 1,
-                               margin: 80
+                               backgroundColor: BACKGROUND,
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -34,27 +51,31 @@ var styles = StyleSheet.create({
                                alignSelf: 'stretch'
                                },
                                buttonText: {
-                               fontSize: 18,
-                               color: 'white',
+                               marginTop: 40,
+                               fontSize: 24,
+                               color: TEXT,
                                alignSelf: 'center'
                                },
                                button: {
-                               height: 20,
-                               flex: 1,
-                               flexDirection: 'row',
-                               backgroundColor: '#48BBEC',
-                               borderColor: '#48BBEC',
-                               borderWidth: 1,
-                               borderRadius: 8,
-                               marginBottom: 10,
-                               alignSelf: 'stretch',
-                               justifyContent: 'center'
+                               width: 150,
+                               height: 150,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 16,
+                               borderRadius: 100,
+                               marginTop: 0,
+                               marginBottom: 50,
+                               marginLeft: 84
+                               },
+                               text:{
+                               
                                }
                                });
 
 var Preference = React.createClass({
                                     render(){
-                                    return (<View style={styles.container}>
+                                   return (<View style={styles.background}>
+                                            <View style={styles.container}>
                                             <Text style={styles.description}>
                                             You are a:
                                             </Text>
@@ -64,22 +85,38 @@ var Preference = React.createClass({
                                             <TouchableHighlight style={styles.button} onPress={this.toCustomerList}>
                                             <Text style={styles.buttonText}>Customer</Text>
                                             </TouchableHighlight>
+                                            </View>
                                             </View>);
                                     },
                                     
                                     toStoreSetup(){
+                                    this.setType('false');
+                                   console.log('here');
                                     this.props.navigator.push({
-                                                              title: 'StoreFBLogin',
+                                                              title: 'Store Setup',
                                                               component: StoreFBLogin
                                                               });
                                     },
                                     
                                     toCustomerList(){
+                                    this.setType('true');
                                     this.props.navigator.push({
-                                                              title: 'CustomerFBLogin',
+                                                              title: 'Customer Setup',
                                                               component: CustomerFBLogin
                                                               });
-                                    }
+                                    },
+                                   
+                                   async setType(str){
+                                   try{
+                                   await AsyncStorage.setItem('customer', str);
+                                   var out = await AsyncStorage.getItem('customer');
+                                   console.log(out);
+                                   
+                                   } catch(error) {
+                                    console.log(error.message);
+                                   }
+                                   
+                                   },
                                     
                                     });
 

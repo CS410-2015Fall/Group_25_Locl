@@ -17,16 +17,29 @@ var {
   AppRegistry
 } = React;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
                                description: {
-                               color: 'black',
-                               backgroundColor: 'white',
-                               fontSize: 30,
-                               margin: 80
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 24,
+                               marginLeft: 40,
+                               marginTop: 90,
+                               },
+                               icon:{
+                               marginTop: 90,
+                               marginLeft: 40,
+                               borderWidth: 4,
+                               borderColor: OUTLINE,
                                },
                                container: {
                                flex: 1,
-                               margin: 80
+                               backgroundColor: BACKGROUND,
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -34,21 +47,36 @@ var styles = StyleSheet.create({
                                alignSelf: 'stretch'
                                },
                                buttonText: {
-                               fontSize: 18,
-                               color: 'white',
+                               marginTop: 20,
+                               fontSize: 24,
+                               color: TEXT,
                                alignSelf: 'center'
                                },
                                button: {
-                               height: 20,
-                               flex: 1,
+                               width: 100,
+                               height: 100,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 16,
+                               borderRadius: 100,
+                               marginTop: 30,
+                               marginBottom: 50,
+                               marginLeft:37.5,
+                               },
+                               rowcontainer:{
+                               marginTop: 0,
+                               backgroundColor: BACKGROUND,
                                flexDirection: 'row',
-                               backgroundColor: '#48BBEC',
-                               borderColor: '#48BBEC',
-                               borderWidth: 1,
-                               borderRadius: 8,
-                               marginBottom: 10,
-                               alignSelf: 'stretch',
-                               justifyContent: 'center'
+                               alignItems: 'center',
+                               alignSelf: 'stretch'
+                               },
+                               item:{
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 24,
+                               marginLeft: 40,
+                               marginTop: 20,
                                }
                                });
 
@@ -58,14 +86,19 @@ var CustomerPreferences = React.createClass({
                                                  <Text style={styles.description}>
                                                  Add items:
                                                  </Text>
-                                                 <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                                                 <Text style={styles.item}>></Text>
+                                                 <Text style={styles.item}>></Text>
+                                                 <Text style={styles.item}>></Text>
+                                                 <TextInput style={{height: 40, width: 230, borderColor: OUTLINE, borderWidth: 4, marginBottom: 10, marginTop: 70, marginLeft: 40}}
                                                  onChange={this.onTextInputChange}/>
+                                                 <View style={styles.rowcontainer}>
                                                  <TouchableHighlight style={styles.button} onPress={this.addItem}>
                                                  <Text style={styles.buttonText}>Add</Text>
                                                  </TouchableHighlight>
                                                  <TouchableHighlight style={styles.button} onPress={this.goToHome}>
                                                  <Text style={styles.buttonText}>Home</Text>
                                                  </TouchableHighlight>
+                                                 </View>
                                                  </View>);
                                          },
                                          

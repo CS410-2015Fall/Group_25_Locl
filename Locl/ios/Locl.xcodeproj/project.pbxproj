@@ -29,6 +29,35 @@
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
+		F2EC18301C03B6EA00BB4C49 /* StyleIntro.js in Resources */ = {isa = PBXBuildFile; fileRef = F2EC182F1C03B6EA00BB4C49 /* StyleIntro.js */; };
+		F2EC183E1C03D62900BB4C49 /* shopping_bag.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EC183D1C03D62900BB4C49 /* shopping_bag.png */; };
+		F2EC18411C03D9D100BB4C49 /* StyleFB.js in Resources */ = {isa = PBXBuildFile; fileRef = F2EC183F1C03D9D100BB4C49 /* StyleFB.js */; };
+		F2EC18421C03D9D100BB4C49 /* StyleGeneral.js in Resources */ = {isa = PBXBuildFile; fileRef = F2EC18401C03D9D100BB4C49 /* StyleGeneral.js */; };
+		F2EC18441C051B9100BB4C49 /* fb_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EC18431C051B9100BB4C49 /* fb_logo.png */; };
+		F2EC18461C051F9700BB4C49 /* matthew.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F2EC18451C051F9700BB4C49 /* matthew.jpeg */; };
+		F2EC18481C05222100BB4C49 /* matthew.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EC18471C05222100BB4C49 /* matthew.png */; };
+		F2EC184A1C0537C000BB4C49 /* bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = F2EC18491C0537C000BB4C49 /* bluetooth.png */; };
+		F2F49BA41BFEAECE00DF29C5 /* index.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA31BFEAECE00DF29C5 /* index.ios.js */; };
+		F2F49BB91BFEAF1F00DF29C5 /* bluetoothBeaconManager.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA51BFEAF1F00DF29C5 /* bluetoothBeaconManager.js */; };
+		F2F49BBA1BFEAF1F00DF29C5 /* bluetoothScanningManager.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA61BFEAF1F00DF29C5 /* bluetoothScanningManager.js */; };
+		F2F49BBB1BFEAF1F00DF29C5 /* cacheManager.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA71BFEAF1F00DF29C5 /* cacheManager.js */; };
+		F2F49BBC1BFEAF1F00DF29C5 /* CustomerAdd.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA81BFEAF1F00DF29C5 /* CustomerAdd.js */; };
+		F2F49BBD1BFEAF1F00DF29C5 /* CustomerFBLogin.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BA91BFEAF1F00DF29C5 /* CustomerFBLogin.js */; };
+		F2F49BBE1BFEAF1F00DF29C5 /* Customer.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAA1BFEAF1F00DF29C5 /* Customer.js */; };
+		F2F49BBF1BFEAF1F00DF29C5 /* CustomerInfo.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAB1BFEAF1F00DF29C5 /* CustomerInfo.js */; };
+		F2F49BC01BFEAF1F00DF29C5 /* CustomerPreferences.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAC1BFEAF1F00DF29C5 /* CustomerPreferences.js */; };
+		F2F49BC11BFEAF1F00DF29C5 /* CustomerProfile.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAD1BFEAF1F00DF29C5 /* CustomerProfile.js */; };
+		F2F49BC21BFEAF1F00DF29C5 /* index.android.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAE1BFEAF1F00DF29C5 /* index.android.js */; };
+		F2F49BC31BFEAF1F00DF29C5 /* indexb.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BAF1BFEAF1F00DF29C5 /* indexb.ios.js */; };
+		F2F49BC41BFEAF1F00DF29C5 /* Preference.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB01BFEAF1F00DF29C5 /* Preference.js */; };
+		F2F49BC51BFEAF1F00DF29C5 /* Preferences.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB11BFEAF1F00DF29C5 /* Preferences.js */; };
+		F2F49BC61BFEAF1F00DF29C5 /* serverManager.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB21BFEAF1F00DF29C5 /* serverManager.js */; };
+		F2F49BC71BFEAF1F00DF29C5 /* StoreAdd.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB31BFEAF1F00DF29C5 /* StoreAdd.js */; };
+		F2F49BC81BFEAF1F00DF29C5 /* StoreFBLogin.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB41BFEAF1F00DF29C5 /* StoreFBLogin.js */; };
+		F2F49BC91BFEAF1F00DF29C5 /* Store.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB51BFEAF1F00DF29C5 /* Store.js */; };
+		F2F49BCA1BFEAF1F00DF29C5 /* StorePage.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB61BFEAF1F00DF29C5 /* StorePage.js */; };
+		F2F49BCB1BFEAF1F00DF29C5 /* StorePreferences.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB71BFEAF1F00DF29C5 /* StorePreferences.js */; };
+		F2F49BCC1BFEAF1F00DF29C5 /* StoreProfile.js in Resources */ = {isa = PBXBuildFile; fileRef = F2F49BB81BFEAF1F00DF29C5 /* StoreProfile.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +191,35 @@
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "/Users/coreywilson/Desktop/CPSC 410/Final Project/Locl/Locl/node_modules/react-native-bluetooth-state/../react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<absolute>"; };
+		F2EC182F1C03B6EA00BB4C49 /* StyleIntro.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StyleIntro.js; path = ../StyleIntro.js; sourceTree = "<group>"; };
+		F2EC183D1C03D62900BB4C49 /* shopping_bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shopping_bag.png; path = ../shopping_bag.png; sourceTree = "<group>"; };
+		F2EC183F1C03D9D100BB4C49 /* StyleFB.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StyleFB.js; path = ../StyleFB.js; sourceTree = "<group>"; };
+		F2EC18401C03D9D100BB4C49 /* StyleGeneral.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StyleGeneral.js; path = ../StyleGeneral.js; sourceTree = "<group>"; };
+		F2EC18431C051B9100BB4C49 /* fb_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fb_logo.png; path = ../fb_logo.png; sourceTree = "<group>"; };
+		F2EC18451C051F9700BB4C49 /* matthew.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = matthew.jpeg; path = ../matthew.jpeg; sourceTree = "<group>"; };
+		F2EC18471C05222100BB4C49 /* matthew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = matthew.png; path = ../matthew.png; sourceTree = "<group>"; };
+		F2EC18491C0537C000BB4C49 /* bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth.png; path = ../bluetooth.png; sourceTree = "<group>"; };
+		F2F49BA31BFEAECE00DF29C5 /* index.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.ios.js; path = ../index.ios.js; sourceTree = "<group>"; };
+		F2F49BA51BFEAF1F00DF29C5 /* bluetoothBeaconManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = bluetoothBeaconManager.js; path = ../bluetoothBeaconManager.js; sourceTree = "<group>"; };
+		F2F49BA61BFEAF1F00DF29C5 /* bluetoothScanningManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = bluetoothScanningManager.js; path = ../bluetoothScanningManager.js; sourceTree = "<group>"; };
+		F2F49BA71BFEAF1F00DF29C5 /* cacheManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = cacheManager.js; path = ../cacheManager.js; sourceTree = "<group>"; };
+		F2F49BA81BFEAF1F00DF29C5 /* CustomerAdd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerAdd.js; path = ../CustomerAdd.js; sourceTree = "<group>"; };
+		F2F49BA91BFEAF1F00DF29C5 /* CustomerFBLogin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerFBLogin.js; path = ../CustomerFBLogin.js; sourceTree = "<group>"; };
+		F2F49BAA1BFEAF1F00DF29C5 /* Customer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Customer.js; path = ../Customer.js; sourceTree = "<group>"; };
+		F2F49BAB1BFEAF1F00DF29C5 /* CustomerInfo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerInfo.js; path = ../CustomerInfo.js; sourceTree = "<group>"; };
+		F2F49BAC1BFEAF1F00DF29C5 /* CustomerPreferences.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerPreferences.js; path = ../CustomerPreferences.js; sourceTree = "<group>"; };
+		F2F49BAD1BFEAF1F00DF29C5 /* CustomerProfile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerProfile.js; path = ../CustomerProfile.js; sourceTree = "<group>"; };
+		F2F49BAE1BFEAF1F00DF29C5 /* index.android.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.android.js; path = ../index.android.js; sourceTree = "<group>"; };
+		F2F49BAF1BFEAF1F00DF29C5 /* indexb.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = indexb.ios.js; path = ../indexb.ios.js; sourceTree = "<group>"; };
+		F2F49BB01BFEAF1F00DF29C5 /* Preference.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Preference.js; path = ../Preference.js; sourceTree = "<group>"; };
+		F2F49BB11BFEAF1F00DF29C5 /* Preferences.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Preferences.js; path = ../Preferences.js; sourceTree = "<group>"; };
+		F2F49BB21BFEAF1F00DF29C5 /* serverManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = serverManager.js; path = ../serverManager.js; sourceTree = "<group>"; };
+		F2F49BB31BFEAF1F00DF29C5 /* StoreAdd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreAdd.js; path = ../StoreAdd.js; sourceTree = "<group>"; };
+		F2F49BB41BFEAF1F00DF29C5 /* StoreFBLogin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreFBLogin.js; path = ../StoreFBLogin.js; sourceTree = "<group>"; };
+		F2F49BB51BFEAF1F00DF29C5 /* Store.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Store.js; path = ../Store.js; sourceTree = "<group>"; };
+		F2F49BB61BFEAF1F00DF29C5 /* StorePage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StorePage.js; path = ../StorePage.js; sourceTree = "<group>"; };
+		F2F49BB71BFEAF1F00DF29C5 /* StorePreferences.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StorePreferences.js; path = ../StorePreferences.js; sourceTree = "<group>"; };
+		F2F49BB81BFEAF1F00DF29C5 /* StoreProfile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreProfile.js; path = ../StoreProfile.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +391,35 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F2F49BA31BFEAECE00DF29C5 /* index.ios.js */,
+				F2EC183D1C03D62900BB4C49 /* shopping_bag.png */,
+				F2F49BA51BFEAF1F00DF29C5 /* bluetoothBeaconManager.js */,
+				F2F49BA61BFEAF1F00DF29C5 /* bluetoothScanningManager.js */,
+				F2F49BA71BFEAF1F00DF29C5 /* cacheManager.js */,
+				F2F49BA81BFEAF1F00DF29C5 /* CustomerAdd.js */,
+				F2EC182F1C03B6EA00BB4C49 /* StyleIntro.js */,
+				F2EC183F1C03D9D100BB4C49 /* StyleFB.js */,
+				F2EC18401C03D9D100BB4C49 /* StyleGeneral.js */,
+				F2F49BA91BFEAF1F00DF29C5 /* CustomerFBLogin.js */,
+				F2F49BAA1BFEAF1F00DF29C5 /* Customer.js */,
+				F2F49BAB1BFEAF1F00DF29C5 /* CustomerInfo.js */,
+				F2F49BAC1BFEAF1F00DF29C5 /* CustomerPreferences.js */,
+				F2F49BAD1BFEAF1F00DF29C5 /* CustomerProfile.js */,
+				F2EC18471C05222100BB4C49 /* matthew.png */,
+				F2F49BAE1BFEAF1F00DF29C5 /* index.android.js */,
+				F2F49BAF1BFEAF1F00DF29C5 /* indexb.ios.js */,
+				F2F49BB01BFEAF1F00DF29C5 /* Preference.js */,
+				F2F49BB11BFEAF1F00DF29C5 /* Preferences.js */,
+				F2F49BB21BFEAF1F00DF29C5 /* serverManager.js */,
+				F2F49BB31BFEAF1F00DF29C5 /* StoreAdd.js */,
+				F2F49BB41BFEAF1F00DF29C5 /* StoreFBLogin.js */,
+				F2EC18431C051B9100BB4C49 /* fb_logo.png */,
+				F2F49BB51BFEAF1F00DF29C5 /* Store.js */,
+				F2EC18491C0537C000BB4C49 /* bluetooth.png */,
+				F2F49BB61BFEAF1F00DF29C5 /* StorePage.js */,
+				F2F49BB71BFEAF1F00DF29C5 /* StorePreferences.js */,
+				F2F49BB81BFEAF1F00DF29C5 /* StoreProfile.js */,
+				F2EC18451C051F9700BB4C49 /* matthew.jpeg */,
 				9550C6061BE7E89100C65659 /* CoreBluetooth.framework */,
 				950F480E1BD4416C005A262F /* CoreLocation.framework */,
 				13B07FAE1A68108700A75B9A /* Locl */,
@@ -613,9 +700,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F49BC81BFEAF1F00DF29C5 /* StoreFBLogin.js in Resources */,
+				F2EC18441C051B9100BB4C49 /* fb_logo.png in Resources */,
+				F2F49BC11BFEAF1F00DF29C5 /* CustomerProfile.js in Resources */,
+				F2F49BA41BFEAECE00DF29C5 /* index.ios.js in Resources */,
+				F2F49BC21BFEAF1F00DF29C5 /* index.android.js in Resources */,
+				F2EC183E1C03D62900BB4C49 /* shopping_bag.png in Resources */,
+				F2EC18421C03D9D100BB4C49 /* StyleGeneral.js in Resources */,
+				F2F49BBB1BFEAF1F00DF29C5 /* cacheManager.js in Resources */,
+				F2EC18461C051F9700BB4C49 /* matthew.jpeg in Resources */,
+				F2F49BBF1BFEAF1F00DF29C5 /* CustomerInfo.js in Resources */,
+				F2EC18481C05222100BB4C49 /* matthew.png in Resources */,
+				F2F49BB91BFEAF1F00DF29C5 /* bluetoothBeaconManager.js in Resources */,
+				F2F49BBA1BFEAF1F00DF29C5 /* bluetoothScanningManager.js in Resources */,
+				F2F49BCC1BFEAF1F00DF29C5 /* StoreProfile.js in Resources */,
+				F2EC18411C03D9D100BB4C49 /* StyleFB.js in Resources */,
+				F2F49BC71BFEAF1F00DF29C5 /* StoreAdd.js in Resources */,
+				F2F49BC41BFEAF1F00DF29C5 /* Preference.js in Resources */,
+				F2F49BC01BFEAF1F00DF29C5 /* CustomerPreferences.js in Resources */,
+				F2F49BCA1BFEAF1F00DF29C5 /* StorePage.js in Resources */,
+				F2F49BBD1BFEAF1F00DF29C5 /* CustomerFBLogin.js in Resources */,
+				F2F49BBE1BFEAF1F00DF29C5 /* Customer.js in Resources */,
+				F2F49BC31BFEAF1F00DF29C5 /* indexb.ios.js in Resources */,
+				F2EC184A1C0537C000BB4C49 /* bluetooth.png in Resources */,
+				F2F49BC51BFEAF1F00DF29C5 /* Preferences.js in Resources */,
+				F2EC18301C03B6EA00BB4C49 /* StyleIntro.js in Resources */,
+				F2F49BC91BFEAF1F00DF29C5 /* Store.js in Resources */,
+				F2F49BBC1BFEAF1F00DF29C5 /* CustomerAdd.js in Resources */,
+				F2F49BCB1BFEAF1F00DF29C5 /* StorePreferences.js in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F2F49BC61BFEAF1F00DF29C5 /* serverManager.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
