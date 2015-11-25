@@ -57,6 +57,12 @@
 		954D30B21C053E5E000A8A8D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D30A51C053E44000A8A8D /* libRCTCamera.a */; };
 		954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */ = {isa = PBXBuildFile; fileRef = 954D30B31C05412F000A8A8D /* UIImagePickerManager */; };
 		954D30B71C05417D000A8A8D /* UIImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 954D30B61C05417D000A8A8D /* UIImagePickerManager.m */; };
+		954D30BF1C057BB5000A8A8D /* .npmignore in Resources */ = {isa = PBXBuildFile; fileRef = 954D30B91C057BB5000A8A8D /* .npmignore */; };
+		954D30C01C057BB5000A8A8D /* FileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 954D30BA1C057BB5000A8A8D /* FileUpload.m */; };
+		954D30C11C057BB5000A8A8D /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 954D30BB1C057BB5000A8A8D /* index.js */; };
+		954D30C21C057BB5000A8A8D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 954D30BC1C057BB5000A8A8D /* LICENSE */; };
+		954D30C31C057BB5000A8A8D /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 954D30BD1C057BB5000A8A8D /* package.json */; };
+		954D30C41C057BB5000A8A8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 954D30BE1C057BB5000A8A8D /* README.md */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
 		95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */; };
@@ -247,6 +253,12 @@
 		954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		954D30B31C05412F000A8A8D /* UIImagePickerManager */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UIImagePickerManager; path = "../node_modules/react-native-image-picker/UIImagePickerManager"; sourceTree = "<group>"; };
 		954D30B61C05417D000A8A8D /* UIImagePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIImagePickerManager.m; path = "../node_modules/react-native-image-picker/UIImagePickerManager/UIImagePickerManager.m"; sourceTree = "<group>"; };
+		954D30B91C057BB5000A8A8D /* .npmignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .npmignore; sourceTree = "<group>"; };
+		954D30BA1C057BB5000A8A8D /* FileUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUpload.m; sourceTree = "<group>"; };
+		954D30BB1C057BB5000A8A8D /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		954D30BC1C057BB5000A8A8D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		954D30BD1C057BB5000A8A8D /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		954D30BE1C057BB5000A8A8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Locl/Images-2.xcassets"; sourceTree = "<group>"; };
@@ -467,6 +479,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				954D30B81C057BB5000A8A8D /* react-native-file-upload */,
 				954D30B31C05412F000A8A8D /* UIImagePickerManager */,
 				954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */,
 				01D145061BFD6AE200BBA2B6 /* Bolts.framework */,
@@ -536,6 +549,20 @@
 				954D30A51C053E44000A8A8D /* libRCTCamera.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		954D30B81C057BB5000A8A8D /* react-native-file-upload */ = {
+			isa = PBXGroup;
+			children = (
+				954D30B91C057BB5000A8A8D /* .npmignore */,
+				954D30BA1C057BB5000A8A8D /* FileUpload.m */,
+				954D30BB1C057BB5000A8A8D /* index.js */,
+				954D30BC1C057BB5000A8A8D /* LICENSE */,
+				954D30BD1C057BB5000A8A8D /* package.json */,
+				954D30BE1C057BB5000A8A8D /* README.md */,
+			);
+			name = "react-native-file-upload";
+			path = "../node_modules/react-native-file-upload";
 			sourceTree = "<group>";
 		};
 		9550C5F51BE7E86D00C65659 /* Products */ = {
@@ -803,7 +830,11 @@
 			files = (
 				954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
+				954D30C31C057BB5000A8A8D /* package.json in Resources */,
+				954D30C21C057BB5000A8A8D /* LICENSE in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				954D30BF1C057BB5000A8A8D /* .npmignore in Resources */,
+				954D30C11C057BB5000A8A8D /* index.js in Resources */,
 				95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -827,6 +858,7 @@
 				954D30B71C05417D000A8A8D /* UIImagePickerManager.m in Sources */,
 				011DBE361BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m in Sources */,
 				011DBE411BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m in Sources */,
+				954D30C01C057BB5000A8A8D /* FileUpload.m in Sources */,
 				011DBE421BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m in Sources */,
 				011DBE521BE6EA9600B0C3E0 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */,
 				011DBE2C1BE6EA6B00B0C3E0 /* RCTFBSDKAppGroupAddDialog.m in Sources */,
@@ -835,6 +867,7 @@
 				011DBE371BE6EA6B00B0C3E0 /* RCTFBSDKShareInitializer.m in Sources */,
 				011DBE2F1BE6EA6B00B0C3E0 /* RCTFBSDKGameRequestDialog.m in Sources */,
 				011DBE351BE6EA6B00B0C3E0 /* RCTFBSDKShareDialog.m in Sources */,
+				954D30C41C057BB5000A8A8D /* README.md in Sources */,
 				011DBE3F1BE6EA8000B0C3E0 /* RCTConvert+FBSDKLogin.m in Sources */,
 				952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */,
 				011DBE331BE6EA6B00B0C3E0 /* RCTFBSDKShareAPI.m in Sources */,

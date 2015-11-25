@@ -10,6 +10,7 @@
     "react-native": "^0.12.0",
     "react-native-bluetooth-state": "^1.0.1",
     "react-native-camera": "^0.3.8",
+    "react-native-file-upload": "^1.0.4",
     "react-native-ibeacon": "^0.5.0",
     "react-native-image-picker": "^0.9.0",
     "underscore": "^1.8.3"
