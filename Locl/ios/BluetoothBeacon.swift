@@ -16,7 +16,7 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   var setMinor = 0
   
   //Creates the Beacon and starts broadcasting
-  @objc func initLocalBeacon() {
+  @objc func initLocalBeacon() { 
   if localBeacon != nil {
 		stopLocalBeacon()
   }
@@ -31,7 +31,6 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   beaconPeripheralData = localBeacon.peripheralDataWithMeasuredPower(nil)
   peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
   }
-  
   
   //Stop broadcasting the current beacon
   @objc func stopLocalBeacon() {
@@ -58,11 +57,23 @@ class BluetoothBeacon: NSObject, CBPeripheralManagerDelegate {
   
   //Acts as an intermediary between your app and the iOS Bluetooth stack
   @objc func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
-    if peripheral.state == .PoweredOn {
+    switch peripheral.state {
+    case CBPeripheralManagerState.PoweredOn:
       peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
-    } else if peripheral.state == .PoweredOff {
+    case CBPeripheralManagerState.PoweredOff:
+      peripheralManager.stopAdvertising()
+    case CBPeripheralManagerState.Resetting:
+      peripheralManager.stopAdvertising()
+    case CBPeripheralManagerState.Unsupported:
+      peripheralManager.stopAdvertising()
+    case CBPeripheralManagerState.Unauthorized:
+      peripheralManager.stopAdvertising()
+    case CBPeripheralManagerState.Unknown:
+      peripheralManager.stopAdvertising()
+    default:
       peripheralManager.stopAdvertising()
     }
+    
   }
 }
 

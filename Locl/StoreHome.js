@@ -6,6 +6,7 @@ var bluetoothBeaconManager = require('./bluetoothBeaconManager.js');
 var bluetoothScanningManager = require('./bluetoothScanningManager.js');
 
 var {
+  AppStateIOS,
   ScrollView,
   StyleSheet,
   Text,
@@ -137,6 +138,7 @@ var StoreHome = React.createClass({
     } else {
       this.setState({colorTrueSwitchIsOn: true, colorFalseSwitchIsOn: false});
       bluetoothBeaconManager.onBeaconingStartPress();
+      AlertIOS.alert("Bluetooth beaconing will deactivate if your phone locks, or the application is not in the foreground. For best performance, disable locking and keep the application active on the screen.");
       console.log("colorTrueSwitch set to value, bluetooth set to on");
     }
   },
@@ -152,6 +154,7 @@ var StoreHome = React.createClass({
 
             StoreID: 101,
             dataSource: ds.cloneWithRows([]),
+            currentAppState: AppStateIOS.currentState,
           };
   },
 
@@ -159,6 +162,7 @@ var StoreHome = React.createClass({
     bluetoothScanningManager.requestAlwaysAuthorization();
     bluetoothScanningManager.getAuthorizationStatus();
     this.getStoreItems();
+    AppStateIOS.addEventListener('change', this.handleAppStateChange);
   },
 
   getStoreItems: function() {
@@ -190,6 +194,14 @@ var StoreHome = React.createClass({
       </View>
       </TouchableHighlight>
       );
+  },
+
+  handleAppStateChange: function(currentAppState) {
+  // if (currentAppState == "background") {
+  //   bluetoothBeaconManager.onBeaconingStartPress();
+  // }
+  this.setState({currentAppState: AppStateIOS.currentState});
+  console.log("App State: " + AppStateIOS.currentState);
   },
 
 
