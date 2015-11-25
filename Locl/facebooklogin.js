@@ -1,7 +1,9 @@
 'use strict';
 
 var React = require('react-native');
-var CustomerProfile = require('.CustomerProfile');
+var FBSDKLogin = require('react-native-fbsdklogin');
+var FBSDKCore = require('react-native-fbsdkcore');
+var UserProfile = require('./UserProfile');
 
 var {
   StyleSheet,
@@ -15,33 +17,18 @@ var {
   NavigatorIOS,
   AppRegistry
 } = React;
-var FBSDKLogin = require('react-native-fbsdklogin');
+
 var {
   FBSDKGraphRequest,
   FBSDKLoginButton,
   FBSDKLoginManager,
 } = FBSDKLogin;
 
-var FBSDKCore = require('react-native-fbsdkcore');
 var {
   FBSDKGraphRequest,
   FBSDKGraphRequestManager,
   FBSDKAccessToken,
 } = FBSDKCore;
-
-var fetchFriends = new FBSDKGraphRequest((error, result) => {
-  if (error)
-  {
-    console.log("Error: ", error);
-  }
-  else
-  {
-    console.log(result);
-  }
-}, '/me', {fields: { string: 'name,gender,email'} });
-
-FBSDKGraphRequestManager.batchRequests([fetchFriends],
-  function() {}, 60);
 
 var styles = StyleSheet.create({
   description: {
@@ -58,48 +45,54 @@ var styles = StyleSheet.create({
   }
 });
 
+
 class FB extends React.Component {
   render(){
     return (<View style={styles.container}>
-      <Text style={styles.description}>
-      FaceBook Login
-      </Text>
-      <FBSDKLoginButton 
-      onPress= {() => { 
-        FBSDKLoginManager.logInWithReadPermissions(['email'],
-          (error, result) => {
+        <Text style={styles.description}>
+        FaceBook Login
+        </Text>
+        <FBSDKLoginButton 
+        onPress= {() => { 
+          FBSDKLoginManager.logInWithReadPermissions(['email'],
+              (error, result) => {
                 //call back not called. uses onloginfinished instead
               })}}
-        onLoginFinished={(error, result) => {
-          if (result.isCancelled) {
-            alert('Login cancelled.');
-          } else {
-            alert('Logged in.');
-            loadCustomerProfile;
-          }
+          onLoginFinished={(error, result) => {
+            if (result.isCancelled) {
+              alert('Login cancelled.');
+            } else {
+              this.loadUserInfo();
+            }
 
-        }}
-        onLogoutFinished={() => alert('Logged out.')}
-        />
-        </View>
-        );
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          />
+          </View>
+          );
   }
 
-  loadCustomerProfile(){
+  loadUserProfile(informationDict){
+    console.log(informationDict['picture']['data']['url']);
     this.props.navigator.push({
-      title: 'CustomerProfile',
-      component: CustomerProfile,
-    });
+      title: 'User',
+      component: UserProfile,
+      passProps: {name: informationDict['name'], email: informationDict['email'],picture: informationDict['picture']['data']['url']},});
   }
 
-  static isLoggedIn(callback: (result: boolean) => void) {
-    FBSDKAccessToken.getCurrentAccessToken(token =>
-    {
-      if (token == null) {
-        callback(false);
-      } else {
-        callback(true);
-      }});
+  loadUserInfo() {
+    var GraphReq = new FBSDKGraphRequest((error, result) => {
+      if (error)
+      {
+        console.log("Error: ", error);
+      }
+      else
+      {
+        this.loadUserProfile(result);
+      }
+    }, '/me', {fields: { string: 'name,email,picture'} });
+    FBSDKGraphRequestManager.batchRequests([GraphReq],
+        function() {}, 60);
   }
 }
 

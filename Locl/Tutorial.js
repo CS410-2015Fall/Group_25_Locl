@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var StorePage = require('./StorePage');
+var FacebookLogin = require('./facebooklogin');
 
 var {
   StyleSheet,
@@ -162,7 +163,7 @@ var Tutorial = React.createClass({
  toFacebookLogin(){
    this.props.navigator.push({
      title: 'Facebook',
-     component: facebookLogin
+     component: FacebookLogin
    });
  }
 
