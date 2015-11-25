@@ -154,46 +154,35 @@ var ItemPage = React.createClass({
       );
 },
 
-//Props: ItemData:
-  // [ { ItemID: 4,
-  //     Name: 'Nike Shoes',
-  //     UPC: 112233,
-  //     RegPrice: 120,
-  //     SalePrice: 100,
-  //     Description: 'cheap nike shoes',
-  //     StartDate: '11-22-23',
-  //     EndDate: '11-23-23',
-  //     Quantity: 2,
-  //     StoreID: 101,
-  //     HTMLlink: base64 of image
 getInitialState: function() {
-    if (this.props.ItemData) {
-      return {
-        updateItem: true,
-        name: this.props.ItemData.Name,
-        upc: this.props.ItemData.UPC.toString(),
-        quantity: this.props.ItemData.Quantity.toString(),
-        regPrice: this.props.ItemData.RegPrice.toString(),
-        salePrice: this.props.ItemData.SalePrice.toString(),
-        description: this.props.ItemData.Description,
-        startDate: this.props.ItemData.StartDate,
-        endDate: this.props.ItemData.EndDate,
-        htmlLink: this.props.ItemData.HTMLlink,
-      }
-    } else {
-      return {
-        name: "",
-        upc: "",
-        quantity: "",
-        regPrice: "",
-        salePrice: "",
-        description: "",
-        startDate: "",
-        endDate: "",
-        htmlLink: "http://www.indre-reisid.ee/wp-content/themes/envision/lib/images/default-placeholder.png",
-      }
+  if (this.props.ItemData) {
+    return {
+      updateItem: true,
+      name: this.props.ItemData.Name,
+      upc: this.props.ItemData.UPC.toString(),
+      quantity: this.props.ItemData.Quantity.toString(),
+      regPrice: this.props.ItemData.RegPrice.toString(),
+      salePrice: this.props.ItemData.SalePrice.toString(),
+      description: this.props.ItemData.Description,
+      startDate: this.props.ItemData.StartDate,
+      endDate: this.props.ItemData.EndDate,
+      htmlLink: this.props.ItemData.HTMLlink,
     }
-  },
+  } else {
+    return {
+      name: "",
+      upc: "",
+      quantity: "",
+      regPrice: "",
+      salePrice: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+      htmlLink: "http://www.indre-reisid.ee/wp-content/themes/envision/lib/images/default-placeholder.png",
+    }
+  }
+},
+
 onUpdatePress: function()  {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
     AlertIOS.alert("Required fields missing");
@@ -214,7 +203,9 @@ onUpdatePress: function()  {
      AlertIOS.alert("Item Updated");
    })
     .done()
-    this.props.navigator.pop();}},
+    this.props.navigator.pop();
+  }
+},
 
 onAddPress: function() {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
@@ -238,17 +229,18 @@ onAddPress: function() {
    })
     .done()
     this.props.navigator.pop();
-  }},
+  }
+},
 
 onDeletePress: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID="+this.props.ItemData.ItemID, {method: "DELETE"})
-    .then((response) => response.json())
-    .then((responseData) => {    
-      AlertIOS.alert("Item Deleted");
-    })
-    .done();
-    this.props.navigator.pop();
-  },
+  fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID="+this.props.ItemData.ItemID, {method: "DELETE"})
+  .then((response) => response.json())
+  .then((responseData) => {    
+    AlertIOS.alert("Item Deleted");
+  })
+  .done();
+  this.props.navigator.pop();
+},
 
 // The first arg will be the options object for customization, the second is
   // your callback which sends bool: didCancel, object: response.
@@ -256,15 +248,15 @@ onDeletePress: function() {
   // response.uri is the uri to the local file asset on the device
   // response.isVertical will be true if the image is vertically oriented
   // response.width & response.height give you the image dimensions
-onCameraPress: function() {
-  var options = {
+  onCameraPress: function() {
+    var options = {
   title: 'Get Picture of Item', // specify null or empty string to remove the title
   cancelButtonTitle: 'Cancel',
   takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
   chooseFromLibraryButtonTitle: 'Choose from Library...', // specify null or empty string to remove this button
-  maxWidth: 720,
-  maxHeight: 1080,
-  quality: 0.9,
+  maxWidth: 480,
+  maxHeight: 640,
+  quality: 0.3,
   allowsEditing: true, // Built in iOS functionality to resize/reposition the image
   noData: false, // Disables the base64 `data` field from being generated (greatly improves performance on large photos)
   storageOptions: { // if this key is provided, the image will get saved in the documents directory (rather than a temporary directory)
