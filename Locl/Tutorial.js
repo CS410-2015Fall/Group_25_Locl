@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var StorePage = require('./StorePage');
-var FacebookLogin = require('./FacebookLogin');
+var FacebookLogin = require('./facebooklogin');
 
 var {
   StyleSheet,
