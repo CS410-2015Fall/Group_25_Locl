@@ -58,68 +58,66 @@ var styles = StyleSheet.create({
 });
 
 var StoreProfile = React.createClass({
-  render(){
-    var top;
+  
+  render() {
     var bottom;
+
+    //Are we updating or adding a store?
     if (this.state.updateItem) {
       bottom = 
       <View style={styles.container}>
-
       <TouchableHighlight onPress={this.onUpdatePress}>
       <Text style={styles.button}>Update</Text>
       </TouchableHighlight>
-
       <TouchableHighlight onPress={this.onDeletePress}>
       <Text style={styles.button}>Close Store</Text>
       </TouchableHighlight>
-
       </View>;
     } else { 
       bottom = 
       <View style={styles.container}>
-
       <TouchableHighlight onPress={this.onCreatePress}>
       <Text style={styles.button}>Create</Text>
       </TouchableHighlight>
-
       </View>;
     }
 
     return (
       <ScrollView style={styles.container}>
       
-      <TouchableHighlight onPress={this.onCameraPress}>
-      <Image source={{uri: this.state.htmlLink}} style={styles.thumb}/>
-      </TouchableHighlight>
+        <TouchableHighlight onPress={this.onCameraPress}>
+          <Image source={{uri: this.state.htmlLink}} style={styles.thumb}/>
+        </TouchableHighlight>
 
-      <Text style={styles.textFieldTitle}>Name:</Text>
-      <TextInput
-      style={styles.textField}
-      onChangeText={(text) => this.setState({storeName: text})}
-      value={this.state.storeName}
-      />
+        <Text style={styles.textFieldTitle}> Name: </Text>
+        <TextInput
+        style={styles.textField}
+        onChangeText={(text) => this.setState({storeName: text})}
+        value={this.state.storeName}
+        />
 
-      <Text style={styles.textFieldTitle}>Address:</Text>
-      <TextInput
-      style={styles.textField}
-      onChangeText={(text) => this.setState({address: text})}
-      value={this.state.address}
-      />
+        <Text style={styles.textFieldTitle}> Address: </Text>
+        <TextInput
+        style={styles.textField}
+        onChangeText={(text) => this.setState({address: text})}
+        value={this.state.address}
+        />
 
-      <Text style={styles.textFieldTitle}>Description:</Text>
-      <TextInput
-      style={styles.textField}
-      onChangeText={(text) => this.setState({description: text})}
-      value={this.state.description}
-      />
+        <Text style={styles.textFieldTitle}> Description: </Text>
+        <TextInput
+        style={styles.textField}
+        onChangeText={(text) => this.setState({description: text})}
+        value={this.state.description}
+        />
 
-      {bottom}
+        {bottom}
       
       </ScrollView>
       );
   },
 
   getInitialState: function() {
+    //StoreID passed as prop if updating a store, otherwise there is no StoreID and we are creating a new store
     if (this.props.StoreID) {
       return {
         updateItem: true,
@@ -188,7 +186,7 @@ var StoreProfile = React.createClass({
       {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
-      AlertIOS.alert("Deleted Store");
+      AlertIOS.alert("Closed Store");
     })
     .done();
     this.props.navigator.pop();
@@ -199,7 +197,7 @@ var StoreProfile = React.createClass({
     .then((response) => response.json())
     .then((responseData) => {
       if (responseData.error) {
-        console.log("Error: " + responseData.error);
+        console.log("Get Store Details Error: " + responseData.error);
       }
       else {
         this.setState({
@@ -233,9 +231,8 @@ var StoreProfile = React.createClass({
     path: 'images' // will save image at /Documents/images rather than the root
   }}
   UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
-    console.log('Response = ', response);
     if (didCancel) {
-      console.log('User cancelled image picker');
+      console.log('Image Picker Cancelled');
     }
     else {
       var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};

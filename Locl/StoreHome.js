@@ -5,6 +5,7 @@ var ItemPage = require('./ItemPage.js');
 var StoreProfile = require('./StoreProfile.js');
 var bluetoothBeaconManager = require('./bluetoothBeaconManager.js');
 var bluetoothScanningManager = require('./bluetoothScanningManager.js');
+var serverManager = require('./serverManager.js');
 
 var {
   AppStateIOS,
@@ -122,7 +123,6 @@ var StoreHome = React.createClass({
 
       <ScrollView
       automaticallyAdjustContentInsets={false}
-      onScroll={() => { console.log('Scrolling! Weeeee'); }}
       scrollEventThrottle={200}
       style={styles.scrollView}>
       <View style={styles.resultsContainer}>
@@ -137,17 +137,16 @@ var StoreHome = React.createClass({
       );
 },
 
+//This should eventually be a button
 handlePress: function(value) {
-  console.log("handling Press");
   if (this.state.colorTrueSwitchIsOn) {
     this.setState({colorFalseSwitchIsOn: true, colorTrueSwitchIsOn: false});
     bluetoothBeaconManager.onBeaconingStopPress();
-    console.log("colorFalseSwitch set to value, bluetooth set to off");
+    AlertIOS.alert("Bluetooth Beaconing Deactivated");
   } else {
     this.setState({colorTrueSwitchIsOn: true, colorFalseSwitchIsOn: false});
     bluetoothBeaconManager.onBeaconingStartPress();
-    AlertIOS.alert("Bluetooth beaconing will deactivate if your phone locks, or the application is not in the foreground. For best performance, disable locking and keep the application active on the screen.");
-    console.log("colorTrueSwitch set to value, bluetooth set to on");
+    AlertIOS.alert("Bluetooth Beaconing Activated. Bluetooth beaconing will deactivate if your phone locks, or the application is not in the foreground. For best performance, disable locking and keep the application active on the screen.");
   }
 },
 
@@ -167,6 +166,7 @@ getInitialState: function() {
 },
 
 componentWillMount: function() {
+  serverManager.auth();
   bluetoothScanningManager.requestAlwaysAuthorization();
   bluetoothScanningManager.getAuthorizationStatus();
   this.getStoreItems();
@@ -179,8 +179,7 @@ getStoreItems: function() {
   .then((response) => response.json())
   .then((responseData) => {    
     if (responseData.error) {
-      console.log("Error!");
-      console.log(responseData.error);
+      console.log("Get Store Items Error: " + responseData.error);
     }
     else {
       this.setState({
@@ -214,7 +213,7 @@ onUpdatePress: function(itemData) {
   this.props.navigator.push({
     title: itemData.Name,
     component: ItemPage,
-    passProps: {ItemData: itemData},
+    passProps: {ItemData: itemData, StoreID: this.state.storeID,},
   });
 },
 
@@ -230,7 +229,7 @@ onAddPress: function() {
   this.props.navigator.push({
     title: 'New Item',
     component: ItemPage,
-    passProps: {ItemData: null, StoreID: this.state.storeID.toString()},
+    passProps: {ItemData: null, StoreID: this.state.storeID},
   });
 },
 

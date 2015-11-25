@@ -58,9 +58,7 @@ thumb: {
 
 var ItemPage = React.createClass({
   render(){
-    var top;
-    var bottom;
-    console.log(this.state.otherSource); 
+    var bottom; 
     if (this.state.updateItem) {
       bottom = 
       <View style={styles.container}>
@@ -102,7 +100,7 @@ var ItemPage = React.createClass({
       <Text style={styles.textFieldTitle}>UPC:</Text>
       <TextInput
       style={styles.textField}
-      onChangeText={(text) => this.setState({upc: text})}
+      onChangeText={(text) => this.getItemDetailsByUPC(text)}
       value={this.state.upc}
       />
 
@@ -167,6 +165,7 @@ getInitialState: function() {
       startDate: this.props.ItemData.StartDate,
       endDate: this.props.ItemData.EndDate,
       htmlLink: this.props.ItemData.HTMLlink,
+      storeID: this.props.StoreID,
     }
   } else {
     return {
@@ -179,8 +178,35 @@ getInitialState: function() {
       startDate: "",
       endDate: "",
       htmlLink: "http://www.indre-reisid.ee/wp-content/themes/envision/lib/images/default-placeholder.png",
+      storeID: this.props.StoreID,
     }
   }
+},
+
+getItemDetailsByUPC: function(UPC) {
+  if ((UPC.length >= 12) && (UPC.match(/^\d+$/))) {
+    fetch("http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=98A88ED2-16F7-476B-BCCF-92B44912AAF5&upc=" + UPC.toString(), {method: "GET"})
+        .then((response) => {
+          var parse = JSON.parse(response._bodyText);
+          if (response.error) {
+            console.log("Get Details by UPC Error: " + response.error);
+          } else if (parse[0] == null) {
+            this.setState({
+              upc: UPC,
+            })
+          } else {
+            this.setState({
+              upc: UPC,
+              name: parse[0].productname,
+              regPrice: parse[0].price,
+              htmlLink: parse[0].imageurl,
+            })
+          }}).done(); 
+    } else {
+      this.setState({
+        upc: UPC,
+      })
+    }
 },
 
 onUpdatePress: function()  {
@@ -221,7 +247,7 @@ onAddPress: function() {
           RegPrice: this.state.regPrice, 
           SalePrice: this.state.salePrice, 
           UPC: this.state.upc, 
-          StoreID:this.props.StoreID, 
+          StoreID: this.state.storeID, 
           HTMLlink: this.state.htmlLink})})
     .then((response) => response.json())
     .then((responseData) => {
@@ -264,9 +290,8 @@ onDeletePress: function() {
     path: 'images' // will save image at /Documents/images rather than the root
   }}
   UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
-    console.log('Response = ', response);
     if (didCancel) {
-      console.log('User cancelled image picker');
+      console.log('Image picker cancelled');
     }
     else {
       var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
