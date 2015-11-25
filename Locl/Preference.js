@@ -3,6 +3,9 @@
 var React = require('react-native');
 var StoreFBLogin = require('./StoreFBLogin');
 var CustomerFBLogin = require('./CustomerFBLogin');
+var CustomerHome = require('./CustomerHome');
+var StoreHome = require('./StoreHome');
+var FBSDKCore = require('react-native-fbsdkcore');
 
 var customer = 'false';
 

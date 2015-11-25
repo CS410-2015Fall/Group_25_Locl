@@ -24,22 +24,13 @@ var OUTLINE = '#d4f7bb';
 
 var styles = StyleSheet.create({
                                description: {
-                               fontFamily: 'Avenir',
-                               color: TEXT,
-                               backgroundColor: BACKGROUND,
-                               fontSize: 24,
-                               marginLeft: 40,
-                               marginTop: 90,
-                               },
-                               icon:{
-                               marginTop: 90,
-                               marginLeft: 40,
-                               borderWidth: 4,
-                               borderColor: OUTLINE,
+                               color: 'black',
+                               backgroundColor: 'white',
+                               fontSize: 30,
+                               margin: 80
                                },
                                container: {
                                flex: 1,
-                               backgroundColor: BACKGROUND,
                                },
                                flowRight: {
                                flexDirection: 'column',
@@ -47,76 +38,117 @@ var styles = StyleSheet.create({
                                alignSelf: 'stretch'
                                },
                                buttonText: {
-                               marginTop: 20,
-                               fontSize: 24,
-                               color: TEXT,
+                               fontSize: 18,
+                               color: 'white',
                                alignSelf: 'center'
                                },
                                button: {
-                               width: 100,
-                               height: 100,
-                               backgroundColor: BUTTON,
-                               borderColor: OUTLINE,
-                               borderWidth: 16,
-                               borderRadius: 100,
-                               marginTop: 30,
-                               marginBottom: 50,
-                               marginLeft:37.5,
-                               },
-                               rowcontainer:{
-                               marginTop: 0,
-                               backgroundColor: BACKGROUND,
+                               height: 20,
+                               flex: 1,
                                flexDirection: 'row',
-                               alignItems: 'center',
-                               alignSelf: 'stretch'
+                               backgroundColor: '#48BBEC',
+                               borderColor: '#48BBEC',
+                               borderWidth: 1,
+                               borderRadius: 8,
+                               marginBottom: 10,
+                               alignSelf: 'stretch',
+                               justifyContent: 'center'
                                },
-                               item:{
-                               fontFamily: 'Avenir',
-                               color: TEXT,
-                               backgroundColor: BACKGROUND,
-                               fontSize: 24,
-                               marginLeft: 40,
-                               marginTop: 20,
+                               thumb: {
+                               width: 80,
+                               height: 80,
+                               marginRight: 10
+                               },
+                               textContainer: {
+                               flex: 1
+                               },
+                               separator: {
+                               height: 1,
+                               backgroundColor: '#dddddd'
+                               },
+                               price: {
+                               fontSize: 25,
+                               fontWeight: 'bold',
+                               color: '#48BBEC'
+                               },
+                               title: {
+                               fontSize: 20,
+                               color: '#656565'
+                               },
+                               rowContainer: {
+                               flexDirection: 'row',
+                               padding: 10
                                }
                                });
 
-var StorePreferences = React.createClass({
-                                 render(){
-                                         return (<View style={styles.container}>
-                                                 <Text style={styles.description}>
-                                                 Add items:
-                                                 </Text>
-                                                 <Text style={styles.item}>></Text>
-                                                 <Text style={styles.item}>></Text>
-                                                 <Text style={styles.item}>></Text>
-                                                 <TextInput style={{height: 40, width: 230, borderColor: OUTLINE, borderWidth: 4, marginBottom: 10, marginTop: 70, marginLeft: 40}}
-                                                 onChange={this.onTextInputChange}/>
-                                                 <View style={styles.rowcontainer}>
-                                                 <TouchableHighlight style={styles.button} onPress={this.addItem}>
-                                                 <Text style={styles.buttonText}>Add</Text>
-                                                 </TouchableHighlight>
-                                                 <TouchableHighlight style={styles.button} onPress={this.goToHome}>
-                                                 <Text style={styles.buttonText}>Home</Text>
-                                                 </TouchableHighlight>
-                                                 </View>
-                                                 </View>);
-                                 },
-                                 
-                                 addItem(){
-                                 if (items.length < 5){
-                                 items.push(toAdd);
-                                 console.log(items.pop());
-                                 }
-                                 },
-                                 
-                                 onTextInputChange(event) {
-                                 toAdd = event.nativeEvent.text;
-                                 },
-                                 
-                                 goToHome(){
-                                 console.log("Going to home screen");
-                                 }
-                                 
-                                 });
+var StorePage = React.createClass({
+                                  render(){
+                                  return (
+                                          <View style={styles.container}>
+                                          <ListView
+                                          dataSource={this.state.dataSource}
+                                          renderRow={this.renderRow}
+                                          />
+                                          </View>);
+                                  },
+                                  
+                                  getInitialState: function() {
+                                  var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+                                  return {
+                                  storeID: this.props.StoreID,
+                                  dataSource: ds.cloneWithRows([]),
+                                  };
+                                  },
+                                  
+                                  //Inputs:
+                                  // [ { ItemID: 4,
+                                  //     Name: 'Nike Shoes',
+                                  //     UPC: 112233,
+                                  //     RegPrice: 120,
+                                  //     SalePrice: 100,
+                                  //     Description: 'cheap nike shoes',
+                                  //     StartDate: '11-22-23',
+                                  //     EndDate: '11-23-23',
+                                  //     Quantity: 2,
+                                  //     StoreID: 101,
+                                  //     HTMLimg: 'http://www.alegoo.com/images05/footwear/shoes-02/014/nike-basketball-shoes-12.jpg' } ] }
+                                  //Output: HTML for each row
+                                  renderRow: function(itemData) {
+                                  return (
+                                          <View>
+                                          <View style={styles.rowContainer}>
+                                          <Image style={styles.thumb} source={{ uri: itemData.HTMLimg }} />
+                                          <View  style={styles.textContainer}>
+                                          <Text style={styles.price}>${itemData.SalePrice}</Text>
+                                          <Text style={styles.title} 
+                                          numberOfLines={1}>{itemData.Name}</Text>
+                                          </View>
+                                          </View>
+                                          <View style={styles.separator}/>
+                                          </View>
+                                          );
+                                  },
+                                  
+                                  componentWillMount: function() {
+                                  this.getStoreItems();
+                                  },
+                                  
+                                  getStoreItems: function() {
+                                  fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + this.props.StoreID, {method: "GET"})
+                                  .then((response) => response.json())
+                                  .then((responseData) => {    
+                                        if (responseData.error) {
+                                        console.log("Error!");
+                                        console.log(responseData.error);
+                                        }
+                                        else {
+                                        this.setState({
+                                                      dataSource: this.state.dataSource.cloneWithRows(responseData.record),
+                                                      })
+                                        }
+                                        })
+                                  .done();
+                                  }
+                                  });
 
 module.exports = StorePreferences;

@@ -1,13 +1,13 @@
 'use strict';
 
 var React = require('react-native');
-var bt = false;
 
 var {
   StyleSheet,
   Text,
   TextInput,
   View,
+  ListView,
   TouchableHighlight,
   ActivityIndicatorIOS,
   Image,

@@ -3,11 +3,34 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "node_modules/react-native/packager/packager.sh",
+    "test": "jest"
   },
   "dependencies": {
     "react-native": "^0.12.0",
     "react-native-bluetooth-state": "^1.0.1",
-    "react-native-ibeacon": "^0.5.0"
+    "react-native-ibeacon": "^0.5.0",
+    "underscore": "^1.8.3"
+  },
+  "jest": {
+    "scriptPreprocessor": "node_modules/react-native/jestSupport/preprocessor.js",
+    "setupEnvScriptFile": "node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "packager/react-packager/src/Activity/"
+    ],
+    "testFileExtensions": [
+      "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "promise",
+      "source-map"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.1.21",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "jest-cli": "^0.7.1"
   }
 }

@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var CustomerProfile = require('./CustomerProfile');
+var FBSDKLogin = require('react-native-fbsdklogin');
 
 var {
   StyleSheet,
@@ -16,6 +17,11 @@ var {
   AppRegistry
 } = React;
 
+var {
+  FBSDKGraphRequest,
+  FBSDKLoginButton,
+  FBSDKLoginManager,
+} = FBSDKLogin;
 
 var BACKGROUND = '#a2ee6c';
 var TEXT = '#effde4';
@@ -93,5 +99,45 @@ var CustomerFBLogin = React.createClass({
                            
                            
                            });
+
+
+var CustomerFBLogin = React.createClass({
+                                        
+  // Does it render right?
+
+  render(){
+    return (<View style={styles.container}>
+        <Text style={styles.description}>
+        FaceBook Login
+        </Text>
+        <FBSDKLoginButton 
+        onPress= {() => { 
+          FBSDKLoginManager.logInWithReadPermissions(['email'],
+              (error, result) => {
+                //call back not called. uses onloginfinished instead
+              })}}
+          onLoginFinished={(error, result) => {
+            if (result.isCancelled) {
+              alert('Login cancelled.');
+            } else {
+              alert('Logged in.');
+              this.loadCustomerProfile();
+            }
+
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          />
+            </View>
+            );
+  },
+
+  loadCustomerProfile(){
+    this.props.navigator.push({
+      title: 'CustomerProfile',
+      component: CustomerProfile,
+    });
+
+  }
+});
 
 module.exports = CustomerFBLogin;

@@ -3,9 +3,12 @@
 var React = require('react-native');
 var CustomerAdd = require('./CustomerAdd');
 var StorePage = require('./StorePage');
-var bt = false;
+var bluetoothScanningManager = require('./bluetoothScanningManager.js');
+var cacheManager = require('./cacheManager.js');
+var serverManager = require('./serverManager.js');
 
 var {
+  AppStateIOS,
   StyleSheet,
   Text,
   TextInput,
@@ -15,7 +18,9 @@ var {
   Image,
   Component,
   NavigatorIOS,
-  AppRegistry
+  AppRegistry,
+  ListView,
+  DeviceEventEmitter,
 } = React;
 
 var BACKGROUND = '#a2ee6c';

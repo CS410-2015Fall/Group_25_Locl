@@ -152,4 +152,43 @@ var Locl = React.createClass({
                              });
 
 
+var Locl = React.createClass({
+	render() {
+		if(introductionCompleted == false){
+			return (
+				<NavigatorIOS ref='nav'
+				style={styles.container}
+				initialRoute={{
+					title: 'Welcome',
+					component: Tutorial,
+				}}/>
+				);
+
+		} else {
+			if(customer){
+				return (
+					<NavigatorIOS ref='nav'
+					style={styles.container}
+					initialRoute={{
+						title: 'Locl',
+						component: CustomerHome,
+					}}/>
+					);
+
+
+			} else {
+				return (
+					<NavigatorIOS ref='nav'
+					style={styles.container}
+					initialRoute={{
+						title: 'Store',
+						component: StoreHome,
+					}}/>
+					);
+			}
+		}
+	}
+});
+
+
 AppRegistry.registerComponent('Locl', () => Locl);
