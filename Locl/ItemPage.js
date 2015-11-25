@@ -1,6 +1,7 @@
-'use strict';
-
 var React = require('react-native');
+
+var cameraManager = require('./cameraManager.js');
+var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 
 var {
   AlertIOS,
@@ -17,6 +18,23 @@ var {
   NavigatorIOS,
   AppRegistry
 } = React;
+
+//UIImagePicker
+var options = {
+  title: 'Select Avatar', // specify null or empty string to remove the title
+  cancelButtonTitle: 'Cancel',
+  takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
+  chooseFromLibraryButtonTitle: 'Choose from Library...', // specify null or empty string to remove this button
+  maxWidth: 100,
+  maxHeight: 100,
+  quality: 0.2,
+  allowsEditing: false, // Built in iOS functionality to resize/reposition the image
+  noData: false, // Disables the base64 `data` field from being generated (greatly improves performance on large photos)
+  storageOptions: { // if this key is provided, the image will get saved in the documents directory (rather than a temporary directory)
+    skipBackup: true, // image will NOT be backed up to icloud
+    path: 'images' // will save image at /Documents/images rather than the root
+  }
+};
 
 //app Name for DreamFactory
 var loclSQL="?app_name=loclSQL";
@@ -64,6 +82,7 @@ var styles = StyleSheet.create({
 var ItemPage = React.createClass({
   render(){
     var bottom; 
+    this.printState();
     if (this.state.updateItem) {
       bottom = 
       <View style={styles.container}>
@@ -73,12 +92,18 @@ var ItemPage = React.createClass({
               <TouchableHighlight onPress={this.onDeletePress}>
             <Text style={styles.button}>Delete</Text>
         </TouchableHighlight>
+        <TouchableHighlight onPress={UIImagePickerManager.showImagePicker}>
+            <Text style={styles.button}>Camera</Text>
+        </TouchableHighlight>
         </View>;
     } else { 
       bottom = 
      <View style={styles.container}>
-    <TouchableHighlight onPress={this.onAddPress}>
+        <TouchableHighlight onPress={this.onAddPress}>
             <Text style={styles.button}>Add</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this.onCameraPress}>
+            <Text style={styles.button}>Camera</Text>
         </TouchableHighlight>
         </View>;
       }
@@ -141,12 +166,7 @@ var ItemPage = React.createClass({
             value={this.state.endDate}
         />
 
-        <Text style={styles.textFieldTitle}>Image Address:</Text>
-        <TextInput
-            style={styles.textField}
-            onChangeText={(text) => this.setState({htmlImg: text})}
-            value={this.state.htmlImg}
-        />
+        <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
         {bottom}
       </ScrollView>
       );
@@ -166,6 +186,7 @@ var ItemPage = React.createClass({
         startDate: this.props.ItemData.StartDate,
         endDate: this.props.ItemData.EndDate,
         htmlImg: this.props.ItemData.HTMLimg,
+        avatarSource: "",
       }
     } else {
       return {
@@ -178,6 +199,7 @@ var ItemPage = React.createClass({
         startDate: "",
         endDate: "",
         htmlImg: "",
+        avatarSource: "",
       }
     }
   },
@@ -238,6 +260,48 @@ var ItemPage = React.createClass({
     .done();
     this.props.navigator.pop();
   },
+
+// The first arg will be the options object for customization, the second is
+// your callback which sends bool: didCancel, object: response.
+//
+// response.data is the base64 encoded image data
+// response.uri is the uri to the local file asset on the device
+// response.isVertical will be true if the image is vertically oriented
+// response.width & response.height give you the image dimensions
+onCameraPress: function() {
+  UIImagePickerManager.showImagePicker(options, (didCancel, response) => {
+  console.log('Response = ', response);
+
+  if (didCancel) {
+    console.log('User cancelled image picker');
+  }
+  else {
+    if (response.customButton) {
+      console.log('User tapped custom button: ', response.customButton);
+    }
+    else {
+
+      // You can display the image using either:
+      var source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+      // const source = {uri: response.uri.replace('file://', ''), isStatic: true};
+
+      console.log("Source.uri: " + source.uri);
+
+      this.setState({
+        htmlImg: 'data:image/jpeg;base64,' + response.data,
+        avatarSource: 'data:image/jpeg;base64,' + response.data,
+      });
+
+    }
+  }
+  }
+  )
+},
+
+printState: function() {
+  console.log("htmlImg: " + this.state.htmlImg);
+  console.log("avatarSource: " + this.state.avatarSource);      
+},
 
 });
 

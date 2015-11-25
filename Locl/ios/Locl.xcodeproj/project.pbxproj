@@ -54,6 +54,9 @@
 		950F480F1BD4416C005A262F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950F480E1BD4416C005A262F /* CoreLocation.framework */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
+		954D30B21C053E5E000A8A8D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D30A51C053E44000A8A8D /* libRCTCamera.a */; };
+		954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */ = {isa = PBXBuildFile; fileRef = 954D30B31C05412F000A8A8D /* UIImagePickerManager */; };
+		954D30B71C05417D000A8A8D /* UIImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 954D30B61C05417D000A8A8D /* UIImagePickerManager.m */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
 		95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */; };
@@ -143,6 +146,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNBeacon;
+		};
+		954D30A41C053E44000A8A8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
 		};
 		9550C6031BE7E86D00C65659 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -234,6 +244,9 @@
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
+		954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
+		954D30B31C05412F000A8A8D /* UIImagePickerManager */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UIImagePickerManager; path = "../node_modules/react-native-image-picker/UIImagePickerManager"; sourceTree = "<group>"; };
+		954D30B61C05417D000A8A8D /* UIImagePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UIImagePickerManager.m; path = "../node_modules/react-native-image-picker/UIImagePickerManager/UIImagePickerManager.m"; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Locl/Images-2.xcassets"; sourceTree = "<group>"; };
@@ -252,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954D30B21C053E5E000A8A8D /* libRCTCamera.a in Frameworks */,
 				01D1450C1BFD6AE200BBA2B6 /* FBSDKLoginKit.framework in Frameworks */,
 				01D1450A1BFD6AE200BBA2B6 /* Bolts.framework in Frameworks */,
 				9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */,
@@ -453,6 +467,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				954D30B31C05412F000A8A8D /* UIImagePickerManager */,
+				954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */,
 				01D145061BFD6AE200BBA2B6 /* Bolts.framework */,
 				01D145071BFD6AE200BBA2B6 /* FBSDKCoreKit.framework */,
 				01D145081BFD6AE200BBA2B6 /* FBSDKLoginKit.framework */,
@@ -485,6 +501,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				954D30B61C05417D000A8A8D /* UIImagePickerManager.m */,
 				9550C6061BE7E89100C65659 /* CoreBluetooth.framework */,
 				950F480E1BD4416C005A262F /* CoreLocation.framework */,
 				13B07FAE1A68108700A75B9A /* Locl */,
@@ -509,6 +526,14 @@
 			isa = PBXGroup;
 			children = (
 				950F47F61BD44123005A262F /* libRNBeacon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		954D30A01C053E44000A8A8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				954D30A51C053E44000A8A8D /* libRCTCamera.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -601,6 +626,10 @@
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
+				},
+				{
+					ProductGroup = 954D30A01C053E44000A8A8D /* Products */;
+					ProjectRef = 954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -737,6 +766,13 @@
 			remoteRef = 950F47F51BD44123005A262F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		954D30A51C053E44000A8A8D /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = 954D30A41C053E44000A8A8D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -765,6 +801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */,
@@ -787,6 +824,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954D30B71C05417D000A8A8D /* UIImagePickerManager.m in Sources */,
 				011DBE361BE6EA6B00B0C3E0 /* RCTFBSDKShareHelper.m in Sources */,
 				011DBE411BE6EA8000B0C3E0 /* RCTFBSDKLoginInitializer.m in Sources */,
 				011DBE421BE6EA8000B0C3E0 /* RCTFBSDKLoginManager.m in Sources */,
