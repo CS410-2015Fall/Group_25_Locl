@@ -3,6 +3,26 @@
 var React = require('react-native');
 var Preference = require('./Preference');
 
+var ServerManager = require('./serverManager');
+
+//app Name for DreamFactory
+var loclSQL="?app_name=loclSQL";
+
+//Basic Connection HTMLstrig for Database
+var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";
+
+//String to connect to Items Table
+var itemTableURL=httpString+"item"+loclSQL;
+
+//String to connect to Customer Table
+var customerTableURL=httpString+"customer"+loclSQL;
+
+//Sting to connect to Store Table
+var storeTableURL=httpString+"store"+loclSQL;
+
+//String to connect to CustomerItem Table
+var customerItemURL=httpString+"customer-items"+loclSQL;
+
 var {
   StyleSheet,
   Text,
@@ -78,14 +98,14 @@ var UserProfile = React.createClass({
   },
 
   toPreference(){
-    createCustomer(this.props.first_name, this.props.last_name, this.props.id); 
+    this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
     this.props.navigator.push({
       title: 'Preference',
       component: Preference
     });
   },
 
-  createCustomer: function(fName,lName,pass) {
+  createCustomer(fName,lName,pass) {
     fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
       .then((response) => response.json())
       .then((responseData) => {

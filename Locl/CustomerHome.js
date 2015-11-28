@@ -243,10 +243,15 @@ var CustomerHome = React.createClass({
 render : function(){
   return (
     <View style={styles.container}>
+    <TouchableHighlight style={styles.button} onPress={this.toCustomerAdd}>
+    <Text>Add Items</Text>
+    </TouchableHighlight>
+    <View style={styles.container}>
     <ListView
     dataSource={this.state.dataSource}
     renderRow={this.renderStore}
     />
+    </View>
     </View>
     )
 },
