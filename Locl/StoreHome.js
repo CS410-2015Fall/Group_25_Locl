@@ -140,14 +140,17 @@ var StoreHome = React.createClass({
 //This should eventually be a button
 handlePress: function(value) {
   if (this.state.colorTrueSwitchIsOn) {
+    if (this.isMounted()) {
     this.setState({colorFalseSwitchIsOn: true, colorTrueSwitchIsOn: false});
     bluetoothBeaconManager.onBeaconingStopPress();
     AlertIOS.alert("Bluetooth Beaconing Deactivated");
+  }
   } else {
+    if (this.isMounted()) {
     this.setState({colorTrueSwitchIsOn: true, colorFalseSwitchIsOn: false});
     bluetoothBeaconManager.onBeaconingStartPress();
     AlertIOS.alert("Bluetooth Beaconing Activated. Bluetooth beaconing will deactivate if your phone locks, or the application is not in the foreground. For best performance, disable locking and keep the application active on the screen.");
-  }
+  }}
 },
 
 getInitialState: function() {
@@ -182,9 +185,10 @@ getStoreItems: function() {
       console.log("Get Store Items Error: " + responseData.error);
     }
     else {
+      if (this.isMounted()) {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.record),
-      })
+      })}
     }
   })
   .done();
@@ -205,7 +209,9 @@ renderRow: function(itemData) {
 },
 
 handleAppStateChange: function(currentAppState) {
+  if (this.isMounted()){
   this.setState({currentAppState: AppStateIOS.currentState});
+}
   console.log("App State: " + AppStateIOS.currentState);
 },
 

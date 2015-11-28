@@ -1,6 +1,7 @@
 var React = require('react-native');
 var StorePreferences = require('./StorePreferences');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
+var CustomerHome = require('./CustomerHome.js');
 
 var {
   StyleSheet,
@@ -189,7 +190,11 @@ var StoreProfile = React.createClass({
       AlertIOS.alert("Closed Store");
     })
     .done();
-    this.props.navigator.pop();
+    newRoute={
+            title: 'Locl',
+            component: CustomerHome,
+          };
+    this.props.navigator.replacePreviousAndPop(newRoute);
   },
 
   getStoreDetails: function(storeID) {
@@ -200,12 +205,16 @@ var StoreProfile = React.createClass({
         console.log("Get Store Details Error: " + responseData.error);
       }
       else {
+        console.log("Is object: " + typeof responseData.record[0]);
+        if (typeof responseData.record[0] != 'object') {
+          return;
+        } else {
         this.setState({
           storeName: responseData.record[0].StoreName,
           address: responseData.record[0].Address,
           description: responseData.record[0].Description,
           htmlLink: responseData.record[0].StoreHTMLimg,
-        })
+        })}
       }}).done(); 
   },
 
@@ -216,7 +225,7 @@ var StoreProfile = React.createClass({
   // response.isVertical will be true if the image is vertically oriented
   // response.width & response.height give you the image dimensions
   onCameraPress: function() {
-    var options = {
+  var options = {
   title: 'Get Picture of Item', // specify null or empty string to remove the title
   cancelButtonTitle: 'Cancel',
   takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
