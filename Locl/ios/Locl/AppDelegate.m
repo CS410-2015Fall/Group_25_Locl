@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
+  
   /**
    * Loading JavaScript code - uncomment the one you want.
    *
@@ -32,15 +32,15 @@
    * `inet` value under `en0:`) and make sure your computer and iOS device are
    * on the same Wi-Fi network.
    */
-
-//  Simulator
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
- 
-//  School
-//    jsCodeLocation = [NSURL URLWithString:@"http://206.87.125.102:8081/index.ios.bundle?platform=ios&dev=true"];
   
-//  Home
-//    jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.7:8081/index.ios.bundle?platform=ios&dev=true"];
+  //  Simulator
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+  
+  //  School
+  //    jsCodeLocation = [NSURL URLWithString:@"http://206.87.125.102:8081/index.ios.bundle?platform=ios&dev=true"];
+  
+  //  Home
+  //    jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.7:8081/index.ios.bundle?platform=ios&dev=true"];
   
   /**
    * OPTION 2
@@ -51,14 +51,14 @@
    *
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
-
-//  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-
+  
+  //  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"Locl"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
-
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
   rootViewController.view = rootView;

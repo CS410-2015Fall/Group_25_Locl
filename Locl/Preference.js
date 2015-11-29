@@ -7,6 +7,8 @@ var CustomerHome = require('./CustomerHome');
 var StoreHome = require('./StoreHome');
 var FBSDKCore = require('react-native-fbsdkcore');
 
+var Storage = require('react-native-store');
+
 var {
   StyleSheet,
   Text,
@@ -17,7 +19,8 @@ var {
   Image,
   Component,
   NavigatorIOS,
-  AppRegistry
+  AppRegistry,
+  AsyncStorage
 } = React;
 
 var {
@@ -74,39 +77,77 @@ var Preference = React.createClass({
       </View>);
   },
 
-  toStoreSetup(){
+  async toStoreSetup(){
+                                   try {
+                                   var dingus = await this.setBoolean(false);
+                                   } catch(error){
+                                   console.log("store");
+                                   }
     FBSDKAccessToken.getCurrentAccessToken(token =>
     {
       if (token == null) {
-        this.props.navigator.push({
-          title: 'StoreFBLogin',
-          component: StoreFBLogin
-        });
+        this.props.navigator.popN(2);
       } else {
-        this.props.navigator.push({
-          title: 'StoreHome',
-          component: StoreHome,
-        });
-      };
+                                           this.props.navigator.popToTop();
+                                           /*this.props.navigator.resetTo({
+                                                                        title: 'Locl',
+                                                                        component: StoreHome,
+                                                                        });*/
+      }
     });
   },
 
-  toCustomerList(){
+  async toCustomerList(){
+                                   try {
+                                   var dingus = await this.setBoolean(true);
+                                   } catch(error){
+                                   console.log("customer");
+                                   }
     FBSDKAccessToken.getCurrentAccessToken(token =>
     {
       if (token == null) {
-        this.props.navigator.push({
-          title: 'CustomerFBLogin',
-          component: CustomerFBLogin,
-        });
+        this.props.navigator.popN(2);
       } else {
-        this.props.navigator.push({
-          title: 'CustomerHome',
-          component: CustomerHome,
-        });
-      };
+
+                                           this.props.navigator.popToTop();
+                                           /*this.props.navigator.resetTo({
+                                                                        title: 'Locl',
+                                                                        component: CustomerHome,
+                                                                        });*/
+      }
     });
-  }
+  },
+                                   
+                                   async setBoolean(customer){
+                                  /* RNS version */
+                                   var boolModel = await Storage.model("status");
+                                   
+                                   if(!customer){
+                                   console.log("Choosing Store");
+                                   var add_store = await boolModel.add({name: "store"});
+                                   return true;
+                                   } else{
+                                   console.log("Choosing Customer");
+                                   var add_customer = await boolModel.add({name: "customer"});
+                                   return true;
+                                   }
+                                   
+                                   
+                                   /* AS version
+                                   try {
+                                   if (customer){
+                                   await AsyncStorage.setItem("status", "customer");
+                                   return true;
+                                   } else {
+                                   await AsyncStorage.setItem("status", "store");
+                                   }
+                                   } catch (error){
+                                   console.log("Error with choosing");
+                                   return false;
+                                   }
+                                    */
+                                   },
+                                   
 
 });
 

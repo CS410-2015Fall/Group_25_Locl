@@ -56,6 +56,16 @@
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
+		F2E63CED1C0A5BF40030CB48 /* index.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63CEC1C0A5BF40030CB48 /* index.ios.js */; };
+		F2E63CFB1C0A5CCB0030CB48 /* Tutorial.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63CFA1C0A5CCB0030CB48 /* Tutorial.js */; };
+		F2E63CFD1C0A5CE90030CB48 /* facebooklogin.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63CFC1C0A5CE90030CB48 /* facebooklogin.js */; };
+		F2E63CFF1C0A5E7B0030CB48 /* UserProfile.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63CFE1C0A5E7B0030CB48 /* UserProfile.js */; };
+		F2E63D011C0A60060030CB48 /* serverManager.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D001C0A60060030CB48 /* serverManager.js */; };
+		F2E63D031C0A617A0030CB48 /* Preference.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D021C0A617A0030CB48 /* Preference.js */; };
+		F2E63D051C0A61FE0030CB48 /* StoreHome.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D041C0A61FE0030CB48 /* StoreHome.js */; };
+		F2E63D071C0A625F0030CB48 /* ItemPage.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D061C0A625F0030CB48 /* ItemPage.js */; };
+		F2E63D091C0A64660030CB48 /* CustomerHome.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D081C0A64660030CB48 /* CustomerHome.js */; };
+		F2E63D0B1C0A6DB00030CB48 /* Welcome.js in Resources */ = {isa = PBXBuildFile; fileRef = F2E63D0A1C0A6DB00030CB48 /* Welcome.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,13 +160,6 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNBluetoothState;
 		};
-		95DA55491BF70A0F005CCC6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNBeacon;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -235,7 +238,16 @@
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "/Users/coreywilson/Desktop/CPSC 410/Final Project/Locl/Locl/node_modules/react-native-bluetooth-state/../react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<absolute>"; };
+		F2E63CEC1C0A5BF40030CB48 /* index.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.ios.js; path = ../index.ios.js; sourceTree = "<group>"; };
+		F2E63CFA1C0A5CCB0030CB48 /* Tutorial.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Tutorial.js; path = ../Tutorial.js; sourceTree = "<group>"; };
+		F2E63CFC1C0A5CE90030CB48 /* facebooklogin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = facebooklogin.js; path = ../facebooklogin.js; sourceTree = "<group>"; };
+		F2E63CFE1C0A5E7B0030CB48 /* UserProfile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = UserProfile.js; path = ../UserProfile.js; sourceTree = "<group>"; };
+		F2E63D001C0A60060030CB48 /* serverManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = serverManager.js; path = ../serverManager.js; sourceTree = "<group>"; };
+		F2E63D021C0A617A0030CB48 /* Preference.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Preference.js; path = ../Preference.js; sourceTree = "<group>"; };
+		F2E63D041C0A61FE0030CB48 /* StoreHome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = StoreHome.js; path = ../StoreHome.js; sourceTree = "<group>"; };
+		F2E63D061C0A625F0030CB48 /* ItemPage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = ItemPage.js; path = ../ItemPage.js; sourceTree = "<group>"; };
+		F2E63D081C0A64660030CB48 /* CustomerHome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CustomerHome.js; path = ../CustomerHome.js; sourceTree = "<group>"; };
+		F2E63D0A1C0A6DB00030CB48 /* Welcome.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Welcome.js; path = ../Welcome.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,7 +466,6 @@
 				01D145071BFD6AE200BBA2B6 /* FBSDKCoreKit.framework */,
 				01D145081BFD6AE200BBA2B6 /* FBSDKLoginKit.framework */,
 				01D145091BFD6AE200BBA2B6 /* FBSDKShareKit.framework */,
-				95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */,
 				9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */,
 				950F47E71BD44123005A262F /* RNBeacon.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -482,6 +493,16 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F2E63CEC1C0A5BF40030CB48 /* index.ios.js */,
+				F2E63D0A1C0A6DB00030CB48 /* Welcome.js */,
+				F2E63CFA1C0A5CCB0030CB48 /* Tutorial.js */,
+				F2E63CFC1C0A5CE90030CB48 /* facebooklogin.js */,
+				F2E63CFE1C0A5E7B0030CB48 /* UserProfile.js */,
+				F2E63D001C0A60060030CB48 /* serverManager.js */,
+				F2E63D021C0A617A0030CB48 /* Preference.js */,
+				F2E63D041C0A61FE0030CB48 /* StoreHome.js */,
+				F2E63D061C0A625F0030CB48 /* ItemPage.js */,
+				F2E63D081C0A64660030CB48 /* CustomerHome.js */,
 				9550C6061BE7E89100C65659 /* CoreBluetooth.framework */,
 				950F480E1BD4416C005A262F /* CoreLocation.framework */,
 				13B07FAE1A68108700A75B9A /* Locl */,
@@ -514,14 +535,6 @@
 			isa = PBXGroup;
 			children = (
 				9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		95DA553B1BF70A0E005CCC6B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				95DA554A1BF70A0F005CCC6B /* libRNBeacon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -640,10 +653,6 @@
 					ProjectRef = 950F47E71BD44123005A262F /* RNBeacon.xcodeproj */;
 				},
 				{
-					ProductGroup = 95DA553B1BF70A0E005CCC6B /* Products */;
-					ProjectRef = 95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */;
-				},
-				{
 					ProductGroup = 9550C5F51BE7E86D00C65659 /* Products */;
 					ProjectRef = 9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */;
 				},
@@ -741,13 +750,6 @@
 			remoteRef = 9550C6031BE7E86D00C65659 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		95DA554A1BF70A0F005CCC6B /* libRNBeacon.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBeacon.a;
-			remoteRef = 95DA55491BF70A0F005CCC6B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -762,9 +764,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E63CFF1C0A5E7B0030CB48 /* UserProfile.js in Resources */,
+				F2E63D0B1C0A6DB00030CB48 /* Welcome.js in Resources */,
+				F2E63D091C0A64660030CB48 /* CustomerHome.js in Resources */,
+				F2E63CED1C0A5BF40030CB48 /* index.ios.js in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
+				F2E63D071C0A625F0030CB48 /* ItemPage.js in Resources */,
+				F2E63CFB1C0A5CCB0030CB48 /* Tutorial.js in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F2E63D011C0A60060030CB48 /* serverManager.js in Resources */,
+				F2E63CFD1C0A5CE90030CB48 /* facebooklogin.js in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F2E63D031C0A617A0030CB48 /* Preference.js in Resources */,
+				F2E63D051C0A61FE0030CB48 /* StoreHome.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

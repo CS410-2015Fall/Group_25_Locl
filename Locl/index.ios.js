@@ -1,10 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Preference = require('./Preference');
-var StoreHome = require('./StoreHome');
-var CustomerHome = require('./CustomerHome');
-var Tutorial = require('./Tutorial');
+var Welcome = require('./Welcome');
 // If true, goes into the setup screen, not a home screen
 var introductionCompleted = false;
 // If true, goes to store screen, otherwise customer screen
@@ -20,7 +17,8 @@ var {
 	Image,
 	Component,
 	NavigatorIOS,
-	AppRegistry
+	AppRegistry,
+  AsyncStorage
 } = React;
 
 var styles = StyleSheet.create({
@@ -59,40 +57,17 @@ var styles = StyleSheet.create({
 
 var Locl = React.createClass({
 	render() {
-		if(introductionCompleted == false){
 			return (
 				<NavigatorIOS ref='nav'
 				style={styles.container}
 				initialRoute={{
 					title: 'Welcome',
-					component: Tutorial,
+					component: Welcome,
 				}}/>
 				);
 
-		} else {
-			if(customer){
-				return (
-					<NavigatorIOS ref='nav'
-					style={styles.container}
-					initialRoute={{
-						title: 'Locl',
-						component: CustomerHome,
-					}}/>
-					);
-
-
-			} else {
-				return (
-					<NavigatorIOS ref='nav'
-					style={styles.container}
-					initialRoute={{
-						title: 'Store',
-						component: StoreHome,
-					}}/>
-					);
-			}
 		}
-	}
+
 });
 
 
