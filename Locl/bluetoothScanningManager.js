@@ -67,12 +67,13 @@ setupRestartSubscription: function() {
 		'regionDidEnter',
 		(data) => {
 			if (data !=null) {
-					console.log("Region re-entered");
-					console.log("currentAppState:" + this.currentAppState);
-					if (this.currentAppState == "active" || this.currentAppState == "undefined"); {
-						console.log("Passed app state check");
-    					bluetoothScanningManager.startRangingBeaconsInRegion();
-  					}
+				
+					bluetoothScanningManager.startRangingBeaconsInRegion();	
+
+					// if we want bluetooth ranging not to turn on in the background	
+					// if (this.currentAppState == "active" || this.currentAppState == "undefined"); {
+    	// 				bluetoothScanningManager.startRangingBeaconsInRegion();	
+  			// 		}
 			}
 		}
 		);

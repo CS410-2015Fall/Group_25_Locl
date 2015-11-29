@@ -219,26 +219,37 @@ handleAppStateChange: function(currentAppState) {
 },
 
 onUpdatePress: function(itemData) {
+  bluetoothBeaconManager.onBeaconingStopPress();
   this.props.navigator.push({
     title: itemData.Name,
     component: ItemPage,
     passProps: {ItemData: itemData, StoreID: this.state.storeID,},
+    leftButtonTitle: 'Back to Inventory',
+    onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothBeaconManager.onBeaconingStartPress();}
   });
 },
 
 onDetailsPress: function(){
+  bluetoothBeaconManager.onBeaconingStopPress();
   this.props.navigator.push({
-    title: 'Store Details',
+    title: 'Store Information',
     component: StoreProfile,
     passProps: {StoreID: this.state.storeID,},
+    leftButtonTitle: 'Back to Inventory',
+    onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothBeaconManager.onBeaconingStartPress();}
+
   });
 },
 
 onAddPress: function() {
+  bluetoothBeaconManager.onBeaconingStopPress();
   this.props.navigator.push({
-    title: 'New Item',
+    title: 'Create New Item',
     component: ItemPage,
     passProps: {ItemData: null, StoreID: this.state.storeID},
+    leftButtonTitle: 'Back to Inventory',
+    onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothBeaconManager.onBeaconingStartPress();}
+
   });
 },
 

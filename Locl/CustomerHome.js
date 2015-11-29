@@ -179,6 +179,7 @@ var CustomerHome = React.createClass({
   componentWillMount: function() {
     //get auth from the server
     serverManager.auth();
+    bluetoothScanningManager.requestAlwaysAuthorization();
     bluetoothScanningManager.getAuthorizationStatus();
     bluetoothScanningManager.setupStatusSubscription();
     bluetoothScanningManager.startMonitoringForRegion();
@@ -275,10 +276,12 @@ componentWillUnmount: function() {
 
 handleAppStateChange: function(currentAppState) {
   if (currentAppState == "background") {
-    bluetoothScanningManager.stopRangingBeaconsInRegion();
+    // If we want to turn off ranging when in background
+    // bluetoothScanningManager.stopRangingBeaconsInRegion();
   }
   if (currentAppState == "active") {
-    bluetoothScanningManager.startRangingBeaconsInRegion();
+    // If we want to turn off ranging when in background
+    // bluetoothScanningManager.startRangingBeaconsInRegion();
   }
   this.setState({currentAppState: AppStateIOS.currentState});
 },
