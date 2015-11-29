@@ -30,18 +30,27 @@ var {
   FBSDKAccessToken,
 } = FBSDKCore;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
   description: {
-    color: 'black',
-    backgroundColor: 'white',
+    color: TEXT,
+    backgroundColor: BACKGROUND,
     fontSize: 30,
-    margin: 80
+    margin: 80,
+    fontFamily: 'Avenir',
+    textAlign: 'center',
+    marginTop: 120
   },
   container: {
     flex: 1,
     alignItems      : 'center',
     backgroundColor : '#F5FCFF',
-    paddingTop      : 30
+    paddingTop      : 30,
+    backgroundColor: BACKGROUND
   }
 });
 
@@ -50,7 +59,7 @@ class FB extends React.Component {
   render(){
     return (<View style={styles.container}>
         <Text style={styles.description}>
-        FaceBook Login
+        To begin, login with Facebook
         </Text>
         <FBSDKLoginButton 
         onPress= {() => { 

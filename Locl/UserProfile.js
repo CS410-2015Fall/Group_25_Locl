@@ -36,46 +36,63 @@ var {
   AppRegistry
 } = React;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
-  description: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    overflow: 'visible',
-    margin: 80
-  },
-  flowRight: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 20,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  profilePicture: {
-    height: 70,
-    width: 70
-  }
-});
+                               description: {
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 24,
+                               marginLeft: 60,
+                               marginTop: 140,
+                               },
+                               icon:{
+                               width: 130,
+                               height: 130,
+                               marginTop: 20,
+                               marginLeft: 90,
+                               borderWidth: 4,
+                               borderColor: OUTLINE,
+                               },
+                               container: {
+                               flex: 1,
+                               backgroundColor: BACKGROUND,
+                               },
+                               flowRight: {
+                               flexDirection: 'column',
+                               alignItems: 'center',
+                               alignSelf: 'stretch'
+                               },
+                               buttonText: {
+                               marginTop: 18,
+                               fontSize: 18,
+                               color: TEXT,
+                               alignSelf: 'center'
+                               },
+                               button: {
+                               width: 130,
+                               height: 60,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 4,
+                               borderRadius: 8,
+                               marginTop: 30,
+                               marginBottom: 50,
+                               marginLeft: 90
+                               },
+                               text:{
+                               
+                               }
+                               });
+
+// email not fetching, taking out for now
+//<Text style={styles.description}>
+//{this.props.email}
+//</Text>
 
 var UserProfile = React.createClass({
   render(){
@@ -84,10 +101,7 @@ var UserProfile = React.createClass({
         <Text style={styles.description}>
         {this.props.name}
         </Text>
-        <Text style={styles.description}>
-        {this.props.email}
-        </Text>
-        <Image style={styles.profilePicture}
+        <Image style={styles.icon}
         source={{uri: this.props.picture}}
         />
         <TouchableHighlight style={styles.button} onPress={this.toPreference}>

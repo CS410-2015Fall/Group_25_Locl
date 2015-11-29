@@ -25,6 +25,11 @@ var {
   SwitchIOS
 } = React;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
  description: {
    color: 'black',
@@ -35,9 +40,11 @@ var styles = StyleSheet.create({
  container: {
   marginTop: 30,
   flex: 1,
+  backgroundColor: BACKGROUND
  },
  resultsContainer: {
    flex: 2,
+   backgroundColor: BACKGROUND
  },
  flowRight: {
    flexDirection: 'column',
@@ -55,64 +62,133 @@ thumb: {
   marginRight: 10
 },
 textContainer: {
-  flex: 1
+  flex: 1,
+                               backgroundColor: BUTTON
 },
 separator: {
-  height: 1,
-  backgroundColor: '#dddddd'
+  height: 2,
+  backgroundColor: BACKGROUND
 },
 price: {
   fontSize: 25,
   fontWeight: 'bold',
-  color: '#48BBEC'
+  color: TEXT,
+                               marginLeft: 10,
 },
 title: {
-  fontSize: 20,
-  color: '#656565'
+                               fontSize: 20,
+                               color: OUTLINE,
+                               fontFamily: 'Avenir',
+                               marginBottom: 10,
+                               marginTop: 10,
+                               textAlign: 'left',
 },
+                               addButton: {
+                               fontSize: 20,
+                               color: TEXT,
+                               fontFamily: 'Avenir',
+                               marginBottom: 10,
+                               marginTop: 10,
+                               marginLeft: 10,
+                               textAlign: 'center',
+                               },
 rowContainer: {
-  borderColor: 'white',
-  borderWidth: 1, 
-  backgroundColor: 'F5F5F5',
+  borderColor: BACKGROUND,
+  borderWidth: 4,
+  backgroundColor: BUTTON,
   flexDirection: 'row',
-  padding: 10
-}, 
+  padding: 10,
+                               borderRadius: 8
+},
+                               topContainer: {
+                               flexDirection: 'row',
+                               alignItems: 'center',
+                               alignSelf: 'stretch',
+                               marginTop:70
+                               },
+                               text:{
+                               fontSize: 20,
+                               color: TEXT,
+                               fontFamily: 'Avenir',
+                               marginBottom: 10,
+                               marginTop: 10,
+                               marginLeft: 40
+                               },
+                               button:{
+                               },
+                               button3: {
+                               width: 50,
+                               height: 50,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 4,
+                               borderRadius: 100,
+                               marginLeft:20
+                               },
+                               
+                               pressedbutton3: {
+                               width: 50,
+                               height: 50,
+                               backgroundColor: '#499711',
+                               borderColor: OUTLINE,
+                               borderWidth: 4,
+                               borderRadius: 100,
+                               marginLeft:20
+                               },
+                               icon:{
+                               marginTop: 5,
+                               marginLeft: 10
+                               },
 button: {
-   height: 20,
-   backgroundColor: 'grey',
-   borderColor: 'grey',
-   borderWidth: 1,
+   height: 40,
+   backgroundColor: BUTTON,
+   borderColor: OUTLINE,
+   borderWidth: 4,
    borderRadius: 8,
    margin: 5,
-   color: 'white',
+   color: TEXT,
+   fontFamily: 'Avenir',
    alignSelf: 'stretch',
    justifyContent: 'center',
-   fontSize: 15,
-   textAlign: 'center'
+   fontSize: 18,
+   textAlign: 'center',
+                               marginTop: 10,
+                               marginBottom: 10
  }, 
 });
+/* Removed in favor of button for now
+ <SwitchIOS
+ onValueChange={(value) => this.handlePress(value)}
+ onTintColor="#00ff00"
+ style={{marginBottom: 10}}
+ thumbTintColor="#0000ff"
+ tintColor="#ff0000"
+ value={this.state.colorFalseSwitchIsOn} />
+ <SwitchIOS
+ onValueChange={(value) => this.handlePress(value)}
+ onTintColor="#00ff00"
+ thumbTintColor="#0000ff"
+ tintColor="#ff0000"
+ value={this.state.colorTrueSwitchIsOn} />
+*/
 
 var StoreHome = React.createClass({
   render(){
     this.getStoreItems();
     return (
         <View style ={styles.container}>
-        <SwitchIOS
-          onValueChange={(value) => this.handlePress(value)}
-          onTintColor="#00ff00"
-          style={{marginBottom: 10}}
-          thumbTintColor="#0000ff"
-          tintColor="#ff0000"
-          value={this.state.colorFalseSwitchIsOn} />
-          <SwitchIOS
-          onValueChange={(value) => this.handlePress(value)}
-          onTintColor="#00ff00"
-          thumbTintColor="#0000ff"
-          tintColor="#ff0000"
-          value={this.state.colorTrueSwitchIsOn} />
-        <TouchableHighlight onPress={this.onAddPress}>
-            <Text style={styles.button}>Add Item</Text>
-        </TouchableHighlight>
+        <View style = {styles.topContainer}>
+        <Text style={styles.text}> Begin beaconing </Text>
+            <TouchableHighlight style={this.pressColor()} onPress={this.alter}>
+            <Image
+            style={styles.icon}
+            source={require('image!bluetooth')}
+            />
+            </TouchableHighlight>
+              </View>
+            <TouchableHighlight style={styles.button} onPress={this.onAddPress}>
+            <Text style={styles.addButton}>Add Item</Text>
+            </TouchableHighlight>
         <ScrollView
         automaticallyAdjustContentInsets={false}
         onScroll={() => { console.log('Scrolling! Weeeee'); }}
@@ -128,6 +204,36 @@ var StoreHome = React.createClass({
         </View>
         );
   },
+                                  
+                                  alter(){
+                                  console.log('alter');
+                                  this.setState({pressIn: !this.state.pressIn});
+                                  
+                                  if (this.state.pressIn) {
+                                  bluetoothBeaconManager.onBeaconingStopPress();
+                                  console.log("colorFalseSwitch set to value, bluetooth set to off");
+                                  
+                                  } else {
+
+                                  this.setState({handling:false});
+                                  AlertIOS.alert("Bluetooth beaconing will deactivate if your phone locks, or the application is not in the foreground. For best performance, disable locking and keep the application active on the screen.");
+                                  console.log("colorTrueSwitch set to value, bluetooth set to on");
+
+                                  
+                                  }
+                                  return this.pressColor();
+                                  
+                                  },
+                                  
+                                  pressColor: function() {
+                                  if (this.state.pressIn) {
+                                  return styles.pressedbutton3
+
+                                  } else {
+                                  return styles.button3
+
+                                  }
+                                  },
 
   handlePress: function(value) {
     console.log("handling Press");

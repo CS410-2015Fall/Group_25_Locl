@@ -21,139 +21,61 @@ var {
   AsyncStorage
 } = React;
 
-var styles = StyleSheet.create({
- description: {
-   color: 'black',
-   backgroundColor: 'white',
-   fontSize: 30,
-   margin: 80,
- },
- container: {
-   flex: 1,
-   alignItems      : 'center',
-   backgroundColor : '#F5FCFF',
-   overflow       : 'visible',
- },
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
 
- flowRight: {
-   flexDirection: 'column',
-   alignItems: 'center',
-   alignSelf: 'stretch'
- },
- buttonText: {
-   fontSize: 18,
-   color: 'white',
-   alignSelf: 'center'
- },
- button: {
-   height: 20,
-   flex: 1,
-   flexDirection: 'row',
-   backgroundColor: '#48BBEC',
-   borderColor: '#48BBEC',
-   borderWidth: 1,
-   borderRadius: 8,
-   marginBottom: 10,
-   alignSelf: 'stretch',
-   justifyContent: 'center'
- },
- instructionsText : {
-   fontSize : 20
- },
- separator : {
-   borderWidth  : .5,
-   borderColor  : '#AEAEAE',
-   height       : 1,
-   width        : 300,
-   marginBottom : 25
- },
- labelContainer : {
-   flexDirection  : 'row',
-   width          : 300
- },
- labelText : {
-   paddingRight : 10,
-   fontSize     : 18
- },
- textInput : {
-   height      : 26,
-   borderWidth : 0.5,
-   borderColor : '#0f0f0f',
-   padding     : 4,
-   flex        : 1,
-   fontSize    : 13,
- },
- buttonContainer : {
-   flexDirection  : 'row',
-   justifyContent : 'center',
-   alignItems     : 'center',
-   marginTop      : 20
- },
- touchableHighlight : {
-   marginLeft  : 10,
-   marginRight : 10,
- },
- buttonBox : {
-   flexDirection  : 'row',
-   justifyContent : 'center',
-   alignItems     : 'center',
-   padding        : 10,
-   borderWidth    : 2,
-   borderRadius   : 5
- },
- saveButtonBox : {
-   borderColor : '#AA0000'
- },
- loadButtonBox : {
-   borderColor : '#00AA00'
- },
- setButtonBox : {
-   borderColor : '#00AA00'
- },
- buttonText : {
-   fontSize : 16,
- },
- outputContainer : {
-   width          : 300,
-   height         : 200,
-   justifyContent : 'center',
-   alignItems     : 'center',
-   borderWidth    : .5,
-   borderColor    : "#999999",
-   marginTop      : 20
- }, 
- row: {
-   padding: 8,
-   paddingBottom: 16
- }, 
- smallText: {
-   fontSize: 11
- },
- formInput: {
-   flex: 1,
-   height: 26,
-   fontSize: 13,
-   borderWidth: 1,
-   borderColor: "#555555",
- },
- saved: {
-   fontSize: 20,
-   textAlign: "center",
-   margin: 10,
- },
-});
+var styles = StyleSheet.create({
+                               description: {
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 24,
+                               margin: 80,
+                               fontFamily: 'Avenir',
+                               textAlign: 'center',
+                               marginTop: 120
+                               },
+                               container: {
+                               flex: 2,
+                               alignItems      : 'center',
+                               backgroundColor : '#F5FCFF',
+                               paddingTop      : 0,
+                               backgroundColor: BACKGROUND
+                               },
+                               buttonText: {
+                               fontSize: 18,
+                               color: TEXT,
+                               fontFamily: 'Avenir',
+                               alignSelf: 'center'
+                               },
+                               button: {
+                               height: 60,
+                               width: 80,
+                               flex: 1,
+                               flexDirection: 'row',
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 3,
+                               borderRadius: 8,
+                               marginBottom: 10,
+                               alignSelf: 'stretch',
+                               justifyContent: 'center'
+                               },
+
+                               });
 
 var Tutorial = React.createClass({
  render(){
    return (
     <View style={styles.container}>
     <Text style={styles.description}>
-    "Welcome to Locl, this is how Locl works..(There should be swipeable images here)"
+    Welcome to Locl, the app for all your local shopping needs. First, set up your account.
     </Text>
-    <TouchableHighlight underlayColor="#AA9999" onPress={this.toFacebookLogin}>
-     <View style={[styles.buttonBox, styles.setButtonBox]}>
+    <TouchableHighlight onPress={this.toFacebookLogin}>
+     <View style={[styles.button, styles.setButtonBox]}>
      <Text style={styles.buttonText}>
-     Finish
+     Begin
      </Text>
      </View>
      </TouchableHighlight>

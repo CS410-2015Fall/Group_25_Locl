@@ -63,7 +63,7 @@ var Welcome = React.createClass({
                                 
                                 componentDidMount(){
                                 // for debugging control flow
-                                //this.debugIntro();
+                                // this.debugIntro();
                                 },
                                 
                                 async chooseScreen(){

@@ -27,40 +27,55 @@ var {
   FBSDKAccessToken,
 } = FBSDKCore;
 
+var BACKGROUND = '#a2ee6c';
+var TEXT = '#effde4';
+var BUTTON = '#7cca44';
+var OUTLINE = '#d4f7bb';
+
 var styles = StyleSheet.create({
-  description: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-    margin: 80
-  },
-  container: {
-    flex: 1,
-    margin: 80
-  },
-  flowRight: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 20,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
+                               description: {
+                               fontFamily: 'Avenir',
+                               color: TEXT,
+                               backgroundColor: BACKGROUND,
+                               fontSize: 30,
+                               marginLeft: 85,
+                               marginTop: 100,
+                               marginBottom: 50,
+                               },
+                               icon:{
+                               marginTop: 70,
+                               marginLeft: 25
+                               },
+                               container: {
+                               flex: 1,
+                               backgroundColor: BACKGROUND,
+                               },
+                               flowRight: {
+                               flexDirection: 'column',
+                               alignItems: 'center',
+                               alignSelf: 'stretch'
+                               },
+                               buttonText: {
+                               marginTop: 40,
+                               fontSize: 24,
+                               color: TEXT,
+                               alignSelf: 'center'
+                               },
+                               button: {
+                               width: 150,
+                               height: 150,
+                               backgroundColor: BUTTON,
+                               borderColor: OUTLINE,
+                               borderWidth: 16,
+                               borderRadius: 100,
+                               marginTop: 0,
+                               marginBottom: 40,
+                               marginLeft: 84
+                               },
+                               text:{
+                               
+                               }
+                               });
 
 var Preference = React.createClass({
   render(){
