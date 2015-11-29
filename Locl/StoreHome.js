@@ -176,6 +176,9 @@ componentWillMount: function() {
   AppStateIOS.addEventListener('change', this.handleAppStateChange);
 },
 
+componentDidMount: function() {
+  bluetoothBeaconManager.onBeaconingSetPress(this.state.storeID);
+},
 
 getStoreItems: function() {
   fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + this.state.storeID.toString(), {method: "GET"})

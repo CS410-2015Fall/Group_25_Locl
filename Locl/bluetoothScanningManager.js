@@ -68,7 +68,9 @@ setupRestartSubscription: function() {
 		(data) => {
 			if (data !=null) {
 					console.log("Region re-entered");
-					if (this.currentAppState == "active") {
+					console.log("currentAppState:" + this.currentAppState);
+					if (this.currentAppState == "active" || this.currentAppState == "undefined"); {
+						console.log("Passed app state check");
     					bluetoothScanningManager.startRangingBeaconsInRegion();
   					}
 			}

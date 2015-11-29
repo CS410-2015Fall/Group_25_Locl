@@ -168,12 +168,10 @@ var CustomerHome = React.createClass({
 
   getInitialState: function() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    if (this.isMounted) {
     return {
       dataSource: ds.cloneWithRows([]),
       minors: [], 
       currentAppState: AppStateIOS.currentState,
-    };
   }
   },
 
@@ -228,19 +226,17 @@ var CustomerHome = React.createClass({
               console.log("Error: " + responseData.error);
             }
             else {
-              if (this.isMounted) {
               this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(responseData.record),
                 minors: minors,
-              })}
+              })
             }}).done(); 
         }
       } else {
-        if (this.isMounted) {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows([]),
           minors: [],
-        })}
+        })
       } 
     });
 }, 
@@ -257,7 +253,6 @@ render : function(){
 },
 
 renderStore: function(store) {
-  console.log(store.StoreHTMLimg);
   return (
     <TouchableHighlight underlayColor="#AA9999" onPress={() => this.rowPressed(store)}> 
     <View>
@@ -285,7 +280,7 @@ handleAppStateChange: function(currentAppState) {
   if (currentAppState == "active") {
     bluetoothScanningManager.startRangingBeaconsInRegion();
   }
-  this.setState({currentAppState});
+  this.setState({currentAppState: AppStateIOS.currentState});
 },
 
 toCustomerAdd(){
@@ -297,10 +292,13 @@ toCustomerAdd(){
 
 rowPressed(store) {
   //Still need to stop ranging while they look at items...
+  bluetoothScanningManager.stopRangingBeaconsInRegion();
   this.props.navigator.push({
    title: store.StoreName,
    component: StorePage,
    passProps: {StoreID: store.StoreID},
+   leftButtonTitle: 'Back to Store',
+   onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothScanningManager.startRangingBeaconsInRegion();}
  });
 }
 

@@ -8,7 +8,7 @@ var Tutorial = require('./Tutorial');
 // If true, goes into the setup screen, not a home screen
 var introductionCompleted = true;
 // If true, goes to store screen, otherwise customer screen
-var customer = false;
+var customer = true;
 
 var {
 	StyleSheet,

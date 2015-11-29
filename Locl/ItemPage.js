@@ -22,6 +22,9 @@ var styles = StyleSheet.create({
   marginTop: 10,
   flex: 1,
 },
+upcBox: {
+ flexDirection: 'row',
+},
 textField: {
   height: 40, 
   marginBottom: 2, 
@@ -54,6 +57,16 @@ thumb: {
   height: 200,
   alignSelf: 'center',
 },
+fieldWithButton: {
+  flex: 2,
+  height: 40, 
+  marginBottom: 2, 
+  marginLeft: 2, 
+  marginRight: 2,  
+  borderColor: 'F5F5F5', 
+  borderWidth: 1,
+  paddingLeft: 2,
+}
 });
 
 var ItemPage = React.createClass({
@@ -98,11 +111,18 @@ var ItemPage = React.createClass({
       />
 
       <Text style={styles.textFieldTitle}>UPC:</Text>
+      <View style={styles.upcBox}>
       <TextInput
-      style={styles.textField}
-      onChangeText={(text) => this.getItemDetailsByUPC(text)}
+      style={styles.fieldWithButton}
+      onChangeText={(text) => this.setState({upc: text})}
       value={this.state.upc}
       />
+
+      <TouchableHighlight onPress={this.getItemDetailsByUPC}>
+      <Text style={styles.button}>Check</Text>
+      </TouchableHighlight>
+      
+      </View>
 
       <Text style={styles.textFieldTitle}>Quantity:</Text>
       <TextInput
@@ -183,29 +203,21 @@ getInitialState: function() {
   }
 },
 
-getItemDetailsByUPC: function(UPC) {
-  if ((UPC.length >= 12) && (UPC.match(/^\d+$/))) {
-    fetch("http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=98A88ED2-16F7-476B-BCCF-92B44912AAF5&upc=" + UPC.toString(), {method: "GET"})
+getItemDetailsByUPC: function() {
+  console.log("typeof: " + typeof this.state.upc + " number: " + this.state.upc);
+  if ((this.state.upc.length >= 12) && (this.state.upc.match(/^\d+$/))) {
+    fetch("http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=98A88ED2-16F7-476B-BCCF-92B44912AAF5&upc=" + this.state.upc, {method: "GET"})
         .then((response) => {
           var parse = JSON.parse(response._bodyText);
           if (response.error) {
             console.log("Get Details by UPC Error: " + response.error);
-          } else if (parse[0] == null) {
-            this.setState({
-              upc: UPC,
-            })
           } else {
             this.setState({
-              upc: UPC,
               name: parse[0].productname,
               regPrice: parse[0].price,
               htmlLink: parse[0].imageurl,
             })
           }}).done(); 
-    } else {
-      this.setState({
-        upc: UPC,
-      })
     }
 },
 

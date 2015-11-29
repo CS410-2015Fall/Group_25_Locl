@@ -111,7 +111,7 @@ var StorePage = React.createClass({
     return (
       <View>
       <View style={styles.rowContainer}>
-      <Image style={styles.thumb} source={{ uri: itemData.HTMLimg }} />
+      <Image style={styles.thumb} source={{ uri: itemData.HTMLlink }} />
       <View  style={styles.textContainer}>
       <Text style={styles.price}>${itemData.SalePrice}</Text>
       <Text style={styles.title} 
