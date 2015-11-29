@@ -13,6 +13,7 @@ var settings64Icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYA
 
 
 var {
+  AlertIOS,
   AppStateIOS,
   StyleSheet,
   Text,
@@ -30,17 +31,6 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
- description: {
-   color: 'black',
-   backgroundColor: 'white',
-   fontSize: 30,
-   margin: 80
- },
- flowRight: {
-   flexDirection: 'column',
-   alignItems: 'center',
-   alignSelf: 'stretch'
- },
  buttonText: {
    fontSize: 18,
    color: 'white',
@@ -79,26 +69,6 @@ var styles = StyleSheet.create({
    marginLeft  : 10,
    marginRight : 10,
  },
- buttonBox : {
-   flexDirection  : 'row',
-   justifyContent : 'center',
-   alignItems     : 'center',
-   padding        : 10,
-   borderWidth    : 2,
-   borderRadius   : 5
- },
- saveButtonBox : {
-   borderColor : '#AA0000'
- },
- loadButtonBox : {
-   borderColor : '#00AA00'
- },
- setButtonBox : {
-   borderColor : '#00AA00'
- },
- buttonText : {
-   fontSize : 16,
- },
  outputContainer : {
    width          : 300,
    height         : 200,
@@ -112,38 +82,15 @@ var styles = StyleSheet.create({
    padding: 8,
    paddingBottom: 16
  }, 
- smallText: {
-   fontSize: 11
- },
  saved: {
    fontSize: 20,
    textAlign: "center",
    margin: 10,
  },
- headline: {
-  fontSize: 20,
-  paddingTop: 20
-},
-description: {
- color: 'black',
- backgroundColor: 'white',
- fontSize: 30,
- margin: 80
-},
-container: {
- flex: 1,
-},
-flowRight: {
- flexDirection: 'column',
- alignItems: 'center',
- alignSelf: 'stretch'
-},
-buttonText: {
- fontSize: 18,
- color: 'white',
- alignSelf: 'center'
-},
-thumb: {
+ container: {
+   flex: 1,
+ },
+ thumb: {
   width: 80,
   height: 80,
   marginRight: 10
@@ -174,11 +121,22 @@ var CustomerHome = React.createClass({
 
   getInitialState: function() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    return {
-      dataSource: ds.cloneWithRows([]),
-      minors: [], 
-      currentAppState: AppStateIOS.currentState,
-  }
+    if(this.props.StoreID) {
+      return {
+        dataSource: ds.cloneWithRows([]),
+        minors: [], 
+        currentAppState: AppStateIOS.currentState,
+        storeID: this.props.StoreID,
+      }
+    }
+    else {
+      return {
+        dataSource: ds.cloneWithRows([]),
+        minors: [], 
+        currentAppState: AppStateIOS.currentState,
+        storeID: "",
+      }
+    }
   },
 
   //Before the rendering
@@ -190,6 +148,7 @@ var CustomerHome = React.createClass({
     bluetoothScanningManager.setupStatusSubscription();
     bluetoothScanningManager.startMonitoringForRegion();
     bluetoothScanningManager.startUpdatingLocation();
+    this.loadStoreID();
   },
 
   //Once it has rendered
@@ -248,6 +207,22 @@ var CustomerHome = React.createClass({
     });
 }, 
 
+async loadStoreID() {
+  try {
+    var storeID = await AsyncStorage.getItem('StoreID');
+    if (storeID !== null){
+      this.setState({
+        storeID: storeID,
+      });
+      console.log("StoreID set to " + storeID);
+    } else {
+      console.log("No value for storeID");
+    }
+  } catch (error) {
+    console.log("Async error (loadStoreID): " + error.message);
+  }
+},
+
 render : function(){
   return (
     <View style={styles.container}>
@@ -257,32 +232,25 @@ render : function(){
     />
 
     <TabBarIOS
-        tintColor="white"
-        barTintColor="darkslateblue">
+    tintColor="#F5F5F5"
+    barTintColor="#8173c7">
 
-        <TabBarIOS.Item
-          title="Store"
-          icon={{uri: store64Icon, scale: 12}}
-          selected={false}
-          onPress={this.storePress}>
-          <View></View>
-        </TabBarIOS.Item>
+    <TabBarIOS.Item
+    title="Store"
+    icon={{uri: store64Icon, scale: 12}}
+    selected={false}
+    onPress={this.storePress}>
+    <View></View>
+    </TabBarIOS.Item>
 
-        <TabBarIOS.Item
-          title="Shopping"
-          icon={{uri: customer64Icon, scale: 10}}
-          selected={true}>
-          <View></View>
-        </TabBarIOS.Item>
+    <TabBarIOS.Item
+    title="Shopping"
+    icon={{uri: customer64Icon, scale: 10}}
+    selected={true}>
+    <View></View>
+    </TabBarIOS.Item>
 
-        <TabBarIOS.Item
-          title="Settings"
-          icon={{uri: settings64Icon, scale: 16}}
-          selected={false}>
-          <View></View>
-        </TabBarIOS.Item>
-
-      </TabBarIOS>
+    </TabBarIOS>
 
     </View>
     )
@@ -310,30 +278,40 @@ componentWillUnmount: function() {
 },
 
 handleAppStateChange: function(currentAppState) {
-  if (currentAppState == "background") {
-    // If we want to turn off ranging when in background
-    // bluetoothScanningManager.stopRangingBeaconsInRegion();
-  }
-  if (currentAppState == "active") {
-    // If we want to turn off ranging when in background
-    // bluetoothScanningManager.startRangingBeaconsInRegion();
-  }
   this.setState({currentAppState: AppStateIOS.currentState});
+  //If want to turn off ranging in the background
+  // if (currentAppState == "background") {
+  //   bluetoothScanningManager.stopRangingBeaconsInRegion();
+  // }
+  // if (currentAppState == "active") {
+  //   bluetoothScanningManager.startRangingBeaconsInRegion();
+  // }
 },
 
-toCustomerAdd(){
- this.props.navigator.push({
-   title: 'CustomerAdd',
-   component: CustomerAdd
- });
+//This will goto the customer settings
+toSettings(){
+ // this.props.navigator.push({
+ //   component: CustomerAdd
+ // });
+return;
 },
 
 storePress: function() {
-  var StoreHome = require('./StoreHome.js');
-  bluetoothScanningManager.stopRangingBeaconsInRegion();
-  this.props.navigator.replace({
-    title: "Store",
-    component: StoreHome,});
+  if (this.state.StoreID == "") {
+    var StoreProfile = require('./StoreProfile.js');
+    AlertIOS.alert("You have not setup a store. You will now be directed to the store Setup Page");
+    bluetoothScanningManager.stopRangingBeaconsInRegion();
+    this.props.navigator.push({
+      component: StoreProfile,
+    }); 
+  } else {
+    var StoreHome = require('./StoreHome.js');
+    bluetoothScanningManager.stopRangingBeaconsInRegion();
+    this.props.navigator.replace({
+      component: StoreHome,
+      passProps: {StoreID: this.state.storeID},
+    });
+  }
 },
 
 rowPressed(store) {

@@ -2,6 +2,8 @@
 
 var React = require('react-native');
 var StorePage = require('./StorePage');
+var FacebookLogin = require('./facebooklogin');
+var Swiper = require('react-native-swiper');
 
 var {
   StyleSheet,
@@ -17,156 +19,118 @@ var {
   AlertIOS,
   ListView,
   DeviceEventEmitter,
-  AsyncStorage
+  ScrollView
 } = React;
 
 var styles = StyleSheet.create({
- description: {
-   color: 'black',
-   backgroundColor: 'white',
-   fontSize: 30,
-   margin: 80,
- },
  container: {
    flex: 1,
+   paddingTop: 10,
    alignItems      : 'center',
-   backgroundColor : '#F5FCFF',
-   overflow       : 'visible',
- },
-
- flowRight: {
+   backgroundColor : '#8173c7',
    flexDirection: 'column',
-   alignItems: 'center',
-   alignSelf: 'stretch'
+   justifyContent: 'space-around',
  },
- buttonText: {
-   fontSize: 18,
-   color: 'white',
-   alignSelf: 'center'
- },
- button: {
-   height: 20,
-   flex: 1,
-   flexDirection: 'row',
-   backgroundColor: '#48BBEC',
-   borderColor: '#48BBEC',
-   borderWidth: 1,
-   borderRadius: 8,
-   marginBottom: 10,
-   alignSelf: 'stretch',
-   justifyContent: 'center'
- },
- instructionsText : {
-   fontSize : 20
- },
- separator : {
-   borderWidth  : .5,
-   borderColor  : '#AEAEAE',
-   height       : 1,
-   width        : 300,
-   marginBottom : 25
- },
- labelContainer : {
-   flexDirection  : 'row',
-   width          : 300
- },
- labelText : {
-   paddingRight : 10,
-   fontSize     : 18
- },
- textInput : {
-   height      : 26,
-   borderWidth : 0.5,
-   borderColor : '#0f0f0f',
-   padding     : 4,
-   flex        : 1,
-   fontSize    : 13,
- },
- buttonContainer : {
-   flexDirection  : 'row',
-   justifyContent : 'center',
-   alignItems     : 'center',
-   marginTop      : 20
- },
- touchableHighlight : {
-   marginLeft  : 10,
-   marginRight : 10,
- },
- buttonBox : {
-   flexDirection  : 'row',
+ tutorialScreen: {
+   borderColor : '#F5F5F5',
    justifyContent : 'center',
    alignItems     : 'center',
    padding        : 10,
    borderWidth    : 2,
-   borderRadius   : 5
+   borderRadius   : 5,
+   marginLeft: 80,
+   marginRight: 80,
+   flexWrap: 'wrap',
  },
- saveButtonBox : {
-   borderColor : '#AA0000'
+ buttonText: {
+   color: 'F5F5F5',
+   fontSize: 18,
+   alignSelf: 'center'
  },
- loadButtonBox : {
-   borderColor : '#00AA00'
- },
- setButtonBox : {
-   borderColor : '#00AA00'
- },
- buttonText : {
-   fontSize : 16,
- },
- outputContainer : {
-   width          : 300,
-   height         : 200,
+ buttonBox : {
+   borderColor : '#F5F5F5',
    justifyContent : 'center',
    alignItems     : 'center',
-   borderWidth    : .5,
-   borderColor    : "#999999",
-   marginTop      : 20
- }, 
- row: {
-   padding: 8,
-   paddingBottom: 16
- }, 
- smallText: {
-   fontSize: 11
+   padding  : 10,
+   borderWidth    : 2,
+   borderRadius   : 5
  },
- formInput: {
-   flex: 1,
-   height: 26,
-   fontSize: 13,
-   borderWidth: 1,
-   borderColor: "#555555",
+ wrapper: {
  },
- saved: {
-   fontSize: 20,
-   textAlign: "center",
-   margin: 10,
- },
+ slide1: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#8173c7',
+},
+slide2: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#97CAE5',
+},
+slide3: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#92BBD9',
+},
+slide4: {
+  flex: 1,
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#8173c1',
+},
+text: {
+  color: '#fff',
+  fontSize: 30,
+  fontWeight: 'bold',
+  paddingBottom: 10
+},
+icon: {
+  alignSelf: 'center',
+  height: 50,
+  width: 100,
+  resizeMode: 'stretch',
+},
 });
 
 var Tutorial = React.createClass({
  render(){
    return (
     <View style={styles.container}>
-    <Text style={styles.description}>
-    "Welcome to Locl, this is how Locl works..(There should be swipeable images here)"
-    </Text>
+    <Swiper style={styles.wrapper} loop={false}>
+    <View style={styles.slide1}>
+    <Text style={styles.text}>Welcome to</Text>
+    <Image style={styles.icon} source={require('image!LoclIcon')} /> 
+    </View>
+    <View style={styles.slide2}>
+    <Text style={styles.text}>Locl is really easy to use.</Text>
+    </View>
+    <View style={styles.slide3}>
+    <Text style={styles.text}>More instructions!</Text>
+    </View>
+    <View style={styles.slide4}>
     <TouchableHighlight underlayColor="#AA9999" onPress={this.toFacebookLogin}>
-     <View style={[styles.buttonBox, styles.setButtonBox]}>
-     <Text style={styles.buttonText}>
-     Finish
-     </Text>
-     </View>
-     </TouchableHighlight>
+    <View style={styles.buttonBox}>
+    <Text style={styles.buttonText}>
+    Got it
+    </Text>
+    </View>
+    </TouchableHighlight>
+    </View>
+    </Swiper>
     </View>);
  },
 
  toFacebookLogin(){
-   this.props.navigator.push({
-     title: 'Facebook',
-     component: facebookLogin
+   this.props.navigator.replace({
+     title: "Login with Facebook",
+     component: FacebookLogin
    });
  }
-
  
 });
 
-  module.exports = Tutorial;
+module.exports = Tutorial;

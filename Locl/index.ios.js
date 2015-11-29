@@ -1,14 +1,10 @@
 'use strict';
 
 var React = require('react-native');
-var Preference = require('./Preference');
 var StoreHome = require('./StoreHome');
 var CustomerHome = require('./CustomerHome');
 var Tutorial = require('./Tutorial');
-// If true, goes into the setup screen, not a home screen
-var introductionCompleted = true;
-// If true, goes to store screen, otherwise customer screen
-var customer = false;
+var Storage = require('react-native-store');
 
 var {
 	StyleSheet,
@@ -20,80 +16,88 @@ var {
 	Image,
 	Component,
 	NavigatorIOS,
-	AppRegistry
+	AppRegistry,
+	AsyncStorage
 } = React;
 
 var styles = StyleSheet.create({
-	description: {
-		color: 'black',
-		backgroundColor: 'white',
-		fontSize: 30,
-		margin: 80
-	},
 	container: {
 		flex: 1,
 	},
-	flowRight: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		alignSelf: 'stretch'
-	},
-	buttonText: {
-		fontSize: 18,
-		color: 'white',
-		alignSelf: 'center'
-	},
-	button: {
-		height: 20,
-		flex: 1,
-		flexDirection: 'row',
-		backgroundColor: '#48BBEC',
-		borderColor: '#48BBEC',
-		borderWidth: 1,
-		borderRadius: 8,
-		marginBottom: 10,
-		alignSelf: 'stretch',
-		justifyContent: 'center'
-	}
 });
 
 var Locl = React.createClass({
-	render() {
-		if(introductionCompleted == false){
-			return (
-				<NavigatorIOS ref='nav'
-				style={styles.container}
-				initialRoute={{
-					title: 'Welcome',
-					component: Tutorial,
-				}}/>
-				);
+	getInitialState() {
+		return {
+			loading: false,
+			tutorialCompleted: 'false',
+		}
+	},
 
-		} else {
-			if(customer){
+	componentDidMount() {
+		this.loadTutorialStatus().done();
+	},
+
+	async loadTutorialStatus() {
+		try {
+			var tutorialCompleted = await AsyncStorage.getItem('tutorialCompleted');
+			if (tutorialCompleted !== null){
+				this.setState({
+					tutorialCompleted: tutorialCompleted,
+					loading: true,
+				});
+				console.log("Tutorial completed");
+			} else {
+				console.log("Intro not completed");
+				this.setState({
+					loading: true,
+				})
+			}
+		} catch (error) {
+			console.log("Async error: " + error.message);
+		}
+	},
+
+	renderLoadingView: function() {
+		return (
+			<View style={styles.container}>
+			<Text>
+			Loading a Locl Experience..
+			</Text>
+			</View>
+			);
+	},
+
+	render() {
+		if (this.state.loading === false) {
+			return (
+				this.renderLoadingView()
+				);
+		}
+		else {
+			if(this.state.tutorialCompleted === 'false') {
 				return (
 					<NavigatorIOS ref='nav'
 					style={styles.container}
+					navigationBarHidden={true}
 					initialRoute={{
-						title: 'Locl',
-						component: CustomerHome,
+						component: Tutorial,
 					}}/>
 					);
-
-
 			} else {
 				return (
 					<NavigatorIOS ref='nav'
 					style={styles.container}
+					navigationBarHidden={false}
 					initialRoute={{
-						title: 'Store',
-						component: StoreHome,
+						title: "Home",
+						component: CustomerHome,
 					}}/>
 					);
 			}
-		}
-	}
-});
 
+		}
+	},
+});
 
 AppRegistry.registerComponent('Locl', () => Locl);

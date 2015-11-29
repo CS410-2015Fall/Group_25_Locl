@@ -45,13 +45,14 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		950F48031BD44165005A262F /* libRNBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 950F47F61BD44123005A262F /* libRNBeacon.a */; };
 		950F480F1BD4416C005A262F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950F480E1BD4416C005A262F /* CoreLocation.framework */; };
+		951DE5A71C0AE6F2005DEE91 /* LoclLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */; };
+		951DE5A91C0AE909005DEE91 /* LoclSplash640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
 		954D30B21C053E5E000A8A8D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D30A51C053E44000A8A8D /* libRCTCamera.a */; };
@@ -65,7 +66,6 @@
 		954D30C41C057BB5000A8A8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 954D30BE1C057BB5000A8A8D /* README.md */; };
 		9550C6051BE7E88B00C65659 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6041BE7E86D00C65659 /* libRNBluetoothState.a */; };
 		9550C6071BE7E89100C65659 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550C6061BE7E89100C65659 /* CoreBluetooth.framework */; };
-		95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,7 +238,6 @@
 		13B07F961A680F5B00A75B9A /* Locl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Locl/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Locl/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Locl/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Locl/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Locl/main.m; sourceTree = "<group>"; };
@@ -247,6 +246,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		950F47E71BD44123005A262F /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "../node_modules/react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<group>"; };
 		950F480E1BD4416C005A262F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoclLogo.png; sourceTree = "<group>"; };
+		951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoclSplash640x960.png; sourceTree = "<group>"; };
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
@@ -261,7 +262,6 @@
 		954D30BE1C057BB5000A8A8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9550C5F41BE7E86D00C65659 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		9550C6061BE7E89100C65659 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Locl/Images-2.xcassets"; sourceTree = "<group>"; };
 		95DA553A1BF70A0E005CCC6B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBeacon.xcodeproj; path = "/Users/coreywilson/Desktop/CPSC 410/Final Project/Locl/Locl/node_modules/react-native-bluetooth-state/../react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -452,10 +452,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */,
-				95A01AC41BFE6FE600A996B4 /* Images-2.xcassets */,
 			);
 			name = Locl;
 			sourceTree = "<group>";
@@ -479,6 +477,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */,
+				951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */,
 				954D30B81C057BB5000A8A8D /* react-native-file-upload */,
 				954D30B31C05412F000A8A8D /* UIImagePickerManager */,
 				954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */,
@@ -828,6 +828,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951DE5A91C0AE909005DEE91 /* LoclSplash640x960.png in Resources */,
+				951DE5A71C0AE6F2005DEE91 /* LoclLogo.png in Resources */,
 				954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				954D30C31C057BB5000A8A8D /* package.json in Resources */,
@@ -835,8 +837,6 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				954D30BF1C057BB5000A8A8D /* .npmignore in Resources */,
 				954D30C11C057BB5000A8A8D /* index.js in Resources */,
-				95A01AC51BFE6FE600A996B4 /* Images-2.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,18 +898,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = Locl;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -948,7 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -979,7 +967,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
