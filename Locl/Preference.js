@@ -84,8 +84,8 @@ var Preference = React.createClass({
                                    console.log("store");
                                    }
                                    try {
-                                   var boolModel = await Storage.model("status");
-                                   var add_intro = await boolModel.add({name: "intro"});
+                                   var boolModel = await Storage.model("s");
+                                   var add_intro = await boolModel.add({name: "i"});
                                    } catch(error){
                                    console.log("store");
                                    }
@@ -95,7 +95,7 @@ var Preference = React.createClass({
         this.props.navigator.popN(2);
       } else {
                                            this.props.navigator.popToTop();
-                                           /*this.props.navigator.resetTo({
+                                           /*this.props.navigator.replace({
                                                                         title: 'Locl',
                                                                         component: StoreHome,
                                                                         });*/
@@ -110,8 +110,8 @@ var Preference = React.createClass({
                                    console.log("customer");
                                    }
                                    try {
-                                   var boolModel = await Storage.model("status");
-                                   var add_intro = await boolModel.add({name: "intro"});
+                                   var boolModel = await Storage.model("s");
+                                   var add_intro = await boolModel.add({name: "i"});
                                    } catch(error){
                                    console.log("store");
                                    }
@@ -132,15 +132,15 @@ var Preference = React.createClass({
                                    
                                    async setBoolean(customer){
                                   /* RNS version */
-                                   var boolModel = await Storage.model("status");
+                                   var boolModel = await Storage.model("s");
                                    
                                    if(!customer){
                                    console.log("Choosing Store");
-                                   var add_store = await boolModel.add({name: "store"});
+                                   var add_store = await boolModel.add({name: "s"});
                                    return true;
                                    } else{
                                    console.log("Choosing Customer");
-                                   var add_customer = await boolModel.add({name: "customer"});
+                                   var add_customer = await boolModel.add({name: "c"});
                                    return true;
                                    }
                                    

@@ -60,8 +60,50 @@ var styles = StyleSheet.create({
                                });
 
 var Welcome = React.createClass({
+                                
+                                componentDidMount(){
+                                // for debugging control flow
+                                //this.debugIntro();
+                                },
+                                
+                                async chooseScreen(){
+                                try {
+                                var intro = await this.loadIntro();
+                                } catch (error){
+                                console.log("Error loading type/intro");
+                                }
+                                
+                                if(intro){
+                                /*this.props.navigator.push({
+                                                             title: 'Welcome',
+                                                             component: Tutorial,
+                                                             });*/
+                                
+                                } else {
+                                try {
+                                var customer = await this.loadType();
+                                } catch (error){
+                                console.log("Error loading type/intro");
+                                }
+                                if(customer){
+                                this.props.navigator.replace({
+                                                             title: 'Locl',
+                                                             component: CustomerHome,
+                                                             });
+                                
+                                
+                                } else {
+                                this.props.navigator.replace({
+                                                             title: 'Locl',
+                                                             component: StoreHome,
+                                                             });
+                                }
+                                }
+                                },
+
 
                                 render() {
+                                var chosen = this.chooseScreen();
                                 return (
                                         <View style={styles.container}>
                                         <Text style={styles.description}>
@@ -121,10 +163,10 @@ var Welcome = React.createClass({
                              
                              async loadIntro(){
                                 /* RNS version  */
-                                var boolModel = await Storage.model("status");
+                                var boolModel = await Storage.model("s");
                                 
                                 var add_intro = await boolModel.find({
-                                                                     where:{name:"intro"}
+                                                                     where:{name:"i"}
                                                                      });
                                 
                                 console.log(add_intro);
@@ -154,14 +196,14 @@ var Welcome = React.createClass({
                              
                              async loadType(){
                                 /* RNS version */
-                                var boolModel = await Storage.model("status");
+                                var boolModel = await Storage.model("s");
                                 
                                 var add_customer = await boolModel.find({
-                                                                        where:{name:"customer"}
+                                                                        where:{name:"c"}
                                                                      });
                                 
                                 var add_store = await boolModel.find({
-                                                                        where:{name:"store"}
+                                                                        where:{name:"s"}
                                                                         });
 
                                 console.log("Customer exists? " + add_customer);
@@ -192,22 +234,22 @@ var Welcome = React.createClass({
                                 async debugIntro(){
                                 
                                 /* RNS version */
-                                var boolModel = await Storage.model("status");
+                                var boolModel = await Storage.model("s");
                                 
                                 var remove_data = await boolModel.remove({
-                                                                     where:{name:"intro"}
+                                                                     where:{name:"i"}
                                                                      });
                                 
-                                var storeModel = await Storage.model("status");
+                                var storeModel = await Storage.model("s");
                                 
                                 var store_data = await storeModel.remove({
-                                                                         where:{name:"customer"}
+                                                                         where:{name:"c"}
                                                                          });
                                 
-                                var custModel = await Storage.model("status");
+                                var custModel = await Storage.model("s");
                                 
                                 var cust_data = await custModel.remove({
-                                                                     where:{name:"store"}
+                                                                     where:{name:"s"}
                                                                      });
                                 
                                 console.log("Customers left: " + cust_data);
