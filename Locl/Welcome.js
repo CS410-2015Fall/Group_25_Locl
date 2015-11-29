@@ -130,7 +130,7 @@ var Welcome = React.createClass({
                                 console.log(add_intro);
 
                                 if (add_intro === null){
-                                var add_intro = await boolModel.add({name: "intro"});
+                                //var add_intro = await boolModel.add({name: "intro"});
                                 console.log("Successful");
                                 return true;
                                 }

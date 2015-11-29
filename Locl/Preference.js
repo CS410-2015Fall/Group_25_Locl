@@ -83,6 +83,12 @@ var Preference = React.createClass({
                                    } catch(error){
                                    console.log("store");
                                    }
+                                   try {
+                                   var boolModel = await Storage.model("status");
+                                   var add_intro = await boolModel.add({name: "intro"});
+                                   } catch(error){
+                                   console.log("store");
+                                   }
     FBSDKAccessToken.getCurrentAccessToken(token =>
     {
       if (token == null) {
@@ -102,6 +108,12 @@ var Preference = React.createClass({
                                    var dingus = await this.setBoolean(true);
                                    } catch(error){
                                    console.log("customer");
+                                   }
+                                   try {
+                                   var boolModel = await Storage.model("status");
+                                   var add_intro = await boolModel.add({name: "intro"});
+                                   } catch(error){
+                                   console.log("store");
                                    }
     FBSDKAccessToken.getCurrentAccessToken(token =>
     {
