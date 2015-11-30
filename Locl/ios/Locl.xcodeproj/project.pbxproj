@@ -155,6 +155,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNBeacon;
 		};
+		951DE5B21C0CF4E4005DEE91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 951DE5AE1C0CF4E3005DEE91 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
 		954D30A41C053E44000A8A8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */;
@@ -252,6 +259,7 @@
 		951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoclSplash640x960.png; sourceTree = "<group>"; };
 		951DE5AA1C0C251F005DEE91 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		951DE5AB1C0C251F005DEE91 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		951DE5AE1C0CF4E3005DEE91 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
@@ -481,6 +489,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				951DE5AE1C0CF4E3005DEE91 /* RCTCamera.xcodeproj */,
 				951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */,
 				951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */,
 				954D30B81C057BB5000A8A8D /* react-native-file-upload */,
@@ -545,6 +554,14 @@
 			isa = PBXGroup;
 			children = (
 				950F47F61BD44123005A262F /* libRNBeacon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		951DE5AF1C0CF4E3005DEE91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				951DE5B31C0CF4E4005DEE91 /* libRCTCamera.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -663,6 +680,10 @@
 				{
 					ProductGroup = 954D30A01C053E44000A8A8D /* Products */;
 					ProjectRef = 954D309F1C053E44000A8A8D /* RCTCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = 951DE5AF1C0CF4E3005DEE91 /* Products */;
+					ProjectRef = 951DE5AE1C0CF4E3005DEE91 /* RCTCamera.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -797,6 +818,13 @@
 			fileType = archive.ar;
 			path = libRNBeacon.a;
 			remoteRef = 950F47F51BD44123005A262F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		951DE5B31C0CF4E4005DEE91 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = 951DE5B21C0CF4E4005DEE91 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		954D30A51C053E44000A8A8D /* libRCTCamera.a */ = {

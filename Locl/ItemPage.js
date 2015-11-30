@@ -1,5 +1,6 @@
 var React = require('react-native');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
+var Camera = require("react-native-camera");
 
 var {
   AlertIOS,
@@ -119,6 +120,11 @@ var ItemPage = React.createClass({
       </View>;
     }
 
+    if (this.state.showCamera) {
+      return (
+        this.renderCamera()
+      );
+    } else {
     return (
       <ScrollView style={styles.container}>
       
@@ -143,6 +149,10 @@ var ItemPage = React.createClass({
 
       <TouchableHighlight style={styles.buttonWithField} onPress={this.getItemDetailsByUPC}>
       <Text style={styles.buttonText}>Check</Text>
+      </TouchableHighlight>
+
+      <TouchableHighlight style={styles.buttonWithField} onPress={() => {this.setState({showCamera: true});}}>
+      <Text style={styles.buttonText}>Camera</Text>
       </TouchableHighlight>
       
       </View>
@@ -193,12 +203,15 @@ var ItemPage = React.createClass({
       
       </ScrollView>
       );
+}
 },
 
 getInitialState: function() {
   console.log("StoreID passed to AddItem: " + this.props.StoreID);
   if (this.props.ItemData) {
     return {
+      showCamera: false,
+      cameraType: Camera.constants.Type.back,
       updateItem: true,
       name: this.props.ItemData.Name,
       upc: this.props.ItemData.UPC.toString(),
@@ -213,6 +226,8 @@ getInitialState: function() {
     }
   } else {
     return {
+      showCamera: false,
+      cameraType: Camera.constants.Type.back,
       name: "",
       upc: "",
       quantity: "",
@@ -244,6 +259,33 @@ getItemDetailsByUPC: function() {
           }}).done(); 
     }
 },
+
+_onBarCodeRead: function(e) {
+        this.setState({
+          showCamera: false, 
+          upc: e.data.toString()});
+        AlertIOS.alert(
+            "UPC Found!",
+            "Type: " + e.type + "\nData: " + e.data
+        );
+    },
+
+renderCamera: function() {
+        if(this.state.showCamera) {
+            return (
+                <Camera
+                    ref="cam"
+                    style={styles.container}
+                    onBarCodeRead={this._onBarCodeRead}
+                    type={this.state.cameraType}>
+                </Camera>
+            );
+        } else {
+            return (
+                <View></View>
+            );
+        }
+    },
 
 onUpdatePress: function()  {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
