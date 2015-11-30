@@ -5,9 +5,9 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchImage</string>
 	<key>UILaunchImageFile~iphone</key>
-	<string>LoclSplash640x960</string>
+	<string>Default</string>
 	<key>UILaunchImageFile~ipad</key>
-	<string>LoclSplash640x960</string>
+	<string>Default</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

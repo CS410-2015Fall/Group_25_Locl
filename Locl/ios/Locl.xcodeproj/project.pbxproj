@@ -53,6 +53,8 @@
 		950F480F1BD4416C005A262F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950F480E1BD4416C005A262F /* CoreLocation.framework */; };
 		951DE5A71C0AE6F2005DEE91 /* LoclLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */; };
 		951DE5A91C0AE909005DEE91 /* LoclSplash640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */; };
+		951DE5AC1C0C251F005DEE91 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5AA1C0C251F005DEE91 /* Default.png */; };
+		951DE5AD1C0C251F005DEE91 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 951DE5AB1C0C251F005DEE91 /* Default@2x.png */; };
 		952B7D671BCEF32900AB55A4 /* BluetoothBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */; };
 		952B7D681BCEF32900AB55A4 /* BluetoothBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */; };
 		954D30B21C053E5E000A8A8D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D30A51C053E44000A8A8D /* libRCTCamera.a */; };
@@ -248,6 +250,8 @@
 		950F480E1BD4416C005A262F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		951DE5A61C0AE6F2005DEE91 /* LoclLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoclLogo.png; sourceTree = "<group>"; };
 		951DE5A81C0AE909005DEE91 /* LoclSplash640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoclSplash640x960.png; sourceTree = "<group>"; };
+		951DE5AA1C0C251F005DEE91 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		951DE5AB1C0C251F005DEE91 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		952B7D5A1BCEF2C300AB55A4 /* Locl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locl-Bridging-Header.h"; sourceTree = "<group>"; };
 		952B7D651BCEF32900AB55A4 /* BluetoothBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBeacon.m; sourceTree = "<group>"; };
 		952B7D661BCEF32900AB55A4 /* BluetoothBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBeacon.swift; sourceTree = "<group>"; };
@@ -514,6 +518,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				951DE5AA1C0C251F005DEE91 /* Default.png */,
+				951DE5AB1C0C251F005DEE91 /* Default@2x.png */,
 				954D30B61C05417D000A8A8D /* UIImagePickerManager.m */,
 				9550C6061BE7E89100C65659 /* CoreBluetooth.framework */,
 				950F480E1BD4416C005A262F /* CoreLocation.framework */,
@@ -833,10 +839,12 @@
 				954D30B41C05412F000A8A8D /* UIImagePickerManager in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				954D30C31C057BB5000A8A8D /* package.json in Resources */,
+				951DE5AD1C0C251F005DEE91 /* Default@2x.png in Resources */,
 				954D30C21C057BB5000A8A8D /* LICENSE in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				954D30BF1C057BB5000A8A8D /* .npmignore in Resources */,
 				954D30C11C057BB5000A8A8D /* index.js in Resources */,
+				951DE5AC1C0C251F005DEE91 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

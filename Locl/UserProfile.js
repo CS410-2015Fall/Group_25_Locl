@@ -39,7 +39,7 @@ var {
 var styles = StyleSheet.create({
   description: {
     color: 'white',
-    backgroundColor: '8173c7',
+    backgroundColor: '#8173c7',
     fontSize: 18,
   },
   container: {
