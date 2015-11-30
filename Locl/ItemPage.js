@@ -1,6 +1,5 @@
 var React = require('react-native');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
-var Camera = require("react-native-camera");
 
 var {
   AlertIOS,
@@ -91,15 +90,21 @@ fieldWithButton: {
   paddingLeft: 2,
 },
 
+cameraContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "transparent",
+    }
+
 });
 
 var ItemPage = React.createClass({
-  render(){
+  render: function() {
     var bottom; 
     if (this.state.updateItem) {
       bottom = 
       <View style={styles.buttonContainer}>
-
       <TouchableHighlight style={styles.buttonBox} onPress={this.onUpdatePress}>
       <Text style={styles.buttonText}> Update </Text>
       </TouchableHighlight>
@@ -107,7 +112,6 @@ var ItemPage = React.createClass({
       <TouchableHighlight style={styles.buttonBox} onPress={this.onDeletePress}>
       <Text style={styles.buttonText}>Delete</Text>
       </TouchableHighlight>
-
       </View>;
     } else { 
       bottom = 
@@ -119,12 +123,6 @@ var ItemPage = React.createClass({
 
       </View>;
     }
-
-    if (this.state.showCamera) {
-      return (
-        this.renderCamera()
-      );
-    } else {
     return (
       <ScrollView style={styles.container}>
       
@@ -151,7 +149,7 @@ var ItemPage = React.createClass({
       <Text style={styles.buttonText}>Check</Text>
       </TouchableHighlight>
 
-      <TouchableHighlight style={styles.buttonWithField} onPress={() => {this.setState({showCamera: true});}}>
+      <TouchableHighlight style={styles.buttonWithField} onPress={this.onBarcodeCameraPress}>
       <Text style={styles.buttonText}>Camera</Text>
       </TouchableHighlight>
       
@@ -203,15 +201,12 @@ var ItemPage = React.createClass({
       
       </ScrollView>
       );
-}
 },
 
 getInitialState: function() {
   console.log("StoreID passed to AddItem: " + this.props.StoreID);
   if (this.props.ItemData) {
     return {
-      showCamera: false,
-      cameraType: Camera.constants.Type.back,
       updateItem: true,
       name: this.props.ItemData.Name,
       upc: this.props.ItemData.UPC.toString(),
@@ -226,8 +221,6 @@ getInitialState: function() {
     }
   } else {
     return {
-      showCamera: false,
-      cameraType: Camera.constants.Type.back,
       name: "",
       upc: "",
       quantity: "",
@@ -242,8 +235,7 @@ getInitialState: function() {
   }
 },
 
-getItemDetailsByUPC: function() {
-  console.log("typeof: " + typeof this.state.upc + " number: " + this.state.upc);
+getItemDetailsByUPC: function(upc) {
   if ((this.state.upc.length >= 12) && (this.state.upc.match(/^\d+$/))) {
     fetch("http://www.searchupc.com/handlers/upcsearch.ashx?request_type=3&access_token=98A88ED2-16F7-476B-BCCF-92B44912AAF5&upc=" + this.state.upc, {method: "GET"})
         .then((response) => {
@@ -259,33 +251,6 @@ getItemDetailsByUPC: function() {
           }}).done(); 
     }
 },
-
-_onBarCodeRead: function(e) {
-        this.setState({
-          showCamera: false, 
-          upc: e.data.toString()});
-        AlertIOS.alert(
-            "UPC Found!",
-            "Type: " + e.type + "\nData: " + e.data
-        );
-    },
-
-renderCamera: function() {
-        if(this.state.showCamera) {
-            return (
-                <Camera
-                    ref="cam"
-                    style={styles.container}
-                    onBarCodeRead={this._onBarCodeRead}
-                    type={this.state.cameraType}>
-                </Camera>
-            );
-        } else {
-            return (
-                <View></View>
-            );
-        }
-    },
 
 onUpdatePress: function()  {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
@@ -313,6 +278,27 @@ onUpdatePress: function()  {
       passProps: {StoreID: this.props.StoreID,}
     });
   }
+},
+
+onBarcodeCameraPress: function() {
+  var barcodeCamera = require('./barcodeCamera.js');
+  this.props.navigator.push({
+      title: "Scan a barcode",
+      component: barcodeCamera,
+      callback: this.callbackBarcode,
+      leftButtonTitle: 'Back',
+      onLeftButtonPress: () => {
+        this.props.navigator.pop();
+      }
+    });
+},
+
+callbackBarcode: function(barcode) {
+  console.log("UPC set to: " + barcode);
+  this.setState({
+        upc: barcode,
+      });
+  this.getItemDetailsByUPC();
 },
 
 onAddPress: function() {
