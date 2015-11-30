@@ -5,6 +5,7 @@ var StorePage = require('./StorePage');
 var bluetoothScanningManager = require('./bluetoothScanningManager.js');
 var cacheManager = require('./cacheManager.js');
 var serverManager = require('./serverManager.js');
+var PreferenceProfile = require('./PreferenceProfile.js');
 
 var {
   AlertIOS,
@@ -230,7 +231,7 @@ render : function(){
     <Image style={styles.tabBarIcon} source={require('image!marker20-2')} /> 
     </TouchableHighlight>
 
-    <TouchableHighlight style={styles.customTab}>
+    <TouchableHighlight style={styles.customTab} onPress={this.onPreferencePress}>
     <Image style={styles.tabBarIcon} source={require('image!settings48')} /> 
     </TouchableHighlight>
 
@@ -271,14 +272,6 @@ handleAppStateChange: function(currentAppState) {
   // }
 },
 
-//This will goto the customer settings
-toSettings(){
- // this.props.navigator.push({
- //   component: CustomerAdd
- // });
-return;
-},
-
 onStorePress: function() {
   if (this.state.storeID == "") {
     var StoreProfile = require('./StoreProfile.js');
@@ -296,6 +289,17 @@ onStorePress: function() {
       passProps: {StoreID: this.state.storeID},
     });
   }
+},
+
+onPreferencePress: function() {
+  bluetoothScanningManager.stopRangingBeaconsInRegion();
+  this.props.navigator.push({
+   title: "Preference Manager",
+   component: PreferenceProfile,
+   passProps: {CustomerID: this.state.customerID},
+   leftButtonTitle: 'Locl',
+   onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothScanningManager.startRangingBeaconsInRegion();}
+ });
 },
 
 rowPressed(store) {

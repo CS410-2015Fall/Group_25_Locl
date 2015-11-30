@@ -1,9 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Preference = require('./Preference');
-
-var ServerManager = require('./serverManager');
+var PreferenceProfile = require('./PreferenceProfile.js');
 
 //app Name for DreamFactory
 var loclSQL="?app_name=loclSQL";
@@ -65,10 +63,10 @@ var styles = StyleSheet.create({
    borderWidth    : 2,
    borderRadius   : 5
  },
-  profilePicture: {
-    height: 125,
-    width: 125
-  }
+ profilePicture: {
+  height: 125,
+  width: 125
+}
 });
 
 var UserProfile = React.createClass({
@@ -145,6 +143,6 @@ var UserProfile = React.createClass({
     .done();
   },
 
-  });
+});
 
 module.exports = UserProfile;
