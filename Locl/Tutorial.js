@@ -94,6 +94,25 @@ icon: {
   width: 100,
   resizeMode: 'stretch',
 },
+customTabBar: {
+  flexDirection: 'row',
+  padding: 10,
+  alignItems      : 'center',
+  backgroundColor : '#8173c7',
+  justifyContent: 'space-around',
+  alignItems: 'flex-end',
+},
+customTab: {
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-around'
+},
+tabBarIcon: {
+  height: 40,
+  width: 40,
+  resizeMode: 'stretch',
+},
+
 });
 
 var Tutorial = React.createClass({

@@ -4,7 +4,7 @@ var React = require('react-native');
 var StoreHome = require('./StoreHome');
 var CustomerHome = require('./CustomerHome');
 var Tutorial = require('./Tutorial');
-var Storage = require('react-native-store');
+var bluetoothBeaconManager = require('./bluetoothBeaconManager');
 
 var {
 	StyleSheet,
@@ -31,11 +31,15 @@ var Locl = React.createClass({
 		return {
 			loading: false,
 			tutorialCompleted: 'false',
+			storeID: '',
+			customerID: '',
 		}
 	},
 
 	componentDidMount() {
 		this.loadTutorialStatus().done();
+		this.loadStoreID().done();
+		this.loadCustomerID().done();
 	},
 
 	async loadTutorialStatus() {
@@ -44,11 +48,46 @@ var Locl = React.createClass({
 			if (tutorialCompleted !== null){
 				this.setState({
 					tutorialCompleted: tutorialCompleted,
-					loading: true,
 				});
 				console.log("Tutorial completed");
 			} else {
-				console.log("Intro not completed");
+				console.log("Tutorial not completed");
+			}
+		} catch (error) {
+			console.log("Async error: " + error.message);
+		}
+	},
+
+	async loadStoreID() {
+		try {
+			var storeID = await AsyncStorage.getItem('StoreID');
+			if (storeID !== null){
+				this.setState({
+					storeID: storeID,
+				});
+				bluetoothBeaconManager.onBeaconingSetPress(storeID);
+				console.log("StoreID set to " + storeID);
+			} else {
+				console.log("Store not setup");
+				this.setState({
+				})
+			}
+		} catch (error) {
+			console.log("Async error: " + error.message);
+		}
+	},
+
+	async loadCustomerID() {
+		try {
+			var customerID = await AsyncStorage.getItem('CustomerID');
+			if (customerID !== null){
+				this.setState({
+					customerID: customerID,
+					loading: true,
+				});
+				console.log("CustomerID is: " + customerID);
+			} else {
+				console.log("No CustomerID found");
 				this.setState({
 					loading: true,
 				})
@@ -90,8 +129,9 @@ var Locl = React.createClass({
 					style={styles.container}
 					navigationBarHidden={false}
 					initialRoute={{
-						title: "Home",
+						title: "Locl",
 						component: CustomerHome,
+						passProps: {CustomerID: this.state.customerID, StoreID: this.state.storeID}
 					}}/>
 					);
 			}

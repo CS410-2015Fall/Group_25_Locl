@@ -18,55 +18,78 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
- container: {
-  marginTop: 10,
+container: {
   flex: 1,
+  backgroundColor: "#8173c7",
+},
+buttonContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-around',
 },
 upcBox: {
  flexDirection: 'row',
+ alignItems: 'center',
+ justifyContent: 'space-around',
 },
 textField: {
   height: 40, 
-  marginBottom: 2, 
-  marginLeft: 2, 
-  marginRight: 2,  
+  marginBottom: 5, 
+  marginLeft: 5, 
+  marginRight: 5,  
   borderColor: 'F5F5F5', 
   borderWidth: 1,
   paddingLeft: 2, 
+  backgroundColor: 'white',
 },
 textFieldTitle: {
-  marginBottom: 2, 
+  margin: 5, 
   fontSize: 20,
-  color: '#656565'
+  color: '#F5F5F5',
+  alignSelf: 'center'
 },
-button: {
- height: 20,
- backgroundColor: 'grey',
- borderColor: 'grey',
- borderWidth: 1,
- borderRadius: 8,
- margin: 5,
- color: 'white',
- alignSelf: 'stretch',
- justifyContent: 'center',
- fontSize: 15,
- textAlign: 'center'
-}, 
+buttonText: {
+   color: '#F5F5F5',
+   fontSize: 18,
+   alignSelf: 'center'
+ },
+ buttonBox : {
+   borderColor : '#F5F5F5',
+   justifyContent : 'center',
+   alignItems     : 'center',
+   padding  : 10,
+   borderWidth    : 2,
+   borderRadius   : 5,
+   margin: 20
+ }, 
 thumb: {
   width: 200,
   height: 200,
   alignSelf: 'center',
+  borderWidth    : 2,
+  borderColor: "#F5F5F5",
+  margin: 10
 },
+
+buttonWithField: {
+   borderColor : '#F5F5F5',
+   padding  : 10,
+   borderWidth    : 2,
+   borderRadius   : 5,
+   marginRight: 5
+},
+
 fieldWithButton: {
   flex: 2,
   height: 40, 
-  marginBottom: 2, 
-  marginLeft: 2, 
-  marginRight: 2,  
+  marginLeft: 5, 
+  marginRight: 5,  
   borderColor: 'F5F5F5', 
+  backgroundColor: "white",
   borderWidth: 1,
   paddingLeft: 2,
-}
+},
+
 });
 
 var ItemPage = React.createClass({
@@ -74,14 +97,14 @@ var ItemPage = React.createClass({
     var bottom; 
     if (this.state.updateItem) {
       bottom = 
-      <View style={styles.container}>
+      <View style={styles.buttonContainer}>
 
-      <TouchableHighlight onPress={this.onUpdatePress}>
-      <Text style={styles.button}>Update</Text>
+      <TouchableHighlight style={styles.buttonBox} onPress={this.onUpdatePress}>
+      <Text style={styles.buttonText}> Update </Text>
       </TouchableHighlight>
 
-      <TouchableHighlight onPress={this.onDeletePress}>
-      <Text style={styles.button}>Delete</Text>
+      <TouchableHighlight style={styles.buttonBox} onPress={this.onDeletePress}>
+      <Text style={styles.buttonText}>Delete</Text>
       </TouchableHighlight>
 
       </View>;
@@ -89,8 +112,8 @@ var ItemPage = React.createClass({
       bottom = 
       <View style={styles.container}>
 
-      <TouchableHighlight onPress={this.onAddPress}>
-      <Text style={styles.button}>Add</Text>
+      <TouchableHighlight style={styles.buttonBox} onPress={this.onAddPress}>
+      <Text style={styles.buttonText}>Add</Text>
       </TouchableHighlight>
 
       </View>;
@@ -103,14 +126,14 @@ var ItemPage = React.createClass({
       <Image source={{uri: this.state.htmlLink}} style={styles.thumb}/>
       </TouchableHighlight>
 
-      <Text style={styles.textFieldTitle}>Name:</Text>
+      <Text style={styles.textFieldTitle}>Name</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({name: text})}
       value={this.state.name}
       />
 
-      <Text style={styles.textFieldTitle}>UPC:</Text>
+      <Text style={styles.textFieldTitle}>UPC</Text>
       <View style={styles.upcBox}>
       <TextInput
       style={styles.fieldWithButton}
@@ -118,48 +141,48 @@ var ItemPage = React.createClass({
       value={this.state.upc}
       />
 
-      <TouchableHighlight onPress={this.getItemDetailsByUPC}>
-      <Text style={styles.button}>Check</Text>
+      <TouchableHighlight style={styles.buttonWithField} onPress={this.getItemDetailsByUPC}>
+      <Text style={styles.buttonText}>Check</Text>
       </TouchableHighlight>
       
       </View>
 
-      <Text style={styles.textFieldTitle}>Quantity:</Text>
+      <Text style={styles.textFieldTitle}>Quantity</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({quantity: text})}
       value={this.state.quantity}
       />
 
-      <Text style={styles.textFieldTitle}>Regular Price:</Text>
+      <Text style={styles.textFieldTitle}>Regular Price</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({regPrice: text})}
       value={this.state.regPrice}
       />
 
-      <Text style={styles.textFieldTitle}>Sale Price:</Text>
+      <Text style={styles.textFieldTitle}>Sale Price</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({salePrice: text})}
       value={this.state.salePrice}
       />
 
-      <Text style={styles.textFieldTitle}>Description:</Text>
+      <Text style={styles.textFieldTitle}>Description</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({description: text})}
       value={this.state.description}
       />
 
-      <Text style={styles.textFieldTitle}>Start Date:</Text>
+      <Text style={styles.textFieldTitle}>Start Date</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({startDate: text})}
       value={this.state.startDate}
       />
 
-      <Text style={styles.textFieldTitle}>End Date:</Text>
+      <Text style={styles.textFieldTitle}>End Date</Text>
       <TextInput
       style={styles.textField}
       onChangeText={(text) => this.setState({endDate: text})}
@@ -173,6 +196,7 @@ var ItemPage = React.createClass({
 },
 
 getInitialState: function() {
+  console.log("StoreID passed to AddItem: " + this.props.StoreID);
   if (this.props.ItemData) {
     return {
       updateItem: true,
@@ -241,7 +265,11 @@ onUpdatePress: function()  {
      AlertIOS.alert("Item Updated");
    })
     .done()
-    this.props.navigator.pop();
+    var StoreHome = require('./StoreHome.js');
+    this.props.navigator.pop({
+      component: StoreHome,
+      passProps: {StoreID: this.props.StoreID,}
+    });
   }
 },
 
@@ -249,6 +277,7 @@ onAddPress: function() {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
     AlertIOS.alert("Required fields missing");
   } else {
+    console.log("Creating item with StoreID: " + this.state.storeID);
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL", 
       {method: "POST", body: JSON.stringify(
         {Name: this.state.name, 
@@ -266,7 +295,11 @@ onAddPress: function() {
      AlertIOS.alert("Item Added");
    })
     .done()
-    this.props.navigator.pop();
+    var StoreHome = require('./StoreHome.js');
+    this.props.navigator.pop({
+      component: StoreHome,
+      passProps: {StoreID: this.props.StoreID,}
+    });
   }
 },
 
@@ -277,7 +310,11 @@ onDeletePress: function() {
     AlertIOS.alert("Item Deleted");
   })
   .done();
-  this.props.navigator.pop();
+  var StoreHome = require('./StoreHome.js');
+  this.props.navigator.pop({
+      component: StoreHome,
+      passProps: {StoreID: this.props.StoreID,}
+    });
 },
 
 // The first arg will be the options object for customization, the second is
