@@ -134,19 +134,19 @@ var UserProfile = React.createClass({
   },
 
   checkCustomer: function checkCustomer(fName,lName,pass) {  
-        fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
-        .then((response) => response.json())
-        .then((responseData) => {
-            if (responseData.record.length === 0) {
-              console.log("Customer does not have a prior account.");
-              this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
-            } else {
-              console.log("Customer has a prior account with ID: " + responseData.record[0].CustomerID);
-              this.storeCustomerID(responseData.record[0].CustomerID);
-            }
-        })
-        .done();
-      },
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {
+      if (responseData.record.length === 0) {
+        console.log("Customer does not have a prior account.");
+        this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
+      } else {
+        console.log("Customer has a prior account with ID: " + responseData.record[0].CustomerID);
+        this.storeCustomerID(responseData.record[0].CustomerID);
+      }
+    })
+    .done();
+  },
 
   createCustomer(fName, lName, pass) {
     fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
