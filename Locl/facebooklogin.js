@@ -66,7 +66,13 @@ class FB extends React.Component {
     this.props.navigator.replace({
       title: 'Your Profile',
       component: UserProfile,
-      passProps: {name: informationDict['name'], email: informationDict['email'], picture: informationDict['picture']['data']['url'], id: informationDict['id'], first_name: informationDict['first_name'], last_name: informationDict['last_name']},});
+      passProps: {
+        name: informationDict['name'], 
+        email: informationDict['email'], 
+        picture: informationDict['picture']['data']['url'], 
+        id: informationDict['id'], 
+        first_name: informationDict['first_name'], 
+        last_name: informationDict['last_name']},});
   }
 
   loadUserInfo() {

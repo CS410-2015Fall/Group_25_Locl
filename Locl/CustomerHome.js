@@ -3,7 +3,6 @@
 var React = require('react-native');
 var StorePage = require('./StorePage');
 var bluetoothScanningManager = require('./bluetoothScanningManager.js');
-var cacheManager = require('./cacheManager.js');
 var serverManager = require('./serverManager.js');
 var PreferenceProfile = require('./PreferenceProfile.js');
 
