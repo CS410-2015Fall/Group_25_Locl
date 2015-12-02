@@ -177,38 +177,46 @@ var CustomerHome = React.createClass({
     (data) => {
       console.log("Beacons: " + data.beacons.length);
       if (data.beacons.length > 0) {
+        
         //Only send a request if the current list of beacons is different from the last list of beacons
         var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
-        if (JSON.stringify(minors) !== JSON.stringify(this.state.minors)) {
-          console.log("Minors do not equal");
-          //Build the request string
-          for (var i = 0; i < data.beacons.length; i++) {
-            if (i == 0) {
-              var storeRequestString= "http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL&filter=StoreID=" + data.beacons[i].minor;
-            } else {
-              storeRequestString += "||StoreID=" + data.beacons[i].minor;
-            }
-          };
+        console.log("New minors: " + minors.toString());
+        console.log("Old minors: " + this.state.minors.toString());
 
-          fetch(storeRequestString, {method: "GET"})
+        if (minors.toString() !== this.state.minors.toString()) {
+          console.log("Minors do not equal");
+          
+          var storeIdString="";
+          
+          for(var i = 0; i < data.beacons.length; i++){
+              storeIdString += data.beacons[i].minor + " ";
+          }
+
+          storeIdString = storeIdString.trim();
+          console.log("Store ID String: " + storeIdString);
+
+          fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&storeID=" + storeIdString + "&custID=" + this.state.customerID, {method: "POST"})
           .then((response) => response.json())
           .then((responseData) => {
             if (responseData.error) {
-              console.log("Error: " + responseData.error);
-            }
-            else {
-              this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(responseData.record),
-                minors: minors,
-              })
-            }}).done(); 
-        }
-      } else {
+                console.log("Error: " + responseData.error);
+            } else {
+            console.log("responseData.script_result keys: " + Object.keys(responseData.script_result[0]));
+            console.log("Setting new minors: " + minors);
+            this.setState({
+                  dataSource: this.state.dataSource.cloneWithRows(responseData.script_result),
+                  minors: minors,
+                });
+            console.log("Minors set to: " + this.state.minors);
+          }})
+          .done();
+      }
+    } else {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows([]),
           minors: [],
         })
-      } 
+      }
     });
 }, 
 
@@ -240,6 +248,11 @@ render : function(){
 },
 
 renderStore: function(store) {
+  if(store.flag == true) {
+    var flag = <Image style={styles.tabBarIcon} source={require('image!web39')} /> 
+  } else {
+    var flag = <View></View>
+  }
   return (
     <TouchableHighlight underlayColor="#AA9999" onPress={() => this.rowPressed(store)}> 
     <View>
@@ -249,6 +262,7 @@ renderStore: function(store) {
     <Text style={styles.title} 
     numberOfLines={1}>{store.StoreName}</Text>
     </View>
+    {flag}
     </View>
     <View style={styles.separator}/>
     </View>
