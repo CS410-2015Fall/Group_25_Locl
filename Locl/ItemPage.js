@@ -305,7 +305,7 @@ onAddPress: function() {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
     AlertIOS.alert("Required fields missing");
   } else {
-    console.log("Creating item with StoreID: " + this.state.storeID);
+    console.log("Creating item with StoreID: " + this.state.storeID + " htmllink: " + this.state.htmlLink);
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL", 
       {method: "POST", body: JSON.stringify(
         {Name: this.state.name, 
@@ -320,7 +320,8 @@ onAddPress: function() {
           HTMLlink: this.state.htmlLink})})
     .then((response) => response.json())
     .then((responseData) => {
-     AlertIOS.alert("Item Added");
+      console.log("Item Create Response: " + responseData.ItemID);
+      AlertIOS.alert("Item Added");
    })
     .done()
     var StoreHome = require('./StoreHome.js');
