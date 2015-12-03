@@ -132,6 +132,7 @@ var Locl = React.createClass({
 						title: "Locl",
 						component: CustomerHome,
 						passProps: {CustomerID: this.state.customerID, StoreID: this.state.storeID}
+						
 					}}/>
 					);
 			}

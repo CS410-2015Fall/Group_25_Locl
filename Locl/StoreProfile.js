@@ -92,38 +92,39 @@ var StoreProfile = React.createClass({
     return (
       <View style={styles.container}>
       
-        <TouchableHighlight onPress={this.onCameraPress}>
-        <Image source={{uri: this.state.htmlLink}} style={styles.thumb}/>
-        </TouchableHighlight>
+      <TouchableHighlight onPress={this.onCameraPress}>
+      <Image source={{uri: this.state.htmlLink}} style={styles.thumb}/>
+      </TouchableHighlight>
 
-        <Text style={styles.textFieldTitle}> Name </Text>
-        <TextInput
-        style={styles.textField}
-        onChangeText={(text) => this.setState({storeName: text})}
-        value={this.state.storeName}
-        />
+      <Text style={styles.textFieldTitle}> Name </Text>
+      <TextInput
+      style={styles.textField}
+      onChangeText={(text) => this.setState({storeName: text})}
+      value={this.state.storeName}
+      />
 
-        <Text style={styles.textFieldTitle}> Address </Text>
-        <TextInput
-        style={styles.textField}
-        onChangeText={(text) => this.setState({address: text})}
-        value={this.state.address}
-        />
+      <Text style={styles.textFieldTitle}> Address </Text>
+      <TextInput
+      style={styles.textField}
+      onChangeText={(text) => this.setState({address: text})}
+      value={this.state.address}
+      />
 
-        <Text style={styles.textFieldTitle}> Description </Text>
-        <TextInput
-        style={styles.textField}
-        onChangeText={(text) => this.setState({description: text})}
-        value={this.state.description}
-        />
+      <Text style={styles.textFieldTitle}> Description </Text>
+      <TextInput
+      style={styles.textField}
+      onChangeText={(text) => this.setState({description: text})}
+      value={this.state.description}
+      />
 
-        {bottom}
+      {bottom}
       
       </View>
       );
   },
 
   getInitialState: function() {
+    console.log("Store profile this.props.CustomerId: " + this.props.CustomerId);
     //StoreID passed as prop if updating a store, otherwise there is no StoreID and we are creating a new store
     if (this.props.StoreID) {
       return {
@@ -189,18 +190,30 @@ var StoreProfile = React.createClass({
        AlertIOS.alert("Store Created");
        this.storeStoreID(responseData.StoreID);
        this.setState({
-          storeID: responseData.StoreID,
-        })
+        storeID: responseData.StoreID,
+      })
+       this.updateCustomerWithStore(responseData.StoreID),
        this.props.navigator.replace({
         title: "Locl",
         component: StoreHome,
         passProps: {StoreID: responseData.StoreID}
-        });
+      });
      })
       .done()
       
     }
   },
+
+  updateCustomerWithStore: function updateCustomerWithStore(storeID) {
+    console.log("Update customer with store: " + this.props.CustomerId);
+    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=CustomerID=" + this.props.CustomerId, {method: "PUT", body: JSON.stringify({StoreID: storeID})})
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log("Customer updated with StoreID");
+    })
+    .done();
+  }, 
+
 
   async storeStoreID(newStoreID) {
     try {
@@ -232,7 +245,7 @@ var StoreProfile = React.createClass({
     this.props.navigator.replace({
       component: CustomerHome,
     });
-    },
+  },
 
   getStoreDetails: function(storeID) {
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL&filter=StoreID=" + storeID.toString(), {method: "GET"})
@@ -246,13 +259,13 @@ var StoreProfile = React.createClass({
         if (typeof responseData.record[0] != 'object') {
           return;
         } else {
-        this.setState({
-          storeName: responseData.record[0].StoreName,
-          address: responseData.record[0].Address,
-          description: responseData.record[0].Description,
-          htmlLink: responseData.record[0].StoreHTMLimg,
-        })}
-      }}).done(); 
+          this.setState({
+            storeName: responseData.record[0].StoreName,
+            address: responseData.record[0].Address,
+            description: responseData.record[0].Description,
+            htmlLink: responseData.record[0].StoreHTMLimg,
+          })}
+        }}).done(); 
   },
 
   // The first arg will be the options object for customization, the second is
@@ -262,7 +275,7 @@ var StoreProfile = React.createClass({
   // response.isVertical will be true if the image is vertically oriented
   // response.width & response.height give you the image dimensions
   onCameraPress: function() {
-  var options = {
+    var options = {
   title: 'Get Picture of Item', // specify null or empty string to remove the title
   cancelButtonTitle: 'Cancel',
   takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button

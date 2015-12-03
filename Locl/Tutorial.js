@@ -19,7 +19,8 @@ var {
   AlertIOS,
   ListView,
   DeviceEventEmitter,
-  ScrollView
+  ScrollView, 
+  AsyncStorage,
 } = React;
 
 var styles = StyleSheet.create({
@@ -143,8 +144,18 @@ var Tutorial = React.createClass({
     </View>);
  },
 
+ async setTutorialCompleted() {
+    try {
+      await AsyncStorage.setItem('tutorialCompleted', 'true');
+      console.log('Tutorial set to completed');
+    } catch (error) {
+      console.log('AsyncStorage error (setTutorialTrue): ' + error.message);
+    }
+  },
+
  toFacebookLogin(){
-   this.props.navigator.replace({
+    this.setTutorialCompleted().done();
+    this.props.navigator.replace({
      title: "Login with Facebook",
      component: FacebookLogin
    });

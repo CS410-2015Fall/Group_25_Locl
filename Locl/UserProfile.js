@@ -82,19 +82,20 @@ var UserProfile = React.createClass({
       <Text style={styles.description}>
       {this.props.email}
       </Text>
-      <TouchableHighlight style={styles.buttonBox} onPress={this.toFinishTutorial}>
+      <TouchableHighlight style={styles.buttonBox} onPress={this.toFork}>
       <Text style={styles.buttonText}>Proceed</Text>
       </TouchableHighlight>
       </View>
       );
   },
 
-  async setTutorialCompleted() {
-    try {
-      await AsyncStorage.setItem('tutorialCompleted', 'true');
-      console.log('Tutorial set to completed');
-    } catch (error) {
-      console.log('AsyncStorage error (setTutorialTrue): ' + error.message);
+  getInitialState: function() {
+    return {
+      customerId: "",
+      storeId: "",
+      hasStoreID: false,
+      hasCustomerID: false,
+      loading: false,
     }
   },
 
@@ -107,22 +108,41 @@ var UserProfile = React.createClass({
     }
   },
 
-  toFinishTutorial(){
-    this.checkCustomer(this.props.first_name, this.props.last_name, this.props.id);
-    this.setTutorialCompleted().done();
-    AlertIOS.alert(
-      'Would you like to setup a store?',
-      null,
-      [{text: 'Later', onPress: this.toCustomerHome}, {text: 'Sure', onPress: this.toStoreSetup},]
-      )
+  componentDidMount: function() {
+    this.getCustomerHistory(this.props.first_name, this.props.last_name, this.props.id);
+  },
+
+  toFork(){
+    if (this.state.loading === true) {
+      if(this.state.storeID === false) {
+        AlertIOS.alert(
+          'Would you like to setup a store?',
+          null,
+          [{text: 'Later', onPress: this.toCustomerHome}, 
+          {text: 'Sure', onPress: this.toStoreSetup},]
+          );
+      } else {
+        this.toCustomerHome()
+      }
+    }
   },
 
   toCustomerHome() {
     var CustomerHome = require('./CustomerHome.js')
+    if (this.state.hasStoreID === true) {
+      console.log("toCustomerHome made it past hasStoreID with storeID: " + this.state.storeId);
+      this.props.navigator.replace({
+        title: "Shopping",
+        component: CustomerHome, 
+        passProps: {CustomerID: this.state.customerId, StoreID: this.state.storeId,}
+      });
+    } else {
     this.props.navigator.replace({
       title: "Shopping",
       component: CustomerHome, 
+      passProps: {CustomerID: this.state.customerId,}
     });
+  }
   },
 
   toStoreSetup() {
@@ -130,33 +150,68 @@ var UserProfile = React.createClass({
     this.props.navigator.replace({
       title: "Setup a New Store",
       component: StoreProfile,
+      passProps: {CustomerId: this.state.customerId,}
     });
   },
 
-  checkCustomer: function checkCustomer(fName,lName,pass) {  
+  getCustomerHistory: function(fName,lName,pass) {  
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {
+
       if (responseData.record.length === 0) {
         console.log("Customer does not have a prior account.");
         this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
       } else {
         console.log("Customer has a prior account with ID: " + responseData.record[0].CustomerID);
         this.storeCustomerID(responseData.record[0].CustomerID);
-      }
-    })
-    .done();
-  },
+        this.setState({
+          customerId: responseData.record[0].CustomerID.toString(),
+          hasCustomerID: true,
+        })
+        console.log("customerId set to: " + this.state.customerId + " hasCustomerId set to: " + this.state.hasCustomerID);
 
-  createCustomer(fName, lName, pass) {
-    fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log("New User Created with ID: " + responseData.CustomerID);
-      this.storeCustomerID(responseData.CustomerID);
+        console.log("getCustomerHistory this.state.customerId: " + this.state.customerId);
+        console.log("StoreID associated with CustomerID is: " + responseData.record[0].StoreID);
+        
+        if (responseData.record[0].StoreID !== null) {
+          console.log("StoreID found associated with customer: " + responseData.record[0].StoreID);
+          this.storeStoreID(responseData.record[0].StoreID);
+          this.setState({
+            storeId: responseData.record[0].StoreID.toString(),
+            hasStoreID: true,
+            loading: true, 
+          })
+          console.log("storeID set to: " + this.state.storeId + " hasStoreId set to: " + this.state.hasStoreID);
+        }
+      }
+    }
+    )
+.done();
+},
+
+async storeStoreID(newStoreID) {
+  try {
+    await AsyncStorage.setItem('StoreID', newStoreID.toString());
+    console.log('StoreID ' + newStoreID + ' newStoreID');
+  } catch (error) {
+    console.log('AsyncStorage error (storeStoreID): ' + error.message);
+  }
+},
+
+createCustomer(fName, lName, pass) {
+  fetch(customerTableURL, {method: "POST", body: JSON.stringify({FirstName:fName, LastName: lName, Password:pass})})
+  .then((response) => response.json())
+  .then((responseData) => {
+    console.log("New User Created with ID: " + responseData.CustomerID);
+    this.storeCustomerID(responseData.CustomerID);
+    this.setState({
+      customerId: responseData.CustomerID.toString(),
     })
-    .done();
-  },
+    console.log("CreateCustomer customerId: " + this.state.customerId);
+  })
+  .done();
+},
 
 });
 
