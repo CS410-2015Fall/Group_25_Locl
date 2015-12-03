@@ -5,6 +5,7 @@ var StoreHome = require('./StoreHome');
 var CustomerHome = require('./CustomerHome');
 var Tutorial = require('./Tutorial');
 var bluetoothBeaconManager = require('./bluetoothBeaconManager');
+var FacebookLogin = require('./facebooklogin');
 
 var {
 	StyleSheet,
@@ -30,6 +31,7 @@ var Locl = React.createClass({
 	getInitialState() {
 		return {
 			loading: false,
+			hasCustomerID: false, 
 			tutorialCompleted: 'false',
 			storeID: '',
 			customerID: '',
@@ -78,11 +80,13 @@ var Locl = React.createClass({
 	},
 
 	async loadCustomerID() {
+		console.log("Loading customerID");
 		try {
 			var customerID = await AsyncStorage.getItem('CustomerID');
 			if (customerID !== null){
 				this.setState({
 					customerID: customerID,
+					hasCustomerID: true, 
 					loading: true,
 				});
 				console.log("CustomerID is: " + customerID);
@@ -123,6 +127,15 @@ var Locl = React.createClass({
 						component: Tutorial,
 					}}/>
 					);
+			} else if (this.state.hasCustomerID === false) {
+				return (
+					<NavigatorIOS ref='nav'
+					style={styles.container}
+					navigationBarHidden={true}
+					initialRoute={{
+						component: FacebookLogin,
+					}}/>
+					);	
 			} else {
 				return (
 					<NavigatorIOS ref='nav'
