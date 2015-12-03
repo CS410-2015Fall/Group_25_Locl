@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var PreferenceProfile = require('./PreferenceProfile.js');
+var bluetoothBeaconManager = require('./bluetoothBeaconManager');
 
 //app Name for DreamFactory
 var loclSQL="?app_name=loclSQL";
@@ -114,7 +115,8 @@ var UserProfile = React.createClass({
 
   toFork(){
     if (this.state.loading === true) {
-      if(this.state.storeID === false) {
+      console.log("Made it past loading");
+      if(this.state.hasStoreID === false) {
         AlertIOS.alert(
           'Would you like to setup a store?',
           null,
@@ -162,17 +164,21 @@ var UserProfile = React.createClass({
       if (responseData.record.length === 0) {
         console.log("Customer does not have a prior account.");
         this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
+        this.setState({
+            loading: true, 
+          })
+
+
       } else {
+        
         console.log("Customer has a prior account with ID: " + responseData.record[0].CustomerID);
         this.storeCustomerID(responseData.record[0].CustomerID);
         this.setState({
           customerId: responseData.record[0].CustomerID.toString(),
           hasCustomerID: true,
         })
+        
         console.log("customerId set to: " + this.state.customerId + " hasCustomerId set to: " + this.state.hasCustomerID);
-
-        console.log("getCustomerHistory this.state.customerId: " + this.state.customerId);
-        console.log("StoreID associated with CustomerID is: " + responseData.record[0].StoreID);
         
         if (responseData.record[0].StoreID !== null) {
           console.log("StoreID found associated with customer: " + responseData.record[0].StoreID);
@@ -182,7 +188,12 @@ var UserProfile = React.createClass({
             hasStoreID: true,
             loading: true, 
           })
+          bluetoothBeaconManager.onBeaconingSetPress(responseData.record[0].StoreID.toString());
           console.log("storeID set to: " + this.state.storeId + " hasStoreId set to: " + this.state.hasStoreID);
+        } else {
+          this.setState({
+            loading: true, 
+          })
         }
       }
     }

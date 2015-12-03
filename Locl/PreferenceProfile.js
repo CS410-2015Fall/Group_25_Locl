@@ -23,7 +23,6 @@ var styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: '8173c7',
-    alignItems      : 'center',
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
@@ -33,46 +32,54 @@ var styles = StyleSheet.create({
     color: '#F5F5F5'
   },
   buttonText: {
-   color: 'F5F5F5',
+   color: '#F5F5F5',
    fontSize: 18,
    alignSelf: 'center'
- },
- 
- preferenceBox: {
-   flexDirection: 'row',
-   justifyContent: 'space-around',
- },
- fieldWithButton: {
-  flex: 2,
-  height: 40, 
-  marginLeft: 5, 
-  marginRight: 5,  
-  borderColor: 'F5F5F5', 
-  backgroundColor: "white",
-  borderWidth: 1,
-  paddingLeft: 2,
-  width: PixelRatio.getPixelSizeForLayoutSize(200),
-},
-buttonWithField: {
-  flex: 1,
- borderColor : '#F5F5F5',
- padding  : 10,
- borderWidth    : 2,
- borderRadius   : 5,
- marginRight: 5
-},
-
-rowContainer: {
-  borderColor: 'white',
-  borderWidth: 1, 
-  backgroundColor: 'F5F5F5',
-  flexDirection: 'row',
-  padding: 10,
-  width: PixelRatio.getPixelSizeForLayoutSize(200),
-}, 
-textContainer: {
-  flex: 1
-},
+  },
+  buttonBox: {
+    borderColor : '#F5F5F5',
+    justifyContent : 'center',
+    alignItems     : 'center',
+    padding  : 10,
+    borderWidth    : 2,
+    borderRadius   : 5,
+    margin: 20
+  }, 
+  preferenceBox: {
+    marginTop: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  buttonWithField: {
+   borderColor : '#F5F5F5',
+   padding  : 10,
+   borderWidth    : 2,
+   borderRadius   : 5,
+   marginLeft: 5,
+   marginRight: 10
+  },
+  fieldWithButton: {
+    flex: 2,
+    height: 40, 
+    marginLeft: 10, 
+    marginRight: 5,  
+    borderColor: 'F5F5F5', 
+    backgroundColor: "white",
+    borderWidth: 1,
+    paddingLeft: 2,
+  },
+  rowContainer: {
+    borderColor: 'white',
+    borderWidth: 1, 
+    backgroundColor: 'F5F5F5',
+    flexDirection: 'row',
+    padding: 10,
+    margin: 5, 
+  }, 
+  textContainer: {
+    flex: 1
+  },
 
 
 });
@@ -85,7 +92,7 @@ var PreferenceProfile = React.createClass({
       <Text style={styles.textFieldTitle}> Add Favourite Items </Text>
 
       <View style={styles.preferenceBox}>
-    
+
       <TextInput
       style={styles.fieldWithButton}
       onChangeText={(text) => this.setState({preferenceTextField: text})}
@@ -139,26 +146,25 @@ var PreferenceProfile = React.createClass({
   },
 
   onCreatePress: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL", {method: "POST", body: JSON.stringify({CustID: this.props.CustomerID, ItemName: this.state.preferenceTextField})})
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log("Preference created: " + this.state.preferenceTextField);
-    })
-    .done();
+    if (this.state.preferenceTextField.length == 0) {
+      AlertIOS.alert("Cannot add a blank preference!");
+    } else {
+      fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL", {method: "POST", body: JSON.stringify({CustID: this.props.CustomerID, ItemName: this.state.preferenceTextField})})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("Preference created: " + this.state.preferenceTextField);
+      })
+      .done();
+    }
   },
 
   onDeletePress: function(itemID) {
-    if (this.state.preferenceTextField.length() == 0) {
-      AlertIOS.alert("Cannot add a blank preference!");
-    }
-    else {
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D" + this.props.CustomerID + "%20and%20itemID%20%3D%20%22" + itemID + "%22", {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
       console.log("Deleted Customer Item: " + itemID);
     })
     .done();
-  }
   },
 
   getPreferences: function() {

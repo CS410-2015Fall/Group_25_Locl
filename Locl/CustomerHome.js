@@ -177,7 +177,7 @@ var CustomerHome = React.createClass({
     (data) => {
       console.log("Beacons: " + data.beacons.length);
       if (data.beacons.length > 0) {
-        
+
         //Only send a request if the current list of beacons is different from the last list of beacons
         var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
         console.log("New minors: " + minors.toString());
@@ -189,7 +189,7 @@ var CustomerHome = React.createClass({
           var storeIdString="";
           
           for(var i = 0; i < data.beacons.length; i++){
-              storeIdString += data.beacons[i].minor + " ";
+            storeIdString += data.beacons[i].minor + " ";
           }
 
           storeIdString = storeIdString.trim();
@@ -199,19 +199,19 @@ var CustomerHome = React.createClass({
           .then((response) => response.json())
           .then((responseData) => {
             if (responseData.error) {
-                console.log("Error: " + responseData.error);
+              console.log("Error: " + responseData.error);
             } else {
-            console.log("responseData.script_result keys: " + Object.keys(responseData.script_result[0]));
-            console.log("Setting new minors: " + minors);
-            this.setState({
-                  dataSource: this.state.dataSource.cloneWithRows(responseData.script_result),
-                  minors: minors,
-                });
-            console.log("Minors set to: " + this.state.minors);
-          }})
+              console.log("responseData.script_result keys: " + Object.keys(responseData.script_result[0]));
+              console.log("Setting new minors: " + minors);
+              this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(responseData.script_result),
+                minors: minors,
+              });
+              console.log("Minors set to: " + this.state.minors);
+            }})
           .done();
-      }
-    } else {
+        }
+      } else {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows([]),
           minors: [],
@@ -276,13 +276,12 @@ componentWillUnmount: function() {
 
 handleAppStateChange: function(currentAppState) {
   this.setState({currentAppState: AppStateIOS.currentState});
-  //If want to turn off ranging in the background
-  // if (currentAppState == "background") {
-  //   bluetoothScanningManager.stopRangingBeaconsInRegion();
-  // }
-  // if (currentAppState == "active") {
-  //   bluetoothScanningManager.startRangingBeaconsInRegion();
-  // }
+  if (currentAppState == "background") {
+    bluetoothScanningManager.stopRangingBeaconsInRegion();
+  }
+  if (currentAppState == "active") {
+    bluetoothScanningManager.startRangingBeaconsInRegion();
+  }
 },
 
 onStorePress: function() {
@@ -292,6 +291,12 @@ onStorePress: function() {
     bluetoothScanningManager.stopRangingBeaconsInRegion();
     this.props.navigator.push({
       component: StoreProfile,
+      passProps: {CustomerId: this.state.customerID,},
+      leftButtonTitle: 'Locl',
+      onLeftButtonPress: () => {
+      this.props.navigator.pop(), 
+      bluetoothScanningManager.startRangingBeaconsInRegion();
+  }
     }); 
   } else {
     var StoreHome = require('./StoreHome.js');
@@ -311,8 +316,14 @@ onPreferencePress: function() {
    component: PreferenceProfile,
    passProps: {CustomerID: this.state.customerID},
    leftButtonTitle: 'Locl',
-   onLeftButtonPress: () => {this.props.navigator.pop(), bluetoothScanningManager.startRangingBeaconsInRegion();}
- });
+   onLeftButtonPress: () => {
+    this.props.navigator.pop(), 
+    bluetoothScanningManager.startRangingBeaconsInRegion();
+    this.setState({
+      minors: [],
+    });
+  }
+});
 },
 
 rowPressed(store) {

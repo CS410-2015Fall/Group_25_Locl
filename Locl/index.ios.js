@@ -32,7 +32,7 @@ var Locl = React.createClass({
 		return {
 			loading: false,
 			hasCustomerID: false, 
-			tutorialCompleted: 'false',
+			tutorialCompleted: false,
 			storeID: '',
 			customerID: '',
 		}
@@ -49,7 +49,7 @@ var Locl = React.createClass({
 			var tutorialCompleted = await AsyncStorage.getItem('tutorialCompleted');
 			if (tutorialCompleted !== null){
 				this.setState({
-					tutorialCompleted: tutorialCompleted,
+					tutorialCompleted: true,
 				});
 				console.log("Tutorial completed");
 			} else {
@@ -116,9 +116,8 @@ var Locl = React.createClass({
 			return (
 				this.renderLoadingView()
 				);
-		}
-		else {
-			if(this.state.tutorialCompleted === 'false') {
+		} else {
+			if(this.state.tutorialCompleted === false) {
 				return (
 					<NavigatorIOS ref='nav'
 					style={styles.container}

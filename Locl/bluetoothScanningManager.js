@@ -12,6 +12,7 @@ var {
 	ListView,
 	DeviceEventEmitter, 
 	AsyncStorage,
+	AppStateIOS
 } = React;
 
 //Import Bluetooth listening
@@ -67,13 +68,9 @@ setupRestartSubscription: function() {
 		'regionDidEnter',
 		(data) => {
 			if (data !=null) {
-				
-					bluetoothScanningManager.startRangingBeaconsInRegion();	
-
-					// if we want bluetooth ranging not to turn on in the background	
-					// if (this.currentAppState == "active" || this.currentAppState == "undefined"); {
-    	// 				bluetoothScanningManager.startRangingBeaconsInRegion();	
-  			// 		}
+					if (AppStateIOS.currentState == "active"); {
+    					bluetoothScanningManager.startRangingBeaconsInRegion();	
+  					}
 			}
 		}
 		);

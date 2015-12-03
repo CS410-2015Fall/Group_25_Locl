@@ -1,7 +1,7 @@
 var React = require('react-native');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var CustomerHome = require('./CustomerHome.js');
-
+var bluetoothBeaconManager = require('./bluetoothBeaconManager');
 var defaultImage = "http://www.indre-reisid.ee/wp-content/themes/envision/lib/images/default-placeholder.png";
 
 var {
@@ -69,7 +69,7 @@ var styles = StyleSheet.create({
 });
 
 var StoreProfile = React.createClass({
-  
+
   render() {
     var bottom;
     if (this.state.updateItem) {
@@ -193,6 +193,7 @@ var StoreProfile = React.createClass({
         storeID: responseData.StoreID,
       })
        this.updateCustomerWithStore(responseData.StoreID),
+       bluetoothBeaconManager.onBeaconingSetPress(responseData.StoreID);
        this.props.navigator.replace({
         title: "Locl",
         component: StoreHome,
