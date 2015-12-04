@@ -157,6 +157,8 @@ var UserProfile = React.createClass({
   },
 
   getCustomerHistory: function(fName,lName,pass) {  
+    console.log("Getting Customer History with: " + fName + " " + lName + " " + pass);
+
     fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {

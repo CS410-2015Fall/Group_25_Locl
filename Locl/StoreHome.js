@@ -157,6 +157,7 @@ var StoreHome = React.createClass({
 },
 
 getInitialState: function() {
+  console.log("CustomerID passed to StoreHome: " + this.props.CustomerID);
   console.log("StoreID passed to StoreHome: " + this.props.StoreID);
   var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   return {
@@ -248,7 +249,7 @@ onCustomerPress: function() {
   this.props.navigator.replace({
     title: "Locl",
     component: CustomerHome,
-    passProps: {StoreID: this.props.StoreID,}
+    passProps: {StoreID: this.props.StoreID, CustomerID: this.props.CustomerID}
   });
 },
 

@@ -30,7 +30,9 @@ var styles = StyleSheet.create({
 var Locl = React.createClass({
 	getInitialState() {
 		return {
-			loading: false,
+			loadingTutorial: false,
+			loadingCustomerID: false,
+			loadingStoreID: false, 
 			hasCustomerID: false, 
 			tutorialCompleted: false,
 			storeID: '',
@@ -50,10 +52,15 @@ var Locl = React.createClass({
 			if (tutorialCompleted !== null){
 				this.setState({
 					tutorialCompleted: true,
+					loadingTutorial: true,
 				});
 				console.log("Tutorial completed");
 			} else {
 				console.log("Tutorial not completed");
+				this.setState({
+					loadingTutorial: true,
+				})
+
 			}
 		} catch (error) {
 			console.log("Async error: " + error.message);
@@ -66,12 +73,14 @@ var Locl = React.createClass({
 			if (storeID !== null){
 				this.setState({
 					storeID: storeID,
+					loadingStoreID: true,
 				});
 				bluetoothBeaconManager.onBeaconingSetPress(storeID);
 				console.log("StoreID set to " + storeID);
 			} else {
 				console.log("Store not setup");
 				this.setState({
+					loadingStoreID: true,
 				})
 			}
 		} catch (error) {
@@ -87,13 +96,13 @@ var Locl = React.createClass({
 				this.setState({
 					customerID: customerID,
 					hasCustomerID: true, 
-					loading: true,
+					loadingCustomerID: true,
 				});
 				console.log("CustomerID is: " + customerID);
 			} else {
 				console.log("No CustomerID found");
 				this.setState({
-					loading: true,
+					loadingCustomerID: true,
 				})
 			}
 		} catch (error) {
@@ -112,11 +121,7 @@ var Locl = React.createClass({
 	},
 
 	render() {
-		if (this.state.loading === false) {
-			return (
-				this.renderLoadingView()
-				);
-		} else {
+		if (this.state.loadingTutorial && this.state.loadingCustomerID && this.state.loadingStoreID) {
 			if(this.state.tutorialCompleted === false) {
 				return (
 					<NavigatorIOS ref='nav'
@@ -148,7 +153,10 @@ var Locl = React.createClass({
 					}}/>
 					);
 			}
-
+		} else {
+			return (
+				this.renderLoadingView()
+				);
 		}
 	},
 });

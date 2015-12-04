@@ -304,7 +304,7 @@ onStorePress: function() {
     this.props.navigator.replace({
       title: "Locl",
       component: StoreHome,
-      passProps: {StoreID: this.state.storeID},
+      passProps: {StoreID: this.state.storeID, CustomerID: this.state.customerID},
     });
   }
 },
