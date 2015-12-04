@@ -142,7 +142,8 @@ var CustomerHome = React.createClass({
       minors: [], 
       currentAppState: AppStateIOS.currentState,
       storeID: this.props.StoreID,
-      customerID: this.props.CustomerID
+      customerID: this.props.CustomerID,
+      requestOut: 0, 
     }
   },
 
@@ -180,17 +181,22 @@ var CustomerHome = React.createClass({
 
         //Only send a request if the current list of beacons is different from the last list of beacons
         var minors = Object.keys(data.beacons).map(f=>data.beacons[f].minor);
-        console.log("New minors: " + minors.toString());
-        console.log("Old minors: " + this.state.minors.toString());
+        console.log("New minors: " + minors.toString() + " Old minors: "+ this.state.minors.toString());
 
-        if (minors.toString() !== this.state.minors.toString()) {
-          console.log("Minors do not equal");
+        if (minors.toString() !== this.state.minors.toString() && this.state.requestOut === 0) {
+          console.log("Minors do not equal and requestOut is: " + this.state.requestOut);
+          
+          this.setState({
+            requestOut: 1,
+          })
           
           var storeIdString="";
           
           for(var i = 0; i < data.beacons.length; i++){
             storeIdString += data.beacons[i].minor + " ";
           }
+
+          console.log("requestOut set to: " + this.state.requestOut);
 
           storeIdString = storeIdString.trim();
           console.log("Store ID String: " + storeIdString);
@@ -206,10 +212,14 @@ var CustomerHome = React.createClass({
               this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(responseData.script_result),
                 minors: minors,
+                requestOut: 0,
               });
               console.log("Minors set to: " + this.state.minors);
+              console.log("requestOut set to: " + this.state.requestOut);
             }})
           .done();
+        } else {
+          console.log("Minors do equal or requestOut is: " + this.state.requestOut);
         }
       } else {
         this.setState({
@@ -294,9 +304,9 @@ onStorePress: function() {
       passProps: {CustomerId: this.state.customerID,},
       leftButtonTitle: 'Locl',
       onLeftButtonPress: () => {
-      this.props.navigator.pop(), 
-      bluetoothScanningManager.startRangingBeaconsInRegion();
-  }
+        this.props.navigator.pop(), 
+        bluetoothScanningManager.startRangingBeaconsInRegion();
+      }
     }); 
   } else {
     var StoreHome = require('./StoreHome.js');
