@@ -90,7 +90,8 @@ var styles = StyleSheet.create({
   marginRight: 10
 },
 textContainer: {
-  flex: 1
+  flex: 1,
+  justifyContent: 'space-between',
 },
 separator: {
   height: 1,
@@ -104,6 +105,16 @@ price: {
 title: {
   fontSize: 20,
   color: '#656565'
+},
+description: {
+  paddingTop: 5,
+  fontSize: 12,
+  color: '3c3c3c'
+},
+address: {
+  paddingTop: 5,
+  fontSize: 10,
+  color: '#black'
 },
 rowContainer: {
   flexDirection: 'row',
@@ -269,8 +280,15 @@ renderStore: function(store) {
     <View style={styles.rowContainer}>
     <Image style={styles.thumb} source={{ uri: store.StoreHTMLimg }} />
     <View  style={styles.textContainer}>
+    
     <Text style={styles.title} 
     numberOfLines={1}>{store.StoreName}</Text>
+    
+    <Text style={styles.description} 
+    numberOfLines={1}>{store.Description}</Text>
+
+    <Text style={styles.address} 
+    numberOfLines={1}>{store.Address}</Text>
     </View>
     {flag}
     </View>
