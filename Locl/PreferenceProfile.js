@@ -149,7 +149,7 @@ var PreferenceProfile = React.createClass({
     if (this.state.preferenceTextField.length == 0) {
       AlertIOS.alert("Cannot add a blank preference!");
     } else {
-      fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL", {method: "POST", body: JSON.stringify({CustID: this.props.CustomerID, ItemName: this.state.preferenceTextField})})
+      fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL", {method: "POST", body: JSON.stringify({CustID: this.props.CustomerID, ItemName: this.state.preferenceTextField})})
       .then((response) => response.json())
       .then((responseData) => {
         console.log("Preference created: " + this.state.preferenceTextField);
@@ -159,7 +159,7 @@ var PreferenceProfile = React.createClass({
   },
 
   onDeletePress: function(itemID) {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D" + this.props.CustomerID + "%20and%20itemID%20%3D%20%22" + itemID + "%22", {method: "DELETE"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D" + this.props.CustomerID + "%20and%20itemID%20%3D%20%22" + itemID + "%22", {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
       console.log("Deleted Customer Item: " + itemID);
@@ -168,7 +168,7 @@ var PreferenceProfile = React.createClass({
   },
 
   getPreferences: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID=" + this.props.CustomerID, {method: "GET"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID=" + this.props.CustomerID, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {    
      if (responseData.error) {

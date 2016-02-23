@@ -256,7 +256,7 @@ onUpdatePress: function()  {
   if(this.state.name == "" || this.state.startDate == "" || this.state.endDate == "" || this.state.quantity == "" || this.state.regPrice == "" || this.state.salePrice == "") {
     AlertIOS.alert("Required fields missing");
   } else {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID=" + this.props.ItemData.ItemID, 
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID=" + this.props.ItemData.ItemID, 
       {method: "Put", body: JSON.stringify({
         Quantity: this.state.quantity, 
         Name: this.state.name, 
@@ -306,7 +306,7 @@ onAddPress: function() {
     AlertIOS.alert("Required fields missing");
   } else {
     console.log("Creating item with StoreID: " + this.state.storeID + " htmllink: " + this.state.htmlLink);
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL", 
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL", 
       {method: "POST", body: JSON.stringify(
         {Name: this.state.name, 
           Description: this.state.description, 
@@ -333,7 +333,7 @@ onAddPress: function() {
 },
 
 onDeletePress: function() {
-  fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID="+this.props.ItemData.ItemID, {method: "DELETE"})
+  fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=ItemID="+this.props.ItemData.ItemID, {method: "DELETE"})
   .then((response) => response.json())
   .then((responseData) => {    
     AlertIOS.alert("Item Deleted");

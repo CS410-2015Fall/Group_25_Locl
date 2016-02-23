@@ -128,7 +128,7 @@ var StorePage = React.createClass({
   },
 
   getStoreItems: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + this.props.StoreID, {method: "GET"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + this.props.StoreID, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {    
       if (responseData.error) {

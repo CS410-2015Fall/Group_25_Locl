@@ -180,7 +180,7 @@ componentDidMount: function() {
 },
 
 getStoreItems: function(storeID) {
-  fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + storeID, {method: "GET"})
+  fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/" + "item" + "?app_name=loclSQL" + "&filter=StoreID=" + storeID, {method: "GET"})
   .then((response) => response.json())
   .then((responseData) => {    
     if (responseData.error) {

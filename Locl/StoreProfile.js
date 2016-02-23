@@ -157,7 +157,7 @@ var StoreProfile = React.createClass({
     if(this.state.storeName == "" || this.state.address == "" || this.state.htmlLink == "") {
       AlertIOS.alert("Required fields missing");
     } else {
-      fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/Store?app_name=loclSQL&filter=StoreID=" + this.state.storeID, 
+      fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/Store?app_name=loclSQL&filter=StoreID=" + this.state.storeID, 
         {method: "PUT", body: JSON.stringify({
           Address: this.state.address, 
           StoreName: this.state.storeName, 
@@ -178,7 +178,7 @@ var StoreProfile = React.createClass({
     if(this.state.storeName == "" || this.state.address == "" || this.state.htmlLink == "") {
       AlertIOS.alert("Required fields missing");
     } else {
-      fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL", 
+      fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL", 
         {method: "POST", body: JSON.stringify({
           StoreName: this.state.storeName, 
           Address: this.state.address, 
@@ -207,7 +207,7 @@ var StoreProfile = React.createClass({
 
   updateCustomerWithStore: function updateCustomerWithStore(storeID) {
     console.log("Update customer with store: " + this.props.CustomerId);
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=CustomerID=" + this.props.CustomerId, {method: "PUT", body: JSON.stringify({StoreID: storeID})})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=CustomerID=" + this.props.CustomerId, {method: "PUT", body: JSON.stringify({StoreID: storeID})})
     .then((response) => response.json())
     .then((responseData) => {
       console.log("Customer updated with StoreID");
@@ -235,7 +235,7 @@ var StoreProfile = React.createClass({
   },
 
   onDeletePress: function() {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/Store?app_name=loclSQL&filter=StoreID="+ this.state.storeID, 
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/Store?app_name=loclSQL&filter=StoreID="+ this.state.storeID, 
       {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
@@ -249,7 +249,7 @@ var StoreProfile = React.createClass({
   },
 
   getStoreDetails: function(storeID) {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/store?app_name=loclSQL&filter=StoreID=" + storeID.toString(), {method: "GET"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.comrest/db/store?app_name=loclSQL&filter=StoreID=" + storeID.toString(), {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {
       if (responseData.error) {

@@ -8,7 +8,7 @@ var bluetoothBeaconManager = require('./bluetoothBeaconManager');
 var loclSQL="?app_name=loclSQL";
 
 //Basic Connection HTMLstrig for Database
-var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";
+var httpString="http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/";
 
 //String to connect to Items Table
 var itemTableURL=httpString+"item"+loclSQL;
@@ -120,7 +120,7 @@ var UserProfile = React.createClass({
         AlertIOS.alert(
           'Would you like to setup a store?',
           null,
-          [{text: 'Later', onPress: this.toCustomerHome}, 
+          [{text: 'Later', onPress: this.toCustomerHome},
           {text: 'Sure', onPress: this.toStoreSetup},]
           );
       } else {
@@ -135,13 +135,13 @@ var UserProfile = React.createClass({
       console.log("toCustomerHome made it past hasStoreID with storeID: " + this.state.storeId);
       this.props.navigator.replace({
         title: "Shopping",
-        component: CustomerHome, 
+        component: CustomerHome,
         passProps: {CustomerID: this.state.customerId, StoreID: this.state.storeId,}
       });
     } else {
     this.props.navigator.replace({
       title: "Shopping",
-      component: CustomerHome, 
+      component: CustomerHome,
       passProps: {CustomerID: this.state.customerId,}
     });
   }
@@ -156,10 +156,9 @@ var UserProfile = React.createClass({
     });
   },
 
-  getCustomerHistory: function(fName,lName,pass) {  
-    console.log("Getting Customer History with: " + fName + " " + lName + " " + pass);
-
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
+  getCustomerHistory: function(fName,lName,pass) {
+    console.log("Now getting Customer History with: " + fName + " " + lName + " " + pass);
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer?app_name=loclSQL&filter=firstname%3D%22"+fName+"%22%20and%20lastname%3D%22"+lName+"%22%20and%20password%3D"+pass, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {
 
@@ -167,34 +166,34 @@ var UserProfile = React.createClass({
         console.log("Customer does not have a prior account.");
         this.createCustomer(this.props.first_name, this.props.last_name, this.props.id);
         this.setState({
-            loading: true, 
+            loading: true,
           })
 
 
       } else {
-        
+
         console.log("Customer has a prior account with ID: " + responseData.record[0].CustomerID);
         this.storeCustomerID(responseData.record[0].CustomerID);
         this.setState({
           customerId: responseData.record[0].CustomerID.toString(),
           hasCustomerID: true,
         })
-        
+
         console.log("customerId set to: " + this.state.customerId + " hasCustomerId set to: " + this.state.hasCustomerID);
-        
+
         if (responseData.record[0].StoreID !== null) {
           console.log("StoreID found associated with customer: " + responseData.record[0].StoreID);
           this.storeStoreID(responseData.record[0].StoreID);
           this.setState({
             storeId: responseData.record[0].StoreID.toString(),
             hasStoreID: true,
-            loading: true, 
+            loading: true,
           })
           bluetoothBeaconManager.onBeaconingSetPress(responseData.record[0].StoreID.toString());
           console.log("storeID set to: " + this.state.storeId + " hasStoreId set to: " + this.state.hasStoreID);
         } else {
           this.setState({
-            loading: true, 
+            loading: true,
           })
         }
       }

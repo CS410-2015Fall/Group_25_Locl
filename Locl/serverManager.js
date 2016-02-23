@@ -18,7 +18,7 @@ var {
 var loclSQL="?app_name=loclSQL";
 
 //Basic Connection HTMLstrig for Database
-var httpString="http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/";   
+var httpString="http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/";   
 
 //String to connect to Items Table
 var itemTableURL=httpString+"item"+loclSQL;   
@@ -45,7 +45,7 @@ var serverManager = {
 //MODIFIES: nothing
 //EFFECTS: returns a console print of the authorization code
 auth: function() {
-	fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
+	fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/user/session?app_name=loclSQL", {method: "POST", body: JSON.stringify({"email":"locl@user.com","password":"rootadmin"})})
 	.then((response) => response.json())
 	.then((responseData) => {
 		authKey = responseData.session_id;
@@ -145,7 +145,7 @@ searchByOneFilter: function searchByOneFilter(fval, fname, ftable) {
 //Input: CustID=customerID   itemName= name of the item 
 //Output: None
 deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+custID+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
         console.log("Deleted Customer Item");
@@ -156,7 +156,7 @@ deleteOneCustomerItem: function deleteOneCustomerItem(custID,itemName) {
 //Input: storeId =storeID and itemName= name of the item
 //Output: none
 deleteOneStoreItem: function deleteOneStoreItem(storeID,itemName) {
-    fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
+    fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/item?app_name=loclSQL&filter=StoreID%20%3D"+storeID+"%20and%20Name%20%3D%20%22"+itemName+"%22", {method: "DELETE"})
     .then((response) => response.json())
     .then((responseData) => {    
         console.log("Deleted Store Item");
@@ -177,7 +177,7 @@ bulkAddPreferenceItem: function bulkAddPreferenceItem(custID, array) {
 //Input: cid= customer ID    itemName= name of the item   callback=asynch callback
 //Output: ItemID 
 searchFilter: function searchFilter(cid,itemName,callback) {
-   fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
+   fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/db/customer-items?app_name=loclSQL&filter=CustID%20%3D"+cid+"%20and%20itemname%20%3D%20%22"+itemName+"%22", {method: "GET"})
    .then((response) => response.json())
    .then((responseData) => {    
      callback(responseData.record[0].ItemID);

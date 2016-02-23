@@ -43,7 +43,7 @@
 //    jsCodeLocation = [NSURL URLWithString:@"http://173.183.16.143:8081/index.ios.bundle?platform=ios&dev=true"];
   
 //  Home Internal
- jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.7:8081/index.ios.bundle?platform=ios&dev=true"];
+// jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.7:8081/index.ios.bundle?platform=ios&dev=true"];
   
   /**
    * OPTION 2
@@ -55,7 +55,7 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-// jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"Locl"

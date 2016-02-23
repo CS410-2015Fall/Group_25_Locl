@@ -212,7 +212,7 @@ var CustomerHome = React.createClass({
           storeIdString = storeIdString.trim();
           console.log("Store ID String: " + storeIdString);
 
-          fetch("http://ec2-54-187-51-38.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&storeID=" + storeIdString + "&custID=" + this.state.customerID, {method: "POST"})
+          fetch("http://ec2-54-201-142-234.us-west-2.compute.amazonaws.com/rest/system/script/add?app_name=loclSQL&is_user_script=true&storeID=" + storeIdString + "&custID=" + this.state.customerID, {method: "POST"})
           .then((response) => response.json())
           .then((responseData) => {
             if (responseData.error) {
